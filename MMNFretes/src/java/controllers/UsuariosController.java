@@ -19,7 +19,7 @@ import sessionProvider.ConfigureSession;
 @Controller
 public class UsuariosController 
 {
-    @RequestMapping("/cadastraUsuario")
+    @RequestMapping("/cadastrausuario")
     public String gravaUsuario(Usuarios usuario)
     {
         SessionFactory session = new ConfigureSession().getSession();
