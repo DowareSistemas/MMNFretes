@@ -17,7 +17,6 @@
     </head>
 
     <body>
-
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -52,32 +51,33 @@
                         <h1>Criar Conta</h1>
                     </div>
                     <div class="form-group">
-                        <form role="form">
+                        <form role="form" action="cadastrausuario">
                             <div class="form-group">
-                                <input type="text" class="form-control center-block" placeholder="Nome">
+                                <input type="text" name="nome" class="form-control center-block" placeholder="Nome">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control center-block" placeholder="Email">
+                                <input type="text" name="email" class="form-control center-block" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control center-block" placeholder="Senha">
+                                <input type="password" name="senha" class="form-control center-block" placeholder="Senha">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control center-block" placeholder="Digite sua senha novamente">
+                                <input type="password" class="form-control center-block" placeholder="Digite sua senha novamente">
                             </div>
+
                             <div class="form-group">
-                                <input type="text" class="form-control center-block" placeholder="ANTT">
+                                <input type="text"  class="form-control center-block" placeholder="ANTT">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control center-block" placeholder="CPF ou CNPJ">
                             </div>
+
                             <div class="checkbox">
                                 <label><input type="checkbox">Sou um transportador</label>
                             </div>
                             <button type="submit" class="btn btn-primary">Criar Conta</button>
                         </form>
                     </div>
-
                 </div>
             </div>
 
