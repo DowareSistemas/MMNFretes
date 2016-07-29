@@ -18,8 +18,6 @@ public class LoginController
     @RequestMapping("/paginaLogin")
     public String redirecionaLogin()
     {
-        return "Login";
+        return "login";
     }
-    
-  
 }
