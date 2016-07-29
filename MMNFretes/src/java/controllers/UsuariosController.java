@@ -23,11 +23,13 @@ public class UsuariosController
     @RequestMapping("/cadastrausuario")
     public String gravaUsuario(Usuarios usuario)
     {
+       // usuario.setTipo_usuario(0);
+        
+     //   SessionFactory session = new ConfigureSession().getSession();
       /*  SessionFactory session = new ConfigureSession().getSession();
         session.save(usuario);
         session.commit();
         session.close();
-<<<<<<< HEAD
         */
         
 
@@ -38,11 +40,20 @@ public class UsuariosController
     @RequestMapping("/cadastratransportadora")
     public String gravaTransportadora(Transportadoras transportadoras)
     {
+        transportadoras.getUsuarios().setTipo_usuario(1);
+        transportadoras.getUsuarios().setNome(transportadoras.getNome());
+        
         SessionFactory session = new ConfigureSession().getSession();
         session.save(transportadoras);
         session.commit();
         session.close();
 
+        return "areausuario";
+    }
+    
+    @RequestMapping("/areausuario")
+    public String rediriocionaAreaUsuario()
+    {
         return "areausuario";
     }
 }
