@@ -46,4 +46,10 @@ public class UsuariosController
 
         return "areausuario";
     }
+    
+    @RequestMapping("/areausuario")
+    public String rediriocionaAreaUsuario()
+    {
+        return "areausuario";
+    }
 }
