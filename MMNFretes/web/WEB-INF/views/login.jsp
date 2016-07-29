@@ -43,51 +43,49 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
+        <div class="container">
+                <div class="col-xs-12 col-sm-5 col-md-5">
+                    <div class="jumbotron">
+                        <div class="text-primary">
+                            <h1>Criar Conta</h1>
+                        </div>
+                        <div class="form-group">
+                            <form data-toggle="validator" role="form" action="cadastrausuario">
+                                <div class="form-group">
+                                    <input type="text" name="nome" class="form-control center-block" placeholder="Nome" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control center-block" placeholder="Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="senha" class="form-control center-block" placeholder="Senha" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control center-block" placeholder="Digite sua senha novamente" required>
+                                </div>
 
-        <div class="container-fluid">
-            <div class="col-xs-12 col-sm-5 col-md-5">
-                <div class="jumbotron">
-                    <div class="text-primary">
-                        <h1>Criar Conta</h1>
-                    </div>
-                    <div class="form-group">
-                        <form role="form" action="cadastrausuario">
-                            <div class="form-group">
-                                <input type="text" name="nome" class="form-control center-block" placeholder="Nome">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="email" class="form-control center-block" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="senha" class="form-control center-block" placeholder="Senha">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control center-block" placeholder="Digite sua senha novamente">
-                            </div>
+                                <div class="form-group">
+                                    <input type="text"  class="form-control center-block" placeholder="ANTT" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control center-block" placeholder="CPF ou CNPJ" required>
+                                </div>
 
-                            <div class="form-group">
-                                <input type="text"  class="form-control center-block" placeholder="ANTT">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control center-block" placeholder="CPF ou CNPJ">
-                            </div>
-
-                            <div class="checkbox">
-                                <label><input type="checkbox">Sou um transportador</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Criar Conta</button>
-                        </form>
+                                <div class="checkbox">
+                                    <label><input type="checkbox">Sou um transportador</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Criar Conta</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-xs-12 col-sm-7 col-md-7">
+                    <p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
 
-            <div class="col-xs-12 col-sm-7 col-md-7">
-                <p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
 
-                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-
-                    Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-            </div>
+                        Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                </div>
         </div>
     </body>
 </html>

@@ -8,6 +8,6 @@ and open the template in the editor.
     Author     : emers
 */
 
-.container-fluid {
-    margin-top:60px;
+body {
+  padding-top: 70px;
 }

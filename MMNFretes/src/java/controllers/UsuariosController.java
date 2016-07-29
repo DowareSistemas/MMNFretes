@@ -22,9 +22,10 @@ public class UsuariosController
     @RequestMapping("/cadastrausuario")
     public String gravaUsuario(Usuarios usuario)
     {
-        SessionFactory session = new ConfigureSession().getSession();
+      /*  SessionFactory session = new ConfigureSession().getSession();
         session.save(usuario);
         session.close();
+        */
         
         return "areausuario";
     }
