@@ -4,12 +4,11 @@
     Author     : Marcos Vinícius
 --%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="formulario" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -49,7 +48,7 @@
             <div class="col-xs-12 col-sm-5 col-md-5">
                 <div class="jumbotron">
                     <div class="text-primary">
-                        <h1>Criar Conta</h1>
+                        <h2>Criar Conta</h2>
                     </div>
 
                     <formulario:form-usuario/>

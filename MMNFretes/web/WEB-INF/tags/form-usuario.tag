@@ -4,25 +4,24 @@
     Author     : Sammy Guergachi <sguergachi at gmail.com>
 --%>
 
-<%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <div id="formulario-usuario" class="form-group">
-    <form role="form" action="cadastrausuario">
+    <form role="form" action="cadastrausuario" method="POST">
         <div class="form-group">
-            <input type="text" name="nome" class="form-control center-block" placeholder="Nome">
+            <input type="text" name="nome" class="form-control center-block" placeholder="Nome" required>
         </div>
         <div class="form-group">
-            <input type="text" name="email" class="form-control center-block" placeholder="Email">
+            <input type="email" name="email" class="form-control center-block" placeholder="Email" required>
         </div>
         <div class="form-group">
-            <input type="password" name="senha" class="form-control center-block" placeholder="Senha">
+            <input type="password" name="senha" class="form-control center-block" placeholder="Senha" required>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control center-block" placeholder="Digite sua senha novamente">
+            <input type="password" class="form-control center-block" placeholder="Digite sua senha novamente" required>
         </div>
 
-        <div class="checkbox">
-            <label><input value="0" name="tipo_usuario" id="checkbox-transportadora" type="checkbox">Sou um transportador</label>
+        <div class="btn btn-link pull-right">
+            <label class="btn btn-link" id="transportador">Sou um transportador</label>
         </div>
         <button type="submit" class="btn btn-primary">Criar Conta</button>
     </form>

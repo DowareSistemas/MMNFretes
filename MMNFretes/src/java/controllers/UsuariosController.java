@@ -23,6 +23,8 @@ public class UsuariosController
     @RequestMapping("/cadastrausuario")
     public String gravaUsuario(Usuarios usuario)
     {
+        usuario.setTipo_usuario(0);
+        
         SessionFactory session = new ConfigureSession().getSession();
         session.save(usuario);
         session.commit();
@@ -34,6 +36,9 @@ public class UsuariosController
     @RequestMapping("/cadastratransportadora")
     public String gravaTransportadora(Transportadoras transportadoras)
     {
+        transportadoras.getUsuarios().setTipo_usuario(1);
+        transportadoras.getUsuarios().setNome(transportadoras.getNome());
+        
         SessionFactory session = new ConfigureSession().getSession();
         session.save(transportadoras);
         session.commit();

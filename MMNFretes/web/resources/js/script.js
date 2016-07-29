@@ -1,13 +1,13 @@
 $('#formulario-transportador').hide();
 
-$('#checkbox-transportadora').click(function ()
+$('#transportador').click(function ()
 {
    $('#formulario-transportador').fadeIn();
-   $('#formulario-usuario').fadeOut()();
+   $('#formulario-usuario').hide();
 });
 
-$('#checkbox-usuario').click(function ()
+$('#usuario').click(function ()
 {
    $('#formulario-usuario').fadeIn();
-   $('#formulario-transportador').fadeOut()();
+   $('#formulario-transportador').hide()();
 });
