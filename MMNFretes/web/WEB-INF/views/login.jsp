@@ -4,7 +4,8 @@
     Author     : Marcos Vinícius
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="formulario" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,34 +51,10 @@
                     <div class="text-primary">
                         <h1>Criar Conta</h1>
                     </div>
-                    <div class="form-group">
-                        <form role="form" action="cadastrausuario">
-                            <div class="form-group">
-                                <input type="text" name="nome" class="form-control center-block" placeholder="Nome">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="email" class="form-control center-block" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="senha" class="form-control center-block" placeholder="Senha">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control center-block" placeholder="Digite sua senha novamente">
-                            </div>
 
-                            <div class="form-group">
-                                <input type="text"  class="form-control center-block" placeholder="ANTT">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control center-block" placeholder="CPF ou CNPJ">
-                            </div>
+                    <formulario:form-usuario/>
+                    <formulario:form-transportadora/>
 
-                            <div class="checkbox">
-                                <label><input type="checkbox">Sou um transportador</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Criar Conta</button>
-                        </form>
-                    </div>
                 </div>
             </div>
 
@@ -89,5 +66,8 @@
                     Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
             </div>
         </div>
+
+        <script src="resources/js/jquery.js"></script>
+        <script src="resources/js/script.js"></script>
     </body>
 </html>
