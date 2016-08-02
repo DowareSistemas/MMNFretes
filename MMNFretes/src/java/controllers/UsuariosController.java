@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import br.com.persistor.sessionManager.SessionFactory;
+import br.com.persistor.interfaces.Session;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import org.springframework.stereotype.Controller;
@@ -23,16 +23,12 @@ public class UsuariosController
     @RequestMapping("/cadastrausuario")
     public String gravaUsuario(Usuarios usuario)
     {
-       // usuario.setTipo_usuario(0);
+        usuario.setTipo_usuario(0);
         
-     //   SessionFactory session = new ConfigureSession().getSession();
-      /*  SessionFactory session = new ConfigureSession().getSession();
+        Session session = new ConfigureSession().getSession();
         session.save(usuario);
         session.commit();
         session.close();
-        */
-        
-
 
         return "areausuario";
     }
@@ -43,7 +39,7 @@ public class UsuariosController
         transportadoras.getUsuarios().setTipo_usuario(1);
         transportadoras.getUsuarios().setNome(transportadoras.getNome());
         
-        SessionFactory session = new ConfigureSession().getSession();
+        Session session = new ConfigureSession().getSession();
         session.save(transportadoras);
         session.commit();
         session.close();
