@@ -25,7 +25,7 @@ public class UsuariosController
     {
         usuario.setTipo_usuario(0);
         
-        Session session = new ConfigureSession().getSession();
+        Session session = ConfigureSession.getSession();
         session.save(usuario);
         session.commit();
         session.close();
@@ -39,7 +39,7 @@ public class UsuariosController
         transportadoras.getUsuarios().setTipo_usuario(1);
         transportadoras.getUsuarios().setNome(transportadoras.getNome());
         
-        Session session = new ConfigureSession().getSession();
+        Session session = ConfigureSession.getSession();
         session.save(transportadoras);
         session.commit();
         session.close();
