@@ -9,5 +9,9 @@ and open the template in the editor.
 */
 
 body {
-  padding-top: 70px;
+    padding-top: 70px;
+}
+.table-overflow {
+    max-height:400px;
+    overflow-y:auto;
 }

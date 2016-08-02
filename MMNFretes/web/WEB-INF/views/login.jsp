@@ -47,17 +47,16 @@
         <div class="container-fluid">
             <div class="col-xs-12 col-sm-5 col-md-5">
                 <div class="jumbotron">
-                    <div class="text-primary">
-                        <h2>Criar Conta</h2>
+                    <div class="text-center text-primary">
+                        <h1>Criar Conta</h1>
                     </div>
-
                     <formulario:form-usuario/>
                     <formulario:form-transportadora/>
-
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-7 col-md-7">
+                <h2 class="text-center">Sobre o site</h2>
                 <p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
 
                     Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
