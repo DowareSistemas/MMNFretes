@@ -31,6 +31,18 @@ public class Usuarios extends Entity
    private String telefone2; 
    private boolean admin; 
    private boolean inativo; 
+   private Enderecos enderecos;
+
+    @OneToMany(source = "id", target = "usuarios_id", join_type = JOIN_TYPE.INNER, load = LOAD.MANUAL)
+    public Enderecos getEnderecos()
+    {
+        return enderecos;
+    }
+
+    public void setEnderecos(Enderecos enderecos)
+    {
+        this.enderecos = enderecos;
+    }
 
    public void setId(int id)
    {

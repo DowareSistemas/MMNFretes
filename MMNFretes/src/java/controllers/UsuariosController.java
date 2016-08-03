@@ -6,10 +6,13 @@
 package controllers;
 
 import br.com.persistor.interfaces.Session;
+import entidades.Enderecos;
 import entidades.Transportadoras;
 import entidades.Usuarios;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.ConfigureSession;
 
 /**
@@ -45,6 +48,32 @@ public class UsuariosController
         session.close();
 
         return "areausuario";
+    }
+    
+    @RequestMapping("/listaEnderecos")
+    public ModelAndView listaEnderecos(int usuarios_id)
+    {
+        Session session = ConfigureSession.getSession();
+        
+        Usuarios usuarios = new Usuarios();
+        usuarios.setId(usuarios_id);
+        
+        session.loadWithJoin(usuarios, usuarios.getEnderecos());
+        
+        List<Enderecos> listaEnderecos = usuarios.getEnderecos().ResultList;
+        
+        ModelAndView modelAndView = new ModelAndView("resultado");
+        modelAndView.addObject("lista", listaEnderecos);
+        
+        session.close();
+        
+        return modelAndView;
+    }
+    
+    @RequestMapping("/testeLista")
+    public String redirectLista()
+    {
+        return "testeLista";
     }
     
     @RequestMapping("/areausuario")
