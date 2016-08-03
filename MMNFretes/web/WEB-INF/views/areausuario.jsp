@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="perfil-areausuario" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,95 +58,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-9">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div id="custom-search-input">
-                                <div class="input-group col-md-12">
-                                    <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-info btn-lg" type="button">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="form-group">
-                                    <h2 class="text-center text-primary">Minhas Informações</h2><hr>
-                                    <form role="form">
-                                        <div class="form-group col-sm-6">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <button type="button" class="bottom-right btn btn-link col-sm-offset-11">Editar</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <h3 class="text-primary">Meus Endereços</h3><hr>
-                            <div class="form-group">
-                                <form role="form">
-                                    <div class="row">
-                                        <div class="form-group col-sm-3">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <div class="form-group col-sm-1">
-                                            <select class="form-control" id="sel1">
-                                                <option>1</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-sm-3">
-                                            <select class="form-control" id="sel1">
-                                                <option>1</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <div class="form-group col-sm-3">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-2">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                        <div class="form-group col-sm-5">
-                                            <input type="text" class="form-control" placeholder="Text input">
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-default col-sm-2">Default</button>
-                                    <button type="button" class="btn btn-primary col-sm-5">Primary</button>
-                                </form>
-                            </div>
-                            <div class="well col-sm-12 table-overflow">
-                                <h3>Tabelas + informações</h3>
-                                <table class="table">
-                                    <thead>Títulos da tabela</thead>
-                                    <tbody>Conteúdo da tabela</tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <perfil-areausuario:perfil-areausuario></perfil-areausuario:perfil-areausuario>
             </div>
         </div>
-    </div>
 </body>
 </html>
