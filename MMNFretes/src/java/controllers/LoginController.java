@@ -5,8 +5,17 @@
  */
 package controllers;
 
+import br.com.persistor.enums.FILTER_TYPE;
+import br.com.persistor.enums.RESULT_TYPE;
+import br.com.persistor.generalClasses.Restrictions;
+import br.com.persistor.interfaces.Session;
+import br.com.persistor.sessionManager.Criteria;
+import entidades.Usuarios;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sessionProvider.ConfigureSession;
+import util.Util;
 
 /**
  *
@@ -15,9 +24,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController
 {
+
     @RequestMapping("/paginaLogin")
     public String redirecionaLogin()
     {
         return "login";
+    }
+
+    @RequestMapping("/efetuaLogin")
+    public String efetuaLogin(Usuarios usuario, HttpSession httpSession)
+    {
+        Session session = ConfigureSession.getSession();
+
+        Criteria criteria = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
+        criteria.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));
+        criteria.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
+        criteria.execute();
+
+        if (usuario.getId() != 0)
+        {
+            if (Util.isUsuario(usuario))
+            {
+                session.close();
+                httpSession.setAttribute("usuarioLogado", usuario);
+                return "areausuario";
+            } 
+            else
+            {
+                session.close();
+                httpSession.setAttribute("usuarioLogado", usuario);
+                return "areatransportador";
+            }
+        }
+        
+        session.close();
+        return "redirect:paginaLogin";
     }
 }

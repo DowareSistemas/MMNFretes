@@ -1,4 +1,4 @@
-/* 27/07/2016 21:29:00 */
+/* 03/08/2016 20:39:38 */
 /* AUTO-GENERATED CLASS */
 /* DOES NOT ADD ACCESSOR METHODS */
 /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
@@ -29,6 +29,8 @@ public class Enderecos extends Entity
    private String municipio; 
    private String UF; 
    private boolean inativo; 
+   private int numero; 
+   private String complemento; 
    private int usuarios_id; 
    private Usuarios usuarios; 
 
@@ -103,6 +105,26 @@ public class Enderecos extends Entity
        return inativo;
    }
 
+   public void setNumero(int numero)
+   {
+       this.numero = numero;
+   }
+
+   public int getNumero()
+   {
+       return numero;
+   }
+
+   public void setComplemento(String complemento)
+   {
+       this.complemento = complemento;
+   }
+
+   public String getComplemento()
+   {
+       return complemento;
+   }
+
 
    public void setUsuarios(Usuarios usuarios)
    {
@@ -118,7 +140,7 @@ public class Enderecos extends Entity
        return usuarios_id;
    }
 
-   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.MANUAL, join_type = JOIN_TYPE.INNER)
    public Usuarios getUsuarios()
    {
        return usuarios;

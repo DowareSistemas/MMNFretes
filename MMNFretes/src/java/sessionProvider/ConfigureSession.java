@@ -16,7 +16,6 @@ import br.com.persistor.sessionManager.SessionFactory;
  */
 public class ConfigureSession
 {
-
     private static SessionFactory factory = null;
 
     public static Session getSession()

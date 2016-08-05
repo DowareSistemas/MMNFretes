@@ -38,46 +38,46 @@
             </div>
             <h3 class="text-primary">Adicionar ou editar endereços</h3><hr>
             <div class="form-group">
-                <form role="form">
+                <form role="form" id="formulario-endereco" action="/MMNFretes/adicionaEndereco" method="POST">
                     <div class="row">
                         <div class="form-group col-sm-2">
-                            <input type="text" class="form-control" placeholder="CEP">
+                            <input type="text" id="txCep" name="CEP" class="form-control" placeholder="CEP" required>
                         </div>
                         <div class="form-group col-sm-2">
-                            <select class="form-control" id="sel1">
+                            <select class="form-control" id="cbUf" name="UF" required>
                                 <option disabled selected>UF</option>
-                                <option>1</option>
+                                <option value="RJ">RJ</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-3">
-                            <select class="form-control" id="sel1">
+                            <select class="form-control" id="cbMunicipio" name="municipio" required>
                                 <option disabled selected>Município</option>
-                                <option>1</option>
+                                <option value="Volta Redonda">Volta Redonda</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-4">
-                            <input type="text" class="form-control" placeholder="Bairro/Distrito">
+                            <input type="text" id="txBairro" name="bairro" class="form-control" placeholder="Bairro/Distrito" required>
                         </div>
                         <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" placeholder="Logradouro/Nome">
+                            <input type="text" id="txLogradouro" name="logradouro" class="form-control" placeholder="Logradouro/Nome" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-2">
-                            <input type="text" class="form-control" placeholder="Número">
+                            <input type="number" id="txNumero" name="numero" class="form-control" placeholder="Número" required>
                         </div>
                         <div class="form-group col-sm-5">
-                            <input type="text" class="form-control" placeholder="Complemento">
+                            <input type="text" id="txComplemento" name="complemento" class="form-control" placeholder="Complemento">
                         </div>
                     </div>
                     <div class="row">
                         <div class="btn-group col-sm-2">
-                            <button type="button" class="btn btn-danger col-sm-12">Excluir</button>
+                            <button type="button" id="btnExcluir" class="btn btn-danger col-sm-12">Excluir</button>
                         </div>
                         <div class="btn-group col-sm-5">
-                            <button type="button" class="btn btn-primary col-sm-12">Adicionar/Salvar</button>
+                            <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary col-sm-12">Adicionar/Salvar</button>
                         </div>
                     </div>
                 </form>
@@ -96,18 +96,8 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>CEP</td>
-                            <td>UF</td>
-                            <td>Município</td>
-                            <td>Bairro/Distrito</td>
-                            <td>Logradouro/Nome</td>
-                            <td>Número</td>
-                            <td>
-                                <button type="button" class="btn btn-info btn-xs">Editar</button>
-                            </td>
-                        </tr>
+                    <tbody id="enderecos-items">
+                        
                     </tbody>
                 </table>
 

@@ -61,5 +61,8 @@
                 <perfil-areausuario:perfil-areausuario></perfil-areausuario:perfil-areausuario>
             </div>
         </div>
-</body>
+            <script src="resources/js/jquery.js"></script>
+            <script src="resources/js/jquery-form.js"></script>
+            <script src="resources/js/script.js"></script>
+    </body>
 </html>

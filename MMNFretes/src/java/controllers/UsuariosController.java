@@ -50,26 +50,6 @@ public class UsuariosController
         return "areausuario";
     }
     
-    @RequestMapping("/listaEnderecos")
-    public ModelAndView listaEnderecos(int usuarios_id)
-    {
-        Session session = ConfigureSession.getSession();
-        
-        Usuarios usuarios = new Usuarios();
-        usuarios.setId(usuarios_id);
-        
-        session.loadWithJoin(usuarios, usuarios.getEnderecos());
-        
-        List<Enderecos> listaEnderecos = usuarios.getEnderecos().ResultList;
-        
-        ModelAndView modelAndView = new ModelAndView("resultado");
-        modelAndView.addObject("lista", listaEnderecos);
-        
-        session.close();
-        
-        return modelAndView;
-    }
-    
     @RequestMapping("/testeLista")
     public String redirectLista()
     {
