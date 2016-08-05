@@ -14,37 +14,26 @@ $('#usuario').click(function ()
 });
 
 
-/* $('#acao').click(function ()
- {
- $.ajax({
- url: "/MMNFretes/listaEnderecos?usuarios_id=1",
- success: function (data)
- {
- $('#tabela').append(data);
- }
- });
- });
- */
-
-
 $('#btnAdicionar-endereco').click(function ()
-{ 
+{
     $('#formulario-endereco').ajaxForm
-    ({
-        success: function (data)
-        {
-            $('#enderecos-items').html("");
-            $('#enderecos-items').append(data);
-            $('#formulario-endereco')[0].reset();
-            $('#btnExcluir-endereco').fadeOut(100);
-            $('#btnAdicionar-endereco').text('Adicionar');
-        }
-    });
+            ({
+                success: function (data)
+                {
+                    $('#enderecos-items').html("");
+                    $('#enderecos-items').append(data);
+                    $('#formulario-endereco')[0].reset();
+                    $('#btnExcluir-endereco').fadeOut(100);
+                    $('#btnAdicionar-endereco').text('Adicionar');
+                }
+            });
 });
 
 $(document).ready(function ()
 {
     $('#btnExcluir').hide();
+    $('#pendentes').hide();
+    $('#historico').hide();
     carregaEnderecos();
 });
 
@@ -105,4 +94,23 @@ function carregaEnderecoEdicao(endereco_id)
 }
 
 
-//$('.btnEditar').click(carregaEndereco);
+$('#tela-historico').click(function ()
+{
+    $('#perfil').hide();
+    $('#pendentes').hide();
+    $('#historico').fadeIn(200);
+});
+
+$('#tela-perfil').click(function ()
+{
+    $('#pendentes').hide();
+    $('#historico').hide();
+    $('#perfil').fadeIn(200)();
+});
+
+$('#tela-pendentes').click(function ()
+{
+    $('#perfil').hide();
+    $('#historico').hide();
+    $('#pendentes').fadeIn(200);
+});

@@ -10,6 +10,7 @@ import entidades.Enderecos;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +25,7 @@ public class UsuariosController
 {
 
     @RequestMapping("/cadastrausuario")
-    public String gravaUsuario(Usuarios usuario)
+    public String gravaUsuario(Usuarios usuario, HttpSession httpSession)
     {
         usuario.setTipo_usuario(0);
         
@@ -33,11 +34,13 @@ public class UsuariosController
         session.commit();
         session.close();
 
+        httpSession.setAttribute("usuarioLogado", usuario);
+        
         return "areausuario";
     }
 
     @RequestMapping("/cadastratransportadora")
-    public String gravaTransportadora(Transportadoras transportadoras)
+    public String gravaTransportadora(Transportadoras transportadoras, HttpSession httpSession)
     {
         transportadoras.getUsuarios().setTipo_usuario(1);
         transportadoras.getUsuarios().setNome(transportadoras.getNome());
@@ -47,6 +50,8 @@ public class UsuariosController
         session.commit();
         session.close();
 
+        httpSession.setAttribute("usuarioLogado", transportadoras.getUsuarios());
+        
         return "areausuario";
     }
     

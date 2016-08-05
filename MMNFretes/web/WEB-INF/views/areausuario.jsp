@@ -24,13 +24,13 @@
                 <div class="col-sm-3">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Perfil</a>
+                            <a class="nav-link" id="tela-perfil" href="#">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Histórico</a>
+                            <a class="nav-link" id="tela-historico" href="#">Histórico</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pendentes</a>
+                            <a class="nav-link" id="tela-pendentes" href="#">Pendentes</a>
                         </li>
                     </ul>
                 </div>

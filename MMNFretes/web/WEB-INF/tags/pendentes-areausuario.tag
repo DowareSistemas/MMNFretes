@@ -1,4 +1,4 @@
-<div class="col-sm-9">
+<div class="col-sm-9" id="pendentes">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h2 class="text-center">Pendentes</h2>

@@ -1,4 +1,4 @@
-<div class="col-sm-9">
+<div class="col-sm-9" id="perfil">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div id="custom-search-input">

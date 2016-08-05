@@ -19,21 +19,21 @@
     <body>
         <%--<my-tags:navbar></my-tags:navbar>--%>
         <my-tags:navbar-login></my-tags:navbar-login>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Perfil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Histórico</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pendentes</a>
-                        </li>
-                    </ul>
-                </div>
-            <my-tags:perfil-areatransportador></my-tags:perfil-areatransportador>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Histórico</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pendentes</a>
+                            </li>
+                        </ul>
+                    </div>
+                <my-tags:perfil-areatransportador></my-tags:perfil-areatransportador>
                 </body>
                 </html>
