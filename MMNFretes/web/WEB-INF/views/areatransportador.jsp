@@ -1,6 +1,6 @@
 <%-- 
-    Document   : areausuario
-    Created on : 28/07/2016, 20:13:03
+    Document   : areatransportador
+    Created on : 04/08/2016, 19:14:16
     Author     : emers
 --%>
 
@@ -17,7 +17,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <my-tags:navbar></my-tags:navbar>
+        <%--<my-tags:navbar></my-tags:navbar>--%>
         <my-tags:navbar-login></my-tags:navbar-login>
         <div class="container">
             <div class="row">
@@ -34,11 +34,6 @@
                         </li>
                     </ul>
                 </div>
-                <my-tags:perfil-areausuario></my-tags:perfil-areausuario>
-                <my-tags:historico-areausuario></my-tags:historico-areausuario>
-                <my-tags:pendentes-areausuario></my-tags:pendentes-areausuario>
-
-            </div>
-        </div>
-</body>
-</html>
+            <my-tags:perfil-areatransportador></my-tags:perfil-areatransportador>
+                </body>
+                </html>
