@@ -18,23 +18,55 @@ public class Interceptador extends HandlerInterceptorAdapter
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
     {
-        /*  String url = request.getRequestURI();
-        
-        if(url.contains("adicionaEndereco") || url.contains("paginaLogin") || url.contains("cadastratransportadora") || url.contains("cadastrausuario") || url.contains("efetuaLogin") || url.contains("resources"))
+        String url = request.getRequestURI();
+
+        if (enderecoPermitido(url))
         {
             return true;
         }
-        
-        if(request.getSession().getAttribute("usuarioLogado") != null)
+
+        if (request.getSession().getAttribute("usuarioLogado") != null)
         {
             return true;
-        }
-        else
+        } else
         {
             response.sendRedirect("paginaLogin");
             return false;
-        } */
+        }
+    }
 
-        return true;
+    private boolean enderecoPermitido(String url)
+    {
+        if (url.contains("cadastratransportadora"))
+        {
+            return true;
+        }
+
+        if (url.contains("cadastrausuario"))
+        {
+            return true;
+        }
+
+        if (url.contains("efetuaLogin"))
+        {
+            return true;
+        }
+
+        if (url.contains("resources"))
+        {
+            return true;
+        }
+
+        if (url.contains("paginaLogin"))
+        {
+            return true;
+        }
+
+        if (url.contains("cadastratransportadora"))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

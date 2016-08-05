@@ -20,6 +20,6 @@
     <td>${logradouro}</td>
     <td>${numero}</td>
     <td>
-        <button type="button" class="btn btn-info btn-xs btnEditar" value="45" onclick="carregaEnderecoEdicao(${id})" >Editar</button>
+        <button type="button" class="btn btn-info btn-xs btnEditar" value="0" onclick="carregaEnderecoEdicao(${id})" >Editar</button>
     </td>
 </tr>

@@ -41,7 +41,7 @@
                 <form role="form" id="formulario-endereco" action="/MMNFretes/adicionaEndereco" method="POST">
                     <div class="row">
                         <div class="form-group col-sm-2">
-                            <input type="text" id="txCep" name="CEP" class="form-control" placeholder="CEP" required>
+                            <input type="number" id="txCep" name="CEP" class="form-control" placeholder="CEP" required>
                         </div>
                         <div class="form-group col-sm-2">
                             <select class="form-control" id="cbUf" name="UF" required>
@@ -74,10 +74,10 @@
                     </div>
                     <div class="row">
                         <div class="btn-group col-sm-2">
-                            <button type="button" id="btnExcluir" class="btn btn-danger col-sm-12">Excluir</button>
+                            <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger col-sm-12">Excluir</button>
                         </div>
                         <div class="btn-group col-sm-5">
-                            <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary col-sm-12">Adicionar/Salvar</button>
+                            <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary col-sm-12">Adicionar</button>
                         </div>
                     </div>
                 </form>
