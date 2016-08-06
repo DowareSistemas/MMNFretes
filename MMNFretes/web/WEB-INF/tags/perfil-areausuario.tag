@@ -1,3 +1,5 @@
+<%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags" %>
+
 <div class="col-sm-9" id="perfil">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -79,8 +81,10 @@
                         <div class="btn-group col-sm-5">
                             <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary col-sm-12">Adicionar</button>
                         </div>
-                    </div>
+                    </div>      
+                    <br/>
                 </form>
+
             </div>
             <div class="col-sm-12 table-overflow">
                 <h3 class="text-primary">Meus endereços</h3><hr>
@@ -97,7 +101,7 @@
                         </tr>
                     </thead>
                     <tbody id="enderecos-items">
-                        
+
                     </tbody>
                 </table>
 

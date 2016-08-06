@@ -24,24 +24,25 @@
                 <div class="col-sm-3">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="nav-item">
-                            <a class="nav-link" id="tela-perfil" href="#">Perfil</a>
+                            <a class="nav-link" id="tela-perfil" >Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="tela-historico" href="#">Histórico</a>
+                            <a class="nav-link" id="tela-historico" >Histórico</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="tela-pendentes" href="#">Pendentes</a>
+                            <a class="nav-link" id="tela-pendentes">Pendentes</a>
                         </li>
                     </ul>
                 </div>
                 <my-tags:perfil-areausuario></my-tags:perfil-areausuario>
                 <my-tags:historico-areausuario></my-tags:historico-areausuario>
                 <my-tags:pendentes-areausuario></my-tags:pendentes-areausuario>
-
+               
             </div>
+                
         </div>
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>
-            <script src="resources/js/script.js"></script>
+            <script src="resources/js/areausuario.js"></script>
     </body>
 </html>
