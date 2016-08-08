@@ -10,10 +10,11 @@
                 <li><a>Anuncie</a></li>                        
                 <li><a>Trabalhe Conosco</a></li>
             </ul>
+            
             <ul class="nav navbar-nav navbar-right">
                 <li><a><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
                 <li><a><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
-            </ul>
+            </ul> 
         </div><!--/.nav-collapse -->
     </div>
 </nav>
