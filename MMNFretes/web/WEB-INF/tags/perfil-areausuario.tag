@@ -18,23 +18,28 @@
             <div class="row">
                 <div class="form-group">
                     <h2 class="text-center text-primary">Minhas Informações</h2><hr>
-                    <form role="form">
+                    <form role="form" id="formulario-info-usuario" action="/MMNFretes/alteraInfoUsuario" method="POST">
                         <div class="form-group col-sm-6">
-                            <input type="text" class="form-control" placeholder="Nome">
+                            <input type="text" name="nome" id="txNome-usuario" class="form-control" placeholder="Nome">
                         </div>
                         <div class="form-group col-sm-6">
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" id="txEmail-usuario" name="email" placeholder="Email">
                         </div>
                         <div class="form-group col-sm-4">
-                            <input type="text" class="form-control" placeholder="Senha">
+                            <input type="password" class="form-control" id="txSenha" name="senha" placeholder="Senha">
                         </div>
                         <div class="form-group col-sm-4">
-                            <input type="text" class="form-control" placeholder="Telefone Primário">
+                            <input type="password" class="form-control" id="txConfirm-senha" placeholder="Confirmar senha">
+                        </div>
+
+                        <div class="form-group col-sm-4">
+                            <input type="tel" class="form-control" name="telefone1" id="txTelefone1"  placeholder="Telefone 1">
                         </div>
                         <div class="form-group col-sm-4">
-                            <input type="text" class="form-control" placeholder="Telefone Segundário">
+                            <input type="tel" class="form-control" name="telefone2" id="txTelefone2" placeholder="Telefone 2">
                         </div>
-                        <button type="button" class="bottom-right btn btn-link col-sm-offset-11">Editar</button>
+                        <button type="button" id="btnAlterar-info" class="btn btn-primary col-lg-offset-11">Editar</button>
+                        <button type="submit" id="btnSalvar-info" class="btn btn-primary col-lg-offset-11">Salvar</button>
                     </form>
                 </div>
             </div>

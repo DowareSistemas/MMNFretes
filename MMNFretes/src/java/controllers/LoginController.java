@@ -47,13 +47,13 @@ public class LoginController
             {
                 session.close();
                 httpSession.setAttribute("usuarioLogado", usuario);
-                return "areausuario";
+                return "redirect:areausuario";
             } 
             else
             {
                 session.close();
                 httpSession.setAttribute("usuarioLogado", usuario);
-                return "areatransportador";
+                return "redirect:areatransportador";
             }
         }
         

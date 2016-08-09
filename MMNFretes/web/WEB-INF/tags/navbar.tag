@@ -10,10 +10,10 @@
                 <li><a href="">Anuncie</a></li>                        
                 <li><a href="">Trabalhe Conosco</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite seu email">
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha">
-                <button type="submit" class="btn btn-link">Entar</button>
+            <form class="navbar-form navbar-right" action="/MMNFretes/efetuaLogin">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Senha">
+                <button type="submit" class="btn btn-link">Entrar</button>
             </form>
         </div><!--/.nav-collapse -->
     </div>

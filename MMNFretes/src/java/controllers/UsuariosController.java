@@ -6,14 +6,13 @@
 package controllers;
 
 import br.com.persistor.interfaces.Session;
-import entidades.Enderecos;
+import com.google.gson.Gson;
 import entidades.Transportadoras;
 import entidades.Usuarios;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 import sessionProvider.ConfigureSession;
 
 /**
@@ -39,6 +38,38 @@ public class UsuariosController
         return "areausuario";
     }
 
+    @RequestMapping("/alteraInfoUsuario")
+    public String alteraInfoUsuario(Usuarios usuario, HttpSession httpSession)
+    {
+        Usuarios usuarioLogado = (Usuarios)httpSession.getAttribute("usuarioLogado");
+        
+        usuario.setId(usuarioLogado.getId());
+        
+        Session session = ConfigureSession.getSession();
+        
+        session.update(usuario);
+        session.commit();
+        session.close();
+        
+        return "redirect:infoUsuario";
+    }
+    
+    @RequestMapping("/infoUsuario")
+    public @ResponseBody String infoUsuario(HttpSession httpSession)
+    {
+        Session session = ConfigureSession.getSession();
+        
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        session.onID(usuario, usuario.getId());
+        
+        session.close();
+        
+        Gson gson = new Gson();
+        String resultado = gson.toJson(usuario);
+        
+        return resultado;
+    }
+    
     @RequestMapping("/cadastratransportadora")
     public String gravaTransportadora(Transportadoras transportadoras, HttpSession httpSession)
     {
