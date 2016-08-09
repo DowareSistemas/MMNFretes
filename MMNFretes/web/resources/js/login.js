@@ -12,3 +12,5 @@ $('#usuario').click(function ()
     $('#formulario-transportador').hide()();
     $('#formulario-transportador').hide();
 });
+
+$('#mensagem').toggleClass('in');

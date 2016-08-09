@@ -4,7 +4,6 @@
     Author     : Sammy Guergachi <sguergachi at gmail.com>
 --%>
 
-
 <div id="formulario-usuario" class="form-group">
     <form role="form" action="cadastrausuario" method="POST">
         <div class="form-group">
