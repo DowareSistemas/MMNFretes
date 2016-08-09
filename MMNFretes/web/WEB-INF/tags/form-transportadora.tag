@@ -3,7 +3,7 @@
     Created on : 28/07/2016, 20:10:16
     Author     : Sammy Guergachi <sguergachi at gmail.com>
 --%>
-<div class="panel-body">
+<div class="panel-body" id="corpo-form-transportadora">
     <div class="row">
         <div class="col-sm-12">
             <div id="formulario-transportador" class="form form-group">

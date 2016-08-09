@@ -37,6 +37,7 @@
                 <my-tags:perfil-areausuario/>
                 <my-tags:historico-areausuario/>
                 <my-tags:pendentes-areausuario/>
+                <my-tags:mensagem-yes-no/>
             </div>
         </div>
         <script src="resources/js/jquery.js"></script>
