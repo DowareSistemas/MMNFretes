@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group col-sm-12">
                                 <div class="input-group image-preview">
-                                    <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                    <input type="text" class="form-control image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
                                     <span class="input-group-btn">
                                         <!-- image-preview-button button -->
                                         <button type="button" class="btn btn-default image-preview-button" style="display:none;">
@@ -47,7 +47,7 @@
                                         <div class="btn btn-default image-preview-input">
                                             <span class="glyphicon glyphicon-folder-open"></span>
                                             <span class="image-preview-input-title">Arquivo</span>
-                                            <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                            <input type="file" accept="image/png, image/jpeg, image/gif" /> <!-- rename it -->
                                         </div>
                                     </span>
                                 </div>

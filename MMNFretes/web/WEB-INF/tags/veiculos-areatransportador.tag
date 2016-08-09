@@ -1,7 +1,7 @@
 <div class="col-sm-9">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h1 class="text-center">Perfil</h1>
+            <h1 class="text-center">Veículos</h1>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -25,67 +25,72 @@
                                             <option value="Volta Redonda">Tonelada</option>
                                         </select>
                                     </div>
-                                    <div class="row center-block">
-                                        <div class="form-group col-sm-4">
-                                            <label><input type="radio" name="optradio">Option 1</label>
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <label><input type="radio" name="optradio">Option 2</label>
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <label><input type="radio" name="optradio">Option 3</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-4">
-                                        <input type="text" id="txBairro" name="bairro" class="form-control" placeholder="Bairro/Distrito" required>
-                                    </div>
-                                    <div class="form-group col-sm-3">
-                                        <input type="text" id="txLogradouro" name="logradouro" class="form-control" placeholder="Logradouro/Nome" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-2">
-                                        <input type="number" id="txNumero" name="numero" class="form-control" placeholder="Número" required>
-                                    </div>
-                                    <div class="form-group col-sm-5">
-                                        <input type="text" id="txComplemento" name="complemento" class="form-control" placeholder="Complemento">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
-                                        <div class="input-group image-preview">
-                                            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn">
-                                                <!-- image-preview-button button -->
-                                                <button type="button" class="btn btn-default image-preview-button" style="display:none;">
-                                                    <span class="glyphicon glyphicon-picture"></span> Preview
-                                                </button>
+                                    <div class="row">
+                                        <div class="form-group"
+                                             <form role="form">
+                                                <div class="form-group col-sm-4">
+                                                    <label><input class="form-control" type="radio">Option 2</label>
 
-                                                <!-- image-preview-clear button -->
-                                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                                    <span class="glyphicon glyphicon-remove"></span> Clear
-                                                </button>
-
-                                                <!-- image-preview-input -->
-                                                <div class="btn btn-default image-preview-input">
-                                                    <span class="glyphicon glyphicon-folder-open"></span>
-                                                    <span class="image-preview-input-title">Arquivo</span>
-                                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
                                                 </div>
-                                            </span>
+                                                <div class="form-group col-sm-4"> 
+                                                    <label><input class="form-control" type="radio">Option 2</label>
+                                                </div>
+                                                <div class="form-group col-sm-4"> 
+                                                    <label><input class="form-control" type="radio">Option 2</label>
+                                                </div>
+                                            </form>
+                                    </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="btn-group col-sm-4">
-                                        <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger col-sm-12">Excluir</button>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4">
+                                            <input type="text" id="txBairro" name="bairro" class="form-control" placeholder="Bairro/Distrito" required>
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <input type="text" id="txLogradouro" name="logradouro" class="form-control" placeholder="Logradouro/Nome" required>
+                                        </div>
                                     </div>
-                                    <div class="btn-group col-sm-8">
-                                        <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary col-sm-12">Adicionar</button>
+                                    <div class="row">
+                                        <div class="form-group col-sm-2">
+                                            <input type="number" id="txNumero" name="numero" class="form-control" placeholder="Número" required>
+                                        </div>
+                                        <div class="form-group col-sm-5">
+                                            <input type="text" id="txComplemento" name="complemento" class="form-control" placeholder="Complemento">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            <div class="input-group image-preview">
+                                                <input type="text" class="form-control image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+                                                    <!-- image-preview-button button -->
+                                                    <button type="button" class="btn btn-default image-preview-button" style="display:none;">
+                                                        <span class="glyphicon glyphicon-picture"></span> Preview
+                                                    </button>
+
+                                                    <!-- image-preview-clear button -->
+                                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                                    </button>
+
+                                                    <!-- image-preview-input -->
+                                                    <div class="btn btn-default image-preview-input">
+                                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                                        <span class="image-preview-input-title">Arquivo</span>
+                                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="btn-group col-sm-4">
+                                            <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger col-sm-12">Excluir</button>
+                                        </div>
+                                        <div class="btn-group col-sm-8">
+                                            <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary col-sm-12">Adicionar</button>
+                                        </div>
+                                    </div>
                             </form>
                         </div>
                     </div>
