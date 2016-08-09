@@ -59,9 +59,6 @@ body {
     background: inherit;
     left: 20px;
 }
-.container{
-    margin-top:20px;
-}
 .image-preview-input {
     position: relative;
 	overflow: hidden;

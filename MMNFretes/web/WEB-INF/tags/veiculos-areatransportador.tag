@@ -5,28 +5,36 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm-3">
-                    <img src="resources/img/img-text.jpg" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
+                <div class="col-sm-4">
+                    <img src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <div class="form-group">
                         <div class="form-group">
                             <form role="form">
                                 <div class="row">
-                                    <div class="form-group col-sm-2">
-                                        <input type="number" id="txCep" name="CEP" class="form-control" placeholder="CEP" required>
-                                    </div>
-                                    <div class="form-group col-sm-2">
-                                        <select class="form-control" id="cbUf" name="UF" required>
-                                            <option disabled selected>UF</option>
-                                            <option value="RJ">RJ</option>
-                                        </select>
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Nome do Veículo" required>
                                     </div>
                                     <div class="form-group col-sm-3">
-                                        <select class="form-control" id="cbMunicipio" name="municipio" required>
-                                            <option disabled selected>Município</option>
-                                            <option value="Volta Redonda">Volta Redonda</option>
+                                        <input type="text" class="form-control" placeholder="Capacidade" required>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <select class="form-control"required>
+                                            <option disabled selected>Tipo Carga</option>
+                                            <option value="Volta Redonda">Tonelada</option>
                                         </select>
+                                    </div>
+                                    <div class="row center-block">
+                                        <div class="form-group col-sm-4">
+                                            <label><input type="radio" name="optradio">Option 1</label>
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label><input type="radio" name="optradio">Option 2</label>
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label><input type="radio" name="optradio">Option 3</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -82,7 +90,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default">

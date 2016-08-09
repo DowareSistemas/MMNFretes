@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">            
-            <a class="navbar-brand" href="#">MMN Fretes</a>
+            <a class="navbar-brand" href="">MMN Fretes</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Pesquisar Fretes</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Anuncie</a></li>                        
-                <li><a href="#">Trabalhe Conosco</a></li>
+                <li class="active"><a href="">Pesquisar Fretes</a></li>
+                <li><a href="">Sobre</a></li>
+                <li><a href="">Anuncie</a></li>                        
+                <li><a href="">Trabalhe Conosco</a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite seu email">

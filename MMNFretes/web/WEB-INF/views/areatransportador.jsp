@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -17,8 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%--<my-tags:navbar></my-tags:navbar>--%>
-        <%--<my-tags:navbar-login></my-tags:navbar-login>--%>
+        <my-tags:navbar-login/>
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 panel">
@@ -42,8 +40,8 @@
                     </ul>
                     <br>
                 </div>
-                <%--<my-tags:perfil-areatransportador></my-tags:perfil-areatransportador>--%>
-                <my-tags:veiculos-areatransportador></my-tags:veiculos-areatransportador>
+                <%--<my-tags:perfil-areatransportador/>--%>
+                <my-tags:veiculos-areatransportador/>
             </div>
         </div>
     </body>
