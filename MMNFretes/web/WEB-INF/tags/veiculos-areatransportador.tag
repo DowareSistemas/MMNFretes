@@ -7,6 +7,12 @@
             <div class="row">
                 <div class="col-sm-4">
                     <img src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
+                    <span>
+                        <label class="btn btn-link col-sm-12" for="upload-file-selector">
+                            <input class="col-sm-12" id="upload-file-selector" accept="image/png, image/jpeg, image/gif" type="file">
+                            <i class="fa_icon icon-upload-alt"></i>Editar Imagem
+                        </label>
+                    </span>
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
@@ -49,10 +55,10 @@
                     </div>
                     <div class="row">
                         <div class="btn-group col-sm-6">
-                            <button type="button" class="btn btn-default col-sm-12">Tenho Rastreador</button>
+                            <button type="button" class="btn btn-default col-sm-12">Com Rastreador</button>
                         </div>
                         <div class="btn-group col-sm-6">
-                            <button type="button" class="btn btn-default col-sm-12">Não Tenho Rastreador</button>
+                            <button type="button" class="btn btn-default col-sm-12">Sem Rastreador</button>
                         </div>
                     </div><br/>
                     <div class="row">
@@ -64,11 +70,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
-            <br/>
+            </div><hr/>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default">

@@ -40,8 +40,9 @@
                     </ul>
                     <br>
                 </div>
-                <%--<my-tags:perfil-areatransportador/>--%>
-                <my-tags:veiculos-areatransportador/>
+                <my-tags:perfil-areatransportador/>--%>
+                <my-tags:veiculos-areatransportador/>--%>
+                <my-tags:endereços-areatransportador/>
             </div>
         </div>
     </body>
