@@ -3,7 +3,8 @@
 <div class="col-sm-9" id="perfil">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div id="custom-search-input">
+            <h1 class="text-center">Perfil</h1>
+            <%--<div id="custom-search-input">
                 <div class="input-group col-md-12">
                     <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
                     <span class="input-group-btn">
@@ -11,13 +12,12 @@
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
-                </div>
+                </div>--%>
+            
             </div>
-        </div>
         <div class="panel-body">
             <div class="row">
                 <div class="form-group">
-                    <h2 class="text-center text-primary">Minhas Informações</h2><hr>
                     <form role="form" id="formulario-info-usuario" action="/MMNFretes/alteraInfoUsuario" method="POST">
                         <div class="form-group col-sm-6">
                             <input type="text" name="nome" id="txNome-usuario" class="form-control" placeholder="Nome">
@@ -29,21 +29,19 @@
                             <input type="password" class="form-control" id="txSenha" name="senha" placeholder="Senha">
                         </div>
                         <div class="form-group col-sm-4">
-                            <input type="password" class="form-control" id="txConfirm-senha" placeholder="Confirmar senha">
-                        </div>
-
-                        <div class="form-group col-sm-4">
                             <input type="tel" class="form-control" name="telefone1" id="txTelefone1"  placeholder="Telefone 1">
                         </div>
                         <div class="form-group col-sm-4">
                             <input type="tel" class="form-control" name="telefone2" id="txTelefone2" placeholder="Telefone 2">
                         </div>
-                        <button type="button" id="btnAlterar-info" class="btn btn-primary col-lg-offset-11">Editar</button>
-                        <button type="submit" id="btnSalvar-info" class="btn btn-primary col-lg-offset-11">Salvar</button>
+                        <div class="col-sm-3 pull-right">
+                        <button type="button" id="btnAlterar-info" class="btn btn-primary col-sm-12">Editar</button>
+                        <button type="submit" id="btnSalvar-info" class="btn btn-primary col-sm-12">Salvar</button>
+                        </div>
                     </form>
                 </div>
-            </div>
-            <h3 class="text-primary">Adicionar ou editar endereços</h3><hr>
+            </div><hr/>
+            <h2 class="text-primary">Adicionar ou editar endereços</h2><hr>
             <div class="form-group">
                 <form role="form" id="formulario-endereco" action="/MMNFretes/adicionaEndereco" method="POST">
                     <div class="row">
