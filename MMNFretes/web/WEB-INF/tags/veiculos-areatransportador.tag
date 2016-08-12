@@ -73,45 +73,41 @@
             </div><hr/>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="text-primary">Veículos</h2>
-                            <div id="custom-search-input">
-                                <div class="input-group col-md-12">
-                                    <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-info btn-lg" type="button">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
+                    <h2 class="text-primary">Lista Veículos</h2>
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
                         </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Veículo</th>
-                                    <th>Capacidade</th>
-                                    <th>Tipo Carroc.</th>
-                                    <th>Carroceria</th>
-                                    <th>Rastreador</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Nome do Veículo</td>
-                                    <td>Capacidade</td>
-                                    <td>Tipo Carroc.</td>
-                                    <td>Carroceria</td>
-                                    <td>Rastreador</td>
-                                    <td>
-                                        <button type="button" class="btn btn-info btn-xs center-block">Editar</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    </div><br/>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Veículo</th>
+                                <th>Capacidade</th>
+                                <th>Tipo Carroc.</th>
+                                <th>Carroceria</th>
+                                <th>Rastreador</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nome do Veículo</td>
+                                <td>Capacidade</td>
+                                <td>Tipo Carroc.</td>
+                                <td>Carroceria</td>
+                                <td>Rastreador</td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-xs center-block">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

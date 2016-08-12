@@ -46,41 +46,37 @@
             </div><hr/>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="text-primary">Meios de Pagamento</h2>
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                Á Vista
-                                <div class="material-switch pull-right">
-                                    <input id="Avista" name="avista" type="checkbox"/>
-                                    <label for="Avista" class="label-primary"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Cartão de Crédito
-                                <div class="material-switch pull-right">
-                                    <input id="Cartao" name="cartao" type="checkbox"/>
-                                    <label for="Cartao" class="label-primary"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Boleto
-                                <div class="material-switch pull-right">
-                                    <input id="Boleto" name="boleto" type="checkbox"/>
-                                    <label for="Boleto" class="label-primary"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Cheque
-                                <div class="material-switch pull-right">
-                                    <input id="Cheque" name="cheque" type="checkbox"/>
-                                    <label for="Cheque" class="label-primary"></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <h2 class="text-primary">Meios de Pagamento</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            Á Vista
+                            <div class="material-switch pull-right">
+                                <input id="Avista" name="avista" type="checkbox"/>
+                                <label for="Avista" class="label-primary"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Cartão de Crédito
+                            <div class="material-switch pull-right">
+                                <input id="Cartao" name="cartao" type="checkbox"/>
+                                <label for="Cartao" class="label-primary"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Boleto
+                            <div class="material-switch pull-right">
+                                <input id="Boleto" name="boleto" type="checkbox"/>
+                                <label for="Boleto" class="label-primary"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Cheque
+                            <div class="material-switch pull-right">
+                                <input id="Cheque" name="cheque" type="checkbox"/>
+                                <label for="Cheque" class="label-primary"></label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
