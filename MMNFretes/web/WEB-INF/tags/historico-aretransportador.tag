@@ -19,7 +19,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Transportador</th>
+                                <th>Cliente</th>
                                 <th>Data</th>
                                 <th>Veículo</th>
                                 <th>Pagamento</th>
@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Transportador</td>
+                                <td>Cliente</td>
                                 <td>Data</td>
                                 <td>Veículo</td>
                                 <td>Pagamento</td>

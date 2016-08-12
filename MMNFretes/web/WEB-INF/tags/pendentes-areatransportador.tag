@@ -22,7 +22,7 @@
                             <tr>
                                 <th></th>
                                 <th>Status</th>
-                                <th>Transportador</th>
+                                <th>Cliente</th>
                                 <th>Data</th>
                                 <th>Veículo</th>
                                 <th>Pagamento</th>
@@ -36,7 +36,7 @@
                                     <button type="button" class="btn btn-info btn-xs center-block">+ Inf.</button>
                                 </td>
                                 <td>Status</td>
-                                <td>Transportador</td>
+                                <td>Cliente</td>
                                 <td>Data</td>
                                 <td>Veículo</td>
                                 <td>Pagamento</td>
@@ -50,7 +50,7 @@
                                     <button type="button" class="btn btn-info btn-xs center-block">+ Inf.</button>
                                 </td>
                                 <td>Status</td>
-                                <td>Transportador</td>
+                                <td>Cliente</td>
                                 <td>Data</td>
                                 <td>Veículo</td>
                                 <td>Pagamento</td>

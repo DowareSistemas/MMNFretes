@@ -21,7 +21,7 @@
         <my-tags:navbar-login/>
         <div class="container">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-3 panel">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="nav-item">
                             <a class="nav-link" id="tela-perfil" >Perfil</a>
