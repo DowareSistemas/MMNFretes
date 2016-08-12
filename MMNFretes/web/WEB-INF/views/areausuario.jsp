@@ -37,11 +37,22 @@
                 <my-tags:perfil-areausuario/>
                 <my-tags:historico-areausuario/>
                 <my-tags:pendentes-areausuario/>
-                <my-tags:mensagem-yes-no/>
+                <my-tags:mensagem-input />
+                
+                <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger col-sm-12" data-toggle="modal" data-target="#mensagem-input">Excluir</button>
+                
+                <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
+                                          classe_btnSIM="btn btn-danger" 
+                                          texto_btnNAO="NÃO" 
+                                          texto_btnSIM="SIM"
+                                          texto_corpo="Deseja excluir o endereço?" 
+                                          id_btnSIM="btnConfirmaExclusaoEndereco"
+                                          />
+
             </div>
-        </div>
-        <script src="resources/js/jquery.js"></script>
-        <script src="resources/js/jquery-form.js"></script>
-        <script src="resources/js/areausuario.js"></script>
+            <script src="resources/js/jquery.js"></script>
+            <script src="resources/js/jquery-form.js"></script>
+            <script src="resources/js/bootstrap.js"></script>
+            <script src="resources/js/areausuario.js"></script>
     </body>
 </html>

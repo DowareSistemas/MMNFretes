@@ -73,6 +73,12 @@ function carregaEnderecos()
 $('#btnExcluir-endereco').click(function ()
 {
     var self = $(this);
+    $('#btnConfirmaExclusaoEndereco').val(self.val());
+});
+
+$('#btnConfirmaExclusaoEndereco').click(function ()
+{
+    var self = $(this);
 
     $.ajax({
         url: "/MMNFretes/inativaEndereco?endereco_id=" + self.val(),
@@ -161,5 +167,3 @@ $('#tela-pendentes').click(function ()
     $('#historico').hide();
     $('#pendentes').fadeIn(200);
 });
-
-
