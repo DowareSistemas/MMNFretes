@@ -53,8 +53,6 @@
                                           id_btnSIM="btnConfirmaExclusaoEndereco"
                                           />
 
-                <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" id="senhaIncorreta" mensagem="As senhas não coincidem!" />
-                
             </div>
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>
