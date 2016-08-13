@@ -43,8 +43,6 @@
                                         type_input="password" 
                                         titulo="Digite sua senha para concluír:" />
                 
-                <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger col-sm-12" data-toggle="modal" data-target="#mensagem-input">Excluir</button>
-                
                 <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
                                           classe_btnSIM="btn btn-danger" 
                                           texto_btnNAO="NÃO" 
@@ -52,9 +50,11 @@
                                           texto_corpo="Deseja excluir o endereço?" 
                                           id_btnSIM="btnConfirmaExclusaoEndereco"
                                           />
-   
-            </div>
+
+                <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" id="senhaIncorreta" mensagem="As senhas não coincidem!" />
                 
+            </div
+          
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>
             <script src="resources/js/bootstrap.js"></script>
