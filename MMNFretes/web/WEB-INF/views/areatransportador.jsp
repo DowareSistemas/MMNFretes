@@ -23,29 +23,33 @@
                     <br>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="nav-item">
-                            <a class="nav-link" href="">Perfil</a>
+                            <a class="nav-link" id="btnPerfil">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Veículos</a>
+                            <a class="nav-link" id="btnVeiculos">Veículos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Endereços</a>
+                            <a class="nav-link" id="btnEnderecos">Endereços</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Histórico</a>
+                            <a class="nav-link" id="btnHistorico">Histórico</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Pendentes</a>
+                            <a class="nav-link" id="btnPendentes">Pendentes</a>
                         </li>
                     </ul>
                     <br>
                 </div>
                 <my-tags:perfil-areatransportador/>
                 <my-tags:veiculos-areatransportador/>
-                <my-tags:endereços-areatransportador/>
-                <my-tags:historico-aretransportador/>
+                <my-tags:enderecos-areatransportador/>
+                <my-tags:historico-areatransportador/>
                 <my-tags:pendentes-areatransportador/>
             </div>
         </div>
+            <script src="resources/js/jquery.js"></script>
+            <script src="resources/js/jquery-form.js"></script>
+            <script src="resources/js/bootstrap.js"></script>
+            <script src="resources/js/areatransportador.js"></script>
     </body>
 </html>

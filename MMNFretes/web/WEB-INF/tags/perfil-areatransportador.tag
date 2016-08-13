@@ -1,4 +1,4 @@
-<div class="col-sm-9">
+<div class="col-sm-9" id="perfil-area-transportador">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="text-center">Perfil</h1>
@@ -10,7 +10,7 @@
                     <span>
                         <label class="btn btn-link col-sm-12" for="upload-file-selector">
                             <input class="col-sm-12" id="upload-file-selector" accept="image/png, image/jpeg, image/gif" type="file">
-                            <i class="fa_icon icon-upload-alt"></i>Editar Imagem
+                            <i class="fa_icon icon-upload-alt"></i>Alterar logo da empresa
                         </label>
                     </span>
                 </div>

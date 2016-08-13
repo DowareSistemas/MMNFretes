@@ -1,4 +1,4 @@
-<div class="col-sm-9">
+<div class="col-sm-9" id="enderecos-area-transportador">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="text-center">Endereços</h1>

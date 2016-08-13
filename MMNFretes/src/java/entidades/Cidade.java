@@ -3,7 +3,7 @@
 /* DOES NOT ADD ACCESSOR METHODS */
 /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
 
-package Entidades;
+package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
 import br.com.persistor.abstractClasses.Entity;

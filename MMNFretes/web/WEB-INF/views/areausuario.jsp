@@ -41,7 +41,7 @@
                                         id_btnConfirmar="btnConfirmarSenha"
                                         id_input="txSenhaConfirmada" 
                                         type_input="password" 
-                                        titulo="Digite sua senha para concluír:" />
+                                        titulo="Confirmar senha:" />
                 
                
                 <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"

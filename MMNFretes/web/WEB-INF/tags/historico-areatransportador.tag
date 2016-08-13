@@ -1,4 +1,4 @@
-<div class="col-sm-9" id="historico">
+<div class="col-sm-9" id="historico-area-transportador">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h2 class="text-center">Histórico</h2>
