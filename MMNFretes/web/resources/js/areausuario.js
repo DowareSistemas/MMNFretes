@@ -43,6 +43,7 @@ function carregaInfoUsuario()
     $.ajax({
         url: "/MMNFretes/infoUsuario",
         dataType: 'json',
+        accepts: "application/json",
         success: function (usuario)
         {
             $('#txNome-usuario').val(usuario.nome);
@@ -144,8 +145,9 @@ $('#btnConfirmarSenha').click(function ()
                                                       "&email="     + email + 
                                                       "&telefone1=" + telefone1 + 
                                                       "&telefone2=" + telefone2,
-            success: function (data)
+            success: function ()
             {
+                carregaInfoUsuario();
                 hab_desab_formInfo(true);
                 $('#btnAlterar-info').fadeIn();
                 $('#btnSalvar-info').hide();

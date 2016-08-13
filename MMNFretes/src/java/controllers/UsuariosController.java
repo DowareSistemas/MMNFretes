@@ -12,6 +12,7 @@ import entidades.Usuarios;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sessionProvider.ConfigureSession;
 
@@ -39,7 +40,7 @@ public class UsuariosController
     }
 
     @RequestMapping("/alteraInfoUsuario")
-    public String alteraInfoUsuario(Usuarios usuario, HttpSession httpSession)
+    public @ResponseBody String alteraInfoUsuario(Usuarios usuario, HttpSession httpSession)
     {
         Usuarios usuarioLogado = (Usuarios)httpSession.getAttribute("usuarioLogado");
         
@@ -51,10 +52,10 @@ public class UsuariosController
         session.commit();
         session.close();
         
-        return "redirect:infoUsuario";
+        return "infoUsuario";
     }
     
-    @RequestMapping("/infoUsuario")
+    @RequestMapping(value = "/infoUsuario", produces = "application/json", method = RequestMethod.GET)
     public @ResponseBody String infoUsuario(HttpSession httpSession)
     {
         Session session = ConfigureSession.getSession();
