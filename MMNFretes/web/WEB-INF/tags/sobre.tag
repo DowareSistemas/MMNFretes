@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-7 col-md-7">
+<div class="col-sm-8">
     <div class="jumbotron">
         <h2 class="text-center text-info">Sobre o site</h2>
     <p class="text-justify"><br>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.

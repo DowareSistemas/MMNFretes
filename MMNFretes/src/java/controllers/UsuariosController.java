@@ -35,7 +35,7 @@ public class UsuariosController
 
         httpSession.setAttribute("usuarioLogado", usuario);
         
-        return "areausuario";
+        return "redirect:areausuario";
     }
 
     @RequestMapping("/alteraInfoUsuario")

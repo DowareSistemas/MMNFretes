@@ -21,7 +21,7 @@
         <my-tags:navbar-login/>
         <div class="container">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-3 panel">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="nav-item">
                             <a class="nav-link" id="tela-perfil" >Perfil</a>
@@ -37,7 +37,11 @@
                 <my-tags:perfil-areausuario/>
                 <my-tags:historico-areausuario/>
                 <my-tags:pendentes-areausuario/>
-                <my-tags:mensagem-input />
+                <my-tags:mensagem-input id="mensagem-input"
+                                        id_btnConfirmar="btnConfirmarSenha"
+                                        id_input="txSenhaConfirmada" 
+                                        type_input="password" 
+                                        titulo="Digite sua senha para concluír:" />
                 
                 <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger col-sm-12" data-toggle="modal" data-target="#mensagem-input">Excluir</button>
                 
@@ -49,6 +53,8 @@
                                           id_btnSIM="btnConfirmaExclusaoEndereco"
                                           />
 
+                <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" id="senhaIncorreta" mensagem="As senhas não coincidem!" />
+                
             </div>
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>

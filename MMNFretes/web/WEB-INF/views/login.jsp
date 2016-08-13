@@ -20,10 +20,10 @@
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
         <div class="container-fluid">
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1>Criar Conta</h1>
+                        <h1 class="text-center">Criar Conta</h1>
                     </div>
                     <my-tags:form-usuario/>
                     <my-tags:form-transportadora/>

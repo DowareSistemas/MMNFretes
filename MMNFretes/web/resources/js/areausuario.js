@@ -124,26 +124,50 @@ $('#btnAlterar-info').click(function ()
     hab_desab_formInfo(false);
 });
 
-$('#btnSalvar-info').click(function ()
+$('#btnConfirmarSenha').click(function ()
 {
     var senha = $('#txSenha').val();
-    var senhaConfirmada = $('#txConfirm-senha').val();
+    var senhaConfirmada = $('#txSenhaConfirmada').val();
 
+    var nome = $('#txNome-usuario').val();
+    var email = $('#txEmail-usuario').val();
+    var telefone1 = $('#txTelefone1').val();
+    var telefone2 = $('#txTelefone2').val();
+    
+    
     if (senha === senhaConfirmada)
     {
-        $('#formulario-info-usuario').ajaxForm
-                ({
-                    success: function (data)
-                    {
-                        hab_desab_formInfo(true);
-                        $('#btnAlterar-info').fadeIn();
-                        $('#btnSalvar-info').hide();
-                    }
-                });
+        $.ajax
+        ({
+                    url: "/MMNFretes/alteraInfoUsuario?senha="      + senha +
+                                                      "&nome="      + nome  +
+                                                      "&email="     + email + 
+                                                      "&telefone1=" + telefone1 + 
+                                                      "&telefone2=" + telefone2,
+            success: function (data)
+            {
+                hab_desab_formInfo(true);
+                $('#btnAlterar-info').fadeIn();
+                $('#btnSalvar-info').hide();
+            }
+        });
     } else
     {
-        alert('As senhas nao coicidem');
+        $('#senhaIncorreta').modal('toggle');
+        $('#senhaIncorreta').modal('show');
+
     }
+});
+
+$('#btnSenhaIncorreta').click(function ()
+{
+        $('#mensagem-input').modal('toggle');
+        $('#mensagem-input').modal('show');
+});
+
+$('#btnSalvar-info').click(function ()
+{
+
 });
 
 $('#tela-historico').click(function ()
