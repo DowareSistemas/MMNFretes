@@ -1,7 +1,7 @@
 <div class="col-sm-9" id="enderecos-area-transportador">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h1 class="text-center">Endereços</h1>
+            <h2 class="text-center">Endereços</h2>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -96,5 +96,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

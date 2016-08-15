@@ -38,7 +38,7 @@
                             <a class="nav-link" id="btnPendentes">Pendentes</a>
                         </li>
                     </ul>
-                    <br>
+                    <br/>
                 </div>
                 <my-tags:perfil-areatransportador/>
                 <my-tags:veiculos-areatransportador/>
