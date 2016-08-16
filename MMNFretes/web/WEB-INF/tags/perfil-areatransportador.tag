@@ -33,6 +33,12 @@
                                 <div class="form-group col-sm-4">
                                     <input type="text" class="form-control" placeholder="Telefone Segundário">
                                 </div>
+                                <div class="form-group col-sm-6">
+                                    <input type="text" class="form-control" placeholder="CPF / CNPJ">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input type="text" class="form-control" placeholder="ANTT">
+                                </div>
                                 <div class="form-group col-sm-12">
                                     <input type="text" class="form-control" placeholder="Endereço Web Site">
                                 </div>

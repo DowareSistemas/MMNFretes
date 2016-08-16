@@ -54,13 +54,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="btn-group col-sm-6">
-                            <button type="button" class="btn btn-default col-sm-12">Com Rastreador</button>
+                        <div class="col-sm-12">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Rastreador
+                                    <div class="material-switch pull-right">
+                                        <input id="rastreador" type="checkbox"/>
+                                        <label for="rastreador" class="label-primary"></label>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="btn-group col-sm-6">
-                            <button type="button" class="btn btn-default col-sm-12">Sem Rastreador</button>
-                        </div>
-                    </div><br/>
+                    </div>
                     <div class="row">
                         <div class="btn-group col-sm-4">
                             <button type="button"class="btn btn-danger col-sm-12">Excluir</button>
