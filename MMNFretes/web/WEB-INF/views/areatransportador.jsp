@@ -47,9 +47,9 @@
                 <my-tags:pendentes-areatransportador/>
             </div>
         </div>
-            <script src="resources/js/jquery.js"></script>
-            <script src="resources/js/jquery-form.js"></script>
-            <script src="resources/js/bootstrap.js"></script>
-            <script src="resources/js/areatransportador.js"></script>
+        <script src="resources/js/jquery.js"></script>
+        <script src="resources/js/jquery-form.js"></script>
+        <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/areatransportador.js"></script>
     </body>
 </html>
