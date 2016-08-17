@@ -126,10 +126,8 @@ $('#btnConfirmarSenha').click(function ()
 
     if (senha === senhaDigitada)
     {
-        $.ajax
-                ({
-                    url: "/MMNFretes/alteraInfoTransportadora?\n\
-                              usuarios.nome=" + nome +
+        $.ajax({
+                    url: "/MMNFretes/alteraInfoTransportadora?usuarios.nome=" + nome +
                             "&usuarios.email=" + email +
                             "&usuarios.senha=" + senha +
                             "&usuarios.telefone1=" + telefone1 +
@@ -142,6 +140,9 @@ $('#btnConfirmarSenha').click(function ()
                     {
                         hab_desab_formInfo(true);
                         carregaInfoTransportador();
+
+                        $('#btnSalvar-info').hide();
+                        $('#btnEditarInfo').fadeIn(200);
                     }
                 });
     } else

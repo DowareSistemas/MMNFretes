@@ -21,6 +21,7 @@
                     <div class="row">
                         <div class="form-group">
                             <form role="form" action="/MMNFretes/alteraInfoTransportadora">
+                                
                                 <div class="form-group col-sm-6">
                                     <input type="text" id="txNome" name="usuarios.nome" class="form-control" placeholder="Nome">
                                 </div>
@@ -49,6 +50,7 @@
                                     <button type="button" id="btnEditarInfo" class="btn btn-primary col-sm-12">Editar</button>
                                     <button type="button" id="btnSalvar-info" class="btn btn-primary col-sm-12">Salvar</button>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
