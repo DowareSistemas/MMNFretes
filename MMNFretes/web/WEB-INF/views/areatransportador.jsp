@@ -39,12 +39,22 @@
                         </li>
                     </ul>
                     <br/>
+                    
                 </div>
                 <my-tags:enderecos-areatransportador/>
                 <my-tags:historico-areatransportador/>
                 <my-tags:pendentes-areatransportador/>
                 <my-tags:perfil-areatransportador/>
                 <my-tags:veiculos-areatransportador/>
+
+                <my-tags:mensagem-input id="alterarSenha"
+                                        id_btnConfirmar="btnConfirmarSenha"
+                                        id_input="txSenhaDigitada"
+                                        titulo="Confirmar senha"
+                                        type_input="password" />
+
+                <my-tags:mensagem-ok id="senhaIncorreta"
+                                     mensagem="As senhas não coincidem!" />
             </div>
         </div>
         <script src="resources/js/jquery.js"></script>

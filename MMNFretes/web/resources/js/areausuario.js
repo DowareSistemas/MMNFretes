@@ -157,7 +157,6 @@ $('#btnConfirmarSenha').click(function ()
     {
         $('#senhaIncorreta').modal('toggle');
         $('#senhaIncorreta').modal('show');
-
     }
 });
 

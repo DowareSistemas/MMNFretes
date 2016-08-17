@@ -5,18 +5,96 @@
  */
 package controllers;
 
+import br.com.persistor.enums.FILTER_TYPE;
+import br.com.persistor.enums.RESULT_TYPE;
+import br.com.persistor.generalClasses.Restrictions;
+import br.com.persistor.interfaces.Session;
+import com.google.gson.Gson;
+import entidades.Transportadoras;
+import entidades.Usuarios;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import sessionProvider.ConfigureSession;
+import util.Util;
 
 /**
  *
  * @author emers
  */
 @Controller
-public class TransportadorasController {
+public class TransportadorasController
+{
+
     @RequestMapping("/areatransportador")
-    public String redireciona()
+    public String redireciona(HttpSession session)
     {
-        return "areatransportador";
+        Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogado");
+
+        if (!Util.isUsuario(usuario))
+        {
+            return "areatransportador";
+        } 
+        else
+        {
+            return "redirect:paginaLogin";
+        }
+    }
+
+    @RequestMapping("/infoTransportador")
+    public @ResponseBody String getInfo(HttpSession httpSession)
+    {
+        Session session = ConfigureSession.getSession();
+        
+        Usuarios usuario = (Usuarios)httpSession.getAttribute("usuarioLogado");
+        Transportadoras transportadora = new Transportadoras();
+        
+        session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
+                .execute();
+        
+        Gson gson = new Gson();
+        
+        session.close();
+        
+        return gson.toJson(transportadora);
+    }
+    
+    @RequestMapping("/alteraInfoTransportadora")
+    public @ResponseBody String alteraInfoTransportadora(Transportadoras transportadora, HttpSession httpSession)
+    {
+        Session session = ConfigureSession.getSession();
+        Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+
+        int idTransportadora = getIdTransportadora(transportadora, usuarioLogado.getId());
+  
+        transportadora.getUsuarios().setId(usuarioLogado.getId());
+        transportadora.getUsuarios().setTipo_usuario(usuarioLogado.getTipo_usuario());
+        transportadora.setNome(transportadora.getUsuarios().getNome());
+        transportadora.setId(idTransportadora);
+        
+        session.update(transportadora);
+        session.update(transportadora.getUsuarios());
+
+        session.commit();        
+        session.close();
+
+        if(!transportadora.updated && !transportadora.getUsuarios().updated) return "ERRO";
+        
+        return "OK";
+    }
+    
+    private int getIdTransportadora(Transportadoras transportadora, int idUsuario)
+    {
+        Session session = ConfigureSession.getSession();
+        
+        session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
+                .execute();
+        
+        session.close();
+        
+        return transportadora.getId();
     }
 }
