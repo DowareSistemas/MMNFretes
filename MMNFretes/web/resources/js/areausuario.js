@@ -22,10 +22,23 @@ $(document).ready(function ()
     $('#pendentes').hide();
     $('#historico').hide();
     $('#btnSalvar-info').hide();
-
+    $('#btnEditar-grupo').hide();
     carregaInfoUsuario();
     hab_desab_formInfo(true);
     carregaEnderecos();
+});
+
+$('#cbGrupos').change(function ()
+{
+    $('#btnEditar-grupo').fadeIn(200); 
+});
+
+$('#btnEditar-grupo').click(function ()
+{
+    $('#editar-grupo').modal('toggle');
+    $('#editar-grupo').modal('show');
+    
+    $('#txNomeGrupo').val($('#cbGrupos').val());
 });
 
 function hab_desab_formInfo(estado)

@@ -9,6 +9,7 @@ $(document).ready(function ()
 
     carregaInfoTransportador();
     hab_desab_formInfo(true);
+    
 });
 
 $('#btnPerfil').click(function ()
@@ -127,24 +128,23 @@ $('#btnConfirmarSenha').click(function ()
     if (senha === senhaDigitada)
     {
         $.ajax({
-                    url: "/MMNFretes/alteraInfoTransportadora?usuarios.nome=" + nome +
-                            "&usuarios.email=" + email +
-                            "&usuarios.senha=" + senha +
-                            "&usuarios.telefone1=" + telefone1 +
-                            "&usuarios.telefone2=" + telefone2 +
-                            "&CPF_CNPJ=" + cpf_cnpj +
-                            "&ANTT=" + antt +
-                            "&website=" + website,
-                    
-                    success: function (data)
-                    {
-                        hab_desab_formInfo(true);
-                        carregaInfoTransportador();
+            url: "/MMNFretes/alteraInfoTransportadora?usuarios.nome=" + nome +
+                    "&usuarios.email=" + email +
+                    "&usuarios.senha=" + senha +
+                    "&usuarios.telefone1=" + telefone1 +
+                    "&usuarios.telefone2=" + telefone2 +
+                    "&CPF_CNPJ=" + cpf_cnpj +
+                    "&ANTT=" + antt +
+                    "&website=" + website,
+            success: function (data)
+            {
+                hab_desab_formInfo(true);
+                carregaInfoTransportador();
 
-                        $('#btnSalvar-info').hide();
-                        $('#btnEditarInfo').fadeIn(200);
-                    }
-                });
+                $('#btnSalvar-info').hide();
+                $('#btnEditarInfo').fadeIn(200);
+            }
+        });
     } else
     {
         $('#senhaIncorreta').modal('toggle');

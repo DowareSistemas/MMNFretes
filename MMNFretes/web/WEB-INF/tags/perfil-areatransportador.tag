@@ -62,14 +62,7 @@
                     <h2 class="text-primary">Meios de Pagamento</h2>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            Á Vista
-                            <div class="material-switch pull-right">
-                                <input id="Avista" name="avista" type="checkbox"/>
-                                <label for="Avista" class="label-primary"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            Cartão de Crédito
+                            Cartão
                             <div class="material-switch pull-right">
                                 <input id="Cartao" name="cartao" type="checkbox"/>
                                 <label for="Cartao" class="label-primary"></label>
@@ -83,7 +76,7 @@
                             </div>
                         </li>
                         <li class="list-group-item">
-                            Cheque
+                            Negociação direta
                             <div class="material-switch pull-right">
                                 <input id="Cheque" name="cheque" type="checkbox"/>
                                 <label for="Cheque" class="label-primary"></label>
