@@ -18,14 +18,21 @@
     <body>
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
-        <div class="container-fluid">
-            <div class="col-sm-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h1 class="text-center">Pesquisa de Fretes</h1>
-                    </div>
+        <div class="container">
+            <nav class="navbar navbar-dark bg-primary">    
+                <div id="navbar" class="navbar-collapse collapse">
+                    <form class="navbar-form navbar-left">
+                        <input type="text" class="form-control" placeholder="CEP Origem">
+                        <input type="text" class="form-control" placeholder="CEP Destino">
+                        <button type="submit" class="btn btn-default">Pesquisar</button>
+                    </form>
                 </div>
-            </div>
+            </nav>
         </div>
-    </body>
+
+    </div>
+    <script src="resources/js/jquery.js"></script>
+    <script src="resources/js/jquery-form.js"></script>
+    <script src="resources/js/bootstrap.js"></script>
+</body>
 </html>

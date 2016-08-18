@@ -1,22 +1,37 @@
+<%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
+
 <div class="col-sm-9" id="pendentes">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h2 class="text-center">Pendentes</h2>
         </div>
         <div class="panel-body">
-            <div id="custom-search-input">
-                <div class="input-group col-sm-12">
-                    <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div id="custom-search-input">
+                        <div class="input-group col-sm-12">
+                            <input type="text" class="form-control input-lg" placeholder="Buscar" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-lg" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle btn-lg col-sm-12" type="button" data-toggle="dropdown">Cotações
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <my-tags:li-pendentes-areausuario/>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <br>
                 <div class="col-sm-12 table-overflow">
+                    <h3 class="text-primary">Cotação 01</h3>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -75,4 +90,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>
