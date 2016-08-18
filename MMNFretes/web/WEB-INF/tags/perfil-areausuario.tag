@@ -5,19 +5,11 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm-3">
-                    <img src="resources/img/img-text.jpg" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
-                    <span>
-                        <label class="btn btn-link col-sm-12" for="upload-file-selector">
-                            <input class="col-sm-12" id="upload-file-selector" accept="image/png, image/jpeg, image/gif" type="file">
-                            <i class="fa_icon icon-upload-alt"></i>Editar Imagem
-                        </label>
-                    </span>
-                </div>
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="form-group">
                             <form role="form" id="formulario-info-usuario" action="" method="POST">
+                                
                                 <div class="form-group col-sm-6">
                                     <input type="text" name="nome" id="txNome-usuario" class="form-control" placeholder="Nome">
                                 </div>
@@ -37,6 +29,7 @@
                                     <button type="button" id="btnAlterar-info" class="btn btn-primary col-sm-12">Editar</button>
                                     <button type="button" id="btnSalvar-info" class="btn btn-primary col-sm-12 " data-toggle="modal" data-target="#mensagem-input">Salvar</button>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
