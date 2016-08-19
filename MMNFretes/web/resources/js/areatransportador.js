@@ -162,8 +162,11 @@ $('#Cartao').change(function ()
 {
     $.ajax
     ({
-                url: "/mmnfretes/alteraStatusCartao?",
-                
+        url: "/mmnfretes/alteraStatusCartao?status=" + $('#Cartao').is(':checked'),
+        success: function ()
+        {
+            carregaInfoTransportador();
+        }
     });
 });
 

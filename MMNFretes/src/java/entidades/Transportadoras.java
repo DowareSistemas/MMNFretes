@@ -110,7 +110,7 @@ public class Transportadoras extends Entity
        return usuarios_id;
    }
 
-   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.MANUAL, join_type = JOIN_TYPE.INNER)
    public Usuarios getUsuarios()
    {
        return usuarios;
