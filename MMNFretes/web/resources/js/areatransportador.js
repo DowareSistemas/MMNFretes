@@ -61,7 +61,7 @@ function carregaInfoTransportador()
 {
     $.ajax
             ({
-                url: "/MMNFretes/infoTransportador",
+                url: "/mmnfretes/infoTransportador",
                 dataType: 'json',
                 accepts: "application/json",
                 success: function (transportador_result)
@@ -69,11 +69,16 @@ function carregaInfoTransportador()
                     $('#txCPF_CNPJ').val(transportador_result.CPF_CNPJ);
                     $('#txANTT').val(transportador_result.ANTT);
                     $('#txWebsite').val(transportador_result.website);
+                    
+                    if(transportador_result.cartao === true)
+                    {
+                        $('#Cartao').prop('checked', true);
+                    }
                 }
             });
 
     $.ajax({
-        url: "/MMNFretes/infoUsuario",
+        url: "/mmnfretes/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
         success: function (usuario_result)
@@ -128,7 +133,7 @@ $('#btnConfirmarSenha').click(function ()
     if (senha === senhaDigitada)
     {
         $.ajax({
-            url: "/MMNFretes/alteraInfoTransportadora?usuarios.nome=" + nome +
+            url: "/mmnfretes/alteraInfoTransportadora?usuarios.nome=" + nome +
                     "&usuarios.email=" + email +
                     "&usuarios.senha=" + senha +
                     "&usuarios.telefone1=" + telefone1 +
@@ -153,7 +158,14 @@ $('#btnConfirmarSenha').click(function ()
 });
 
 
-
+$('#Cartao').change(function ()
+{
+    $.ajax
+    ({
+                url: "/mmnfretes/alteraStatusCartao?",
+                
+    });
+});
 
 
 

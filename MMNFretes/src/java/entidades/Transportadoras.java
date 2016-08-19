@@ -1,4 +1,4 @@
-/* 27/07/2016 21:29:01 */
+/* 18/08/2016 19:27:08 */
 /* AUTO-GENERATED CLASS */
 /* DOES NOT ADD ACCESSOR METHODS */
 /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
@@ -30,6 +30,9 @@ public class Transportadoras extends Entity
    private InputStream foto_logo; 
    private int usuarios_id; 
    private Usuarios usuarios; 
+   private boolean cartao; 
+   private boolean boleto; 
+   private boolean negociacao_direta; 
 
    public void setId(int id)
    {
@@ -111,5 +114,35 @@ public class Transportadoras extends Entity
    public Usuarios getUsuarios()
    {
        return usuarios;
+   }
+
+   public void setCartao(boolean cartao)
+   {
+       this.cartao = cartao;
+   }
+
+   public boolean isCartao()
+   {
+       return cartao;
+   }
+
+   public void setBoleto(boolean boleto)
+   {
+       this.boleto = boleto;
+   }
+
+   public boolean isBoleto()
+   {
+       return boleto;
+   }
+
+   public void setNegociacao_direta(boolean negociacao_direta)
+   {
+       this.negociacao_direta = negociacao_direta;
+   }
+
+   public boolean isNegociacao_direta()
+   {
+       return negociacao_direta;
    }
 }

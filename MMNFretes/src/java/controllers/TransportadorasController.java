@@ -67,7 +67,7 @@ public class TransportadorasController
         Session session = ConfigureSession.getSession();
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
-        int idTransportadora = getIdTransportadora(transportadora, usuarioLogado.getId());
+        int idTransportadora = getIdTransportadora(usuarioLogado.getId());
   
         transportadora.getUsuarios().setId(usuarioLogado.getId());
         transportadora.getUsuarios().setTipo_usuario(usuarioLogado.getTipo_usuario());
@@ -85,9 +85,28 @@ public class TransportadorasController
         return "OK";
     }
     
-    private int getIdTransportadora(Transportadoras transportadora, int idUsuario)
+    @RequestMapping("/alteraStatusCartao")
+    public @ResponseBody String alteraCartao(boolean status, HttpSession httpSession)
     {
         Session session = ConfigureSession.getSession();
+        
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        int idTransportadora = getIdTransportadora(usuario.getId());
+        
+        Transportadoras transportadora = (Transportadoras) session.onID(Transportadoras.class, idTransportadora);
+        transportadora.setCartao(status);
+        
+        session.update(transportadora);
+        session.commit();
+        session.close();
+        return "OK";
+    }
+    
+    private int getIdTransportadora(int idUsuario)
+    {
+        Session session = ConfigureSession.getSession();
+        
+        Transportadoras transportadora = new Transportadoras();
         
         session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
                 .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))

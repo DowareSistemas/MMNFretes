@@ -87,7 +87,7 @@ public class UsuariosController
 
         httpSession.setAttribute("usuarioLogado", transportadoras.getUsuarios());
 
-        return "areausuario";
+        return "redirect:areatransportador";
     }
 
     @RequestMapping("/testeLista")

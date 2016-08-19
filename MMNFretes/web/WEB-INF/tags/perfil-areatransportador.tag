@@ -20,8 +20,8 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="form-group">
-                            <form role="form" action="/MMNFretes/alteraInfoTransportadora">
-                                
+                            <form role="form" action="/mmnfretes/alteraInfoTransportadora">
+
                                 <div class="form-group col-sm-6">
                                     <input type="text" id="txNome" name="usuarios.nome" class="form-control" placeholder="Nome">
                                 </div>
@@ -50,7 +50,7 @@
                                     <button type="button" id="btnEditarInfo" class="btn btn-primary col-sm-12">Editar</button>
                                     <button type="button" id="btnSalvar-info" class="btn btn-primary col-sm-12">Salvar</button>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
@@ -62,17 +62,17 @@
                     <h2 class="text-primary">Meios de Pagamento</h2>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            Cartão
-                            <div class="material-switch pull-right">
-                                <input id="Cartao" name="cartao" type="checkbox"/>
-                                <label for="Cartao" class="label-primary"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
                             Boleto
                             <div class="material-switch pull-right">
                                 <input id="Boleto" name="boleto" type="checkbox"/>
                                 <label for="Boleto" class="label-primary"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Cartão
+                            <div class="material-switch pull-right">
+                                <input id="Cartao" name="cartao" type="checkbox"/>
+                                <label for="Cartao" class="label-primary"></label>
                             </div>
                         </li>
                         <li class="list-group-item">
