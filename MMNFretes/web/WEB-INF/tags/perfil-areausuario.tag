@@ -39,7 +39,7 @@
                 <div class="col-sm-12">
                     <h2 class="text-primary">Adicionar ou editar endereços</h2>
                     <div class="form-group">
-                        <form role="form" id="formulario-endereco" action="/MMNFretes/adicionaEndereco" method="POST">
+                        <form role="form" id="formulario-endereco" action="/mmnfretes/adicionaEndereco" method="POST">
                             <div class="row">
                                 <div class="form-group col-sm-2">
                                     <input type="number" id="txCep" name="CEP" class="form-control" placeholder="CEP" required>

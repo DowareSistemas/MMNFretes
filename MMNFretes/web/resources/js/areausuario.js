@@ -11,7 +11,7 @@ $('#btnAdicionar-endereco').click(function ()
                     $('#formulario-endereco')[0].reset();
                     $('#btnExcluir-endereco').fadeOut(100);
                     $('#btnAdicionar-endereco').text('Adicionar');
-                    $('#formulario-endereco').attr('action', '/MMNFretes/adicionaEndereco');
+                    $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
                 }
             });
 });
@@ -54,7 +54,7 @@ function hab_desab_formInfo(estado)
 function carregaInfoUsuario()
 {
     $.ajax({
-        url: "/MMNFretes/infoUsuario",
+        url: "/mmnfretes/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
         success: function (usuario)
@@ -72,10 +72,10 @@ function carregaInfoUsuario()
 function carregaEnderecos()
 {
     $.ajax({
-        url: "/MMNFretes/listaEnderecos",
+        url: "/mmnfretes/listaEnderecos",
         success: function (data)
         {
-            $('#formulario-endereco').attr('action', '/MMNFretes/adicionaEndereco');
+            $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
             $('#enderecos-items').html("");
             $('#enderecos-items').append(data);
             $('#formulario-endereco')[0].reset();
@@ -95,7 +95,7 @@ $('#btnConfirmaExclusaoEndereco').click(function ()
     var self = $(this);
 
     $.ajax({
-        url: "/MMNFretes/inativaEndereco?endereco_id=" + self.val(),
+        url: "/mmnfretes/inativaEndereco?endereco_id=" + self.val(),
         dataType: 'text',
         success: function (mensagem)
         {
@@ -111,12 +111,12 @@ $('#btnConfirmaExclusaoEndereco').click(function ()
 function carregaEnderecoEdicao(endereco_id)
 {
     $.ajax({
-        url: "/MMNFretes/carregaEndereco?endereco_id=" + endereco_id,
+        url: "/mmnfretes/carregaEndereco?endereco_id=" + endereco_id,
         dataType: 'json',
         success: function (endereco)
         {
             $('#btnAdicionar-endereco').text('Salvar alterações');
-            $('#formulario-endereco').attr('action', '/MMNFretes/alteraEndereco?endereco_id=' + endereco_id);
+            $('#formulario-endereco').attr('action', '/mmnfretes/alteraEndereco?endereco_id=' + endereco_id);
             $('#btnExcluir-endereco').fadeOut(100);
             $('#txCep').val(endereco.CEP);
             $('#cbUf').val(endereco.UF);
@@ -153,7 +153,7 @@ $('#btnConfirmarSenha').click(function ()
     {
         $.ajax
         ({
-                    url: "/MMNFretes/alteraInfoUsuario?senha="      + senha +
+                    url: "/mmnfretes/alteraInfoUsuario?senha="      + senha +
                                                       "&nome="      + nome  +
                                                       "&email="     + email + 
                                                       "&telefone1=" + telefone1 + 
