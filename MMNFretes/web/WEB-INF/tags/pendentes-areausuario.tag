@@ -7,43 +7,35 @@
         </div>
         <div class="panel-body">
             <div class="row">
-
-                <div class="col-sm-9 col-xs-6">
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <select class="form-control input-lg" id="cbGrupos">
+                            <option value="Volta Redonda">Volta Redonda</option>
+                            <option value="Volta Redonda">Volta Redonda</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-default btn-lg btn-primary col-sm-12" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="false"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
                     <div id="custom-search-input">
-                        <div class="input-group col-sm-10 col-xs-8">
-                            <input type="text" class="form-control input-sm" placeholder="Buscar por Transportador, Data, Veículo ou forma de pagamento" />
+                        <div class="input-group">
+                            <input type="text" class="form-control input-lg" placeholder="Buscar por transportador, data, veículo ou forma de pagamento" />
                             <span class="input-group-btn">
-                                <button class="btn btn-info btn-sm" type="button">
+                                <button class="btn btn-info btn-lg" type="button">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="col-sm-3 col-xs-4">
-
-                        <select class="form-control input-sm" id="cbGrupos" name="grupos" required>
-                            <option disabled selected>Selecionar grupo</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                            <option style="font-family: Helvetica" value="Volta Redonda">Volta Redonda</option>
-                        </select>
-                    </div>
-
-                    <div style="margin-top: -1px;">
-                        <button id="btnEditar-grupo" class="btn btn-info btn-sm glyphicon glyphicon-pencil"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 20px;">
+            </div><br/>
+            <div class="row">
                 <div class="col-sm-12 table-overflow">
                     <table class="table table-bordered">
                         <thead>

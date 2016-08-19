@@ -19,20 +19,51 @@
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
         <div class="container">
-            <nav class="navbar navbar-dark bg-primary">    
-                <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-left">
-                        <input type="text" class="form-control" placeholder="CEP Origem">
-                        <input type="text" class="form-control" placeholder="CEP Destino">
-                        <button type="submit" class="btn btn-default">Pesquisar</button>
-                    </form>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form class="form-inline">
+                            <button type="button" class="btn btn-success">Pesquisar CEP</button>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control"placeholder="CEP Origem">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control"placeholder="CEP Destino">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            <button type="submit" class="btn btn-default pull-right">Filtrar <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+                        </form>
+                    </div>
+                    <div class="panel-body">
+                        Filtros!
+                    </div>
                 </div>
-            </nav>
-        </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        Conteudo!
+                    </div>
+                </div>
+            </div>
 
-    </div>
-    <script src="resources/js/jquery.js"></script>
-    <script src="resources/js/jquery-form.js"></script>
-    <script src="resources/js/bootstrap.js"></script>
-</body>
+            <!-- Navbar fixed bottom -->
+            <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Project name</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container -->
+            </div>
+        </div>
+    </body>
 </html>
