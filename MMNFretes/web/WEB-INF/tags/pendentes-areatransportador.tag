@@ -6,7 +6,7 @@
         <div class="panel-body">
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
+                    <input type="text" class="form-control input-group-lg" placeholder="Buscar endereço" />
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" type="button">
                             <i class="glyphicon glyphicon-search"></i>

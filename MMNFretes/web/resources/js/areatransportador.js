@@ -74,6 +74,16 @@ function carregaInfoTransportador()
                     {
                         $('#Cartao').prop('checked', true);
                     }
+                    
+                    if(transportador_result.boleto === true)
+                    {
+                        $('#Boleto').prop('checked', true);
+                    }
+                    
+                    if(transportador_result.negociacao_direta === true)
+                    {
+                        $('#NegociacaoDireta').prop('checked', true);
+                    }
                 }
             });
 
@@ -170,5 +180,28 @@ $('#Cartao').change(function ()
     });
 });
 
+$('#Boleto').change(function ()
+{
+    $.ajax
+    ({
+        url: "/mmnfretes/alteraStatusBoleto?status=" + $('#Boleto').is(':checked'),
+        success: function ()
+        {
+            carregaInfoTransportador();
+        }
+    });
+});
+
+$('#NegociacaoDireta').change(function ()
+{
+        $.ajax
+    ({
+        url: "/mmnfretes/alteraStatusNegociacao?status=" + $('#NegociacaoDireta').is(':checked'),
+        success: function ()
+        {
+            carregaInfoTransportador();
+        }
+    });
+});
 
 

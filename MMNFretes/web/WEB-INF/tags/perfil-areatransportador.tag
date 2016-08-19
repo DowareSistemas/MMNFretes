@@ -78,8 +78,8 @@
                         <li class="list-group-item">
                             Negociação direta
                             <div class="material-switch pull-right">
-                                <input id="Cheque" name="cheque" type="checkbox"/>
-                                <label for="Cheque" class="label-primary"></label>
+                                <input id="NegociacaoDireta" name="cheque" type="checkbox"/>
+                                <label for="NegociacaoDireta" class="label-primary"></label>
                             </div>
                         </li>
                     </ul>

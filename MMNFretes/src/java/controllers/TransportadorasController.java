@@ -97,7 +97,7 @@ public class TransportadorasController
         Session session = ConfigureSession.getSession();
 
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        Transportadoras transportadora  = getTransportadora(usuario.getId());
+        Transportadoras transportadora = getTransportadora(usuario.getId());
         transportadora.setCartao(status);
 
         session.update(transportadora);
@@ -106,6 +106,36 @@ public class TransportadorasController
         return "OK";
     }
 
+    @RequestMapping("/alteraStatusBoleto")
+    public @ResponseBody String alteraBoleto(@PathParam(value = "status") boolean status, HttpSession httpSession)
+    {
+        Session session = ConfigureSession.getSession();
+
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Transportadoras transportadora = getTransportadora(usuario.getId());
+        transportadora.setBoleto(status);
+
+        session.update(transportadora);
+        session.commit();
+        session.close();
+        return "OK";
+    }
+
+    @RequestMapping("/alteraStatusNegociacao")
+    public @ResponseBody String alteraNegociacao(@PathParam(value = "status") boolean status, HttpSession httpSession)
+    {
+        Session session = ConfigureSession.getSession();
+
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Transportadoras transportadora = getTransportadora(usuario.getId());
+        transportadora.setNegociacao_direta(status);
+
+        session.update(transportadora);
+        session.commit();
+        session.close();
+        return "OK";
+    }
+    
     private Transportadoras getTransportadora(int idUsuario)
     {
         Session session = ConfigureSession.getSession();
