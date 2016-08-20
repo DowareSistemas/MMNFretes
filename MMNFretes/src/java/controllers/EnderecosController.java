@@ -46,7 +46,7 @@ public class EnderecosController
         Session session = ConfigureSession.getSession();
 
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        endereco.setUsuarios_id(1);
+        endereco.setUsuarios_id(usuario.getId());
         endereco.setInativo(false);
 
         session.save(endereco);

@@ -75,7 +75,9 @@ body {
 #upload-file-selector {
     display:none;   
 }
-/*
-    ATENÇÃO: Campo de Teste
-*/
 
+.modal-open .modal .modal-centralizado {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  overflow-y: scroll;
+}

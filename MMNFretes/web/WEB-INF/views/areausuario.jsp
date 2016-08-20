@@ -61,11 +61,14 @@
                                           />
 
                 <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" id="senhaIncorreta" mensagem="As senhas não coincidem!" />
-
+              
+                <my-tags:detalhes_cotacao_usuario/>
             </div>
+            
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>
             <script src="resources/js/bootstrap.js"></script>
             <script src="resources/js/areausuario.js"></script>
+            <script src="resources/js/modal-centralizado.js"></script>
     </body>
 </html>
