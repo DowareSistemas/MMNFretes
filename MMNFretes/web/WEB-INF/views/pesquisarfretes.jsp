@@ -39,64 +39,22 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <button type="submit" class="btn btn-default pull-right">Filtrar <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+                                <button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#filtro-pesquisar" aria-expanded="false" aria-controls="collapseExample">
+                                    Filtrar
+                                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                </button>
                             </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <h3 class="text-primary">Veículos</h3>
-                                <div class="col-sm-4">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle pull-left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Pesados
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
-                                            <li><a><label><input type="checkbox" value=""> Rodotrem</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Bitrem</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Carreta LS</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Carreta</label></a></li>
-                                        </ul>
-                                    </div>
+                            <div class="collapse" id="filtro-pesquisar">
+                                <div class="card card-block">
+                                    <my-tags:filtro-pesquisar/>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle center-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Médios
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a><label><input type="checkbox" value=""> Bitruck</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Truck</label></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Leves
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                                            <li><a><label><input type="checkbox" value=""> Toco</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> 3/4</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> V.L.C.</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> V.U.C.</label></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <h3 class="text-primary">Carroceria</h3>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        Conteudo!
+                        <my-tags:conteudo-pesquisar/>
                     </div>
                 </div>
             </div>

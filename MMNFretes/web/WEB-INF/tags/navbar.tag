@@ -5,7 +5,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">Pesquisar Fretes</a></li>
+                <li class="active"><a href="http://localhost:8080/mmnfretes/pesquisar">Pesquisar Fretes</a></li>
                 <li><a href="">Sobre</a></li>
                 <li><a href="">Anuncie</a></li>                        
                 <li><a href="">Trabalhe Conosco</a></li>
