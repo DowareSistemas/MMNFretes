@@ -51,14 +51,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <my-tags:conteudo-pesquisar/>
-                    </div>
-                </div>
+                </div><br>
+                <my-tags:conteudo-pesquisar/>
             </div>
-
             <!-- Navbar fixed bottom -->
             <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
                 <div class="container">
@@ -77,7 +72,6 @@
                 </div><!--/.container -->
             </div>
         </div>
-
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>

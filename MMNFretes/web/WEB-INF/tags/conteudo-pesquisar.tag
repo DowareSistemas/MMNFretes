@@ -1,22 +1,46 @@
-<div class="row">
-    <div class="col-sm-12 col-lg-12 col-md-12">
-        <div class="thumbnail">
-            <img src="http://placehold.it/320x150" alt="">
-            <div class="caption">
-                <h4 class="pull-right">$24.99</h4>
-                <h4><a href="#">First Product</a>
-                </h4>
-                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-            </div>
+<div class="thumbnail">
+    <div class="row">
+        <div class="col-sm-12 col-lg-2 col-md-2">
             <div class="ratings">
-                <p class="pull-right">15 reviews</p>
+                <img src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="85">
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-3 col-md-3">
+            <div class="row">
+                <h4 class="text-primary">Nome da Transportadora</h4>
+            </div>
+            <div class="row">
                 <p>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
                 </p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-5 col-md-5"><br>
+            <div class="row">
+                <div class="col-sm-12 col-lg-4 col-md-4">
+                    <label for="sel1">Veículo Pesado: </label>
+                    <p>Carreta</p>
+                </div>
+                <div class="col-sm-12 col-lg-4 col-md-4">
+                    <label for="sel1">Tipo de Carroceria: </label>
+                    <p>Baú</p>
+                </div>
+                <div class="col-sm-12 col-lg-4 col-md-4">
+                    <label for="sel1">Rastreador: </label>
+                    <p>Não</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-2 col-md-2">
+            <div class="row">
+                <h4 class="text-center">R$ 00,00</h4>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary btn-sm center-block">Adicionar</button>
             </div>
         </div>
     </div>
