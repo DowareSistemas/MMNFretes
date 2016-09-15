@@ -50,7 +50,7 @@ public class EnderecosController
         {
             if (session != null)
                 session.close();
-            //retornar pagina de erro
+            return "erro";
         }
         return "redirect:listaEnderecos";
     }
@@ -59,10 +59,11 @@ public class EnderecosController
     public @ResponseBody
     String carregaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
-        Enderecos endereco = new Enderecos();
         Session session = null;
         try
         {
+            Enderecos endereco = new Enderecos();
+
             session = ConfigureSession.getSession();
             session.onID(endereco, endereco_id);
             session.close();
@@ -76,7 +77,7 @@ public class EnderecosController
             {
                 session.close();
             }
-            return "pagina de erro";
+            return "erro";
         }
     }
 
@@ -107,10 +108,9 @@ public class EnderecosController
         } catch (Exception ex)
         {
             if (session != null)
-            {
                 session.close();
-            }
-            return new ModelAndView("pagina de erro aqui");
+
+            return new ModelAndView("erro");
         }
     }
 
@@ -134,7 +134,7 @@ public class EnderecosController
         {
             if (session != null)
                 session.close();
-            return "Pagina de erro aqui";
+            return "erro";
         }
     }
 
@@ -146,7 +146,6 @@ public class EnderecosController
         try
         {
             session = ConfigureSession.getSession();
-
             Enderecos endereco = (Enderecos) session.onID(Enderecos.class, endereco_id);
             endereco.setInativo(true);
 
@@ -155,8 +154,7 @@ public class EnderecosController
             session.close();
 
             return "Endereço inativado!";
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             if (session != null)
                 session.close();

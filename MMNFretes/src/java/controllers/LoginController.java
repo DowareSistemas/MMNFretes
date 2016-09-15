@@ -66,7 +66,7 @@ public class LoginController
         {
             if (session != null)
                 session.close();
-            return "pagina de erro";
+            return "erro";
         }
     }
 }
