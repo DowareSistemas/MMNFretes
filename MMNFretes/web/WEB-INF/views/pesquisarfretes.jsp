@@ -19,8 +19,10 @@
     <body>
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
-        <div class="container">
+        <div class="container-fluid">
             <div class="panel-group">
+
+                <!-- Painel de pesquisa -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
@@ -39,71 +41,26 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <button type="submit" class="btn btn-default pull-right">Filtrar <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+                                <button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#filtro-pesquisar" aria-expanded="false" aria-controls="collapseExample">
+                                    Filtrar
+                                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="collapse" id="filtro-pesquisar">
+                                <div class="card card-block">
+                                    <my-tags:filtro-pesquisar/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <h3 class="text-primary">Veículos</h3>
-                                <div class="col-sm-4">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle pull-left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Pesados
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
-                                            <li><a><label><input type="checkbox" value=""> Rodotrem</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Bitrem</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Carreta LS</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Carreta</label></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle center-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Médios
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a><label><input type="checkbox" value=""> Bitruck</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> Truck</label></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Leves
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                                            <li><a><label><input type="checkbox" value=""> Toco</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> 3/4</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> V.L.C.</label></a></li>
-                                            <li><a><label><input type="checkbox" value=""> V.U.C.</label></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <h3 class="text-primary">Carroceria</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        Conteudo!
-                    </div>
-                </div>
+                </div><br>
+
+                <my-tags:conteudo-pesquisar/>
             </div>
 
-            <!-- Navbar fixed bottom -->
+            <!-- Navbar fixa no rodapé -->
             <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-                <div class="container">
+                <div class="container-">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -111,15 +68,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Project name</a>
+                        <a class="navbar-brand" href="">Project name</a>
                     </div>
                     <div class="navbar-collapse collapse">
 
                     </div><!--/.nav-collapse -->
                 </div><!--/.container -->
             </div>
-        </div>
 
+        </div>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>

@@ -10,9 +10,10 @@ and open the template in the editor.
 
 body {
     padding-top: 70px;
+    padding-bottom: 70px;
 }
 .table-overflow {
-    max-height:400px;
+    max-height:310px;
     overflow-y:auto;
 }
 .material-switch > input[type="checkbox"] {

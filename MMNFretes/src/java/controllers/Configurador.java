@@ -24,8 +24,6 @@ import sessionProvider.ConfigureSession;
 @Controller
 public class Configurador
 {
-
-    
     @RequestMapping("/Configura")
     public @ResponseBody String configura()
     {
