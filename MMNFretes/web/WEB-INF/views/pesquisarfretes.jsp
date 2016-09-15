@@ -19,8 +19,10 @@
     <body>
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
-        <div class="container">
+        <div class="container-fluid">
             <div class="panel-group">
+
+                <!-- Painel de pesquisa -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
@@ -52,11 +54,13 @@
                         </div>
                     </div>
                 </div><br>
+
                 <my-tags:conteudo-pesquisar/>
             </div>
-            <!-- Navbar fixed bottom -->
+
+            <!-- Navbar fixa no rodapé -->
             <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-                <div class="container">
+                <div class="container-">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -64,13 +68,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Project name</a>
+                        <a class="navbar-brand" href="">Project name</a>
                     </div>
                     <div class="navbar-collapse collapse">
 
                     </div><!--/.nav-collapse -->
                 </div><!--/.container -->
             </div>
+
         </div>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
