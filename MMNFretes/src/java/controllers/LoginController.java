@@ -34,30 +34,39 @@ public class LoginController
     @RequestMapping("/efetuaLogin")
     public String efetuaLogin(Usuarios usuario, HttpSession httpSession)
     {
-        Session session = ConfigureSession.getSession();
-
-        Criteria criteria = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
-        criteria.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));
-        criteria.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
-        criteria.execute();
-
-        if (usuario.getId() != 0)
+        Session session = null;
+        try
         {
-            if (Util.isUsuario(usuario))
+            session = ConfigureSession.getSession();
+
+            session.createCriteria(usuario, RESULT_TYPE.UNIQUE)
+                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()))
+                    .add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()))
+                    .execute();
+
+            if (usuario.getId() != 0)
             {
-                session.close();
-                httpSession.setAttribute("usuarioLogado", usuario);
-                return "redirect:areausuario";
-            } 
-            else
-            {
-                session.close();
-                httpSession.setAttribute("usuarioLogado", usuario);
-                return "redirect:areatransportador";
+                if (Util.isUsuario(usuario))
+                {
+                    session.close();
+                    httpSession.setAttribute("usuarioLogado", usuario);
+                    return "redirect:areausuario";
+                } else
+                {
+                    session.close();
+                    httpSession.setAttribute("usuarioLogado", usuario);
+                    return "redirect:areatransportador";
+                }
             }
+            
+            session.close();
+            return "redirect:paginaLogin";
+        } 
+        catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+            return "pagina de erro";
         }
-        
-        session.close();
-        return "redirect:paginaLogin";
     }
 }
