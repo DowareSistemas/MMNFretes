@@ -39,10 +39,10 @@ public class LoginController
         {
             session = ConfigureSession.getSession();
 
-            session.createCriteria(usuario, RESULT_TYPE.UNIQUE)
-                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()))
-                    .add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()))
-                    .execute();
+            Criteria c = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
+            c.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));
+            c.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
+            c.execute();
 
             if (usuario.getId() != 0)
             {
@@ -58,15 +58,15 @@ public class LoginController
                     return "redirect:areatransportador";
                 }
             }
-            
+
             session.close();
             return "redirect:paginaLogin";
-        } 
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             if (session != null)
                 session.close();
-            return "erro";
+            
+            return "redirect:paginaLogin";
         }
     }
 }

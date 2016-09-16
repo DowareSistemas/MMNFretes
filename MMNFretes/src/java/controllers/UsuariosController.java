@@ -5,6 +5,9 @@
  */
 package controllers;
 
+import br.com.persistor.enums.FILTER_TYPE;
+import br.com.persistor.enums.RESULT_TYPE;
+import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
 import entidades.Transportadoras;
@@ -28,12 +31,13 @@ public class UsuariosController
     @RequestMapping("/cadastrausuario")
     public String gravaUsuario(Usuarios usuario, HttpSession httpSession)
     {
+        if(usuarioExiste(usuario)) return "redirect:paginaLogin"; 
         usuario.setTipo_usuario(0);
 
         Session session = null;
         try
         {
-            ConfigureSession.getSession();
+            session = ConfigureSession.getSession();
             session.save(usuario);
             session.commit();
             session.close();
@@ -48,6 +52,32 @@ public class UsuariosController
 
             return "erro";
         }
+    }
+
+    private boolean usuarioExiste(Usuarios usuario)
+    {
+        Session session = null;
+
+        try
+        {
+            session = ConfigureSession.getSession();
+            session.createCriteria(usuario, RESULT_TYPE.MULTIPLE)
+                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()))
+                    .execute();
+            
+            boolean result = false;
+            
+            if(usuario.ResultList.size() > 0) result = true;
+            session.close();
+            
+            return result;
+        } 
+        catch (Exception ex)
+        {
+            if(session != null) session.close();
+        }
+        
+        return false;
     }
 
     @RequestMapping("/alteraInfoUsuario")
@@ -85,7 +115,7 @@ public class UsuariosController
         try
         {
             Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            
+
             session = ConfigureSession.getSession();
             session.onID(usuario, usuario.getId());
             session.close();
