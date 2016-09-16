@@ -34,26 +34,24 @@ public class EnderecosController
     @RequestMapping(value = "/adicionaEndereco")
     public String adicionar(Model model, Enderecos endereco, HttpSession httpSession)
     {
-        //  System.out.println(httpServletRequest.getRequestURI());
-        /*  System.out.println(endereco.getCEP());
-        System.out.println(endereco.getBairro());
-        System.out.println(endereco.getLogradouro());
-        System.out.println(endereco.getNumero());
-        System.out.println(endereco.getComplemento());
-        System.out.println(endereco.getUF());
-        System.out.println("Municp " + endereco.getMunicipio()); */
+        Session session = null;
+        try
+        {
+            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+            endereco.setUsuarios_id(usuario.getId());
+            endereco.setInativo(false);
 
-        Session session = ConfigureSession.getSession();
+            session = ConfigureSession.getSession();
+            session.save(endereco);
+            session.commit();
 
-        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        endereco.setUsuarios_id(usuario.getId());
-        endereco.setInativo(false);
-
-        session.save(endereco);
-        session.commit();
-
-        session.close();
-
+            session.close();
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+            return "erro";
+        }
         return "redirect:listaEnderecos";
     }
 
@@ -61,72 +59,106 @@ public class EnderecosController
     public @ResponseBody
     String carregaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
-        System.out.println(endereco_id);
-        Session session = ConfigureSession.getSession();
+        Session session = null;
+        try
+        {
+            Enderecos endereco = new Enderecos();
 
-        Enderecos endereco = new Enderecos();
-        session.onID(endereco, endereco_id);
+            session = ConfigureSession.getSession();
+            session.onID(endereco, endereco_id);
+            session.close();
 
-        session.close();
+            Gson gson = new Gson();
+            return gson.toJson(endereco);
 
-        Gson gson = new Gson();
-
-        return gson.toJson(endereco);
+        } catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.close();
+            }
+            return "erro";
+        }
     }
 
     @RequestMapping("/listaEnderecos")
     public ModelAndView listaEnderecos(HttpSession httpSession)
     {
-        Session session = ConfigureSession.getSession();
+        Session session = null;
+        try
+        {
+            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+            Enderecos endereco = new Enderecos();
 
-        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        Enderecos endereco = new Enderecos();
+            session = ConfigureSession.getSession();
+            session.createCriteria(endereco, RESULT_TYPE.MULTIPLE)
+                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
+                    .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", "false"))
+                    .execute();
 
-        Criteria criteria = session.createCriteria(endereco, RESULT_TYPE.MULTIPLE);
-        criteria.add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()));
-        criteria.add(Restrictions.eq(FILTER_TYPE.AND, "inativo", "false"));
-        criteria.execute();
+            List<Enderecos> listaEnderecos = endereco.ResultList;
 
-        List<Enderecos> listaEnderecos = endereco.ResultList;
+            ModelAndView modelAndView = new ModelAndView("listaenderecos");
+            modelAndView.addObject("listaenderecos", listaEnderecos);
 
-        ModelAndView modelAndView = new ModelAndView("listaenderecos");
-        modelAndView.addObject("listaenderecos", listaEnderecos);
+            session.close();
 
-        session.close();
+            return modelAndView;
 
-        return modelAndView;
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+
+            return new ModelAndView("erro");
+        }
     }
 
     @RequestMapping("/alteraEndereco")
     public String alteraEndereco(@PathParam(value = "endereco_id") int endereco_id, Enderecos endereco, HttpSession httpSession)
     {
-        Session session = ConfigureSession.getSession();
+        Session session = null;
+        try
+        {
+            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+            endereco.setId(endereco_id);
+            endereco.setUsuarios_id(usuario.getId());
 
-        Usuarios usuario = (Usuarios)httpSession.getAttribute("usuarioLogado");
-        
-        endereco.setId(endereco_id);
-        endereco.setUsuarios_id(usuario.getId());
-        
-        session.update(endereco);
-        session.commit();
-        session.close();
+            session = ConfigureSession.getSession();
+            session.update(endereco);
+            session.commit();
+            session.close();
 
-        return "redirect:listaEnderecos";
+            return "redirect:listaEnderecos";
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+            return "erro";
+        }
     }
 
     @RequestMapping("/inativaEndereco")
     public @ResponseBody
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
-        Session session = ConfigureSession.getSession();
+        Session session = null;
+        try
+        {
+            session = ConfigureSession.getSession();
+            Enderecos endereco = (Enderecos) session.onID(Enderecos.class, endereco_id);
+            endereco.setInativo(true);
 
-        Enderecos endereco = (Enderecos) session.onID(Enderecos.class, endereco_id);
-        endereco.setInativo(true);
+            session.delete(endereco);
+            session.commit();
+            session.close();
 
-        session.delete(endereco);
-        session.commit();
-        session.close();
-
-        return "Endereço inativado!";
+            return "Endereço inativado!";
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+            return " ";
+        }
     }
 }

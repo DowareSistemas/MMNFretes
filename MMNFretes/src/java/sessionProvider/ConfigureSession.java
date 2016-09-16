@@ -18,8 +18,9 @@ public class ConfigureSession
 {
     private static SessionFactory factory = null;
 
-    public static Session getSession()
+    public static Session getSession() throws Exception
     {
+        try{
         if (factory == null)
         {
             factory = new SessionFactory();
@@ -35,5 +36,11 @@ public class ConfigureSession
         config.setPassword("81547686");
  
         return factory.getSession(config);
+        
+        }
+        catch(Exception ex)
+        {
+            throw new Exception(ex.getMessage());
+        }
     }
 }

@@ -5,6 +5,9 @@
  */
 package controllers;
 
+import br.com.persistor.enums.FILTER_TYPE;
+import br.com.persistor.enums.RESULT_TYPE;
+import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
 import entidades.Transportadoras;
@@ -28,84 +31,144 @@ public class UsuariosController
     @RequestMapping("/cadastrausuario")
     public String gravaUsuario(Usuarios usuario, HttpSession httpSession)
     {
+        if(usuarioExiste(usuario)) return "redirect:paginaLogin"; 
         usuario.setTipo_usuario(0);
 
-        Session session = ConfigureSession.getSession();
-        session.save(usuario);
-        session.commit();
-        session.close();
+        Session session = null;
+        try
+        {
+            session = ConfigureSession.getSession();
+            session.save(usuario);
+            session.commit();
+            session.close();
 
-        httpSession.setAttribute("usuarioLogado", usuario);
+            httpSession.setAttribute("usuarioLogado", usuario);
 
-        return "redirect:areausuario";
+            return "redirect:areausuario";
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+
+            return "erro";
+        }
+    }
+
+    private boolean usuarioExiste(Usuarios usuario)
+    {
+        Session session = null;
+
+        try
+        {
+            session = ConfigureSession.getSession();
+            session.createCriteria(usuario, RESULT_TYPE.MULTIPLE)
+                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()))
+                    .execute();
+            
+            boolean result = false;
+            
+            if(usuario.ResultList.size() > 0) result = true;
+            session.close();
+            
+            return result;
+        } 
+        catch (Exception ex)
+        {
+            if(session != null) session.close();
+        }
+        
+        return false;
     }
 
     @RequestMapping("/alteraInfoUsuario")
     public @ResponseBody
     String alteraInfoUsuario(Usuarios usuario, HttpSession httpSession)
     {
-        Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Session session = null;
 
-        usuario.setId(usuarioLogado.getId());
+        try
+        {
+            Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+            usuario.setId(usuarioLogado.getId());
 
-        Session session = ConfigureSession.getSession();
+            session = ConfigureSession.getSession();
+            session.update(usuario);
+            session.commit();
+            session.close();
 
-        session.update(usuario);
-        session.commit();
-        session.close();
+            return "infoUsuario";
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
 
-        return "infoUsuario";
+            return "erro";
+        }
     }
 
     @RequestMapping(value = "/infoUsuario", produces = "application/json", method = RequestMethod.GET)
     public @ResponseBody
     String infoUsuario(HttpSession httpSession)
     {
-        Session session = ConfigureSession.getSession();
+        Session session = null;
 
-        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        session.onID(usuario, usuario.getId());
+        try
+        {
+            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
-        session.close();
+            session = ConfigureSession.getSession();
+            session.onID(usuario, usuario.getId());
+            session.close();
 
-        Gson gson = new Gson();
-        String resultado = gson.toJson(usuario);
+            Gson gson = new Gson();
+            String resultado = gson.toJson(usuario);
 
-        return resultado;
+            return resultado;
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+
+            return "erro";
+        }
     }
 
     @RequestMapping("/cadastratransportadora")
     public String gravaTransportadora(Transportadoras transportadoras, HttpSession httpSession)
     {
-        transportadoras.getUsuarios().setTipo_usuario(1);
-        transportadoras.getUsuarios().setNome(transportadoras.getNome());
+        Session session = null;
+        try
+        {
+            transportadoras.getUsuarios().setTipo_usuario(1);
+            transportadoras.getUsuarios().setNome(transportadoras.getNome());
 
-        Session session = ConfigureSession.getSession();
-        session.save(transportadoras);
-        session.commit();
-        session.close();
+            session = ConfigureSession.getSession();
+            session.save(transportadoras);
+            session.commit();
+            session.close();
 
-        httpSession.setAttribute("usuarioLogado", transportadoras.getUsuarios());
+            httpSession.setAttribute("usuarioLogado", transportadoras.getUsuarios());
 
-        return "redirect:areatransportador";
-    }
+            return "redirect:areatransportador";
 
-    @RequestMapping("/testeLista")
-    public String redirectLista()
-    {
-        return "testeLista";
+        } catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+            return "erro";
+        }
     }
 
     @RequestMapping("/areausuario")
-    public String rediriocionaAreaUsuario(HttpSession session)
+    public String rediriocionaAreaUsuario(HttpSession session
+    )
     {
         Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogado");
 
         if (Util.isUsuario(usuario))
         {
             return "areausuario";
-        }
-        else
+        } else
         {
             return "redirect:paginaLogin";
         }
