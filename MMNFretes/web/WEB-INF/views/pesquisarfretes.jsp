@@ -19,7 +19,7 @@
     <body>
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
-        <div class="container-fluid">
+        <div class="container">
             <div class="panel-group">
 
                 <!-- Painel de pesquisa -->
@@ -56,11 +56,27 @@
                 </div><br>
 
                 <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                <my-tags:conteudo-pesquisar/>
+                
+                
             </div>
 
             <!-- Navbar fixa no rodapé -->
             <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-                <div class="container-">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -68,12 +84,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="">Project name</a>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-link center-block" data-toggle="modal" data-target="#myModal"><h4>Adicionados 3 FRETES</h4></button
                     </div>
                     <div class="navbar-collapse collapse">
 
                     </div><!--/.nav-collapse -->
-                </div><!--/.container -->
             </div>
 
         </div>

@@ -19,7 +19,7 @@
     <body>
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
-        <div class="container-fluid">
+        <div class="container">
             <div class="col-sm-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
