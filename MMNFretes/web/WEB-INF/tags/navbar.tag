@@ -15,15 +15,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <form class="navbar-form navbar-left">
                 <div class="form-group input-group">
-                    <button type="button" class="btn-primary input-group-addon" title="Pesquisar CEP">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
+                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                     <input type="text" class="form-control" placeholder="CEP Origem">
                 </div>
                 <div class="form-group input-group">
-                    <button type="button" class="btn-primary input-group-addon" title="Pesquisar CEP">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
+                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                     <input type="text" class="form-control" placeholder="CEP Destino">
                 </div>
                 <button type="submit" class="btn btn-default">Buscar</button>
