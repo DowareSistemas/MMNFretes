@@ -20,7 +20,7 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="form-group">
-                            <form role="form" action="/mmnfretes/alteraInfoTransportadora">
+                            <form role="form" action="">
 
                                 <div class="form-group col-sm-6">
                                     <input type="text" id="txNome" name="usuarios.nome" class="form-control" placeholder="Nome">

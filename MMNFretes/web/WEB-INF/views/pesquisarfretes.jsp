@@ -16,9 +16,9 @@
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
         <title>JSP Page</title>
     </head>
-    <body>
+    
         <!-- Controles de Barra de navegação -->
-        <my-tags:nova-navbar/>
+        <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
 
         <!-- Conteudo da página -->
@@ -181,5 +181,5 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
-    </body>
+    
 </html>

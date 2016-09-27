@@ -45,7 +45,7 @@ function hab_desab_formInfo(estado)
 {
     $('#txNome-usuario').prop('disabled', estado);
     $('#txEmail-usuario').prop('disabled', estado);
-    $('#txSenha').prop('disabled', estado);
+    $('#txSenha-usuario').prop('disabled', estado);
     $('#txConfirm-senha').prop('disabled', estado);
     $('#txTelefone1').prop('disabled', estado);
     $('#txTelefone2').prop('disabled', estado);
@@ -61,7 +61,7 @@ function carregaInfoUsuario()
         {
             $('#txNome-usuario').val(usuario.nome);
             $('#txEmail-usuario').val(usuario.email);
-            $('#txSenha').val(usuario.senha);
+            $('#txSenha-usuario').val(usuario.senha);
             $('#txConfirm-senha').val(usuario.senha);
             $('#txTelefone1').val(usuario.telefone1);
             $('#txTelefone2').val(usuario.telefone2);
@@ -140,14 +140,13 @@ $('#btnAlterar-info').click(function ()
 
 $('#btnConfirmarSenha').click(function ()
 {
-    var senha = $('#txSenha').val();
+    var senha = $('#txSenha-usuario').val();
     var senhaConfirmada = $('#txSenhaConfirmada').val();
 
     var nome = $('#txNome-usuario').val();
     var email = $('#txEmail-usuario').val();
     var telefone1 = $('#txTelefone1').val();
     var telefone2 = $('#txTelefone2').val();
-    
     
     if (senha === senhaConfirmada)
     {

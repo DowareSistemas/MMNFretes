@@ -14,3 +14,25 @@ $('#usuario').click(function ()
 });
 
 $('#mensagem').toggleClass('in');
+
+$('#btnLogin').click(function ()
+{
+    var email = $('#txEmail').val();
+    var senha = $('#txSenha').val();
+    $.ajax
+            ({
+                url: "/mmnfretes/efetualogin?email=" + email + "&senha=" + senha,
+                contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+                success: function (result)
+                {
+                    if (result === 'incorreto')
+                    {
+                        $('#senhaIncorreta').modal('toggle');
+                        $('#senhaIncorreta').modal('show');
+                    } else
+                    {
+                        $(location).attr('href', '/mmnfretes/' + result);
+                    }
+                }
+            });
+});

@@ -14,6 +14,7 @@ import entidades.Usuarios;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import sessionProvider.ConfigureSession;
 import util.Util;
 
@@ -31,8 +32,8 @@ public class LoginController
         return "login";
     }
 
-    @RequestMapping("/efetuaLogin")
-    public String efetuaLogin(Usuarios usuario, HttpSession httpSession)
+    @RequestMapping("/efetualogin")
+    public @ResponseBody String efetualogin(Usuarios usuario, HttpSession httpSession)
     {
         Session session = null;
         try
@@ -50,23 +51,22 @@ public class LoginController
                 {
                     session.close();
                     httpSession.setAttribute("usuarioLogado", usuario);
-                    return "redirect:areausuario";
+                    return "areausuario";
                 } else
                 {
                     session.close();
                     httpSession.setAttribute("usuarioLogado", usuario);
-                    return "redirect:areatransportador";
+                    return "areatransportador";
                 }
             }
-
             session.close();
-            return "redirect:paginaLogin";
+            return "incorreto";
         } catch (Exception ex)
         {
             if (session != null)
                 session.close();
             
-            return "redirect:paginaLogin";
+            return "erro";
         }
     }
 }

@@ -12,8 +12,11 @@ import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
 import entidades.Transportadoras;
 import entidades.Usuarios;
+import java.nio.charset.Charset;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,6 +91,8 @@ public class UsuariosController
 
         try
         {
+            if(usuario.getNome().equals("undefined")) return "";
+
             Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
             usuario.setId(usuarioLogado.getId());
 
@@ -106,9 +111,9 @@ public class UsuariosController
         }
     }
 
-    @RequestMapping(value = "/infoUsuario", produces = "application/json", method = RequestMethod.GET)
+    @RequestMapping(value = "/infoUsuario", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public @ResponseBody
-    String infoUsuario(HttpSession httpSession)
+    String infoUsuario(HttpSession httpSession, HttpServletResponse response)
     {
         Session session = null;
 
@@ -119,10 +124,9 @@ public class UsuariosController
             session = ConfigureSession.getSession();
             session.onID(usuario, usuario.getId());
             session.close();
-
+            
             Gson gson = new Gson();
             String resultado = gson.toJson(usuario);
-
             return resultado;
         } catch (Exception ex)
         {
