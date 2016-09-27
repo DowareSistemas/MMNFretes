@@ -19,7 +19,7 @@
                                     <input type="email" class="form-control" id="txEmail-usuario" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <input type="password" class="form-control" id="txSenha" name="senha" placeholder="Senha">
+                                    <input type="password" class="form-control" id="txSenha-usuario" name="senha" placeholder="Senha">
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <input type="tel" class="form-control" name="telefone1" id="txTelefone1"  placeholder="Telefone 1">

@@ -42,7 +42,7 @@ public class TransportadorasController
         }
     }
 
-    @RequestMapping("/infoTransportador")
+    @RequestMapping(value = "/infoTransportador", produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String getInfo(HttpSession httpSession)
     {

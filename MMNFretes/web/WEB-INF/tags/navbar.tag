@@ -31,16 +31,20 @@
                         <li>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="/mmnfretes/efetuaLogin">
+                                    <form action="">
+                                        
                                         <div class="form-group">
                                             <label for="email">Email:</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+                                            <input type="email" class="form-control" id="txEmail" name="email">
                                         </div>
-                                        <div class="form-group" action="/mmnfretes/efetuaLogin">
+                                        
+                                        <div class="form-group">
                                             <label for="pwd">Senha:</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" name="senha">
+                                            <input type="password" class="form-control" id="txSenha" name="senha">
                                         </div>
-                                        <button type="submit" class="btn btn-primary center-block">Entrar</button><hr>
+                                        
+                                        <button id="btnLogin" type="button" class="btn btn-primary center-block">Entrar</button><hr>
+                                        
                                         <div class="text-center">
                                             <button type="button" class="btn btn-link btn-sm">Esqueceu sua senha?</button>
                                         </div>

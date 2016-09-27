@@ -52,7 +52,7 @@
                                         titulo="Confirmar senha"
                                         type_input="password" />
 
-                <my-tags:mensagem-ok id="senhaIncorreta"
+                <my-tags:mensagem-ok id="senhaIncorreta" id_btnOK="btnSenhaIncorreta"
                                      mensagem="As senhas não coincidem!" />
             </div>
         </div>

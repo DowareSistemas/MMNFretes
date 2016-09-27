@@ -29,6 +29,7 @@
                     <my-tags:form-transportadora/>
                 </div>
             </div>
+            <my-tags:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
             <my-tags:sobre/>
         </div>
         <script src="resources/js/jquery.js"></script>

@@ -55,7 +55,7 @@ public class EnderecosController
         return "redirect:listaEnderecos";
     }
 
-    @RequestMapping("/carregaEndereco")
+    @RequestMapping(value = "/carregaEndereco", produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String carregaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
@@ -138,7 +138,7 @@ public class EnderecosController
         }
     }
 
-    @RequestMapping("/inativaEndereco")
+    @RequestMapping(value = "/inativaEndereco", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {

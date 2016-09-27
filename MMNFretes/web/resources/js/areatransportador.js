@@ -9,7 +9,7 @@ $(document).ready(function ()
 
     carregaInfoTransportador();
     hab_desab_formInfo(true);
-    
+
 });
 
 $('#btnPerfil').click(function ()
@@ -69,18 +69,18 @@ function carregaInfoTransportador()
                     $('#txCPF_CNPJ').val(transportador_result.CPF_CNPJ);
                     $('#txANTT').val(transportador_result.ANTT);
                     $('#txWebsite').val(transportador_result.website);
-                    
-                    if(transportador_result.cartao === true)
+
+                    if (transportador_result.cartao === true)
                     {
                         $('#Cartao').prop('checked', true);
                     }
-                    
-                    if(transportador_result.boleto === true)
+
+                    if (transportador_result.boleto === true)
                     {
                         $('#Boleto').prop('checked', true);
                     }
-                    
-                    if(transportador_result.negociacao_direta === true)
+
+                    if (transportador_result.negociacao_direta === true)
                     {
                         $('#NegociacaoDireta').prop('checked', true);
                     }
@@ -142,6 +142,7 @@ $('#btnConfirmarSenha').click(function ()
 
     if (senha === senhaDigitada)
     {
+        alert('Enstrou');
         $.ajax({
             url: "/mmnfretes/alteraInfoTransportadora?usuarios.nome=" + nome +
                     "&usuarios.email=" + email +
@@ -167,41 +168,48 @@ $('#btnConfirmarSenha').click(function ()
     }
 });
 
+$('#btnSenhaIncorreta').click(function ()
+{
+    hab_desab_formInfo(false);
+    $('#btnSalvar-info').fadeIn(200);
+    $('#alterarSenha').modal('toggle');
+    $('#alterarSenha').modal('show');
+});
 
 $('#Cartao').change(function ()
 {
     $.ajax
-    ({
-        url: "/mmnfretes/alteraStatusCartao?status=" + $('#Cartao').is(':checked'),
-        success: function ()
-        {
-            carregaInfoTransportador();
-        }
-    });
+            ({
+                url: "/mmnfretes/alteraStatusCartao?status=" + $('#Cartao').is(':checked'),
+                success: function ()
+                {
+                    carregaInfoTransportador();
+                }
+            });
 });
 
 $('#Boleto').change(function ()
 {
     $.ajax
-    ({
-        url: "/mmnfretes/alteraStatusBoleto?status=" + $('#Boleto').is(':checked'),
-        success: function ()
-        {
-            carregaInfoTransportador();
-        }
-    });
+            ({
+                url: "/mmnfretes/alteraStatusBoleto?status=" + $('#Boleto').is(':checked'),
+                success: function ()
+                {
+                    carregaInfoTransportador();
+                }
+            });
 });
 
 $('#NegociacaoDireta').change(function ()
 {
-        $.ajax
-    ({
-        url: "/mmnfretes/alteraStatusNegociacao?status=" + $('#NegociacaoDireta').is(':checked'),
-        success: function ()
-        {
-            carregaInfoTransportador();
-        }
-    });
+    $.ajax
+            ({
+                url: "/mmnfretes/alteraStatusNegociacao?status=" + $('#NegociacaoDireta').is(':checked'),
+                success: function ()
+                {
+                    carregaInfoTransportador();
+                }
+            });
 });
 
 
