@@ -18,14 +18,15 @@
     </head>
     <body>
         <!-- Controles de Barra de navegação -->
-        <my-tags:navbar/>
+        <my-tags:nova-navbar/>
         <%--<my-tags:navbar-login>--%>
 
         <!-- Conteudo da página -->
-        <div class="container-fluid">
+        <div class="container">
 
-            <!-- Filtro de pesquisa: Início -->
-            <div class="col-sm-2">
+            <!-- Filtro de pesquisa (Desktop): Início -->
+            <div class="col-md-2 visible-md">
+                
                 <!-- Filtro de pesquisa: Veículos: Início -->
                 <div class="row">
                     <div class="thumbnail">
@@ -152,10 +153,10 @@
                 </div>
                 <!-- Filtro de pesquisa: Formas de Pagamento: Fim -->
             </div>
-            <!-- Filtro de pesquisa: Fim -->
+            <!-- Filtro de pesquisa (Desktop): Fim -->
 
             <!-- Conteúdo de pesquisa: Início -->
-            <div class="col-sm-10">
+            <div class="col-xs-12 col-md-10">
                 <my-tags:conteudo-pesquisar/>
                 <my-tags:conteudo-pesquisar/>
                 <my-tags:conteudo-pesquisar/>
