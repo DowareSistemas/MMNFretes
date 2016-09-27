@@ -1,6 +1,6 @@
 <!--Navbar fixa no topo-->
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -14,17 +14,20 @@
         <!-- Coleção de nav links, forms, e outros conteúdos -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <form class="navbar-form navbar-left">
-                <div class="form-group">
+                <div class="form-group input-group">
+                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                     <input type="text" class="form-control" placeholder="CEP Origem">
                 </div>
-                <div class="form-group">
+                <div class="form-group input-group">
+                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                     <input type="text" class="form-control" placeholder="CEP Destino">
                 </div>
                 <button type="submit" class="btn btn-default">Buscar</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="">Buscar CEP</a></li>
-                <li><a href="">Sobre</a></li>
+                <li>
+                    <a class="btn btn-link">12 <span class="glyphicon glyphicon-shopping-cart"></span></a>
+                </li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entrar <span class="caret"></span></a>
                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
