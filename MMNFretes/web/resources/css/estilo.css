@@ -7,6 +7,11 @@ and open the template in the editor.
     Created on : 27/07/2016, 22:03:40
     Author     : emers
 */
+/* Tamanhos: width e height */
+
+.heighth35 {
+    height: 35px;
+}
 
 body {
     padding-top: 70px;
