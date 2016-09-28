@@ -142,7 +142,6 @@ $('#btnConfirmarSenha').click(function ()
 
     if (senha === senhaDigitada)
     {
-        alert('Enstrou');
         $.ajax({
             url: "/mmnfretes/alteraInfoTransportadora?usuarios.nome=" + nome +
                     "&usuarios.email=" + email +
