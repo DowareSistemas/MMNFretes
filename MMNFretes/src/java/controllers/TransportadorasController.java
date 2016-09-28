@@ -66,8 +66,32 @@ public class TransportadorasController
         } catch (Exception ex)
         {
             if (session != null)
+            {
                 session.close();
+            }
             return " ";
+        }
+    }
+
+    public Transportadoras getByUsuario(int usuario_id)
+    {
+        Session session = null;
+        try
+        {
+            Transportadoras t = new Transportadoras();
+            
+            session = ConfigureSession.getSession();
+            session.createCriteria(t, RESULT_TYPE.UNIQUE)
+                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario_id))
+                    .execute();
+            session.close();
+            
+            return t;
+
+        } catch (Exception ex)
+        {
+            if(session != null)session.close();
+            return new Transportadoras();
         }
     }
 
@@ -97,7 +121,9 @@ public class TransportadorasController
         } catch (Exception ex)
         {
             if (session != null)
+            {
                 session.close();
+            }
             return " ";
         }
     }
@@ -122,7 +148,9 @@ public class TransportadorasController
         } catch (Exception ex)
         {
             if (session != null)
+            {
                 session.close();
+            }
 
             return " ";
         }
@@ -148,7 +176,10 @@ public class TransportadorasController
 
         } catch (Exception ex)
         {
-            if(session != null) session.close();
+            if (session != null)
+            {
+                session.close();
+            }
             return "ERRO";
         }
     }
@@ -173,7 +204,10 @@ public class TransportadorasController
 
         } catch (Exception ex)
         {
-            if(session != null) session.close();
+            if (session != null)
+            {
+                session.close();
+            }
             return "ERRO";
         }
     }
@@ -196,7 +230,9 @@ public class TransportadorasController
         } catch (Exception ex)
         {
             if (session != null)
+            {
                 session.close();
+            }
 
             throw new Exception(ex.getMessage());
         }
@@ -221,7 +257,9 @@ public class TransportadorasController
         } catch (Exception ex)
         {
             if (session != null)
+            {
                 session.close();
+            }
 
             return 0;
         }
