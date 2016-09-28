@@ -24,10 +24,10 @@
     <!-- Conteudo da página -->
     <div class="container">
 
-        <!-- Filtro de pesquisa (Desktop): Início -->
+        <!-- Filtro de pesquisa (Desktop) -->
         <div class="col-md-2 visible-sm visible-md visible-lg">
 
-            <!-- Filtro de pesquisa: Veículos: Início -->
+            <!-- Filtro de pesquisa: Veículos -->
             <div class="row">
                 <div class="thumbnail">
                     <div class="veiculos">
@@ -76,9 +76,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Filtro de pesquisa: Veículos: Fim -->
 
-            <!-- Filtro de pesquisa: Carrocerias: Início -->
+            <!-- Filtro de pesquisa: Carrocerias -->
             <div class="row">
                 <div class="thumbnail">
                     <div class="carrocerias">
@@ -104,9 +103,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Filtro de pesquisa: Carrocerias: Início -->
+            <!-- Filtro de pesquisa: Carrocerias -->
 
-            <!-- Filtro de pesquisa: Rastreador: Início -->
+            <!-- Filtro de pesquisa: Rastreador -->
             <div class="row">
                 <div class="thumbnail">
                     <div class="rastreador">
@@ -126,9 +125,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Filtro de pesquisa: Rastreador: Fim -->
 
-            <!-- Filtro de pesquisa: Formas de Pagamento: Início -->
+            <!-- Filtro de pesquisa: Formas de Pagamento -->
             <div class="row">
                 <div class="thumbnail">
                     <div class="formas-pagamento">
@@ -150,12 +148,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Filtro de pesquisa: Formas de Pagamento: Fim -->
+            </div> <!-- Filtro de pesquisa: Veículos -->
         </div>
-        <!-- Filtro de pesquisa (Desktop): Fim -->
 
-        <!-- Conteúdo de pesquisa: Início -->
+        <!-- Conteúdo de pesquisa -->
         <div class="col-xs-12 col-md-10">
             <my-tags:conteudo-pesquisar/>
             <my-tags:conteudo-pesquisar/>
@@ -174,7 +170,6 @@
             <my-tags:conteudo-pesquisar/>
             <my-tags:conteudo-pesquisar/>
         </div>
-        <!-- Conteúdo de pesquisa: Fim -->
     </div>
 
     <!-- Scripts da página -->
