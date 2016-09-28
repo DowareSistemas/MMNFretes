@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12 col-lg-2 col-md-2">
             <div class="ratings">
-                <img src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="85">
+                <img src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="95">
             </div>
         </div>
         <div class="col-sm-12 col-lg-3 col-md-3">

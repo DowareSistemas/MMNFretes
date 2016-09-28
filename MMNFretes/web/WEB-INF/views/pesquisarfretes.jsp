@@ -16,170 +16,170 @@
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
         <title>JSP Page</title>
     </head>
-    
-        <!-- Controles de Barra de navegação -->
-        <my-tags:navbar/>
-        <%--<my-tags:navbar-login>--%>
 
-        <!-- Conteudo da página -->
-        <div class="container">
+    <!-- Controles de Barra de navegação -->
+    <my-tags:navbar/>
+    <%--<my-tags:navbar-login>--%>
 
-            <!-- Filtro de pesquisa (Desktop): Início -->
-            <div class="col-md-2 visible-md">
-                
-                <!-- Filtro de pesquisa: Veículos: Início -->
-                <div class="row">
-                    <div class="thumbnail">
-                        <div class="veiculos">
-                            <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
-                                <span class="caret"></span>
-                                Veículos 
-                            </button>
-                            <div class="collapse" id="veiculos">
-                                <!-- Filtro de pesquisa: Veículos Pesados -->
-                                <h5 class="text-muted text-uppercase text-center">Veículos Pesados</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Rodotrem</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Bitrem</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Carreta LS</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Carreta</label>
-                                </div>
-                                <!-- Filtro de pesquisa: Veículos Médios -->
-                                <h5 class="text-muted text-uppercase text-center">Veículos Médios</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Bitruck</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Truck</label>
-                                </div>
-                                <!-- Filtro de pesquisa: Veículos Leves -->
-                                <h5 class="text-muted text-uppercase text-center">Veículos Leves</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Toco</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> 3/4</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> V.L.C</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> V.U.C.</label>
-                                </div>
+    <!-- Conteudo da página -->
+    <div class="container">
+
+        <!-- Filtro de pesquisa (Desktop): Início -->
+        <div class="col-md-2 visible-sm visible-md visible-lg">
+
+            <!-- Filtro de pesquisa: Veículos: Início -->
+            <div class="row">
+                <div class="thumbnail">
+                    <div class="veiculos">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="caret"></span>
+                            Veículos 
+                        </button>
+                        <div class="collapse" id="veiculos">
+                            <!-- Filtro de pesquisa: Veículos Pesados -->
+                            <h5 class="text-muted text-uppercase text-center">Veículos Pesados</h5>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Rodotrem</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Bitrem</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Carreta LS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Carreta</label>
+                            </div>
+                            <!-- Filtro de pesquisa: Veículos Médios -->
+                            <h5 class="text-muted text-uppercase text-center">Veículos Médios</h5>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Bitruck</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Truck</label>
+                            </div>
+                            <!-- Filtro de pesquisa: Veículos Leves -->
+                            <h5 class="text-muted text-uppercase text-center">Veículos Leves</h5>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Toco</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> 3/4</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> V.L.C</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> V.U.C.</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Filtro de pesquisa: Veículos: Fim -->
-
-                <!-- Filtro de pesquisa: Carrocerias: Início -->
-                <div class="row">
-                    <div class="thumbnail">
-                        <div class="carrocerias">
-                            <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
-                                <span class="caret"></span>
-                                Carrocerias 
-                            </button>
-                            <div class="collapse" id="Carrocerias">
-                                <h5 class="text-muted text-uppercase text-center">Tipos de carrocerias</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Baú</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Sider</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Caçamba</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Grade Baixa</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Filtro de pesquisa: Carrocerias: Início -->
-
-                <!-- Filtro de pesquisa: Rastreador: Início -->
-                <div class="row">
-                    <div class="thumbnail">
-                        <div class="rastreador">
-                            <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
-                                <span class="caret"></span>
-                                Rastreador 
-                            </button>
-                            <div class="collapse" id="Rastreador">
-                                <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio">Sim</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio">Não</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Filtro de pesquisa: Rastreador: Fim -->
-
-                <!-- Filtro de pesquisa: Formas de Pagamento: Início -->
-                <div class="row">
-                    <div class="thumbnail">
-                        <div class="formas-pagamento">
-                            <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
-                                <span class="caret"></span>
-                                Formas de Pagamento 
-                            </button>
-                            <div class="collapse" id="Formas-de-Pagamento">
-                                <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Boleto Bancário</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Cartão de Crédito</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Negociação Particular</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Filtro de pesquisa: Formas de Pagamento: Fim -->
             </div>
-            <!-- Filtro de pesquisa (Desktop): Fim -->
+            <!-- Filtro de pesquisa: Veículos: Fim -->
 
-            <!-- Conteúdo de pesquisa: Início -->
-            <div class="col-xs-12 col-md-10">
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
+            <!-- Filtro de pesquisa: Carrocerias: Início -->
+            <div class="row">
+                <div class="thumbnail">
+                    <div class="carrocerias">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="caret"></span>
+                            Carrocerias 
+                        </button>
+                        <div class="collapse" id="Carrocerias">
+                            <h5 class="text-muted text-uppercase text-center">Tipos de carrocerias</h5>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Baú</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Sider</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Caçamba</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Grade Baixa</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Conteúdo de pesquisa: Fim -->
+            <!-- Filtro de pesquisa: Carrocerias: Início -->
+
+            <!-- Filtro de pesquisa: Rastreador: Início -->
+            <div class="row">
+                <div class="thumbnail">
+                    <div class="rastreador">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="caret"></span>
+                            Rastreador 
+                        </button>
+                        <div class="collapse" id="Rastreador">
+                            <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio">Sim</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Filtro de pesquisa: Rastreador: Fim -->
+
+            <!-- Filtro de pesquisa: Formas de Pagamento: Início -->
+            <div class="row">
+                <div class="thumbnail">
+                    <div class="formas-pagamento">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="caret"></span>
+                            Formas de Pagamento 
+                        </button>
+                        <div class="collapse" id="Formas-de-Pagamento">
+                            <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Boleto Bancário</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Cartão de Crédito</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Negociação Particular</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Filtro de pesquisa: Formas de Pagamento: Fim -->
         </div>
+        <!-- Filtro de pesquisa (Desktop): Fim -->
 
-        <!-- Scripts da página -->
-        <script src="resources/js/jquery.js"></script>
-        <script src="resources/js/jquery-form.js"></script>
-        <script src="resources/js/bootstrap.js"></script>
-    
+        <!-- Conteúdo de pesquisa: Início -->
+        <div class="col-xs-12 col-md-10">
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+        </div>
+        <!-- Conteúdo de pesquisa: Fim -->
+    </div>
+
+    <!-- Scripts da página -->
+    <script src="resources/js/jquery.js"></script>
+    <script src="resources/js/jquery-form.js"></script>
+    <script src="resources/js/bootstrap.js"></script>
+
 </html>
