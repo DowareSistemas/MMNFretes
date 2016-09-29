@@ -28,15 +28,21 @@ public class Interceptador extends HandlerInterceptorAdapter
         if (request.getSession().getAttribute("usuarioLogado") != null)
         {
             return true;
-        } else
+        }
+        else
         {
-            response.sendRedirect("paginalogin");
+            response.sendRedirect("paginaLogin");
             return false;
         }
     }
 
     private boolean enderecoPermitido(String url)
     {
+        if (url.contains("pesquisar"))
+        {
+            return true;
+        }
+
         if (url.contains("cadastratransportadora"))
         {
             return true;

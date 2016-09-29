@@ -1,4 +1,4 @@
-/* 03/08/2016 20:39:38 */
+/* 28/09/2016 20:45:22 */
 /* AUTO-GENERATED CLASS */
 /* DOES NOT ADD ACCESSOR METHODS */
 /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
@@ -140,7 +140,7 @@ public class Enderecos extends Entity
        return usuarios_id;
    }
 
-   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.MANUAL, join_type = JOIN_TYPE.INNER)
+   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
    public Usuarios getUsuarios()
    {
        return usuarios;

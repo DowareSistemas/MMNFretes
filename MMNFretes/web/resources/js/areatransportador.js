@@ -6,10 +6,9 @@ $(document).ready(function ()
     $('#pendentes-area-transportador').hide();
 
     $('#btnSalvar-info').hide();
-
+ 
     carregaInfoTransportador();
     hab_desab_formInfo(true);
-
 });
 
 $('#btnPerfil').click(function ()
