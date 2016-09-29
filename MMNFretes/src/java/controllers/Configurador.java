@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import entidades.Cidade;
 import br.com.persistor.interfaces.Session;
 import java.io.BufferedReader;
 import java.io.File;

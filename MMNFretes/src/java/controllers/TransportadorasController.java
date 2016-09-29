@@ -10,14 +10,19 @@ import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
+import entidades.Categorias_veiculos;
 import entidades.Transportadoras;
 import entidades.Usuarios;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sessionProvider.ConfigureSession;
+import org.springframework.web.servlet.ModelAndView;
+import util.Tipo_carga;
 import util.Util;
 
 /**
@@ -29,16 +34,26 @@ public class TransportadorasController
 {
 
     @RequestMapping("/areatransportador")
-    public String redireciona(HttpSession session)
+    public ModelAndView redireciona(HttpSession session)
     {
         Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogado");
 
         if (!Util.isUsuario(usuario))
         {
-            return "areatransportador";
-        } else
+            List<Tipo_carga> tipos_carga = new ArrayList<Tipo_carga>();
+            tipos_carga.add(new Tipo_carga(1, "Toneladas"));
+            tipos_carga.add(new Tipo_carga(2, "Passageiros"));
+
+            List<Categorias_veiculos> categorias_veiculos = new VeiculosController().getCategorias();
+            
+            ModelAndView modelAndView = new ModelAndView("areatransportador");
+            modelAndView.addObject("tipos_carga", tipos_carga);
+            modelAndView.addObject("categorias_veiculos", categorias_veiculos);
+            return modelAndView;
+        }
+        else
         {
-            return "redirect:paginaLogin";
+            return new ModelAndView("");
         }
     }
 
@@ -63,7 +78,8 @@ public class TransportadorasController
 
             return gson.toJson(transportadora);
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
             {
@@ -79,18 +95,22 @@ public class TransportadorasController
         try
         {
             Transportadoras t = new Transportadoras();
-            
+
             session = ConfigureSession.getSession();
             session.createCriteria(t, RESULT_TYPE.UNIQUE)
                     .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario_id))
                     .execute();
             session.close();
-            
+
             return t;
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
-            if(session != null)session.close();
+            if (session != null)
+            {
+                session.close();
+            }
             return new Transportadoras();
         }
     }
@@ -118,7 +138,8 @@ public class TransportadorasController
             session.close();
 
             return "OK";
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
             {
@@ -145,7 +166,8 @@ public class TransportadorasController
             session.close();
             return "OK";
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
             {
@@ -174,7 +196,8 @@ public class TransportadorasController
             session.close();
             return "OK";
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
             {
@@ -202,7 +225,8 @@ public class TransportadorasController
             session.close();
             return "OK";
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
             {
@@ -227,7 +251,8 @@ public class TransportadorasController
             session.close();
 
             return transportadora;
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
             {
@@ -254,7 +279,8 @@ public class TransportadorasController
             session.close();
 
             return transportadora.getId();
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
             {

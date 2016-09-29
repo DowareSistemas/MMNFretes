@@ -1,4 +1,4 @@
-/* 12/08/2016 19:35:15 */
+/* 28/09/2016 20:45:21 */
 /* AUTO-GENERATED CLASS */
 /* DOES NOT ADD ACCESSOR METHODS */
 /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
@@ -20,13 +20,10 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
-public class Estado extends Entity
+public class Carrocerias extends Entity
 {
    private int id; 
-   private String nome; 
-   private String uf; 
-   private int pais_id; 
-   private Pais pais; 
+   private String descricao; 
 
    public void setId(int id)
    {
@@ -39,44 +36,13 @@ public class Estado extends Entity
        return id;
    }
 
-   public void setNome(String nome)
+   public void setDescricao(String descricao)
    {
-       this.nome = nome;
+       this.descricao = descricao;
    }
 
-   public String getNome()
+   public String getDescricao()
    {
-       return nome;
-   }
-
-   public void setUf(String uf)
-   {
-       this.uf = uf;
-   }
-
-   public String getUf()
-   {
-       return uf;
-   }
-
-
-   public void setPais(Pais pais)
-   {
-       this.pais = pais;
-   }
-   public void setPais_id(int pais_id)
-   {
-       this.pais_id = pais_id;
-   }
-
-   public int getPais_id()
-   {
-       return pais_id;
-   }
-
-   @OneToOne(source = "pais_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Pais getPais()
-   {
-       return pais;
+       return descricao;
    }
 }

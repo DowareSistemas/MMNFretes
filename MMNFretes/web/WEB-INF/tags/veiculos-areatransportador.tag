@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="col-sm-9" id="veiculos-area-transportador">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -18,15 +19,17 @@
                     <div class="row">
                         <form role="form">
                             <div class="form-group col-sm-6">
-                                <input type="text" class="form-control" placeholder="Nome do Veículo" required>
+                                <input type="text" name="nome" maxlength="100" class="form-control" placeholder="Nome do Veículo" required>
                             </div>
                             <div class="form-group col-sm-2">
-                                <input type="text" class="form-control" placeholder="Cap." required>
+                                <input type="number" name="capacidade" class="form-control" placeholder="Cap." required>
                             </div>
                             <div class="form-group col-sm-4">
-                                <select class="form-control"required>
+                                <select name="tipos_carga_id" class="form-control"required>
                                     <option disabled selected>Tipo Carga</option>
-                                    <option value="Volta Redonda">Tonelada</option>
+                                    <c:forEach var="tipo_carga" items="${tipos_carga}">
+                                        <option value="${tipo_carga.id}"> ${tipo_carga.descricao} </option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </form>
@@ -34,8 +37,10 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <select class="form-control"required>
-                                <option disabled selected>Tipo Carroceria</option>
-                                <option value="Volta Redonda">Bitrem</option>
+                                <option disabled selected>Categoria do veículo</option>
+                                <c:forEach var="categoria" items="${categorias_veiculos}">
+                                    <option value="${categoria.id}"> ${categoria.descricao} </option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="form-group col-sm-6">
@@ -117,5 +122,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

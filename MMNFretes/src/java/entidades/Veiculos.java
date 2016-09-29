@@ -1,4 +1,4 @@
-/* 27/07/2016 21:29:01 */
+/* 28/09/2016 20:45:23 */
 /* AUTO-GENERATED CLASS */
 /* DOES NOT ADD ACCESSOR METHODS */
 /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
@@ -25,15 +25,19 @@ public class Veiculos extends Entity
    private int id; 
    private String descricao; 
    private int capacidade; 
-   private int tipos_carga_id; 
-   private Tipos_carga tipos_carga; 
+   private String tipo_carga; 
+   private double preco_frete; 
+   private int tipo_cobranca; 
+   private boolean rastreador; 
+   private boolean inativo; 
    private int categorias_veiculos_id; 
    private Categorias_veiculos categorias_veiculos; 
    private int transportadoras_id; 
    private Transportadoras transportadoras; 
-   private int precos_frete_id; 
-   private Precos_frete precos_frete; 
-   private boolean inativo; 
+   private int tipos_carga_id; 
+   private Tipos_carga tipos_carga; 
+   private int carrocerias_id; 
+   private Carrocerias carrocerias; 
 
    public void setId(int id)
    {
@@ -66,25 +70,54 @@ public class Veiculos extends Entity
        return capacidade;
    }
 
-
-   public void setTipos_carga(Tipos_carga tipos_carga)
+   public void setTipo_carga(String tipo_carga)
    {
-       this.tipos_carga = tipos_carga;
-   }
-   public void setTipos_carga_id(int tipos_carga_id)
-   {
-       this.tipos_carga_id = tipos_carga_id;
+       this.tipo_carga = tipo_carga;
    }
 
-   public int getTipos_carga_id()
+   public String getTipo_carga()
    {
-       return tipos_carga_id;
+       return tipo_carga;
    }
 
-   @OneToOne(source = "tipos_carga_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Tipos_carga getTipos_carga()
+   public void setPreco_frete(double preco_frete)
    {
-       return tipos_carga;
+       this.preco_frete = preco_frete;
+   }
+
+   public double getPreco_frete()
+   {
+       return preco_frete;
+   }
+
+   public void setTipo_cobranca(int tipo_cobranca)
+   {
+       this.tipo_cobranca = tipo_cobranca;
+   }
+
+   public int getTipo_cobranca()
+   {
+       return tipo_cobranca;
+   }
+
+   public void setRastreador(boolean rastreador)
+   {
+       this.rastreador = rastreador;
+   }
+
+   public boolean isRastreador()
+   {
+       return rastreador;
+   }
+
+   public void setInativo(boolean inativo)
+   {
+       this.inativo = inativo;
+   }
+
+   public boolean isInativo()
+   {
+       return inativo;
    }
 
 
@@ -130,33 +163,44 @@ public class Veiculos extends Entity
    }
 
 
-   public void setPrecos_frete(Precos_frete precos_frete)
+   public void setTipos_carga(Tipos_carga tipos_carga)
    {
-       this.precos_frete = precos_frete;
+       this.tipos_carga = tipos_carga;
    }
-   public void setPrecos_frete_id(int precos_frete_id)
+   public void setTipos_carga_id(int tipos_carga_id)
    {
-       this.precos_frete_id = precos_frete_id;
-   }
-
-   public int getPrecos_frete_id()
-   {
-       return precos_frete_id;
+       this.tipos_carga_id = tipos_carga_id;
    }
 
-   @OneToOne(source = "precos_frete_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Precos_frete getPrecos_frete()
+   public int getTipos_carga_id()
    {
-       return precos_frete;
+       return tipos_carga_id;
    }
 
-   public void setInativo(boolean inativo)
+   @OneToOne(source = "tipos_carga_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+   public Tipos_carga getTipos_carga()
    {
-       this.inativo = inativo;
+       return tipos_carga;
    }
 
-   public boolean isInativo()
+
+   public void setCarrocerias(Carrocerias carrocerias)
    {
-       return inativo;
+       this.carrocerias = carrocerias;
+   }
+   public void setCarrocerias_id(int carrocerias_id)
+   {
+       this.carrocerias_id = carrocerias_id;
+   }
+
+   public int getCarrocerias_id()
+   {
+       return carrocerias_id;
+   }
+
+   @OneToOne(source = "carrocerias_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+   public Carrocerias getCarrocerias()
+   {
+       return carrocerias;
    }
 }
