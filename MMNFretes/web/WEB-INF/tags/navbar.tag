@@ -22,12 +22,12 @@
                 <!-- Formulário de pesquisa -->
                 <form class="navbar-form navbar-left">
                     <div class="form-group input-group">
-                        <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                        <input type="text" class="form-control" placeholder="CEP Origem" maxlength="9">
+                        <span class="btn input-group-addon campo-celular" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
+                        <input type="text" class="form-control mask-cep" placeholder="CEP Origem">
                     </div>
                     <div class="form-group input-group">
-                        <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                        <input type="text" class="form-control" placeholder="CEP Destino" maxlength="9">
+                        <span class="btn input-group-addon campo-telefone" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
+                        <input type="text" class="form-control mask-cep" placeholder="CEP Destino">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">Buscar</button>
@@ -77,3 +77,5 @@
 </div>
 
 <my-tags:conteudo-shoppingcart-navbar/>
+
+<script src="resources/js/mascaras.js"></script>
