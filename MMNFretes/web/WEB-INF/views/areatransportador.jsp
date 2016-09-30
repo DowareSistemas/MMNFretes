@@ -63,5 +63,6 @@
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/areatransportador.js"></script>
+        <script src="resources/js/veiculos.js"></script>
     </body>
 </html>

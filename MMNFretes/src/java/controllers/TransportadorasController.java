@@ -10,6 +10,7 @@ import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
+import entidades.Carrocerias;
 import entidades.Categorias_veiculos;
 import entidades.Transportadoras;
 import entidades.Usuarios;
@@ -41,14 +42,16 @@ public class TransportadorasController
         if (!Util.isUsuario(usuario))
         {
             List<Tipo_carga> tipos_carga = new ArrayList<Tipo_carga>();
-            tipos_carga.add(new Tipo_carga(1, "Toneladas"));
-            tipos_carga.add(new Tipo_carga(2, "Passageiros"));
+            tipos_carga.add(new Tipo_carga(1, "Kilos"));
+            tipos_carga.add(new Tipo_carga(2, "Toneladas"));
+            tipos_carga.add(new Tipo_carga(3, "Passageiros"));
 
-            List<Categorias_veiculos> categorias_veiculos = new VeiculosController().getCategorias();
+            VeiculosController veiculosController =  new VeiculosController();
             
             ModelAndView modelAndView = new ModelAndView("areatransportador");
             modelAndView.addObject("tipos_carga", tipos_carga);
-            modelAndView.addObject("categorias_veiculos", categorias_veiculos);
+            modelAndView.addObject("categorias_veiculos", veiculosController.getCategorias());
+            modelAndView.addObject("carrocerias", veiculosController.getCarrocerias());
             return modelAndView;
         }
         else
@@ -132,7 +135,6 @@ public class TransportadorasController
 
             session = ConfigureSession.getSession();
             session.update(transportadora);
-            session.update(transportadora.getUsuarios());
 
             session.commit();
             session.close();

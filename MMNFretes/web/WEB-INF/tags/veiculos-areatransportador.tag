@@ -19,13 +19,13 @@
                     <div class="row">
                         <form role="form">
                             <div class="form-group col-sm-6">
-                                <input type="text" name="nome" maxlength="100" class="form-control" placeholder="Nome do Veículo" required>
+                                <input type="text" id="txDescricao_veiculo" name="descricao" maxlength="100" class="form-control" placeholder="Nome do Veículo" required>
                             </div>
                             <div class="form-group col-sm-2">
-                                <input type="number" name="capacidade" class="form-control" placeholder="Cap." required>
+                                <input type="number" name="capacidade" id="txCapacidade_veiculo" class="form-control" placeholder="Cap." required>
                             </div>
                             <div class="form-group col-sm-4">
-                                <select name="tipos_carga_id" class="form-control"required>
+                                <select name="tipos_carga_id" id="cbTipo_carga" class="form-control"required>
                                     <option disabled selected>Tipo Carga</option>
                                     <c:forEach var="tipo_carga" items="${tipos_carga}">
                                         <option value="${tipo_carga.id}"> ${tipo_carga.descricao} </option>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <select class="form-control"required>
+                            <select name="categorias_veiculos_id" id="cbCategoria_veiculo" class="form-control"required>
                                 <option disabled selected>Categoria do veículo</option>
                                 <c:forEach var="categoria" items="${categorias_veiculos}">
                                     <option value="${categoria.id}"> ${categoria.descricao} </option>
@@ -44,18 +44,20 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-6">
-                            <select class="form-control"required>
+                            <select name="carrocerias_id" id="cb_carroceria" class="form-control"required>
                                 <option disabled selected>Carroceria</option>
-                                <option value="Volta Redonda">Baú</option>
+                                <c:forEach var="carroceria" items="${carrocerias}">
+                                    <option value="${carroceria.id}"> ${carroceria.descricao} </option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <input type="text"class="form-control" placeholder="Valor (R$)" required>
+                            <input name="preco_frete" id="txPreco_frete_veiculo" type="number" class="form-control" placeholder="Valor (R$)" required>
                         </div>
                         <div class="form-group col-sm-6">
-                            <input disabled selected type="text"class="form-control" placeholder="Kilômetro" required>
+                            <input disabled selected type="text" class="form-control" placeholder="Kilômetro" required>
                         </div>
                     </div>
                     <div class="row">
@@ -64,7 +66,7 @@
                                 <li class="list-group-item">
                                     Rastreador
                                     <div class="material-switch pull-right">
-                                        <input id="rastreador" type="checkbox"/>
+                                        <input name="rastreador" id="ck_rastreador_veiculo" type="checkbox"/>
                                         <label for="rastreador" class="label-primary"></label>
                                     </div>
                                 </li>
@@ -73,10 +75,10 @@
                     </div>
                     <div class="row">
                         <div class="btn-group col-sm-4">
-                            <button type="button"class="btn btn-danger col-sm-12">Excluir</button>
+                            <button type="button" id="btnExcluir-veiculo" class="btn btn-danger col-sm-12">Excluir</button>
                         </div>
                         <div class="btn-group col-sm-8">
-                            <button type="submit"class="btn btn-primary col-sm-12">Adicionar</button>
+                            <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary col-sm-12">Adicionar</button>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,9 @@ package controllers;
 
 import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.interfaces.Session;
+import entidades.Carrocerias;
 import entidades.Categorias_veiculos;
+import entidades.Tipos_carga;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
@@ -27,6 +29,54 @@ import sessionProvider.ConfigureSession;
 public class VeiculosController
 {
 
+    public List<Tipos_carga> getTipos_Carga()
+    {
+        Session session = null;
+        try
+        {
+            Tipos_carga tipos_carga = new Tipos_carga();
+            
+            session = ConfigureSession.getSession();
+            session.createCriteria(tipos_carga, RESULT_TYPE.MULTIPLE)
+                    .execute();
+            session.close();
+            
+            return tipos_carga.ResultList;
+        }
+        catch(Exception ex)
+        {
+            if(session != null)
+            {
+                session.close();
+            }
+            return  new ArrayList<Tipos_carga>();
+        }
+    }
+    
+    public List<Carrocerias> getCarrocerias()
+    {
+        Session session = null;
+        try
+        {
+            Carrocerias carrocerias = new Carrocerias();
+            session = ConfigureSession.getSession();
+            session.createCriteria(carrocerias, RESULT_TYPE.MULTIPLE)
+                    .execute();
+            session.close();
+            
+            return carrocerias.ResultList;
+        }
+        catch(Exception ex)
+        {
+            if(session != null)
+            {
+                session.close();
+            }
+            
+            return new ArrayList<Carrocerias>();
+        }
+    }
+    
     public List<Categorias_veiculos> getCategorias()
     {
         Session session = null;
@@ -57,7 +107,7 @@ public class VeiculosController
         try
         {
             int usuario_id = ((Usuarios) httpSession.getAttribute(("usuarioLogado"))).getId();
-            v.setTransportadoras_id(get(usuario_id).getId());
+            v.setTransportadoras_id(getTransportadora(usuario_id).getId());
 
             session = ConfigureSession.getSession();
             session.save(v);
@@ -70,6 +120,9 @@ public class VeiculosController
             {
                 session.close();
             }
+            System.err.println(ex.getMessage());
+            
+            return ex.getMessage();
         }
         return "";
     }
@@ -82,7 +135,7 @@ public class VeiculosController
         try
         {
             int usuario_id = ((Usuarios) httpSession.getAttribute(("usuarioLogado"))).getId();
-            v.setTransportadoras_id(get(usuario_id).getId());
+            v.setTransportadoras_id(getTransportadora(usuario_id).getId());
 
             session = ConfigureSession.getSession();
             session.update(v);
@@ -101,7 +154,7 @@ public class VeiculosController
         return "";
     }
 
-    private Transportadoras get(int usuario_id)
+    private Transportadoras getTransportadora(int usuario_id)
     {
         return new TransportadorasController().getByUsuario(usuario_id);
     }

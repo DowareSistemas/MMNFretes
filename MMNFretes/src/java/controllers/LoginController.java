@@ -33,7 +33,8 @@ public class LoginController
     }
 
     @RequestMapping("/efetualogin")
-    public @ResponseBody String efetualogin(Usuarios usuario, HttpSession httpSession)
+    public @ResponseBody
+    String efetualogin(Usuarios usuario, HttpSession httpSession)
     {
         Session session = null;
         try
@@ -52,7 +53,8 @@ public class LoginController
                     session.close();
                     httpSession.setAttribute("usuarioLogado", usuario);
                     return "areausuario";
-                } else
+                }
+                else
                 {
                     session.close();
                     httpSession.setAttribute("usuarioLogado", usuario);
@@ -61,11 +63,14 @@ public class LoginController
             }
             session.close();
             return "incorreto";
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (session != null)
+            {
                 session.close();
-            
+            }
+
             return "erro";
         }
     }
