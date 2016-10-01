@@ -28,8 +28,14 @@
                     <my-tags:form-usuario/>
                     <my-tags:form-transportadora/>
                 </div>
+                
+                
+                
                 <input type="text" class="form-control mask-cep" placeholder="CEP Destino">
             </div>
+                
+                
+                
             <my-tags:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
             <my-tags:sobre/>
         </div>
@@ -37,6 +43,6 @@
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/login.js"></script>
-        <script src="resources/js/mascaras.js"></script>
+        <script src="resources/js/jquery-mask.js"></script>
     </body>
 </html>
