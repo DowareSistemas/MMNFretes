@@ -2,7 +2,8 @@ var id = 0;
 
 $(document).ready(function ()
 {
-
+    $('#txBusca-veiculo').val(' ');
+    listarVeiculos();
 });
 
 $('#btnAdicionar-veiculo').click(function ()
@@ -10,6 +11,28 @@ $('#btnAdicionar-veiculo').click(function ()
     adicionaVeiculo();
 });
 
+function listarVeiculos()
+{
+    $.ajax({
+        url: "/mmnfretes/listarveiculos",
+        success: function (data) {
+            $('#tabela-veiculos').html("");
+            $('#tabela-veiculos').append(data);
+        }
+    });
+}
+
+$('#btBuscar-veiculo').click(function ()
+{
+    var nomeVeiculo = $('#txBusca-veiculo').val();
+    $.ajax({
+        url: "/mmnfretes/buscarveiculos?nome=" + nomeVeiculo,
+        success: function (data) {
+            $('#tabela-veiculos').html("");
+            $('#tabela-veiculos').append(data);
+        }
+    });
+});
 
 function adicionaVeiculo()
 {
@@ -23,18 +46,17 @@ function adicionaVeiculo()
 
     $.ajax({
         url: "/mmnfretes/salvaveiculo?" +
-                "descricao=" + descricao + 
-                "&capacidade=" + capacidade + 
-                "&tipo_carga_id=" + tipo_carga + 
+                "descricao=" + descricao +
+                "&capacidade=" + capacidade +
+                "&tipo_carga_id=" + tipo_carga +
                 "&preco_frete=" + preco_frete +
                 "&rastreador=" + rastreador +
                 "&categorias_veiculos_id=" + categoria +
                 "&tipos_carga_id=" + tipo_carga +
                 "&carrocerias_id=" + carroceria,
-        
-        success: function (data) 
+        success: function (data)
         {
-            alert(data);
+            listarVeiculos();
         }
     });
 }

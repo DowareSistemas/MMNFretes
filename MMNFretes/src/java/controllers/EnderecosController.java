@@ -30,7 +30,6 @@ import sessionProvider.ConfigureSession;
 @Controller
 public class EnderecosController
 {
-
     @RequestMapping(value = "/adicionaEndereco")
     public String adicionar(Model model, Enderecos endereco, HttpSession httpSession)
     {

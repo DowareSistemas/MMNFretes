@@ -87,10 +87,10 @@
                 <div class="col-sm-12">
                     <h2 class="text-primary">Lista Veículos</h2>
                     <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
+                        <div class="input-group col-md-6">
+                            <input type="text" id="txBusca-veiculo"  class="form-control campo-btn-busca" placeholder="Buscar veículo" />
                             <span class="input-group-btn">
-                                <button class="btn btn-info btn-lg" type="button">
+                                <button class="btn btn-info campo-btn-busca" id="btBuscar-veiculo" type="button">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </span>
@@ -99,25 +99,16 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Veículo</th>
+                                <th class="tab-veiculos-col-veiculo">Veículo</th>
                                 <th>Capacidade</th>
-                                <th>Tipo Carroc.</th>
+                                <th>Categoria</th>
                                 <th>Carroceria</th>
                                 <th>Rastreador</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Nome do Veículo</td>
-                                <td>Capacidade</td>
-                                <td>Tipo Carroc.</td>
-                                <td>Carroceria</td>
-                                <td>Rastreador</td>
-                                <td>
-                                    <button type="button" class="btn btn-info btn-xs center-block">Editar</button>
-                                </td>
-                            </tr>
+                        <tbody id="tabela-veiculos">
+
                         </tbody>
                     </table>
                 </div>

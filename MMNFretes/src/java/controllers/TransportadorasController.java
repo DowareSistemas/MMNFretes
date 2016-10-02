@@ -48,6 +48,7 @@ public class TransportadorasController
 
             VeiculosController veiculosController =  new VeiculosController();
             
+            
             ModelAndView modelAndView = new ModelAndView("areatransportador");
             modelAndView.addObject("tipos_carga", tipos_carga);
             modelAndView.addObject("categorias_veiculos", veiculosController.getCategorias());
