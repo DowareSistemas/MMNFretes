@@ -7,7 +7,6 @@
         </div>
         <div class="panel-body">
             <div class="row">
-     
                 <div class="col-sm-5">
                     <div class="form-group">
                         <select class="form-control input-lg" id="cbGrupos">

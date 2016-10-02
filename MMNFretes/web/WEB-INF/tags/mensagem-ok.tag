@@ -10,7 +10,7 @@
                 <h4 class="modal-title">Mensagem</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center"> ${mensagem} </p>
+                <p class="text-left"> ${mensagem} </p>
             </div>
             <div class="modal-footer">
                 <button type="button" id="${id_btnOK}" class="btn btn-primary" data-dismiss="modal"> OK </button>

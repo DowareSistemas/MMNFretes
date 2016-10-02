@@ -75,7 +75,7 @@
                     </div>
                     <div class="row">
                         <div class="btn-group col-sm-4">
-                            <button type="button" id="btnExcluir-veiculo" class="btn btn-danger col-sm-12">Excluir</button>
+                            <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger col-sm-12">Excluir</button>
                         </div>
                         <div class="btn-group col-sm-8">
                             <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary col-sm-12">Adicionar</button>

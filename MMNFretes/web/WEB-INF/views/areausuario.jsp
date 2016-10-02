@@ -43,19 +43,18 @@
                                         id_btnConfirmar="btnSalvaGrupo"
                                         id_input="txNomeGrupo"
                                         titulo="Renomear grupo"
-                                        type_input="text"
-                                        />
+                                        type_input="text" />
 
                 <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
                                           classe_btnSIM="btn btn-danger" 
                                           texto_btnNAO="NÃO" 
                                           texto_btnSIM="SIM"
                                           texto_corpo="Deseja excluir o endereço?" 
-                                          id_btnSIM="btnConfirmaExclusaoEndereco"
+                                          id_btnSIM="btnConfirmaExclusaoEndereco" />
 
-                                          />
-
-                <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" id="senhaIncorreta" mensagem="As senhas não coincidem!" />
+                <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" 
+                                     id="senhaIncorreta"
+                                     mensagem="As senhas não coincidem!" />
 
                 <my-tags:detalhes_cotacao_usuario/>
             </div>

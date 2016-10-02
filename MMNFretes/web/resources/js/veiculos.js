@@ -3,6 +3,7 @@ var id = 0;
 $(document).ready(function ()
 {
     listarVeiculos();
+    $('#btnExcluir-veiculo').hide();
 });
 
 $('#btnAdicionar-veiculo').click(function ()
@@ -23,6 +24,25 @@ function listarVeiculos()
         }
     });
 }
+
+$('#btnConf_del_veiculo').click(function ()
+{
+    var veiculo_id = id;
+    $.ajax({
+        url: "/mmnfretes/excluirveiculo?id=" + veiculo_id,
+        dataType: 'text',
+        accepts: 'text',
+        success: function (result) {
+            if (result === '0')
+            {
+                $('#valid-exclusa').modal('toggle');
+                $('#valid-exclusao').modal('show');
+            } else
+                listarVeiculos();
+            limparCampos();
+        }
+    });
+});
 
 $('#btBuscar-veiculo').click(function ()
 {
@@ -49,6 +69,7 @@ function carregarVeiculo(id_veiculo)
             $('#cbTipo_carga').val(veiculo.tipos_carga_id);
             $('#txPreco_frete_veiculo').val(veiculo.preco_frete);
             $('#cb_carroceria').val(veiculo.carrocerias_id);
+            $('#btnExcluir-veiculo').fadeIn(200);
         }
     });
 }
@@ -129,6 +150,7 @@ function validaCampos()
 function limparCampos()
 {
     id = 0;
+    $('#btnExcluir-veiculo').fadeOut(200);
     $('#txDescricao_veiculo').val('');
     $('#txCapacidade_veiculo').val('');
     $('#txPreco_frete_veiculo').val('');

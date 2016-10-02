@@ -11,9 +11,12 @@ import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
+import br.com.persistor.sessionManager.SessionImpl;
 import com.google.gson.Gson;
 import entidades.Carrocerias;
 import entidades.Categorias_veiculos;
+import entidades.Cotacoes;
+import entidades.Historico;
 import entidades.Tipos_carga;
 import entidades.Transportadoras;
 import entidades.Usuarios;
@@ -116,11 +119,11 @@ public class VeiculosController
         try
         {
             Veiculos veiculo = new Veiculos();
-            
+
             session = ConfigureSession.getSession();
             session.onID(veiculo, id);
             session.close();
-            
+
             Gson gson = new Gson();
             return gson.toJson(veiculo);
         }
@@ -130,7 +133,7 @@ public class VeiculosController
             {
                 session.close();
             }
-            
+
             return "";
         }
     }
@@ -189,7 +192,67 @@ public class VeiculosController
         return "";
     }
 
-    public List<Veiculos> listaVeiculos = new ArrayList<Veiculos>();
+    private boolean podeExcluir(int veiculos_id)
+    {
+        Session session = null;
+        try
+        {
+            session = ConfigureSession.getSession();
+
+            Historico historico = new Historico();
+            Cotacoes cotacoes = new Cotacoes();
+
+            session.createCriteria(cotacoes, RESULT_TYPE.MULTIPLE)
+                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "veiculos_id", veiculos_id))
+                    .execute();
+
+            session.createCriteria(historico, RESULT_TYPE.MULTIPLE)
+                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "veiculos_id", veiculos_id))
+                    .execute();
+
+            session.close();
+            return (cotacoes.ResultList.isEmpty() || historico.ResultList.isEmpty());
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.close();
+            }
+            return false;
+        }
+    }
+
+    @RequestMapping(value = "excluirveiculo", produces = "text/html;charset=utf-8")
+    public @ResponseBody
+    String excluiVeiculo(int id, HttpSession httpSession)
+    {
+        Session session = null;
+        try
+        {
+            Veiculos veiculo = new Veiculos();
+            veiculo.setId(id);
+
+            if (!podeExcluir(id))
+            {
+                return "0";
+            }
+            session = ConfigureSession.getSession();
+            session.delete(veiculo);
+            session.commit();
+            session.close();
+
+            return "1";
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.close();
+            }
+            return "0";
+        }
+    }
 
     @RequestMapping("listarveiculos")
     public ModelAndView listarVeiculos(HttpSession httpSession)

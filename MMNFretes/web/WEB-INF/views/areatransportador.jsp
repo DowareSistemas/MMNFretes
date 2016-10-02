@@ -54,15 +54,26 @@
 
                 <my-tags:mensagem-ok id="senhaIncorreta" id_btnOK="btnSenhaIncorreta"
                                      mensagem="As senhas não coincidem!" />
-                
-                <my-tags:mensagem-ok id="valid-campos" id_btnOK="btn-valid-ok"
+
+                <my-tags:mensagem-ok id="valid-campos"
                                      mensagem="Existem campos não preenchidos!" />
+
+                <my-tags:mensagem-ok id="valid-exclusao" 
+                                     mensagem="Não é possível excluír este veículo. Ele está relacionado a uma ou mais cotações ou possui algum histórico." />
+
+                <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
+                                          classe_btnSIM="btn btn-danger" 
+                                          texto_btnNAO="NÃO" 
+                                          texto_btnSIM="SIM"
+                                          texto_corpo="Deseja excluir o veículo?" 
+                                          id_btnSIM="btnConf_del_veiculo" />
+
             </div>
         </div>
-            
+
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
-         <script src="resources/js/jquery-mask.js"></script>
+        <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/areatransportador.js"></script>
