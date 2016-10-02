@@ -54,6 +54,9 @@
 
                 <my-tags:mensagem-ok id="senhaIncorreta" id_btnOK="btnSenhaIncorreta"
                                      mensagem="As senhas não coincidem!" />
+                
+                <my-tags:mensagem-ok id="valid-campos" id_btnOK="btn-valid-ok"
+                                     mensagem="Existem campos não preenchidos!" />
             </div>
         </div>
             

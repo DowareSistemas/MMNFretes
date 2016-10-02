@@ -2,13 +2,15 @@ var id = 0;
 
 $(document).ready(function ()
 {
-    $('#txBusca-veiculo').val(' ');
     listarVeiculos();
 });
 
 $('#btnAdicionar-veiculo').click(function ()
 {
-    adicionaVeiculo();
+    if (id > 0)
+        alteraVeiculo();
+    else
+        adicionaVeiculo();
 });
 
 function listarVeiculos()
@@ -24,6 +26,35 @@ function listarVeiculos()
 
 $('#btBuscar-veiculo').click(function ()
 {
+    buscarVeiculo();
+});
+
+$('#txBusca-veiculo').keypress(function (e) {
+    if (e.which == 13) {
+        buscarVeiculo();
+    }
+});
+
+function carregarVeiculo(id_veiculo)
+{
+    $.ajax({
+        url: "/mmnfretes/infoveiculo?id=" + id_veiculo,
+        dataType: 'json',
+        accepts: 'json',
+        success: function (veiculo) {
+            id = veiculo.id;
+            $('#txDescricao_veiculo').val(veiculo.descricao);
+            $('#txCapacidade_veiculo').val(veiculo.capacidade);
+            $('#cbCategoria_veiculo').val(veiculo.categorias_veiculos_id);
+            $('#cbTipo_carga').val(veiculo.tipos_carga_id);
+            $('#txPreco_frete_veiculo').val(veiculo.preco_frete);
+            $('#cb_carroceria').val(veiculo.carrocerias_id);
+        }
+    });
+}
+
+function buscarVeiculo()
+{
     var nomeVeiculo = $('#txBusca-veiculo').val();
     $.ajax({
         url: "/mmnfretes/buscarveiculos?nome=" + nomeVeiculo,
@@ -32,10 +63,90 @@ $('#btBuscar-veiculo').click(function ()
             $('#tabela-veiculos').append(data);
         }
     });
-});
+}
+
+function alteraVeiculo()
+{
+    if (validaCampos() === false)
+    {
+        $('#valid-campos').modal('toggle');
+        $('#valid-campos').modal('show');
+
+        return;
+    }
+
+    var descricao = $('#txDescricao_veiculo').val();
+    var capacidade = $('#txCapacidade_veiculo').val();
+    var preco_frete = $('#txPreco_frete_veiculo').val();
+    var rastreador = $('#rdo_rastreador_veiculo').is(':checked');
+    var categoria = $('#cbCategoria_veiculo').val();
+    var tipo_carga = $('#cbTipo_carga').val();
+    var carroceria = $('#cb_carroceria').val();
+
+    $.ajax({
+        url: "/mmnfretes/alteraveiculo?" +
+                "id=" + id +
+                "&descricao=" + descricao +
+                "&capacidade=" + capacidade +
+                "&tipo_carga_id=" + tipo_carga +
+                "&preco_frete=" + preco_frete +
+                "&rastreador=" + rastreador +
+                "&categorias_veiculos_id=" + categoria +
+                "&tipos_carga_id=" + tipo_carga +
+                "&carrocerias_id=" + carroceria,
+        success: function (data)
+        {
+            listarVeiculos();
+            limparCampos();
+        }
+    });
+}
+
+function validaCampos()
+{
+    var descricao = $('#txDescricao_veiculo').val();
+    var capacidade = $('#txCapacidade_veiculo').val();
+    var preco_frete = $('#txPreco_frete_veiculo').val();
+    var rastreador = $('#rdo_rastreador_veiculo').is(':checked');
+    var categoria = $('#cbCategoria_veiculo').val();
+    var tipo_carga = $('#cbTipo_carga').val();
+    var carroceria = $('#cb_carroceria').val();
+
+    if (descricao === '')
+        return false;
+    if (capacidade === '0' || capacidade === 0 || capacidade === '')
+        return false;
+    if (categoria === 0 || categoria === 0 || capacidade === '')
+        return  false;
+    if (tipo_carga === 0 || tipo_carga === '0' || tipo_carga === '')
+        return false;
+    if (carroceria === 0 || carroceria === '0' || carroceria === '')
+        return false;
+
+    return true;
+}
+
+function limparCampos()
+{
+    id = 0;
+    $('#txDescricao_veiculo').val('');
+    $('#txCapacidade_veiculo').val('');
+    $('#txPreco_frete_veiculo').val('');
+    $('#cbCategoria_veiculo').val(1);
+    $('#cbTipo_carga').val(1);
+    $('#cb_carroceria').val(1);
+}
 
 function adicionaVeiculo()
 {
+    if (validaCampos() === false)
+    {
+        $('#valid-campos').modal('toggle');
+        $('#valid-campos').modal('show');
+
+        return;
+    }
+
     var descricao = $('#txDescricao_veiculo').val();
     var capacidade = $('#txCapacidade_veiculo').val();
     var preco_frete = $('#txPreco_frete_veiculo').val();

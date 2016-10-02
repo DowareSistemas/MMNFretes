@@ -11,6 +11,7 @@ import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
+import com.google.gson.Gson;
 import entidades.Carrocerias;
 import entidades.Categorias_veiculos;
 import entidades.Tipos_carga;
@@ -105,6 +106,33 @@ public class VeiculosController
             return new ArrayList<Categorias_veiculos>();
         }
 
+    }
+
+    @RequestMapping(value = "infoveiculo", produces = "application/json;charset=utf-8")
+    public @ResponseBody
+    String getInfoVeiculo(int id, HttpSession httpSession)
+    {
+        Session session = null;
+        try
+        {
+            Veiculos veiculo = new Veiculos();
+            
+            session = ConfigureSession.getSession();
+            session.onID(veiculo, id);
+            session.close();
+            
+            Gson gson = new Gson();
+            return gson.toJson(veiculo);
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.close();
+            }
+            
+            return "";
+        }
     }
 
     @RequestMapping(value = "salvaveiculo", produces = "text/html;charset=utf-8")
@@ -245,7 +273,7 @@ public class VeiculosController
             termoBusca += " AND veiculos.descricao LIKE '%" + nome + "%'";
             termoBusca += " or categorias_veiculos.descricao like '%" + nome + "%'";
             termoBusca += " or carrocerias.descricao like '%" + nome + "%'";
-            
+
             session = ConfigureSession.getSession();
 
             Join join = new Join(veiculos);
