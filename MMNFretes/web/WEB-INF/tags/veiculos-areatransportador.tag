@@ -7,12 +7,14 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-4">
-                    <img src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
+                    <img id="img-preview" src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
                     <span>
-                        <label class="btn btn-link col-sm-12" for="upload-file-selector">
-                            <input class="col-sm-12" id="upload-file-selector" accept="image/png, image/jpeg, image/gif" type="file">
-                            <i class="fa_icon icon-upload-alt"></i>Editar Imagem
-                        </label>
+                        <form id="form-img" method="post" enctype="multipart/form-data" action="">
+                            <label class="btn btn-link col-sm-12" for="upload-file-selector">
+                                <input class="col-sm-12" accept="image/png, image/jpeg, image/gif" type="file" name="file">
+                                <i class="fa_icon icon-upload-alt"></i>Editar Imagem
+                            </label>
+                        </form>
                     </span>
                 </div>
                 <div class="col-sm-8">

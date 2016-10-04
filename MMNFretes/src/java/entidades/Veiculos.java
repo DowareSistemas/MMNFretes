@@ -1,4 +1,4 @@
-/* 28/09/2016 20:45:23 */
+/* 03/10/2016 22:27:44 */
 /* AUTO-GENERATED CLASS */
 /* DOES NOT ADD ACCESSOR METHODS */
 /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
@@ -25,7 +25,7 @@ public class Veiculos extends Entity
    private int id; 
    private String descricao; 
    private int capacidade; 
-   private String tipo_carga; 
+   private int tipo_carga; 
    private double preco_frete; 
    private int tipo_cobranca; 
    private boolean rastreador; 
@@ -38,6 +38,7 @@ public class Veiculos extends Entity
    private Tipos_carga tipos_carga; 
    private int carrocerias_id; 
    private Carrocerias carrocerias; 
+   private InputStream foto; 
 
    public void setId(int id)
    {
@@ -70,12 +71,12 @@ public class Veiculos extends Entity
        return capacidade;
    }
 
-   public void setTipo_carga(String tipo_carga)
+   public void setTipo_carga(int tipo_carga)
    {
        this.tipo_carga = tipo_carga;
    }
 
-   public String getTipo_carga()
+   public int getTipo_carga()
    {
        return tipo_carga;
    }
@@ -202,5 +203,15 @@ public class Veiculos extends Entity
    public Carrocerias getCarrocerias()
    {
        return carrocerias;
+   }
+
+   public void setFoto(InputStream foto)
+   {
+       this.foto = foto;
+   }
+
+   public InputStream getFoto()
+   {
+       return foto;
    }
 }

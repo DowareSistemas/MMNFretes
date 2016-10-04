@@ -38,8 +38,10 @@ $('#btnConf_del_veiculo').click(function ()
                 $('#valid-exclusa').modal('toggle');
                 $('#valid-exclusao').modal('show');
             } else
+            {
                 listarVeiculos();
-            limparCampos();
+                limparCampos();
+            }
         }
     });
 });
@@ -74,6 +76,22 @@ function carregarVeiculo(id_veiculo)
     });
 }
 
+$("#upload-file-selector").change(function () {
+    var input = $(this);
+  
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-preview')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    
+});
+
 function buscarVeiculo()
 {
     var nomeVeiculo = $('#txBusca-veiculo').val();
@@ -84,6 +102,15 @@ function buscarVeiculo()
             $('#tabela-veiculos').append(data);
         }
     });
+}
+
+function uploadImagem()
+{
+    $('#form-img').ajaxForm({
+        success: function (data) {
+            alert('upload-imagem' + data);
+        }
+    }).submit();
 }
 
 function alteraVeiculo()
@@ -117,6 +144,8 @@ function alteraVeiculo()
                 "&carrocerias_id=" + carroceria,
         success: function (data)
         {
+            $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);
+            uploadImagem();
             listarVeiculos();
             limparCampos();
         }
@@ -189,6 +218,8 @@ function adicionaVeiculo()
                 "&carrocerias_id=" + carroceria,
         success: function (data)
         {
+            $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);
+            uploadImagem();
             listarVeiculos();
         }
     });

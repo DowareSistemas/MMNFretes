@@ -5,12 +5,14 @@
  */
 package controllers;
 
+import br.com.persistor.enums.COMMIT_MODE;
 import br.com.persistor.enums.FILTER_TYPE;
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
+import br.com.persistor.sessionManager.Query;
 import br.com.persistor.sessionManager.SessionImpl;
 import com.google.gson.Gson;
 import entidades.Carrocerias;
@@ -21,9 +23,18 @@ import entidades.Tipos_carga;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.fileupload.DefaultFileItemFactory;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -190,6 +201,91 @@ public class VeiculosController
             }
         }
         return "";
+    }
+
+    @RequestMapping("uploadimg")
+    public @ResponseBody
+    String upload(int veiculo_id, HttpServletRequest request, HttpSession httpSession)
+    {
+        try
+        {
+            TransportadorasController tc = new TransportadorasController();
+            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+            Transportadoras transportadora = tc.getByUsuario(usuario.getId());
+
+            int transportadora_id = transportadora.getId();
+
+            String path = request.getRealPath("/upload");
+            path = path.substring(0, path.indexOf("\\build"));
+            path += "\\web\\upload\\";
+
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            ServletFileUpload fileUpload = new ServletFileUpload(diskFileItemFactory);
+            List<FileItem> items = fileUpload.parseRequest(request);
+
+            for (FileItem item : items)
+            {
+                if (!item.isFormField())
+                {
+                    item.write(new File(path + "/" + transportadora_id + "-" + veiculo_id + ".jpg"));
+                }
+            }
+
+            InputStream foto = items.get(0).getInputStream();
+            String result = gravaImg(transportadora_id, veiculo_id, foto);
+            items.get(0).delete();
+            return (result.equals("1") ? "OK" : "ERRO");
+        }
+        catch (Exception ex)
+        {
+            
+            return " ERRO " + ex.getMessage();
+        }
+    }
+
+    private String gravaImg(int transportadoras_id, int veiculos_id, InputStream foto)
+    {
+        //se o veiculo_id for 0 (zero), pegar a ultima id do veiculo da transportadora
+        //se não, atualiza o veiculo da transportadora com o id informado
+
+        Session session = null;
+        Veiculos veiculo = null;
+        try
+        {
+            String retorno = "0";
+            session = ConfigureSession.getSession();
+            if (veiculos_id == 0)
+            {
+                veiculo = new Veiculos();
+                Query query = session.createQuery(veiculo, "select max(id) from veiculos where transportadoras_id = " + transportadoras_id);
+                query.setResult_type(RESULT_TYPE.UNIQUE);
+                query.execute();
+
+                veiculo.setFoto(foto);
+                session.update(veiculo);
+                retorno = "1";
+            }
+
+            if (veiculos_id > 0)
+            {
+                veiculo = (Veiculos) session.onID(Veiculos.class, veiculos_id);
+                veiculo.setFoto(foto);
+                session.update(veiculo);
+                retorno = "1";
+            }
+
+            session.commit();
+            session.close();
+            return retorno;
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.close();
+            }
+            return "0";
+        }
     }
 
     private boolean podeExcluir(int veiculos_id)
