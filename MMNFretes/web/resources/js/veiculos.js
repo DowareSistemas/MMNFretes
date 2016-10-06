@@ -72,25 +72,37 @@ function carregarVeiculo(id_veiculo)
             $('#txPreco_frete_veiculo').val(veiculo.preco_frete);
             $('#cb_carroceria').val(veiculo.carrocerias_id);
             $('#btnExcluir-veiculo').fadeIn(200);
+
+            $.ajax({
+                url: "/mmnfretes/veiculo_path?veiculo_id=" + id_veiculo,
+                dataType: 'text',
+                accepts: 'text',
+                success: function (data) {
+                    $('#img-preview').attr('src', data);
+                }
+            });
         }
     });
 }
 
-$("#upload-file-selector").change(function () {
-    var input = $(this);
-  
+//$("#upload-file-selector").
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#img-preview')
-                    .attr('src', e.target.result)
-                    .width(150)
-                    .height(200);
-        };
+            $('#img-preview').attr('src', e.target.result);
+        }
 
         reader.readAsDataURL(input.files[0]);
-    
+    }
+}
+
+$("#upload").change(function () {
+    readURL(this);
 });
+
 
 function buscarVeiculo()
 {
@@ -108,7 +120,9 @@ function uploadImagem()
 {
     $('#form-img').ajaxForm({
         success: function (data) {
-            alert('upload-imagem' + data);
+            $('#img-preview').attr('src', 'resources/img/checked_truck-512.png');
+            $('#upload').val(null);
+            location.reload();
         }
     }).submit();
 }
@@ -194,7 +208,6 @@ function adicionaVeiculo()
     {
         $('#valid-campos').modal('toggle');
         $('#valid-campos').modal('show');
-
         return;
     }
 

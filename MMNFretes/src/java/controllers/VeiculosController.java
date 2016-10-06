@@ -61,7 +61,7 @@ public class VeiculosController
                     .execute();
             session.close();
 
-            return tipos_carga.ResultList;
+            return session.getList(tipos_carga);
         }
         catch (Exception ex)
         {
@@ -84,7 +84,7 @@ public class VeiculosController
                     .execute();
             session.close();
 
-            return carrocerias.ResultList;
+            return session.getList(carrocerias);
         }
         catch (Exception ex)
         {
@@ -109,7 +109,7 @@ public class VeiculosController
                     .execute();
             session.close();
 
-            return categorias_veiculos.ResultList;
+            return session.getList(categorias_veiculos);
         }
         catch (Exception ex)
         {
@@ -122,6 +122,18 @@ public class VeiculosController
 
     }
 
+    @RequestMapping(value = "veiculo_path", produces = "text/html;chatset=utf-8")
+    public @ResponseBody
+    String getFotoPath(int veiculo_id, HttpSession httpSession)
+    {
+        Usuarios usuario = (Usuarios)httpSession.getAttribute("usuarioLogado");
+        int tansp_id = new TransportadorasController().getByUsuario(usuario.getId()).getId();
+        String retorno = "/mmnfretes/upload/{transp_id}-{veic_id}.jpg";
+        retorno = retorno.replace("{transp_id}", tansp_id + "");
+        retorno = retorno.replace("{veic_id}", veiculo_id + "");
+        return retorno;
+    }
+    
     @RequestMapping(value = "infoveiculo", produces = "application/json;charset=utf-8")
     public @ResponseBody
     String getInfoVeiculo(int id, HttpSession httpSession)
@@ -256,11 +268,7 @@ public class VeiculosController
             session = ConfigureSession.getSession();
             if (veiculos_id == 0)
             {
-                veiculo = new Veiculos();
-                Query query = session.createQuery(veiculo, "select max(id) from veiculos where transportadoras_id = " + transportadoras_id);
-                query.setResult_type(RESULT_TYPE.UNIQUE);
-                query.execute();
-
+                veiculo = session.Last(Veiculos.class, "transportadoras_id = " + transportadoras_id);
                 veiculo.setFoto(foto);
                 session.update(veiculo);
                 retorno = "1";

@@ -9,11 +9,9 @@
                 <div class="col-sm-4">
                     <img id="img-preview" src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
                     <span>
-                        <form id="form-img" method="post" enctype="multipart/form-data" action="">
-                            <label class="btn btn-link col-sm-12" for="upload-file-selector">
-                                <input class="col-sm-12" accept="image/png, image/jpeg, image/gif" type="file" name="file">
-                                <i class="fa_icon icon-upload-alt"></i>Editar Imagem
-                            </label>
+                        <form id="form-img" runat="server" method="post" enctype="multipart/form-data" action="">
+                            <input id="upload" class="col-sm-12" accept="image/png, image/jpeg, image/gif" type="file" name="file">
+                            <i class="fa_icon icon-upload-alt"></i>Editar Imagem
                         </form>
                     </span>
                 </div>
