@@ -7,12 +7,12 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-4">
-                    <img src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
+                    <img id="img-preview" src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
                     <span>
-                        <label class="btn btn-link col-sm-12" for="upload-file-selector">
-                            <input class="col-sm-12" id="upload-file-selector" accept="image/png, image/jpeg, image/gif" type="file">
+                        <form id="form-img" runat="server" method="post" enctype="multipart/form-data" action="">
+                            <input id="upload" class="col-sm-12" accept="image/png, image/jpeg, image/gif" type="file" name="file">
                             <i class="fa_icon icon-upload-alt"></i>Editar Imagem
-                        </label>
+                        </form>
                     </span>
                 </div>
                 <div class="col-sm-8">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="row">
                         <div class="btn-group col-sm-4">
-                            <button type="button" id="btnExcluir-veiculo" class="btn btn-danger col-sm-12">Excluir</button>
+                            <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger col-sm-12">Excluir</button>
                         </div>
                         <div class="btn-group col-sm-8">
                             <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary col-sm-12">Adicionar</button>
@@ -87,10 +87,10 @@
                 <div class="col-sm-12">
                     <h2 class="text-primary">Lista Veículos</h2>
                     <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control input-lg" placeholder="Buscar endereço" />
+                        <div class="input-group col-md-6">
+                            <input type="text" id="txBusca-veiculo"  class="form-control campo-btn-busca" placeholder="Buscar veículo" />
                             <span class="input-group-btn">
-                                <button class="btn btn-info btn-lg" type="button">
+                                <button class="btn btn-info campo-btn-busca" id="btBuscar-veiculo" type="button">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </span>
@@ -99,25 +99,16 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Veículo</th>
+                                <th class="tab-veiculos-col-veiculo">Veículo</th>
                                 <th>Capacidade</th>
-                                <th>Tipo Carroc.</th>
+                                <th>Categoria</th>
                                 <th>Carroceria</th>
                                 <th>Rastreador</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Nome do Veículo</td>
-                                <td>Capacidade</td>
-                                <td>Tipo Carroc.</td>
-                                <td>Carroceria</td>
-                                <td>Rastreador</td>
-                                <td>
-                                    <button type="button" class="btn btn-info btn-xs center-block">Editar</button>
-                                </td>
-                            </tr>
+                        <tbody id="tabela-veiculos">
+
                         </tbody>
                     </table>
                 </div>

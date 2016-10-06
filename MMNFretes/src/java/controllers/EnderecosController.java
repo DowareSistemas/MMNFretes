@@ -30,7 +30,6 @@ import sessionProvider.ConfigureSession;
 @Controller
 public class EnderecosController
 {
-
     @RequestMapping(value = "/adicionaEndereco")
     public String adicionar(Model model, Enderecos endereco, HttpSession httpSession)
     {
@@ -96,7 +95,7 @@ public class EnderecosController
                     .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", "false"))
                     .execute();
 
-            List<Enderecos> listaEnderecos = endereco.ResultList;
+            List<Enderecos> listaEnderecos = session.getList(endereco);
 
             ModelAndView modelAndView = new ModelAndView("listaenderecos");
             modelAndView.addObject("listaenderecos", listaEnderecos);
