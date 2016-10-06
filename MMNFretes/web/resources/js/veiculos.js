@@ -21,6 +21,7 @@ function listarVeiculos()
         success: function (data) {
             $('#tabela-veiculos').html("");
             $('#tabela-veiculos').append(data);
+            $('#btnAdicionar-veiculo').text('Adicionar');
         }
     });
 }
@@ -72,7 +73,8 @@ function carregarVeiculo(id_veiculo)
             $('#txPreco_frete_veiculo').val(veiculo.preco_frete);
             $('#cb_carroceria').val(veiculo.carrocerias_id);
             $('#btnExcluir-veiculo').fadeIn(200);
-
+            $('#btnAdicionar-veiculo').text('Salvar');
+            
             $.ajax({
                 url: "/mmnfretes/veiculo_path?veiculo_id=" + id_veiculo,
                 dataType: 'text',
