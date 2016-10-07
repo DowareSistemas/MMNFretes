@@ -33,6 +33,10 @@ and open the template in the editor.
     background: #eee;
     margin-bottom: 20px;
 }
+.pp-03 {
+    padding: 15px;
+    min-width: 250px;
+}
 
 /* CSS geral do site */
 body {

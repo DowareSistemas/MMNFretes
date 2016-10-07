@@ -20,9 +20,14 @@
         <!-- Controles de Barra de navegação -->
         <my-tags:navbar/>
         <%--<my-tags:navbar-login>--%>
-
+        
         <!-- Conteudo da página -->
         <div class="container">
+            <div class="alert alert-info fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
+                Saiba mais informações<a href=""> clicando aqui!</a>
+            </div>
 
             <!-- Filtro de pesquisa (Desktop) -->
             <div class="col-sm-3 col-md-3 visible-sm visible-md visible-lg">
