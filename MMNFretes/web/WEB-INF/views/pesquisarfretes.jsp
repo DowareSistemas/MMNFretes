@@ -17,14 +17,13 @@
         <title>JSP Page</title>
     </head>
     <body
-        <!-- Controles de Barra de navegação -->
-        <my-tags:navbar/>
-        <%--<my-tags:navbar-login>--%>
-        
+        <!-- Controles da Barra de navegação -->
+        <my-tags:navbar-login/>
+
         <!-- Conteudo da página -->
         <div class="container">
             <div class="alert alert-info fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
                 Saiba mais informações<a href=""> clicando aqui!</a>
             </div>
@@ -160,7 +159,8 @@
             <my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/>
         </div>
 
-        <!-- Scripts da página -->
+        <!-- Scripts da página 
+        ========================================================================================= -->
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
