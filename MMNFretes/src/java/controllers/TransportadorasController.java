@@ -48,7 +48,6 @@ public class TransportadorasController
 
             VeiculosController veiculosController =  new VeiculosController();
             
-            
             ModelAndView modelAndView = new ModelAndView("areatransportador");
             modelAndView.addObject("tipos_carga", tipos_carga);
             modelAndView.addObject("categorias_veiculos", veiculosController.getCategorias());
@@ -268,17 +267,14 @@ public class TransportadorasController
 
     private int getIdTransportadora(int idUsuario)
     {
+        Transportadoras transportadora = new Transportadoras();
         Session session = null;
         try
         {
             session = ConfigureSession.getSession();
-
-            Transportadoras transportadora = new Transportadoras();
-
             session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
                     .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
                     .execute();
-
             session.close();
 
             return transportadora.getId();
