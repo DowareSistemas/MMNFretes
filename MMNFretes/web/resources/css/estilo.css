@@ -24,10 +24,17 @@ and open the template in the editor.
     height: 35px;
 }
 
-/* Tamanhos: width e height */
+/* PP Personalização Pessoal */
 
-.heighth35 {
+.pp-01 {
     height: 35px;
+}
+.pp-02 {
+/* Tag não utilizada, aberta a modificações */
+}
+.pp-03 {
+    padding: 15px;
+    min-width: 250px;
 }
 
 /* CSS geral do site */
@@ -36,6 +43,10 @@ body {
     padding-bottom: 70px;
 }
 .table-overflow {
+    max-height:310px;
+    overflow-y:auto;
+}
+.overflow-310 {
     max-height:310px;
     overflow-y:auto;
 }

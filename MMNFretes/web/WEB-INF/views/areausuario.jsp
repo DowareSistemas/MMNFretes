@@ -58,11 +58,14 @@
 
                 <my-tags:detalhes_cotacao_usuario/>
             </div>
-
+            <!-- Scripts da página -->
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>
             <script src="resources/js/bootstrap.js"></script>
             <script src="resources/js/areausuario.js"></script>
             <script src="resources/js/modal-centralizado.js"></script>
+            <!-- Scripts de mascara para inputs -->
+            <script src="resources/js/jquery-mask.js"></script>
+            <script src="resources/js/mascaras.js"></script>
     </body>
 </html>
