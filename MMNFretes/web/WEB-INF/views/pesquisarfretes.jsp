@@ -156,7 +156,16 @@
             </div>
 
             <!-- Conteúdo de pesquisa -->
-            <my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/><my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
+            <my-tags:conteudo-pesquisar/>
         </div>
 
         <!-- Scripts da página 

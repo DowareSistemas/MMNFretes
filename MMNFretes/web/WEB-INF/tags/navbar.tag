@@ -1,5 +1,4 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
-<script src="resources/js/mascaras.js"></script>
 
 <!--Navbar fixa no topo-->
 <nav class="navbar navbar-default navbar-fixed-top">

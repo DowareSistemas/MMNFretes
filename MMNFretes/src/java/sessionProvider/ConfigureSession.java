@@ -34,6 +34,7 @@ public class ConfigureSession
         config.setPort(3306);
         config.setUser("root");
         config.setPassword("81547686");
+        config.setMaxStatements(1000);
  
         return factory.getSession(config);
         
