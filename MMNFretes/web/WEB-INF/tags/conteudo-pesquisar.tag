@@ -5,7 +5,7 @@
                 <div class="ratings">
                     <img src="resources/img/checked_truck-512.png" class="img-thumbnail img-responsive" alt="Cinque Terre">
                 </div>
-            </div>
+            </div> 
             <div class="col-xs-8 col-sm-5">
                 <div class="col-xs-12 col-sm-12 colmd-12">
                     <h4 class="text-primary">Nome da Transportadora</h4>
