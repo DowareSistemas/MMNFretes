@@ -19,7 +19,6 @@ public class Interceptador extends HandlerInterceptorAdapter
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
     {
         String url = request.getRequestURI();
-
         if (enderecoPermitido(url))
         {
             return true;

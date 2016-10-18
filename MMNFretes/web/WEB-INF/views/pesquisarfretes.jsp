@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
+<%@taglib tagdir="/WEB-INF/tags/filtros-pesquisa/" prefix="filtros-pesquisa" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +19,7 @@
     </head>
     <body
         <!-- Controles da Barra de navegação -->
-        <my-tags:navbar-login/>
+        <my-tags:navbar/>
 
         <!-- Conteudo da página -->
         <div class="container">
@@ -40,42 +41,9 @@
                                 Veículos 
                             </button>
                             <div class="collapse" id="veiculos">
-                                <!-- Filtro de pesquisa: Veículos Pesados -->
-                                <h5 class="text-muted text-uppercase text-center">Veículos Pesados</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Rodotrem</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Bitrem</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Carreta LS</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Carreta</label>
-                                </div>
-                                <!-- Filtro de pesquisa: Veículos Médios -->
-                                <h5 class="text-muted text-uppercase text-center">Veículos Médios</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Bitruck</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Truck</label>
-                                </div>
-                                <!-- Filtro de pesquisa: Veículos Leves -->
-                                <h5 class="text-muted text-uppercase text-center">Veículos Leves</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Toco</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> 3/4</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> V.L.C</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> V.U.C.</label>
-                                </div>
+                                <filtros-pesquisa:filtro-veiculos-pesados/>
+                                <filtros-pesquisa:filtro-veiculos-medios/>
+                                <filtros-pesquisa:filtro-veiculos-leves/>
                             </div>
                         </div>
                     </div>
@@ -90,25 +58,11 @@
                                 Carrocerias 
                             </button>
                             <div class="collapse" id="Carrocerias">
-                                <h5 class="text-muted text-uppercase text-center">Tipos de carrocerias</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Baú</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Sider</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Caçamba</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Grade Baixa</label>
-                                </div>
+                                <filtros-pesquisa:filtro-carrocerias/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Filtro de pesquisa: Carrocerias -->
-
                 <!-- Filtro de pesquisa: Rastreador -->
                 <div class="row">
                     <div class="thumbnail">
@@ -119,12 +73,7 @@
                             </button>
                             <div class="collapse" id="Rastreador">
                                 <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio">Sim</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio">Não</label>
-                                </div>
+                                <filtros-pesquisa:filtro-rastreador/>
                             </div>
                         </div>
                     </div>
@@ -140,20 +89,12 @@
                             </button>
                             <div class="collapse" id="Formas-de-Pagamento">
                                 <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Boleto Bancário</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Cartão de Crédito</label>
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value=""> Negociação Particular</label>
-                                </div>
+                                <filtros-pesquisa:filtro-formas-pag/>
                             </div>
                         </div>
                     </div>
-                </div> <!-- Filtro de pesquisa: Veículos -->
-            </div>
+                </div>
+            </div> 
 
             <!-- Conteúdo de pesquisa -->
             <my-tags:conteudo-pesquisar/>
@@ -178,5 +119,6 @@
         <script src="resources/js/mascaras.js"></script>
         <!-- Scripts de login -->
         <script src="resources/js/login.js"></script>
+        <script src="resources/js/pesquisarfretes.js"></script>
     </body>
 </html>

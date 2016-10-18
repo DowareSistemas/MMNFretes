@@ -19,14 +19,28 @@ public class ResultadoPesquisa
 {
 
     private Veiculos veiculo;
-    private List<Avaliacoes> av_positivas;
-    private List<Avaliacoes> av_negativas;
+    private List<Integer> av_positivas;
+    private List<Integer> av_negativas;
     private double preco_frete;
 
-    public ResultadoPesquisa()
+    public ResultadoPesquisa(Veiculos veiculo, int av_posit, double preco)
     {
-        av_negativas = new ArrayList<Avaliacoes>();
-        av_negativas = new ArrayList<Avaliacoes>();
+        av_negativas = new ArrayList<Integer>();
+        av_negativas = new ArrayList<Integer>();
+        
+        for(int i = 0; i < av_posit; i ++)
+        {
+            av_positivas.add(i);
+        }
+        
+        int negativas = (Math.round(av_posit) - 5);
+        for(int i = 0; i < negativas; i++)
+        {
+            av_negativas.add(i);
+        }
+
+        this.preco_frete = preco;
+        this.veiculo = veiculo;
     }
 
     public Veiculos getVeiculo()
@@ -39,22 +53,22 @@ public class ResultadoPesquisa
         this.veiculo = veiculo;
     }
 
-    public List<Avaliacoes> getAv_positivas()
+    public List<Integer> getAv_positivas()
     {
         return av_positivas;
     }
 
-    public void setAv_positivas(List<Avaliacoes> av_positivas)
+    public void setAv_positivas(List<Integer> av_positivas)
     {
         this.av_positivas = av_positivas;
     }
 
-    public List<Avaliacoes> getAv_negativas()
+    public List<Integer> getAv_negativas()
     {
         return av_negativas;
     }
 
-    public void setAv_negativas(List<Avaliacoes> av_negativas)
+    public void setAv_negativas(List<Integer> av_negativas)
     {
         this.av_negativas = av_negativas;
     }

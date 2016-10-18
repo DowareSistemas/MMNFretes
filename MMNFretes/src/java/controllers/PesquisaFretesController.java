@@ -33,16 +33,16 @@ import sessionProvider.ConfigureSession;
 public class PesquisaFretesController
 {
 
-    @RequestMapping
+    @RequestMapping("/pesquisafrete")
     public ModelAndView pesquisarFretes(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
     {
         Session session = null;
         try
         {
-            List<Veiculos> lista = listVeiculos(filtro_cat, filtro_carroc, rastreador, distancia);
+            List<ResultadoPesquisa> lista = listVeiculos(filtro_cat, filtro_carroc, rastreador, distancia);
 
             ModelAndView mav = new ModelAndView("pesquisarfretes");
-            mav.addObject("veiculos", lista);
+            mav.addObject("resultados", lista);
         }
         catch (Exception ex)
         {
@@ -69,14 +69,14 @@ public class PesquisaFretesController
             session.close();
 
             List<Historico> lista = join.getList(historico);
-            
+
             for (Historico h : lista)
             {
                 avaliacoes = new Avaliacoes();
                 join.getResultObj(avaliacoes);
                 h.setAvaliacoes(avaliacoes);
             }
-            
+
             return lista;
         }
         catch (Exception ex)
@@ -87,8 +87,10 @@ public class PesquisaFretesController
         return new ArrayList<Historico>();
     }
 
-    private List<Veiculos> listVeiculos(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
+    private List<ResultadoPesquisa> listVeiculos(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
     {
+        List<ResultadoPesquisa> resultados = new ArrayList<ResultadoPesquisa>();
+
         filtro_cat = filtro_cat.substring(0, filtro_carroc.length() - 1);
         filtro_carroc = filtro_carroc.substring(0, filtro_carroc.length() - 1);
 
@@ -113,10 +115,10 @@ public class PesquisaFretesController
             session = ConfigureSession.getSession();
             joinVeiculos.execute(session);
             session.close();
-            
+
             List<Veiculos> lista = joinVeiculos.getList(veiculos);
             List<ResultadoPesquisa> resultadoPesquisa = new ArrayList<ResultadoPesquisa>();
-            
+
             for (Veiculos veiculo : lista)
             {
                 transportadoras = new Transportadoras();
@@ -129,25 +131,28 @@ public class PesquisaFretesController
 
                 veiculo.setTransportadoras(transportadoras);
                 double preco_frete = (veiculo.getPreco_frete() * distancia);
-                
-                ResultadoPesquisa rp = new ResultadoPesquisa();
-                rp.setVeiculo(veiculo);
-                rp.setPreco_frete(preco_frete);
-                
+
+                int total_avaliacoes = 0;
+                int total_estrelas = 0;
                 List<Historico> historicos = listHistorico(transportadoras.getId());
-                for(Historico historico : historicos)
+                for (Historico historico : historicos)
                 {
-                    //Ava
+                    Avaliacoes a = historico.getAvaliacoes();
+                    total_estrelas += a.getEstrelas();
+                    total_avaliacoes++;
                 }
-                
+
+                int estrelas = (total_estrelas / total_avaliacoes);
+
+                ResultadoPesquisa resultado = new ResultadoPesquisa(veiculo, estrelas, preco_frete);
+                resultados.add(resultado);
             }
-            return lista;
         }
         catch (Exception ex)
         {
             if (session != null)
                 session.close();
         }
-        return new ArrayList<Veiculos>();
+        return resultados;
     }
 }
