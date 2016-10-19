@@ -17,21 +17,19 @@
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
         <title>JSP Page</title>
     </head>
-    <body>
-        <header>
-            <!-- Barra de navegação -->
-            <my-tags:navbar/>
-        </header>
-        <main>
-            <!-- Conteudo da página -->
-            <div class="container">
-                <article>
-                    <div class="alert alert-info fade in">
-                        <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
-                        Saiba mais informações<a href=""> clicando aqui!</a>
-                    </div>
-                </article>
+    <body>      
+        <div class="container">
+            <header>
+                <!-- Barra de navegação -->
+                <my-tags:navbar/>
+                <!-- Conteudo da página -->
+                <div class="alert alert-info fade in">
+                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
+                    Saiba mais informações<a href=""> clicando aqui!</a>
+                </div>     
+            </header>
+            <main>
                 <aside>
                     <!-- Filtro de pesquisa (Desktop) -->
                     <div class="col-sm-3 col-md-3 visible-sm visible-md visible-lg">
@@ -113,21 +111,23 @@
                     <my-tags:conteudo-pesquisar/>
                     <my-tags:conteudo-pesquisar/>
                 </section>
-            </div>
-        </main>
-        <footer>
+            </main>
+            <footer>
 
-        </footer>
+            </footer>
+        </div>
 
         <!-- Scripts da página 
         ========================================================================================= -->
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
-        <!-- Scripts de mascara para inputs -->
+        <!-- Scripts de mascara para inputs 
+        ========================================================================================= -->
         <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/mascaras.js"></script>
-        <!-- Scripts de login -->
+        <!-- Scripts de login 
+        ========================================================================================= -->
         <script src="resources/js/login.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws"></script>
         <script src="resources/js/pesquisarfretes.js"></script>
