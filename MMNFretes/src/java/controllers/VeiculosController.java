@@ -126,14 +126,14 @@ public class VeiculosController
     public @ResponseBody
     String getFotoPath(int veiculo_id, HttpSession httpSession)
     {
-        Usuarios usuario = (Usuarios)httpSession.getAttribute("usuarioLogado");
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
         int tansp_id = new TransportadorasController().getByUsuario(usuario.getId()).getId();
         String retorno = "/mmnfretes/upload/{transp_id}-{veic_id}.jpg";
         retorno = retorno.replace("{transp_id}", tansp_id + "");
         retorno = retorno.replace("{veic_id}", veiculo_id + "");
         return retorno;
     }
-    
+
     @RequestMapping(value = "infoveiculo", produces = "application/json;charset=utf-8")
     public @ResponseBody
     String getInfoVeiculo(int id, HttpSession httpSession)
@@ -244,13 +244,13 @@ public class VeiculosController
             }
 
             InputStream foto = items.get(0).getInputStream();
-           // String result = gravaImg(transportadora_id, veiculo_id, foto);
+            // String result = gravaImg(transportadora_id, veiculo_id, foto);
             items.get(0).delete();
             return "OK";
         }
         catch (Exception ex)
         {
-            
+
             return " ERRO " + ex.getMessage();
         }
     }
@@ -363,8 +363,8 @@ public class VeiculosController
     {
         Veiculos veiculos = new Veiculos();
         Carrocerias carrocerias = new Carrocerias();
-        Categorias_veiculos cat = new Categorias_veiculos();
-        Tipos_carga tipos = new Tipos_carga();
+        Categorias_veiculos categorias = new Categorias_veiculos();
+        Tipos_carga tipos_carga = new Tipos_carga();
 
         Session session = null;
         try
@@ -376,8 +376,8 @@ public class VeiculosController
 
             Join join = new Join(veiculos);
             join.addJoin(JOIN_TYPE.INNER, carrocerias, "carrocerias.id = veiculos.carrocerias_id");
-            join.addJoin(JOIN_TYPE.INNER, cat, "categorias_veiculos.id = veiculos.categorias_veiculos_id");
-            join.addJoin(JOIN_TYPE.INNER, tipos, "tipos_carga.id = veiculos.tipos_carga_id");
+            join.addJoin(JOIN_TYPE.INNER, categorias, "categorias_veiculos.id = veiculos.categorias_veiculos_id");
+            join.addJoin(JOIN_TYPE.INNER, tipos_carga, "tipos_carga.id = veiculos.tipos_carga_id");
             join.addFinalCondition("where veiculos.transportadoras_id = " + transportadora.getId());
             join.execute(session);
 
@@ -388,17 +388,13 @@ public class VeiculosController
             {
                 Veiculos vei = (Veiculos) object;
 
-                carrocerias = new Carrocerias();
-                cat = new Categorias_veiculos();
-                tipos = new Tipos_carga();
-
-                join.getResultObj(carrocerias);
-                join.getResultObj(cat);
-                join.getResultObj(tipos);
+                carrocerias = join.getEntity(Carrocerias.class);
+                categorias = join.getEntity(Categorias_veiculos.class);
+                tipos_carga = join.getEntity(Tipos_carga.class);
 
                 vei.setCarrocerias(carrocerias);
-                vei.setCategorias_veiculos(cat);
-                vei.setTipos_carga(tipos);
+                vei.setCategorias_veiculos(categorias);
+                vei.setTipos_carga(tipos_carga);
                 retorno.add(vei);
             }
             session.close();
@@ -426,9 +422,9 @@ public class VeiculosController
     {
         nome = nome.replace("'", "");
         Veiculos veiculos = new Veiculos();
-        Carrocerias carrocerias = new Carrocerias();
-        Categorias_veiculos cat = new Categorias_veiculos();
-        Tipos_carga tipos = new Tipos_carga();
+        Carrocerias carroceria = new Carrocerias();
+        Categorias_veiculos categoria = new Categorias_veiculos();
+        Tipos_carga tipo_veiculo = new Tipos_carga();
 
         Session session = null;
         try
@@ -444,9 +440,9 @@ public class VeiculosController
             session = ConfigureSession.getSession();
 
             Join join = new Join(veiculos);
-            join.addJoin(JOIN_TYPE.INNER, carrocerias, "carrocerias.id = veiculos.carrocerias_id");
-            join.addJoin(JOIN_TYPE.INNER, cat, "categorias_veiculos.id = veiculos.categorias_veiculos_id");
-            join.addJoin(JOIN_TYPE.INNER, tipos, "tipos_carga.id = veiculos.tipos_carga_id");
+            join.addJoin(JOIN_TYPE.INNER, carroceria, "carrocerias.id = veiculos.carrocerias_id");
+            join.addJoin(JOIN_TYPE.INNER, categoria, "categorias_veiculos.id = veiculos.categorias_veiculos_id");
+            join.addJoin(JOIN_TYPE.INNER, tipo_veiculo, "tipos_carga.id = veiculos.tipos_carga_id");
             join.addFinalCondition(termoBusca);
             join.execute(session);
 
@@ -457,17 +453,13 @@ public class VeiculosController
             {
                 Veiculos vei = (Veiculos) object;
 
-                carrocerias = new Carrocerias();
-                cat = new Categorias_veiculos();
-                tipos = new Tipos_carga();
+                carroceria = join.getEntity(Carrocerias.class);
+                categoria = join.getEntity(Categorias_veiculos.class);
+                tipo_veiculo = join.getEntity(Tipos_carga.class);
 
-                join.getResultObj(carrocerias);
-                join.getResultObj(cat);
-                join.getResultObj(tipos);
-
-                vei.setCarrocerias(carrocerias);
-                vei.setCategorias_veiculos(cat);
-                vei.setTipos_carga(tipos);
+                vei.setCarrocerias(carroceria);
+                vei.setCategorias_veiculos(categoria);
+                vei.setTipos_carga(tipo_veiculo);
                 retorno.add(vei);
             }
             session.close();

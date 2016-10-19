@@ -89,15 +89,13 @@
                         <li>
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <filtros-pesquisa:filtro-veiculos-pesados/>
+                               
                                 </div>
                                 <div class="col-xs-4">
                                     <!-- Filtro de pesquisa: Veículos Médios -->
-                                    <filtros-pesquisa:filtro-veiculos-medios/>
                                 </div>
                                 <div class="col-xs-4">
                                     <!-- Filtro de pesquisa: Veículos Leves -->
-                                    <filtros-pesquisa:filtro-veiculos-leves/>
                                 </div>
                             </div>
                         </li>
@@ -112,7 +110,6 @@
                         <li>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <filtros-pesquisa:filtro-carrocerias/>
                                 </div>
                             </div>
                         </li>
@@ -128,7 +125,6 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                    <filtros-pesquisa:filtro-rastreador/>
                                 </div>
                             </div>
                         </li>
@@ -144,7 +140,6 @@
                             <div class="row">   
                                 <div class="col-xs-12">
                                     <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                    <filtros-pesquisa:filtro-formas-pag/>
                                 </div>
                             </div>
                         </li>

@@ -8,8 +8,8 @@
     <label><input type="checkbox" id="ckBitrem"> Bitrem</label>
 </div>
 <div class="checkbox">
-    <label><input type="checkbox" id="ckCarrega_LS"> Carreta LS</label>
+    <label><input type="checkbox" id="ckCarreta_LS"> Carreta LS</label>
 </div>
 <div class="checkbox">
-    <label><input type="checkbox" id="ckCarrega"> Carreta</label>
+    <label><input type="checkbox" id="ckCarreta"> Carreta</label>
 </div>
