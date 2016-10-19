@@ -129,6 +129,7 @@
         <script src="resources/js/mascaras.js"></script>
         <!-- Scripts de login -->
         <script src="resources/js/login.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws"></script>
         <script src="resources/js/pesquisarfretes.js"></script>
     </body>
 </html>

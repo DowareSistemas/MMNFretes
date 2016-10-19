@@ -72,6 +72,10 @@ public class Interceptador extends HandlerInterceptorAdapter
             return true;
         }
 
+        if (url.contains("maps.googleapis.com/maps/api"))
+        {
+            return true;
+        }
         return false;
     }
 }
