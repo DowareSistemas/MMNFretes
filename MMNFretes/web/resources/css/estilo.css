@@ -27,7 +27,7 @@ and open the template in the editor.
 /* PP Personalização Pessoal */
 
 .pp-01 {
-    height: 35px;
+    height: 35px
 }
 .pp-02 {
 /* Tag não utilizada, aberta a modificações */
@@ -36,7 +36,10 @@ and open the template in the editor.
     padding: 15px;
     min-width: 250px;
 }
-
+.pp-04 {
+    font-size: 24px;
+    margin: 0px;
+}
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
 

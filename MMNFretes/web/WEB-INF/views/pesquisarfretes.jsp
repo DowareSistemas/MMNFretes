@@ -23,7 +23,7 @@
                 <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="/mmnfretes/pesquisar">GC Fretes</a>
+                            <h1 class="pp-04"><a class="navbar-brand pp-04" href="/mmnfretes/pesquisar">GC Fretes</a></h1>
                             <button type="button" class="navbar-toggle collapsed pp-01" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
@@ -57,6 +57,7 @@
                                         <span class="glyphicon glyphicon-shopping-cart"></span>
                                     </a>
                                 </li>
+                                <!-- Usuário DESLOGADO -->
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         Entrar 
@@ -88,6 +89,26 @@
                                         </li> 
                                     </ul>
                                 </li>
+                                <!-- Usuário LOGADO -->
+                                <%--
+                                <li class="dropdown">
+                                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Nome do usuário
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu pp-03">
+                                        <li>
+                                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Perfil</h5></button>
+                                        </li><br>
+                                        <li>
+                                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Pendentes</h5></button>
+                                        </li><br>
+                                        <li>
+                                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Histórico</h5></button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                --%>
                             </ul>
                         </div> <!-- Collapse da navbar -->
 
