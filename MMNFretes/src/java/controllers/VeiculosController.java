@@ -244,9 +244,9 @@ public class VeiculosController
             }
 
             InputStream foto = items.get(0).getInputStream();
-            String result = gravaImg(transportadora_id, veiculo_id, foto);
+           // String result = gravaImg(transportadora_id, veiculo_id, foto);
             items.get(0).delete();
-            return (result.equals("1") ? "OK" : "ERRO");
+            return "OK";
         }
         catch (Exception ex)
         {

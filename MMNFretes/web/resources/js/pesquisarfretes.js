@@ -1,18 +1,27 @@
 $('#btnBuscarFretes').click(function ()
 {
-    var urlGoogle = "http://maps.googleapis.com/maps/api/distancematrix/json?origins={0}&destinations={1}&mode=driving&language=pt-BR&sensor=false";
-    urlGoogle = urlGoogle.replace("{0}", $('#txCep_origem').val());
-    urlGoogle = urlGoogle.replace("{1}", $('#txCep_destino').val());
+    var directionsService = new google.maps.DirectionsService();
 
-    var response = null;
-    $.ajax({
-        url: urlGoogle,
-        dataType: 'jsonp',
-        accepts: 'json',
-        success: function (data) {
-            alert(data);
-        }
-    });
+    var request =
+            {
+                origin: $('#txCep_origem').val(),
+                destination : $('#txCep_destino').val(),
+                travelMode : google.maps.DirectionsTravelMode.DRIVING
+
+            };
+            
+            directionsService.route(request, function (response, status)
+            {
+               if(status == google.maps.DirectionsStatus.OK)
+               {
+                   alert(response.routes[0].legs[0].distance.text);
+                   window.location = "/mmnfretes/pesquisar";
+               }
+               else
+               {
+                   
+               }
+            });
 
 });
 
