@@ -12,9 +12,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <button type="button" class="navbar-toggle collapsed pp-01"  data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false">
-                <span class="glyphicon glyphicon-filter"></span>
-            </button>
             <button type="button" class="navbar-toggle collapsed pp-01"  data-toggle="collapse" data-target="#collapse-shopping-cart" aria-expanded="false">
                 7 <!-- Quantidade de cotações -->
                 <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -23,18 +20,6 @@
 
         <!-- Collapse da navbar -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse">
-            <!-- Formulário de pesquisa -->
-            <form class="navbar-form form-group-sm navbar-left">
-                <div class="form-group input-group">
-                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                    <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem">
-                </div>
-                <div class="form-group input-group">
-                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                    <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino">
-                </div>
-                <button type="button" class="btn btn-primary btn-sm" id="btnBuscarFretes">Buscar</button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown visible-sm visible-md visible-lg">
                     <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-shopping-cart">
@@ -75,84 +60,7 @@
                 </li>
             </ul>
         </div> <!-- Collapse da navbar -->
-
-        <!-- Collapse dos filtros -->
-        <div class="collapse navbar-collapse" id="collapse-filter">
-            <ul class="nav navbar-nav visible-xs">
-
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Veículos 
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu pp-03">
-                        <li>
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <filtros-pesquisa:filtro-veiculos-pesados/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <!-- Filtro de pesquisa: Veículos Médios -->
-                                    <filtros-pesquisa:filtro-veiculos-medios/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <!-- Filtro de pesquisa: Veículos Leves -->
-                                    <filtros-pesquisa:filtro-veiculos-leves/>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Carrocerias 
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu pp-03">
-                        <li>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <filtros-pesquisa:filtro-carrocerias/>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Rastreador 
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu pp-03">
-                        <li>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                    <filtros-pesquisa:filtro-rastreador/>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Formas de Pagamento 
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu pp-03">
-                        <li>
-                            <div class="row">   
-                                <div class="col-xs-12">
-                                    <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                    <filtros-pesquisa:filtro-formas-pag/>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div> <!-- Collapse dos filtros -->
-
+        
         <!-- Collapse do shopping cart -->
         <div class="collapse navbar-collapse" id="collapse-shopping-cart">
             <ul class="nav navbar-nav visible-xs">

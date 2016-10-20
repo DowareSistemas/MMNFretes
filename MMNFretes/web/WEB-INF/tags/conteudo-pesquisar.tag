@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-9 col-md-9 pull-right">
+<div class=" col-sm-9 col-md-9 pull-right">
     <div class="thumbnail">
         <div class="row">
             <div class="col-sm-3 col-md-2 visible-sm visible-md visible-lg">
