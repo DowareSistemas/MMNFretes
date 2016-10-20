@@ -59,6 +59,38 @@
                         </li> 
                     </ul>
                 </li>
+                <!-- Usuário DESLOGADO -->
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Entrar 
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu pp-03">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="">
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control" id="txEmail" name="email">
+                                        </div>
+                                        <div class="form-group" action="/mmnfretes/efetuaLogin">
+                                            <label for="pwd">Senha:</label>
+                                            <input type="password" class="form-control" id="txSenha" name="senha">
+                                        </div>
+                                        <button type="button" id="btnLogin" class="btn btn-primary center-block">Entrar</button><hr>
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-link btn-sm">Esqueceu sua senha?</button>
+                                        </div>
+                                    </form><hr>
+                                    <div class="text-center">
+                                        Novo aqui ? <a href=""><b class="text-uppercase">junte-se a nós</b></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li> 
+                    </ul>
+                </li>
                 <!-- Usuário LOGADO -->
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
