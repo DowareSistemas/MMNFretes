@@ -51,13 +51,13 @@ function getFiltroCarrocerias()
     var gradeBaixa = $('#ckGradeBaixa').is(':checked');
 
     if (bau)
-        retorno += "1";
+        retorno += "1,";
     if (sider)
-        retorno += ",2";
+        retorno += "2,";
     if (cacamba)
-        retorno += ",3";
+        retorno += "3,";
     if (gradeBaixa)
-        retorno += ",4";
+        retorno += "4";
 
     return retorno;
 }
@@ -82,25 +82,25 @@ function getFiltroCategorias()
     var VUC = $('#ckVUC').is(':checked');
 
     if (toco)
-        retorno += "1";
+        retorno += "1,";
     if (tres_quatro)
-        retorno += ",2";
+        retorno += "2,";
     if (VLC)
-        retorno += ",3";
+        retorno += "3,";
     if (VUC)
-        retorno += ",4";
+        retorno += "4,";
     if (truck)
-        retorno += ",5";
+        retorno += "5,";
     if (bitruck)
-        retorno += ",6";
+        retorno += "6,";
     if (rodotrem)
-        retorno += ",7";
+        retorno += "7,";
     if (bitrem)
-        retorno += ",8";
+        retorno += "8,";
     if (carretaLS)
-        retorno += ",9";
+        retorno += "9,";
     if (carreta)
-        retorno += ",10";
+        retorno += "10";
 
     return retorno;
 }

@@ -126,12 +126,38 @@ public class VeiculosController
     public @ResponseBody
     String getFotoPath(int veiculo_id, HttpSession httpSession)
     {
+        String retorno = "";
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        int tansp_id = new TransportadorasController().getByUsuario(usuario.getId()).getId();
-        String retorno = "/mmnfretes/upload/{transp_id}-{veic_id}.jpg";
-        retorno = retorno.replace("{transp_id}", tansp_id + "");
-        retorno = retorno.replace("{veic_id}", veiculo_id + "");
-        return retorno;
+        Veiculos veiculo = get(veiculo_id);
+        if (veiculo.getFoto() != null)
+        {
+            int tansp_id = new TransportadorasController().getByUsuario(usuario.getId()).getId();
+            retorno = "/mmnfretes/upload/{transp_id}-{veic_id}.jpg";
+            retorno = retorno.replace("{transp_id}", tansp_id + "");
+            retorno = retorno.replace("{veic_id}", veiculo_id + "");
+            return retorno;
+        }
+        return "not_localized";
+    }
+
+    private Veiculos get(int veiculo_id)
+    {
+        Session session = null;
+        try
+        {
+            session = ConfigureSession.getSession();
+            Veiculos v = session.onID(Veiculos.class, veiculo_id);
+            session.close();
+
+            return v;
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+                session.close();
+        }
+
+        return null;
     }
 
     @RequestMapping(value = "infoveiculo", produces = "application/json;charset=utf-8")
@@ -433,9 +459,9 @@ public class VeiculosController
             Transportadoras transportadora = t_controller.getByUsuario(((Usuarios) httpSession.getAttribute("usuarioLogado")).getId());
 
             String termoBusca = "where veiculos.transportadoras_id = " + transportadora.getId();
-            termoBusca += " AND veiculos.descricao LIKE '%" + nome + "%'";
+            termoBusca += " AND (veiculos.descricao LIKE '%" + nome + "%'";
             termoBusca += " or categorias_veiculos.descricao like '%" + nome + "%'";
-            termoBusca += " or carrocerias.descricao like '%" + nome + "%'";
+            termoBusca += " or carrocerias.descricao like '%" + nome + "%')";
 
             session = ConfigureSession.getSession();
 

@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class ResultadoPesquisa
 {
-
     private Veiculos veiculo;
     private List<Integer> av_positivas;
     private List<Integer> av_negativas;
