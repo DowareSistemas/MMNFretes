@@ -27,6 +27,7 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                     </a>
                 </li>
+                <!-- Usuário DESLOGADO -->
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Entrar 
@@ -58,9 +59,27 @@
                         </li> 
                     </ul>
                 </li>
+                <!-- Usuário LOGADO -->
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Nome do usuário
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu pp-03">
+                        <li>
+                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Perfil</h5></button>
+                        </li><br>
+                        <li>
+                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Pendentes</h5></button>
+                        </li><br>
+                        <li>
+                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Histórico</h5></button>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div> <!-- Collapse da navbar -->
-        
+
         <!-- Collapse do shopping cart -->
         <div class="collapse navbar-collapse" id="collapse-shopping-cart">
             <ul class="nav navbar-nav visible-xs">
