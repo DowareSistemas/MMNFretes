@@ -1,6 +1,6 @@
 <article>
-    <div class="col-md-12">
-        <div class="row">
+    <div class="row">
+        <div class="col-md-12 ">
             <div class="thumbnail">
                 <div class="row">
                     <div class="col-sm-3 col-md-2 visible-sm visible-md visible-lg">
