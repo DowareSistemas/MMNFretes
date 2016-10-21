@@ -38,18 +38,6 @@
 
                         <!-- Collapse da navbar -->
                         <div class="collapse navbar-collapse" id="bs-navbar-collapse">
-                            <!-- Formulário de pesquisa -->
-                            <form class="navbar-form form-group-sm navbar-left">
-                                <div class="form-group input-group">
-                                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem">
-                                </div>
-                                <div class="form-group input-group">
-                                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino">
-                                </div>
-                                <button type="button" class="btn btn-primary btn-sm" id="btnBuscarFretes">Buscar</button>
-                            </form>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown visible-sm visible-md visible-lg">
                                     <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-shopping-cart">
@@ -218,71 +206,69 @@
                         </div> <!-- Modal conteúdo (Desktop) -->
                     </div>
                 </div>
-                <section>
-                    <div class="alert alert-info fade in">
-                        <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
-                        Saiba mais informações<a href=""> clicando aqui!</a>
-                    </div>
-                </section>
+
             </header>
             <aside>
-                <!-- Filtro de pesquisa (Desktop) -->
-                <div class="col-sm-3 col-md-3 visible-sm visible-md visible-lg">
-                    <!-- Filtro de pesquisa: Veículos -->
+                <div class="aside-fixed">
                     <div class="row">
-                        <div class="thumbnail">
-                            <div class="veiculos">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
-                                    <span class="caret"></span>
-                                    Veículos 
-                                </button>
-                                <div class="collapse" id="veiculos">
+                        <!-- Form de pesquisa -->
+                        <div class="col-md-12">
+                            <form class="form-group form-pesquisa">
+                                <div class="form-group input-group">
+                                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem">
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-block" id="btnBuscarFretes">Buscar</button>
+                            </form>
+                        </div>
+                        <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
+                        <!-- Filtro de pesquisa: Veículos -->
+                        <div class="col-md-12">
+                            <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
+                                Veículos 
+                            </button><br>
+                            <div class="collapse" id="veiculos">
+                                <div class="thumbnail">
                                     <filtros-pesquisa:filtro-veiculos-pesados/>
                                     <filtros-pesquisa:filtro-veiculos-medios/>
                                     <filtros-pesquisa:filtro-veiculos-leves/>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Filtro de pesquisa: Carrocerias -->
-                    <div class="row">
-                        <div class="thumbnail">
-                            <div class="carrocerias">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
-                                    <span class="caret"></span>
-                                    Carrocerias 
-                                </button>
-                                <div class="collapse" id="Carrocerias">
+                        <!-- Filtro de pesquisa: Carrocerias -->
+                        <div class="col-md-12">
+                            <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
+                                Carrocerias 
+                            </button><br>
+                            <div class="collapse" id="Carrocerias">
+                                <div class="thumbnail">
                                     <filtros-pesquisa:filtro-carrocerias/>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Filtro de pesquisa: Rastreador -->
-                    <div class="row">
-                        <div class="thumbnail">
-                            <div class="rastreador">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
-                                    <span class="caret"></span>
-                                    Rastreador 
-                                </button>
-                                <div class="collapse" id="Rastreador">
+                        <!-- Filtro de pesquisa: Rastreador -->
+                        <div class="col-md-12">
+                            <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
+                                Rastreador 
+                            </button><br>
+                            <div class="collapse" id="Rastreador">
+                                <div class="thumbnail">
                                     <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
                                     <filtros-pesquisa:filtro-rastreador/>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Filtro de pesquisa: Formas de Pagamento -->
-                    <div class="row">
-                        <div class="thumbnail">
-                            <div class="formas-pagamento">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
-                                    <span class="caret"></span>
-                                    Formas de Pagamento 
-                                </button>
-                                <div class="collapse" id="Formas-de-Pagamento">
+                        <!-- Filtro de pesquisa: Formas de Pagamento -->
+                        <div class="col-md-12">
+                            <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
+                                Formas de Pagamento 
+                            </button><br>
+                            <div class="collapse" id="Formas-de-Pagamento">
+                                <div class="thumbnail">
                                     <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
                                     <filtros-pesquisa:filtro-formas-pag/>
                                 </div>
@@ -292,17 +278,26 @@
                 </div>
             </aside>
             <main>
-                <!-- Conteúdo de pesquisa -->
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
-                <my-tags:conteudo-pesquisar/>
+                <div class="aside-fixed-main">
+                    <section>
+                        <div class="alert alert-info fade in">
+                            <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
+                            Saiba mais informações<a href=""> clicando aqui!</a>
+                        </div>
+                    </section>
+                    <!-- Conteúdo de pesquisa -->
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                    <my-tags:conteudo-pesquisar/>
+                </div>
             </main>
             <footer>
 
