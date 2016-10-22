@@ -1,6 +1,6 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags" %>
 
-<div class="col-sm-9" id="perfil">
+<div class="col-md-12" id="perfil">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="text-center">Perfil</h1>

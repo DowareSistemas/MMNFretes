@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
-<%@taglib tagdir="/WEB-INF/tags/pesquisar/" prefix="pesquisar" %>
+<%@taglib tagdir="/WEB-INF/tags/pesquisar/" prefix="pesquisarfretes" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -48,9 +48,9 @@
                                 </button><br>
                                 <div class="collapse" id="veiculos">
                                     <div class="thumbnail">
-                                        <pesquisar:filtro-veiculos-pesados/>
-                                        <pesquisar:filtro-veiculos-medios/>
-                                        <pesquisar:filtro-veiculos-leves/>
+                                        <pesquisarfretes:filtro-veiculos-pesados/>
+                                        <pesquisarfretes:filtro-veiculos-medios/>
+                                        <pesquisarfretes:filtro-veiculos-leves/>
                                     </div>
                                 </div>
                                 <!-- Filtro de pesquisa: Carrocerias -->
@@ -59,7 +59,7 @@
                                 </button><br>
                                 <div class="collapse" id="Carrocerias">
                                     <div class="thumbnail">
-                                        <pesquisar:filtro-carrocerias/>
+                                        <pesquisarfretes:filtro-carrocerias/>
                                     </div>
                                 </div>
                                 <!-- Filtro de pesquisa: Rastreador -->
@@ -69,7 +69,7 @@
                                 <div class="collapse" id="Rastreador">
                                     <div class="thumbnail">
                                         <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                        <pesquisar:filtro-rastreador/>
+                                        <pesquisarfretes:filtro-rastreador/>
                                     </div>
                                 </div>
                                 <!-- Filtro de pesquisa: Formas de Pagamento -->
@@ -79,7 +79,7 @@
                                 <div class="collapse" id="Formas-de-Pagamento">
                                     <div class="thumbnail">
                                         <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                        <pesquisar:filtro-formas-pag/>
+                                        <pesquisarfretes:filtro-formas-pag/>
                                     </div>
                                 </div>
                             </div>
@@ -97,14 +97,17 @@
                         </div>
                     </section>
                     <!-- Conteúdo de pesquisa -->
-                    <pesquisar:conteudo-pesquisar/>
-                    <pesquisar:conteudo-pesquisar/>
-                    <pesquisar:conteudo-pesquisar/>
-                    <pesquisar:conteudo-pesquisar/>
-                    <pesquisar:conteudo-pesquisar/>
-                    <pesquisar:conteudo-pesquisar/>
-                    <pesquisar:conteudo-pesquisar/>
-                    
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
+                    <pesquisarfretes:conteudo-pesquisar/>
                 </div>
             </main>
             <footer>

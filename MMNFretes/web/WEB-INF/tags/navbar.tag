@@ -21,6 +21,10 @@
 
             <!-- Collapse da navbar -->
             <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="">Link</a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown visible-sm visible-md visible-lg">
                         <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-shopping-cart">
