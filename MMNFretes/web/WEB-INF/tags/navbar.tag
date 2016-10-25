@@ -12,9 +12,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <button type="button" class="navbar-toggle collapsed pp-01"  data-toggle="collapse" data-target="#collapse-filter" aria-expanded="false">
-                <span class="glyphicon glyphicon-filter"></span>
-            </button>
             <button type="button" class="navbar-toggle collapsed pp-01"  data-toggle="collapse" data-target="#collapse-shopping-cart" aria-expanded="false">
                 7 <!-- Quantidade de cotações -->
                 <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -23,18 +20,6 @@
 
         <!-- Collapse da navbar -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse">
-            <!-- Formulário de pesquisa -->
-            <form class="navbar-form form-group-sm navbar-left">
-                <div class="form-group input-group">
-                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                    <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem">
-                </div>
-                <div class="form-group input-group">
-                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                    <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino">
-                </div>
-                <button type="button" class="btn btn-primary btn-sm" id="btnBuscarFretes">Buscar</button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown visible-sm visible-md visible-lg">
                     <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-shopping-cart">
@@ -42,6 +27,7 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                     </a>
                 </li>
+                <!-- Usuário DESLOGADO -->
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Entrar 
@@ -73,41 +59,48 @@
                         </li> 
                     </ul>
                 </li>
-            </ul>
-        </div> <!-- Collapse da navbar -->
-
-        <!-- Collapse dos filtros -->
-        <div class="collapse navbar-collapse" id="collapse-filter">
-            <ul class="nav navbar-nav visible-xs">
-
+                <!-- Usuário DESLOGADO -->
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Veículos 
+                        Entrar 
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu pp-03">
                         <li>
                             <div class="row">
-                                <div class="col-xs-4">
-                               
-                                </div>
-                                <div class="col-xs-4">
-                                    <!-- Filtro de pesquisa: Veículos Médios -->
-                                </div>
-                                <div class="col-xs-4">
-                                    <!-- Filtro de pesquisa: Veículos Leves -->
+                                <div class="col-md-12">
+                                    <form action="">
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control" id="txEmail" name="email">
+                                        </div>
+                                        <div class="form-group" action="/mmnfretes/efetuaLogin">
+                                            <label for="pwd">Senha:</label>
+                                            <input type="password" class="form-control" id="txSenha" name="senha">
+                                        </div>
+                                        <button type="button" id="btnLogin" class="btn btn-primary center-block">Entrar</button><hr>
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-link btn-sm">Esqueceu sua senha?</button>
+                                        </div>
+                                    </form><hr>
+                                    <div class="text-center">
+                                        Novo aqui ? <a href=""><b class="text-uppercase">junte-se a nós</b></a>
+                                    </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> 
                     </ul>
                 </li>
+                <!-- Usuário LOGADO -->
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Carrocerias 
+                        Nome do usuário
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu pp-03">
                         <li>
+                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Perfil</h5></button>
+                        </li><br>
                             <div class="row">
                                 <div class="col-xs-12">
                                 </div>
@@ -122,31 +115,14 @@
                     </a>
                     <ul class="dropdown-menu pp-03">
                         <li>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Formas de Pagamento 
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu pp-03">
                         <li>
-                            <div class="row">   
-                                <div class="col-xs-12">
-                                    <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                </div>
-                            </div>
+                            <button type="button" class="btn btn-primary btn-block"><h5 class="text-uppercase">Pendentes</h5></button>
+                        </li><br>
                         </li>
                     </ul>
                 </li>
             </ul>
-        </div> <!-- Collapse dos filtros -->
+        </div> <!-- Collapse da navbar -->
 
         <!-- Collapse do shopping cart -->
         <div class="collapse navbar-collapse" id="collapse-shopping-cart">

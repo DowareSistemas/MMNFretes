@@ -5,8 +5,6 @@
  */
 package entidadesTemporarias;
 
-import entidades.Avaliacoes;
-import entidades.Transportadoras;
 import entidades.Veiculos;
 import java.util.ArrayList;
 import java.util.List;

@@ -37,12 +37,12 @@ public class PesquisaFretesController
 
     @RequestMapping("/pesquisafrete")
     public ModelAndView pesquisarFretes(
-            @RequestParam(value = "categorias") String filtro_cat,
-            @RequestParam(value = "carrocerias") String filtro_carroc,
-            @RequestParam(value = "rastreador") boolean rastreador,
-            @RequestParam(value = "distancia") double distancia)
+            @RequestParam(value = "categorias", required = false) String filtro_cat,
+            @RequestParam(value = "carrocerias", required = false) String filtro_carroc,
+            @RequestParam(value = "rastreador", required = false) boolean rastreador,
+            @RequestParam(value = "distancia", required = false) double distancia)
     {
-        List<ResultadoPesquisa> lista = listVeiculos(filtro_cat, filtro_carroc, rastreador, distancia);
+        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia);
 
         ModelAndView mav = new ModelAndView("pesquisarfretes");
         mav.addObject("resultados", lista);
@@ -83,7 +83,7 @@ public class PesquisaFretesController
         return new ArrayList<Historico>();
     }
 
-    private List<ResultadoPesquisa> listVeiculos(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
+    private List<ResultadoPesquisa> pesquisar(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
     {
         List<ResultadoPesquisa> resultados = new ArrayList<ResultadoPesquisa>();
 
@@ -109,10 +109,9 @@ public class PesquisaFretesController
             joinVeiculos.execute(session);
             session.close();
 
-            List<Veiculos> lista = joinVeiculos.getList(veiculos);
-            List<ResultadoPesquisa> resultadoPesquisa = new ArrayList<ResultadoPesquisa>();
+            List<Veiculos> listaVeiculos = joinVeiculos.getList(veiculos);
 
-            for (Veiculos veiculo : lista)
+            for (Veiculos veiculo : listaVeiculos)
             {
                 carroceria = joinVeiculos.getEntity(Carrocerias.class);
                 categoria_veiculo = joinVeiculos.getEntity(Categorias_veiculos.class);
