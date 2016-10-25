@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/07/2016, 22:03:40
+    Author     : emers
+*/
+
+
+/* Mascaras de Inputs */
+.mask-telefone{}
+.mask-celular{}
+.mask-cep{}
+
+.tab-veiculos-col-veiculo
+{
+    width: 250px;
+}
+
+.campo-btn-busca
+{
+    height: 35px;
+}
+
+/* PP Personalização Pessoal */
+
+.pp-01 {
+    height: 35px
+}
+@media (min-width: 768px) {
+    .pp-02 {
+        position: absolute;
+        margin-right: 16px;
+    }
+}
+.pp-03 {
+    padding: 15px;
+    min-width: 250px;
+}
+.pp-04 {
+    font-size: 24px;
+    margin: 0px;
+}
+/* CONTEÚDO EM TESTE 
+================================================================================ */
+
+
+/* CONTEÚDO EM TESTE 
+================================================================================ */
+
+/* CSS geral do site */
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.table-overflow {
+    max-height:310px;
+    overflow-y:auto;
+}
+
+.material-switch > input[type="checkbox"] {
+    display: none;   
+}
+
+.material-switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative; 
+    width: 40px;  
+}
+
+.material-switch > label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+}
+.material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 20px;
+}
+#corpo-form-transportadora
+{
+    margin-top: -30px;
+}
+#transportador
+{
+    margin-right: -14px;
+}
+#usuario
+{
+    margin-right: -15px;
+}
+
+#img-preview
+{
+    max-width: 250px;
+    max-height: 250px;
+    min-width: 250px;
+    min-height: 250px;
+}
+
+.modal-open .modal .modal-centralizado {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    overflow-y: scroll;
+}
+/*Aside fixa*/
+@media (min-width: 768px) {
+    .aside-fixed {
+        position: fixed;
+        width: 299px;
+        top: 71px;
+        bottom: 21px;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f8f8f8;
+        border: 1px solid #e7e7e7;
+        border-radius: 5px;
+    }
+    .aside-fixed-main {
+        margin-left: 320px;
+    }
+    .panel-aside {
+        border-radius: 5px;
+        padding: 15px;
+        border: 1px solid #337ab7;
+    }
+}
