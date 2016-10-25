@@ -29,8 +29,11 @@ and open the template in the editor.
 .pp-01 {
     height: 35px
 }
-.pp-02 {
-    /* Tag não utilizada, aberta a modificações */
+@media (min-width: 768px) {
+    .pp-02 {
+        position: absolute;
+        margin-right: 16px;
+    }
 }
 .pp-03 {
     padding: 15px;
@@ -42,6 +45,7 @@ and open the template in the editor.
 }
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
+
 
 /* CONTEÚDO EM TESTE 
 ================================================================================ */

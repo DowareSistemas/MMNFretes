@@ -1,6 +1,3 @@
-<%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
-<%@taglib tagdir="/WEB-INF/tags/filtros-pesquisa/" prefix="filtros-pesquisa" %>
-
 <!--Navbar fixa no topo-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">

@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/areausuario/" prefix="areausuario"%>
@@ -32,7 +31,6 @@
             </aside>
             <main>
                 <div class="aside-fixed-main">
-                    <div class="row">
                         <areausuario:perfil-areausuario/>
                         <%--<areausuario:endereços-areausuario/>--%>
                         <areausuario:historico-areausuario/>
@@ -62,7 +60,6 @@
                                              mensagem="As senhas não coincidem!" />
 
                         <my-tags:detalhes_cotacao_usuario/>
-                    </div>
                 </div>
             </main>
                         <%--
@@ -96,6 +93,7 @@
                 <my-tags:detalhes_cotacao_usuario/>
             </div>
                         --%>
+        </div>
             <!-- Scripts da página -->
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>
