@@ -42,29 +42,7 @@ and open the template in the editor.
 }
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
-/*Aside fixa*/
-@media (min-width: 768px) {
-    .aside-fixed {
-        position: fixed;
-        width: 299px;
-        top: 71px;
-        bottom: 21px;
-        padding: 20px;
-        overflow-x: hidden;
-        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        background-color: #f8f8f8;
-        border: 1px solid #e7e7e7;
-        border-radius: 5px;
-    }
-    .aside-fixed-main {
-        margin-left: 320px;
-    }
-    .panel-pesquisa {
-        border-radius: 5px;
-        padding: 15px;
-        border: 1px solid #337ab7;
-    }
-}
+
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
 
@@ -147,4 +125,27 @@ body {
     padding-left: 0px !important;
     padding-right: 0px !important;
     overflow-y: scroll;
+}
+/*Aside fixa*/
+@media (min-width: 768px) {
+    .aside-fixed {
+        position: fixed;
+        width: 299px;
+        top: 71px;
+        bottom: 21px;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f8f8f8;
+        border: 1px solid #e7e7e7;
+        border-radius: 5px;
+    }
+    .aside-fixed-main {
+        margin-left: 320px;
+    }
+    .panel-aside {
+        border-radius: 5px;
+        padding: 15px;
+        border: 1px solid #337ab7;
+    }
 }

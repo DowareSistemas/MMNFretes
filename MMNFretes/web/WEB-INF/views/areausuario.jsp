@@ -23,6 +23,7 @@
                     <div class="row">
                         <div class="col-md-12">
                                 <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Perfil</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Endereços</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
                         </div>
@@ -32,9 +33,10 @@
             <main>
                 <div class="aside-fixed-main">
                     <div class="row">
-                        <my-tags:perfil-areausuario/>
-                        <my-tags:historico-areausuario/>
-                        <my-tags:pendentes-areausuario/>
+                        <areausuario:perfil-areausuario/>
+                        <%--<areausuario:endereços-areausuario/>--%>
+                        <areausuario:historico-areausuario/>
+                        <areausuario:pendentes-areausuario/>
                         
                         <my-tags:mensagem-input id="mensagem-input"
                                                 id_btnConfirmar="btnConfirmarSenha"
@@ -63,6 +65,7 @@
                     </div>
                 </div>
             </main>
+                        <%--
             <div class="row">
                 <my-tags:perfil-areausuario/>
                 <my-tags:historico-areausuario/>
@@ -92,6 +95,7 @@
 
                 <my-tags:detalhes_cotacao_usuario/>
             </div>
+                        --%>
             <!-- Scripts da página -->
             <script src="resources/js/jquery.js"></script>
             <script src="resources/js/jquery-form.js"></script>

@@ -27,7 +27,7 @@
                     <div class="row">
                         <!-- Form de pesquisa -->
                         <div class="col-md-12">
-                            <form class="form-group panel-pesquisa">
+                            <form class="form-group panel-aside">
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                                     <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem">
@@ -40,7 +40,7 @@
                             </form>
                         </div>
                         <div class="col-md-12">
-                            <div class="panel-pesquisa">
+                            <div class="panel-aside">
                                 <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
                                 <!-- Filtro de pesquisa: Veículos -->
                                 <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
