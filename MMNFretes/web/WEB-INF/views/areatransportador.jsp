@@ -16,7 +16,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <my-tags:navbar-login/>
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 panel">
