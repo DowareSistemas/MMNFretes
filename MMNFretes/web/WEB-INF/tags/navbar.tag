@@ -18,11 +18,10 @@
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </button>
             </div>
-
             <!-- Collapse da navbar -->
             <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
                     <li><a href="">Link</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -65,22 +64,11 @@
                         </ul>
                     </li>
                     <!-- Usuário LOGADO -->
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Nome do usuário
-                            <span class="caret"></span>
+                    <li class="active">
+                        <a href="http://localhost:8080/mmnfretes/areausuario">
+                            Perfil
+                            <span class="sr-only">(current)</span>
                         </a>
-                        <ul class="dropdown-menu pp-03">
-                            <li>
-                                <button type="button" class="btn btn-primary btn-block"><label class="text-uppercase">Perfil</label></button>
-                            </li><br>
-                            <li>
-                                <button type="button" class="btn btn-primary btn-block"><label class="text-uppercase">Pendentes</label></button>
-                            </li><br>
-                            <li>
-                                <button type="button" class="btn btn-primary btn-block"><label class="text-uppercase">Histórico</label></button>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </div> <!-- Collapse da navbar -->
