@@ -6,15 +6,8 @@
 package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
-import br.com.persistor.abstractClasses.Entity;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
-import br.com.persistor.annotations.OneToOne;
-import br.com.persistor.annotations.OneToMany;
-import br.com.persistor.enums.JOIN_TYPE;
-import br.com.persistor.enums.LOAD;
-import java.util.Date;
-import java.io.InputStream;
 
 /**
  *

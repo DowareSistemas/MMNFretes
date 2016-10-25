@@ -20,8 +20,10 @@ import enums.CATEGORIA_VEICULO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import javax.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.ConfigureSession;
 
@@ -34,22 +36,17 @@ public class PesquisaFretesController
 {
 
     @RequestMapping("/pesquisafrete")
-    public ModelAndView pesquisarFretes(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
+    public ModelAndView pesquisarFretes(
+            @RequestParam(value = "categorias", required = false) String filtro_cat,
+            @RequestParam(value = "carrocerias", required = false) String filtro_carroc,
+            @RequestParam(value = "rastreador", required = false) boolean rastreador,
+            @RequestParam(value = "distancia", required = false) double distancia)
     {
-        Session session = null;
-        try
-        {
-            List<ResultadoPesquisa> lista = listVeiculos(filtro_cat, filtro_carroc, rastreador, distancia);
+        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia);
 
-            ModelAndView mav = new ModelAndView("pesquisarfretes");
-            mav.addObject("resultados", lista);
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-                session.close();
-        }
-        return null;
+        ModelAndView mav = new ModelAndView("pesquisarfretes");
+        mav.addObject("resultados", lista);
+        return mav;
     }
 
     private List<Historico> listHistorico(int transportadoras_id)
@@ -72,8 +69,7 @@ public class PesquisaFretesController
 
             for (Historico h : lista)
             {
-                avaliacoes = new Avaliacoes();
-                join.getResultObj(avaliacoes);
+                avaliacoes = join.getEntity(Avaliacoes.class);
                 h.setAvaliacoes(avaliacoes);
             }
 
@@ -87,54 +83,49 @@ public class PesquisaFretesController
         return new ArrayList<Historico>();
     }
 
-    private List<ResultadoPesquisa> listVeiculos(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
+    private List<ResultadoPesquisa> pesquisar(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
     {
         List<ResultadoPesquisa> resultados = new ArrayList<ResultadoPesquisa>();
-
-        filtro_cat = filtro_cat.substring(0, filtro_carroc.length() - 1);
-        filtro_carroc = filtro_carroc.substring(0, filtro_carroc.length() - 1);
 
         String finalCondition = " where categorias_veiculos.id in (" + filtro_cat + ") ";
         finalCondition += "and carrocerias.id in (" + filtro_carroc + ") ";
         finalCondition += "and veiculos.rastreador = " + (rastreador == true ? "1" : "0");
 
-        Transportadoras transportadoras = new Transportadoras();
+        Transportadoras transportadora = new Transportadoras();
         Veiculos veiculos = new Veiculos();
-        Carrocerias carrocerias = new Carrocerias();
-        Categorias_veiculos categorias_veiculos = new Categorias_veiculos();
+        Carrocerias carroceria = new Carrocerias();
+        Categorias_veiculos categoria_veiculo = new Categorias_veiculos();
 
         Session session = null;
         try
         {
             Join joinVeiculos = new Join(veiculos);
-            joinVeiculos.addJoin(JOIN_TYPE.INNER, transportadoras, "veiculos.transportadoras_id = transportadoras.id");
-            joinVeiculos.addJoin(JOIN_TYPE.INNER, carrocerias, "veiculos.carrocerias_id	 = carrocerias.id");
-            joinVeiculos.addJoin(JOIN_TYPE.INNER, categorias_veiculos, "veiculos.categorias_veiculos_id = categorias_veiculos.id");
+            joinVeiculos.addJoin(JOIN_TYPE.INNER, transportadora, "veiculos.transportadoras_id = transportadoras.id");
+            joinVeiculos.addJoin(JOIN_TYPE.INNER, carroceria, "veiculos.carrocerias_id	 = carrocerias.id");
+            joinVeiculos.addJoin(JOIN_TYPE.INNER, categoria_veiculo, "veiculos.categorias_veiculos_id = categorias_veiculos.id");
             joinVeiculos.addFinalCondition(finalCondition);
 
             session = ConfigureSession.getSession();
             joinVeiculos.execute(session);
             session.close();
 
-            List<Veiculos> lista = joinVeiculos.getList(veiculos);
-            List<ResultadoPesquisa> resultadoPesquisa = new ArrayList<ResultadoPesquisa>();
+            List<Veiculos> listaVeiculos = joinVeiculos.getList(veiculos);
 
-            for (Veiculos veiculo : lista)
+            for (Veiculos veiculo : listaVeiculos)
             {
-                transportadoras = new Transportadoras();
-                carrocerias = new Carrocerias();
-                categorias_veiculos = new Categorias_veiculos();
+                carroceria = joinVeiculos.getEntity(Carrocerias.class);
+                categoria_veiculo = joinVeiculos.getEntity(Categorias_veiculos.class);
+                transportadora = joinVeiculos.getEntity(Transportadoras.class);
 
-                joinVeiculos.getResultObj(carrocerias);
-                joinVeiculos.getResultObj(categorias_veiculos);
-                joinVeiculos.getResultObj(transportadoras);
+                veiculo.setCarrocerias(carroceria);
+                veiculo.setCategorias_veiculos(categoria_veiculo);
+                veiculo.setTransportadoras(transportadora);
 
-                veiculo.setTransportadoras(transportadoras);
                 double preco_frete = (veiculo.getPreco_frete() * distancia);
-
                 int total_avaliacoes = 0;
                 int total_estrelas = 0;
-                List<Historico> historicos = listHistorico(transportadoras.getId());
+                List<Historico> historicos = listHistorico(transportadora.getId());
+
                 for (Historico historico : historicos)
                 {
                     Avaliacoes a = historico.getAvaliacoes();
@@ -142,7 +133,9 @@ public class PesquisaFretesController
                     total_avaliacoes++;
                 }
 
-                int estrelas = (total_estrelas / total_avaliacoes);
+                int estrelas = 0;
+                if (total_estrelas > 0 && total_avaliacoes > 0)
+                    estrelas = (total_estrelas / total_avaliacoes);
 
                 ResultadoPesquisa resultado = new ResultadoPesquisa(veiculo, estrelas, preco_frete);
                 resultados.add(resultado);

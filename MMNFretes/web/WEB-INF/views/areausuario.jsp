@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
-<%@taglib tagdir="/WEB-INF/tags/areausuario/" prefix="areausuario"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -13,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <my-tags:navbar/>
+        <my-tags:navbar-login/>
         <div class="container">
             <header>
                 <my-tags:navbar/>
@@ -64,6 +65,19 @@
             </main>
                         <%--
             <div class="row">
+                <div class="col-sm-3 panel">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="nav-item">
+                            <a class="nav-link" id="tela-perfil" >Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tela-historico" >Histórico</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tela-pendentes">Pendentes</a>
+                        </li>
+                    </ul>
+                </div>
                 <my-tags:perfil-areausuario/>
                 <my-tags:historico-areausuario/>
                 <my-tags:pendentes-areausuario/>

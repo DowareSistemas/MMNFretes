@@ -76,6 +76,11 @@ public class Interceptador extends HandlerInterceptorAdapter
         {
             return true;
         }
+        
+        if(url.contains("pesquisafrete"))
+        {
+            return true;
+        }
         return false;
     }
 }

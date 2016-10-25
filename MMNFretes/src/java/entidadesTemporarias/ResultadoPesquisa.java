@@ -5,8 +5,6 @@
  */
 package entidadesTemporarias;
 
-import entidades.Avaliacoes;
-import entidades.Transportadoras;
 import entidades.Veiculos;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,6 @@ import java.util.List;
  */
 public class ResultadoPesquisa
 {
-
     private Veiculos veiculo;
     private List<Integer> av_positivas;
     private List<Integer> av_negativas;

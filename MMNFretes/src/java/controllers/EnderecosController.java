@@ -30,27 +30,19 @@ import sessionProvider.ConfigureSession;
 @Controller
 public class EnderecosController
 {
+
     @RequestMapping(value = "/adicionaEndereco")
     public String adicionar(Model model, Enderecos endereco, HttpSession httpSession)
     {
-        Session session = null;
-        try
-        {
-            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            endereco.setUsuarios_id(usuario.getId());
-            endereco.setInativo(false);
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        endereco.setUsuarios_id(usuario.getId());
+        endereco.setInativo(false);
 
-            session = ConfigureSession.getSession();
-            session.save(endereco);
-            session.commit();
+        Session session = ConfigureSession.getSession();
+        session.save(endereco);
+        session.commit();
+        session.close();
 
-            session.close();
-        } catch (Exception ex)
-        {
-            if (session != null)
-                session.close();
-            return "erro";
-        }
         return "redirect:listaEnderecos";
     }
 
@@ -58,106 +50,64 @@ public class EnderecosController
     public @ResponseBody
     String carregaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
-        Session session = null;
-        try
-        {
-            Enderecos endereco = new Enderecos();
+        Enderecos endereco = new Enderecos();
 
-            session = ConfigureSession.getSession();
-            session.onID(endereco, endereco_id);
-            session.close();
+        Session session = ConfigureSession.getSession();
+        session.onID(endereco, endereco_id);
+        session.close();
 
-            Gson gson = new Gson();
-            return gson.toJson(endereco);
-
-        } catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
-            return "erro";
-        }
+        Gson gson = new Gson();
+        return gson.toJson(endereco);
     }
 
     @RequestMapping("/listaEnderecos")
     public ModelAndView listaEnderecos(HttpSession httpSession)
     {
-        Session session = null;
-        try
-        {
-            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            Enderecos endereco = new Enderecos();
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Enderecos endereco = new Enderecos();
 
-            session = ConfigureSession.getSession();
-            session.createCriteria(endereco, RESULT_TYPE.MULTIPLE)
-                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
-                    .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", "false"))
-                    .execute();
+        Session session = ConfigureSession.getSession();
+        session.createCriteria(endereco, RESULT_TYPE.MULTIPLE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
+                .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", 0))
+                .execute();
+        session.close();
 
-            List<Enderecos> listaEnderecos = session.getList(endereco);
+        List<Enderecos> listaEnderecos = session.getList(endereco);
 
-            ModelAndView modelAndView = new ModelAndView("listaenderecos");
-            modelAndView.addObject("listaenderecos", listaEnderecos);
+        ModelAndView modelAndView = new ModelAndView("listaenderecos");
+        modelAndView.addObject("listaenderecos", listaEnderecos);
 
-            session.close();
-
-            return modelAndView;
-
-        } catch (Exception ex)
-        {
-            if (session != null)
-                session.close();
-
-            return new ModelAndView("erro");
-        }
+        return modelAndView;
     }
 
     @RequestMapping("/alteraEndereco")
     public String alteraEndereco(@PathParam(value = "endereco_id") int endereco_id, Enderecos endereco, HttpSession httpSession)
     {
-        Session session = null;
-        try
-        {
-            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            endereco.setId(endereco_id);
-            endereco.setUsuarios_id(usuario.getId());
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        endereco.setId(endereco_id);
+        endereco.setUsuarios_id(usuario.getId());
 
-            session = ConfigureSession.getSession();
-            session.update(endereco);
-            session.commit();
-            session.close();
+        Session session = ConfigureSession.getSession();
+        session.update(endereco);
+        session.commit();
+        session.close();
 
-            return "redirect:listaEnderecos";
-        } catch (Exception ex)
-        {
-            if (session != null)
-                session.close();
-            return "erro";
-        }
+        return "redirect:listaEnderecos";
     }
 
     @RequestMapping(value = "/inativaEndereco", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
-        Session session = null;
-        try
-        {
-            session = ConfigureSession.getSession();
-            Enderecos endereco = (Enderecos) session.onID(Enderecos.class, endereco_id);
-            endereco.setInativo(true);
+        Session session = ConfigureSession.getSession();
+        Enderecos endereco = session.onID(Enderecos.class, endereco_id);
+        endereco.setInativo(true);
 
-            session.delete(endereco);
-            session.commit();
-            session.close();
+        session.update(endereco);
+        session.commit();
+        session.close();
 
-            return "Endereço inativado!";
-        } catch (Exception ex)
-        {
-            if (session != null)
-                session.close();
-            return " ";
-        }
+        return "Endereço inativado!";
     }
 }

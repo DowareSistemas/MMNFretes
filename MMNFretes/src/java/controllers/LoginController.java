@@ -36,42 +36,29 @@ public class LoginController
     public @ResponseBody
     String efetualogin(Usuarios usuario, HttpSession httpSession)
     {
-        Session session = null;
-        try
-        {
-            session = ConfigureSession.getSession();
+        Session session = ConfigureSession.getSession();
 
-            Criteria c = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
-            c.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));
-            c.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
-            c.execute();
+        Criteria c = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
+        c.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));
+        c.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
+        c.execute();
 
-            if (usuario.getId() != 0)
-            {
-                if (Util.isUsuario(usuario))
-                {
-                    session.close();
-                    httpSession.setAttribute("usuarioLogado", usuario);
-                    return "areausuario";
-                }
-                else
-                {
-                    session.close();
-                    httpSession.setAttribute("usuarioLogado", usuario);
-                    return "areatransportador";
-                }
-            }
-            session.close();
-            return "incorreto";
-        }
-        catch (Exception ex)
+        if (usuario.getId() != 0)
         {
-            if (session != null)
+            if (Util.isUsuario(usuario))
             {
                 session.close();
+                httpSession.setAttribute("usuarioLogado", usuario);
+                return "areausuario";
             }
-
-            return "erro";
+            else
+            {
+                session.close();
+                httpSession.setAttribute("usuarioLogado", usuario);
+                return "areatransportador";
+            }
         }
+        session.close();
+        return "incorreto";
     }
 }
