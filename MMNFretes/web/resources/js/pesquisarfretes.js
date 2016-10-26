@@ -1,3 +1,8 @@
+$(document).ready(function ()
+{
+    
+})
+
 $('#btnBuscarFretes').click(function ()
 {
     var directionsService = new google.maps.DirectionsService();
