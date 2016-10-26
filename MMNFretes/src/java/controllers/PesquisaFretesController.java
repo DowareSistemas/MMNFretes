@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import br.com.persistor.enums.FILTER_TYPE;
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
@@ -16,11 +15,8 @@ import entidades.Historico;
 import entidades.Transportadoras;
 import entidades.Veiculos;
 import entidadesTemporarias.ResultadoPesquisa;
-import enums.CATEGORIA_VEICULO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
-import javax.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
