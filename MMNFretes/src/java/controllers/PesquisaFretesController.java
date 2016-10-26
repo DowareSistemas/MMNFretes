@@ -54,7 +54,7 @@ public class PesquisaFretesController
         Historico historico = new Historico();
         Avaliacoes avaliacoes = new Avaliacoes();
 
-        Session session = null;
+       Session session = null;
         try
         {
             Join join = new Join(historico);
