@@ -22,7 +22,7 @@ $('#btnLogin').click(function ()
     $.ajax
             ({
                 url: "/mmnfretes/efetualogin?email=" + email + "&senha=" + senha,
-                contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+                contentType: "application/x-www-form-urlencoded;charset=UTF-8",
                 success: function (result)
                 {
                     if (result === 'incorreto')

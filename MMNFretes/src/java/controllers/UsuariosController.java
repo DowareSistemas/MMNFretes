@@ -83,7 +83,7 @@ public class UsuariosController
         return false;
     }
 
-    @RequestMapping("/alteraInfoUsuario")
+    @RequestMapping(value = "/alteraInfoUsuario")
     public @ResponseBody
     String alteraInfoUsuario(Usuarios usuario, HttpSession httpSession)
     {

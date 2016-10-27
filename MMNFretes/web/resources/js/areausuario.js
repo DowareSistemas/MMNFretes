@@ -30,14 +30,14 @@ $(document).ready(function ()
 
 $('#cbGrupos').change(function ()
 {
-    $('#btnEditar-grupo').fadeIn(200); 
+    $('#btnEditar-grupo').fadeIn(200);
 });
 
 $('#btnEditar-grupo').click(function ()
 {
     $('#editar-grupo').modal('toggle');
     $('#editar-grupo').modal('show');
-    
+
     $('#txNomeGrupo').val($('#cbGrupos').val());
 });
 
@@ -57,6 +57,7 @@ function carregaInfoUsuario()
         url: "/mmnfretes/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
+        contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
         success: function (usuario)
         {
             $('#txNome-usuario').val(usuario.nome);
@@ -73,6 +74,7 @@ function carregaEnderecos()
 {
     $.ajax({
         url: "/mmnfretes/listaEnderecos",
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         success: function (data)
         {
             $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
@@ -96,6 +98,7 @@ $('#btnConfirmaExclusaoEndereco').click(function ()
 
     $.ajax({
         url: "/mmnfretes/inativaEndereco?endereco_id=" + self.val(),
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         dataType: 'text',
         success: function (mensagem)
         {
@@ -112,6 +115,7 @@ function carregaEnderecoEdicao(endereco_id)
 {
     $.ajax({
         url: "/mmnfretes/carregaEndereco?endereco_id=" + endereco_id,
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         dataType: 'json',
         success: function (endereco)
         {
@@ -147,24 +151,29 @@ $('#btnConfirmarSenha').click(function ()
     var email = $('#txEmail-usuario').val();
     var telefone1 = $('#txTelefone1').val();
     var telefone2 = $('#txTelefone2').val();
-    
+
     if (senha === senhaConfirmada)
     {
+        var url = "/mmnfretes/alteraInfoUsuario?senha=" + senha +
+                "&nome=" + nome +
+                "&email=" + email +
+                "&telefone1=" + telefone1 +
+                "&telefone2=" + telefone2;
+        url = encodeURI(url);
+
         $.ajax
-        ({
-                    url: "/mmnfretes/alteraInfoUsuario?senha="      + senha +
-                                                      "&nome="      + nome  +
-                                                      "&email="     + email + 
-                                                      "&telefone1=" + telefone1 + 
-                                                      "&telefone2=" + telefone2,
-            success: function ()
-            {
-                carregaInfoUsuario();
-                hab_desab_formInfo(true);
-                $('#btnAlterar-info').fadeIn();
-                $('#btnSalvar-info').hide();
-            }
-        });
+                ({
+                    url: url,
+                    dataType: 'json',
+                    success: function ()
+                    {
+                        hab_desab_formInfo(true);
+                        carregaInfoUsuario();
+                        $('#btnAlterar-info').fadeIn();
+                        $('#btnSalvar-info').hide();
+                    }
+                });
+
     } else
     {
         $('#senhaIncorreta').modal('toggle');
@@ -174,8 +183,8 @@ $('#btnConfirmarSenha').click(function ()
 
 $('#btnSenhaIncorreta').click(function ()
 {
-        $('#mensagem-input').modal('toggle');
-        $('#mensagem-input').modal('show');
+    $('#mensagem-input').modal('toggle');
+    $('#mensagem-input').modal('show');
 });
 
 $('#btnSalvar-info').click(function ()
