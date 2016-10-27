@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-sm-12">
         <h2 class="text-primary">Adicionar ou editar endereços</h2>
@@ -49,7 +48,8 @@
             </form>
         </div>
     </div>
-</div><hr/>
+</div>
+<hr/>
 <div class="row">
     <div class="col-sm-12">
         <h2 class="text-primary">Lista Endereços</h2>

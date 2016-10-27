@@ -21,6 +21,7 @@ $(document).ready(function ()
     $('#btnExcluir').hide();
     $('#pendentes').hide();
     $('#historico').hide();
+    $('#enderecos').hide();
     $('#btnSalvar-info').hide();
     $('#btnEditar-grupo').hide();
     carregaInfoUsuario();
@@ -192,8 +193,17 @@ $('#btnSalvar-info').click(function ()
 
 });
 
+$('#tela-enderecos').click(function ()
+{
+    $('#enderecos').fadeIn(200);
+    $('#historico').hide();
+    $('#perfil').hide();
+    $('#pendentes').hide();
+});
+
 $('#tela-historico').click(function ()
 {
+    $('#enderecos').hide();
     $('#perfil').hide();
     $('#pendentes').hide();
     $('#historico').fadeIn(200);
@@ -201,14 +211,15 @@ $('#tela-historico').click(function ()
 
 $('#tela-perfil').click(function ()
 {
+    $('#enderecos').hide();
     $('#pendentes').hide();
     $('#historico').hide();
-    $('#perfil').fadeIn(200)();
-    carregaEnderecos();
+    $('#perfil').fadeIn(200);
 });
 
 $('#tela-pendentes').click(function ()
 {
+    $('#enderecos').hide();
     $('#perfil').hide();
     $('#historico').hide();
     $('#pendentes').fadeIn(200);

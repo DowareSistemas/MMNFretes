@@ -21,57 +21,58 @@
                 <div class="aside-fixed">
                     <div class="row">
                         <div class="col-md-12">
-                                <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Perfil</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Endereços</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
+                            <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Perfil</button><br>
+                            <button class="btn btn-primary btn-block" type="button" id="tela-enderecos">Endereços</button><br>
+                            <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
+                            <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
                         </div>
                     </div>
                 </div>
             </aside>
             <main>
                 <div class="aside-fixed-main">
-                    <%--<areausuario:perfil-areausuario/>--%>
-                        <areausuario:endereÃ§os-areausuario/>
-                        <areausuario:historico-areausuario/>
-                        <areausuario:pendentes-areausuario/>
-                        
-                        <my-tags:mensagem-input id="mensagem-input"
-                                                id_btnConfirmar="btnConfirmarSenha"
-                                                id_input="txSenhaConfirmada" 
-                                                type_input="password" 
-                                                titulo="Confirmar senha:" />
+                    <areausuario:enderecos-areausuario/>
+                    <areausuario:perfil-areausuario/>
+                   
+                    <areausuario:historico-areausuario/>
+                    <areausuario:pendentes-areausuario/>
 
-                        <my-tags:mensagem-input id="editar-grupo"
-                                                id_btnConfirmar="btnSalvaGrupo"
-                                                id_input="txNomeGrupo"
-                                                titulo="Renomear grupo"
-                                                type_input="text" />
+                    <my-tags:mensagem-input id="mensagem-input"
+                                            id_btnConfirmar="btnConfirmarSenha"
+                                            id_input="txSenhaConfirmada" 
+                                            type_input="password" 
+                                            titulo="Confirmar senha:" />
 
-                        <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
-                                                  classe_btnSIM="btn btn-danger" 
-                                                  texto_btnNAO="NÃO" 
-                                                  texto_btnSIM="SIM"
-                                                  texto_corpo="Deseja excluir o endereço?" 
-                                                  id_btnSIM="btnConfirmaExclusaoEndereco" />
+                    <my-tags:mensagem-input id="editar-grupo"
+                                            id_btnConfirmar="btnSalvaGrupo"
+                                            id_input="txNomeGrupo"
+                                            titulo="Renomear grupo"
+                                            type_input="text" />
 
-                        <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" 
-                                             id="senhaIncorreta"
-                                             mensagem="As senhas não coincidem!" />
+                    <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
+                                              classe_btnSIM="btn btn-danger" 
+                                              texto_btnNAO="NÃO" 
+                                              texto_btnSIM="SIM"
+                                              texto_corpo="Deseja excluir o endereço?" 
+                                              id_btnSIM="btnConfirmaExclusaoEndereco" />
 
-                        <my-tags:detalhes_cotacao_usuario/>
+                    <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" 
+                                         id="senhaIncorreta"
+                                         mensagem="As senhas não coincidem!" />
+
+                    <my-tags:detalhes_cotacao_usuario/>
                 </div>
             </main>
-                        <%--
-            <div class="row">
-                <my-tags:perfil-areausuario/>
-                <my-tags:historico-areausuario/>
-                <my-tags:pendentes-areausuario/>
-                <my-tags:mensagem-input id="mensagem-input"
-                                        id_btnConfirmar="btnConfirmarSenha"
-                                        id_input="txSenhaConfirmada" 
-                                        type_input="password" 
-                                        titulo="Confirmar senha:" />
+            <%--
+<div class="row">
+    <my-tags:perfil-areausuario/>
+    <my-tags:historico-areausuario/>
+    <my-tags:pendentes-areausuario/>
+    <my-tags:mensagem-input id="mensagem-input"
+                            id_btnConfirmar="btnConfirmarSenha"
+                            id_input="txSenhaConfirmada" 
+                            type_input="password" 
+                            titulo="Confirmar senha:" />
 
                 <my-tags:mensagem-input id="editar-grupo"
                                         id_btnConfirmar="btnSalvaGrupo"
@@ -92,16 +93,16 @@
 
                 <my-tags:detalhes_cotacao_usuario/>
             </div>
-                        --%>
+            --%>
         </div>
-            <!-- Scripts da página -->
-            <script src="resources/js/jquery.js"></script>
-            <script src="resources/js/jquery-form.js"></script>
-            <script src="resources/js/bootstrap.js"></script>
-            <script src="resources/js/areausuario.js"></script>
-            <script src="resources/js/modal-centralizado.js"></script>
-            <!-- Scripts de mascara para inputs -->
-            <script src="resources/js/jquery-mask.js"></script>
-            <script src="resources/js/mascaras.js"></script>
+        <!-- Scripts da página -->
+        <script src="resources/js/jquery.js"></script>
+        <script src="resources/js/jquery-form.js"></script>
+        <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/areausuario.js"></script>
+        <script src="resources/js/modal-centralizado.js"></script>
+        <!-- Scripts de mascara para inputs -->
+        <script src="resources/js/jquery-mask.js"></script>
+        <script src="resources/js/mascaras.js"></script>
     </body>
 </html>
