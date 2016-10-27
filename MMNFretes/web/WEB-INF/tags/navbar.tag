@@ -1,6 +1,6 @@
 <!--Navbar fixa no topo-->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
         <div class="col-md-12">
             <div class="navbar-header">
                 <h1 class="pp-04"><a class="navbar-brand pp-04" href="/mmnfretes/pesquisar">GC Fretes</a></h1>
@@ -53,7 +53,7 @@
                                             </div>
                                         </form><hr>
                                         <div class="text-center">
-                                            Novo aqui ? <a href=""><b class="text-uppercase">junte-se a nós</b></a>
+                                            Novo aqui ? <a href="http://localhost:8080/mmnfretes/paginaLogin"><b class="text-uppercase">junte-se a nós</b></a>
                                         </div>
                                     </div>
                                 </div>
