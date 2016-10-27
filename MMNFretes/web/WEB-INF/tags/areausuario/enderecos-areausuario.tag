@@ -1,4 +1,5 @@
-    <div class="col-md-12" id="enderecos">
+<div class="row">
+    <div class="col-md-12" id="endereços">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2 class="text-center">Endereços</h2>
@@ -77,3 +78,4 @@
             </div>
         </div>
     </div>
+</div>

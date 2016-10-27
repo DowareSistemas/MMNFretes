@@ -31,11 +31,16 @@
             </aside>
             <main>
                 <div class="aside-fixed-main">
-                    <areausuario:enderecos-areausuario/>
-                    <areausuario:perfil-areausuario/>
-                   
-                    <areausuario:historico-areausuario/>
-                    <areausuario:pendentes-areausuario/>
+                    <%--<areausuario:perfil-areausuario/>--%>
+                        <areausuario:enderecos-areausuario/>
+                        <areausuario:historico-areausuario/>
+                        <areausuario:pendentes-areausuario/>
+                        
+                        <my-tags:mensagem-input id="mensagem-input"
+                                                id_btnConfirmar="btnConfirmarSenha"
+                                                id_input="txSenhaConfirmada" 
+                                                type_input="password" 
+                                                titulo="Confirmar senha:" />
 
                     <my-tags:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"

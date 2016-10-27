@@ -103,17 +103,7 @@
                         </div>
                     </section>
                     <!-- Conteúdo de pesquisa -->
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
-                    <pesquisarfretes:conteudo-pesquisar/>
+                    <%-- <pesquisarfretes:conteudo-pesquisar/> --%>              
                 </div>
             </main>
             <footer>
