@@ -25,8 +25,8 @@
             <aside>
                 <div class="aside-fixed">
                     <div class="row">
-                        <!-- Form de pesquisa -->
                         <div class="col-md-12">
+                            <!-- Form de pesquisa -->
                             <form class="form-group panel-aside">
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
@@ -39,6 +39,8 @@
                                 <button type="button" class="btn btn-primary btn-block" id="btnBuscarFretes">Buscar</button>
                             </form>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="panel-aside">
                                 <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
@@ -90,10 +92,14 @@
             <main>
                 <div class="aside-fixed-main">
                     <section>
-                        <div class="alert alert-info fade in">
-                            <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
-                            Saiba mais informações<a href=""> clicando aqui!</a>
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="alert alert-info fade in">
+                                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
+                                    Saiba mais informações<a href=""> clicando aqui!</a>
+                                </div>
+                            </div>
                         </div>
                     </section>
                     <!-- Conteúdo de pesquisa -->
@@ -111,7 +117,11 @@
                 </div>
             </main>
             <footer>
+                <div class="row">
+                    <div class="col-md-12">
 
+                    </div>
+                </div>
             </footer>
         </div>
 
