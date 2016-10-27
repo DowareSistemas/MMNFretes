@@ -32,7 +32,7 @@
             <main>
                 <div class="aside-fixed-main">
                     <%--<areausuario:perfil-areausuario/>--%>
-                        <areausuario:endereços-areausuario/>
+                        <areausuario:enderecos-areausuario/>
                         <areausuario:historico-areausuario/>
                         <areausuario:pendentes-areausuario/>
                         
