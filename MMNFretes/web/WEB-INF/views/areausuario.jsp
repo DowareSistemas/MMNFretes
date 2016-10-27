@@ -31,7 +31,7 @@
             </aside>
             <main>
                 <div class="aside-fixed-main">
-                    <%--<areausuario:perfil-areausuario/>--%>
+                        <areausuario:perfil-areausuario/>
                         <areausuario:enderecos-areausuario/>
                         <areausuario:historico-areausuario/>
                         <areausuario:pendentes-areausuario/>
