@@ -176,6 +176,7 @@ function alteraVeiculo()
                 "&categorias_veiculos_id=" + categoria +
                 "&tipos_carga_id=" + tipo_carga +
                 "&carrocerias_id=" + carroceria,
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         success: function (data)
         {
             $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);
@@ -249,6 +250,7 @@ function adicionaVeiculo()
                 "&categorias_veiculos_id=" + categoria +
                 "&tipos_carga_id=" + tipo_carga +
                 "&carrocerias_id=" + carroceria,
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         success: function (data)
         {
             $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);

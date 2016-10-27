@@ -6,7 +6,7 @@ $(document).ready(function ()
     $('#pendentes-area-transportador').hide();
 
     $('#btnSalvar-info').hide();
- 
+
     carregaInfoTransportador();
     hab_desab_formInfo(true);
 });
@@ -150,6 +150,7 @@ $('#btnConfirmarSenha').click(function ()
                     "&CPF_CNPJ=" + cpf_cnpj +
                     "&ANTT=" + antt +
                     "&website=" + website,
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             success: function (data)
             {
                 hab_desab_formInfo(true);
