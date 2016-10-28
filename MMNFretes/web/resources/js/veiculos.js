@@ -165,18 +165,20 @@ function alteraVeiculo()
     var tipo_carga = $('#cbTipo_carga').val();
     var carroceria = $('#cb_carroceria').val();
 
+    var url = "/mmnfretes/alteraveiculo?" +
+            "id=" + id +
+            "&descricao=" + descricao +
+            "&capacidade=" + capacidade +
+            "&tipo_carga_id=" + tipo_carga +
+            "&preco_frete=" + preco_frete +
+            "&rastreador=" + rastreador +
+            "&categorias_veiculos_id=" + categoria +
+            "&tipos_carga_id=" + tipo_carga +
+            "&carrocerias_id=" + carroceria;
+
     $.ajax({
-        url: "/mmnfretes/alteraveiculo?" +
-                "id=" + id +
-                "&descricao=" + descricao +
-                "&capacidade=" + capacidade +
-                "&tipo_carga_id=" + tipo_carga +
-                "&preco_frete=" + preco_frete +
-                "&rastreador=" + rastreador +
-                "&categorias_veiculos_id=" + categoria +
-                "&tipos_carga_id=" + tipo_carga +
-                "&carrocerias_id=" + carroceria,
-        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        url: url,
+        contentType: "application/x-javascript; charset:ISO-8859-1",
         success: function (data)
         {
             $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);

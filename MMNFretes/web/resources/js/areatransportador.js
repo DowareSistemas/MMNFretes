@@ -141,26 +141,28 @@ $('#btnConfirmarSenha').click(function ()
 
     if (senha === senhaDigitada)
     {
-        $.ajax({
-            url: "/mmnfretes/alteraInfoTransportadora?usuarios.nome=" + nome +
-                    "&usuarios.email=" + email +
-                    "&usuarios.senha=" + senha +
-                    "&usuarios.telefone1=" + telefone1 +
-                    "&usuarios.telefone2=" + telefone2 +
-                    "&CPF_CNPJ=" + cpf_cnpj +
-                    "&ANTT=" + antt +
-                    "&website=" + website,
-            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            success: function (data)
-            {
-                hab_desab_formInfo(true);
-                carregaInfoTransportador();
+        var url = "/mmnfretes/alteraInfoTransportadora?usuarios.nome=" + nome +
+                "&usuarios.email=" + email +
+                "&usuarios.senha=" + senha +
+                "&usuarios.telefone1=" + telefone1 +
+                "&usuarios.telefone2=" + telefone2 +
+                "&CPF_CNPJ=" + cpf_cnpj +
+                "&ANTT=" + antt +
+                "&website=" + website;
 
-                $('#btnSalvar-info').hide();
-                $('#btnEditarInfo').fadeIn(200);
-            }
+        $.ajax({
+            url: url,
+            contentType: "application/x-javascript; charset:ISO-8859-1"
         });
-    } else
+
+        hab_desab_formInfo(true);
+        carregaInfoTransportador();
+
+        $('#btnSalvar-info').hide();
+        $('#btnEditarInfo').fadeIn(200);
+        
+    }
+    else
     {
         $('#senhaIncorreta').modal('toggle');
         $('#senhaIncorreta').modal('show');
