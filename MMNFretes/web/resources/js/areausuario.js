@@ -8,7 +8,7 @@ $('#btnAdicionar-endereco').click(function ()
                 {
                     $('#enderecos-items').html("");
                     $('#enderecos-items').append(data);
-                    $('#formulario-endereco')[0].reset();
+                     $('#formulario-endereco')[0].reset();
                     $('#btnExcluir-endereco').fadeOut(100);
                     $('#btnAdicionar-endereco').text('Adicionar');
                     $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
@@ -58,7 +58,6 @@ function carregaInfoUsuario()
         url: "/mmnfretes/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
-        contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
         success: function (usuario)
         {
             $('#txNome-usuario').val(usuario.nome);
@@ -75,7 +74,6 @@ function carregaEnderecos()
 {
     $.ajax({
         url: "/mmnfretes/listaEnderecos",
-        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         success: function (data)
         {
             $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
@@ -99,8 +97,6 @@ $('#btnConfirmaExclusaoEndereco').click(function ()
 
     $.ajax({
         url: "/mmnfretes/inativaEndereco?endereco_id=" + self.val(),
-        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-        dataType: 'text',
         success: function (mensagem)
         {
             $('#btnExcluir-endereco').fadeOut(100);
@@ -160,20 +156,17 @@ $('#btnConfirmarSenha').click(function ()
                 "&email=" + email +
                 "&telefone1=" + telefone1 +
                 "&telefone2=" + telefone2;
-        url = encodeURI(url);
 
         $.ajax
                 ({
                     url: url,
-                    dataType: 'json',
-                    success: function ()
-                    {
-                        hab_desab_formInfo(true);
-                        carregaInfoUsuario();
-                        $('#btnAlterar-info').fadeIn();
-                        $('#btnSalvar-info').hide();
-                    }
+                    contentType: "application/x-javascript; charset:ISO-8859-1"
                 });
+
+        hab_desab_formInfo(true);
+        carregaInfoUsuario();
+        $('#btnAlterar-info').fadeIn();
+        $('#btnSalvar-info').hide();
 
     } else
     {
@@ -186,11 +179,6 @@ $('#btnSenhaIncorreta').click(function ()
 {
     $('#mensagem-input').modal('toggle');
     $('#mensagem-input').modal('show');
-});
-
-$('#btnSalvar-info').click(function ()
-{
-
 });
 
 $('#tela-enderecos').click(function ()
