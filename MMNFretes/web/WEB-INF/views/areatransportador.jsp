@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
+<%@taglib tagdir="/WEB-INF/tags/areatransportador" prefix="areatransportador"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,7 +40,7 @@
                     </ul>
                     <br/>
                 </div>
-                <my-tags:enderecos-areatransportador/>
+                <my-tags:enderecos-conjunto/>
                 <my-tags:historico-areatransportador/>
                 <my-tags:pendentes-areatransportador/>
                 <my-tags:perfil-areatransportador/>
