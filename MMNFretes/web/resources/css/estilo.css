@@ -141,7 +141,7 @@ body {
         position: fixed;
         width: 299px;
         top: 90px;
-        bottom: 21px;
+        bottom: 90px;
         padding: 20px;
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
