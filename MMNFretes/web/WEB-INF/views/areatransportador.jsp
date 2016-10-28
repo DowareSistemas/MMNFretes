@@ -39,7 +39,6 @@
                     </ul>
                     <br/>
                 </div>
-                <my-tags:enderecos-areatransportador/>
                 <my-tags:historico-areatransportador/>
                 <my-tags:pendentes-areatransportador/>
                 <my-tags:perfil-areatransportador/>
