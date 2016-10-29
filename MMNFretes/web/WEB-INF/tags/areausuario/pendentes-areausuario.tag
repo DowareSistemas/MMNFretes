@@ -9,13 +9,14 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-10">
+                                <label>Grupos:</label>
                                 <select class="form-control" id="cbGrupos">
                                     <option value="Volta Redonda">Volta Redonda</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
+                                <label>Editar Grupo:</label>
                                 <button type="button" class="btn btn-primary btn-block">
-                                    Editar
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                             </div>
