@@ -8,7 +8,7 @@ $('#btnAdicionar-endereco').click(function ()
                 {
                     $('#enderecos-items').html("");
                     $('#enderecos-items').append(data);
-                     $('#formulario-endereco')[0].reset();
+                    $('#formulario-endereco')[0].reset();
                     $('#btnExcluir-endereco').fadeOut(100);
                     $('#btnAdicionar-endereco').text('Adicionar');
                     $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
