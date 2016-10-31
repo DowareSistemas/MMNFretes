@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sessionProvider.ConfigureSession;
+import sessionProvider.SessionProvider;
 import util.Util;
 
 /**
@@ -36,7 +36,7 @@ public class LoginController
     public @ResponseBody
     String efetualogin(Usuarios usuario, HttpSession httpSession)
     {
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
 
         Criteria c = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
         c.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));

@@ -15,12 +15,12 @@ import logging.PersistenceLogger;
  *
  * @author Marcos Vinícius
  */
-public class ConfigureSession
+public class SessionProvider
 {
 
     private static SessionFactory factory = null;
 
-    public static Session getSession()
+    public static Session openSession()
     {
         try
         {

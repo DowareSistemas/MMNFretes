@@ -8,6 +8,7 @@ package controllers;
 import br.com.persistor.enums.FILTER_TYPE;
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.enums.RESULT_TYPE;
+import br.com.persistor.generalClasses.FileExtractor;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
@@ -20,20 +21,24 @@ import entidades.Tipos_carga;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
-import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import sessionProvider.ConfigureSession;
+import sessionProvider.SessionProvider;
 
 /**
  *
@@ -42,11 +47,10 @@ import sessionProvider.ConfigureSession;
 @Controller
 public class VeiculosController
 {
-
     public List<Tipos_carga> getTipos_Carga()
     {
         Tipos_carga tipos_carga = new Tipos_carga();
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.createCriteria(tipos_carga, RESULT_TYPE.MULTIPLE)
                 .execute();
         session.close();
@@ -56,7 +60,7 @@ public class VeiculosController
     public List<Carrocerias> getCarrocerias()
     {
         Carrocerias carrocerias = new Carrocerias();
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.createCriteria(carrocerias, RESULT_TYPE.MULTIPLE)
                 .execute();
         session.close();
@@ -66,7 +70,7 @@ public class VeiculosController
     public List<Categorias_veiculos> getCategorias()
     {
         Categorias_veiculos categorias_veiculos = new Categorias_veiculos();
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.createCriteria(categorias_veiculos, RESULT_TYPE.MULTIPLE)
                 .execute();
         session.close();
@@ -75,26 +79,44 @@ public class VeiculosController
 
     @RequestMapping(value = "veiculo_path", produces = "text/html;chatset=utf-8")
     public @ResponseBody
-    String getFotoPath(int veiculo_id, HttpSession httpSession)
+    String getFotoPath(int veiculo_id, HttpSession httpSession, HttpServletRequest request)
     {
-        String retorno = "";
-        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        String path = request.getRealPath("/upload");
+        path = path.substring(0, path.indexOf("\\build"));
+        path += "\\web\\upload\\";
+
         Veiculos veiculo = get(veiculo_id);
-        if (veiculo.getFoto() != null)
-        {
-            int tansp_id = new TransportadorasController().getByUsuario(usuario.getId()).getId();
-            retorno = "/mmnfretes/upload/{transp_id}-{veic_id}.jpg";
-            retorno = retorno.replace("{transp_id}", tansp_id + "");
-            retorno = retorno.replace("{veic_id}", veiculo_id + "");
-            return retorno;
-        }
+
+        if (veiculo.getId() > 0)
+            if (veiculo.getFoto() != null)
+            {
+                String fileName = getFileName(veiculo_id);
+                FileExtractor extractor = new FileExtractor();
+                extractor.setBufferSize(1024);
+                extractor.setInputStream(veiculo.getFoto());
+                extractor.setFileToExtract(path + fileName);
+                extractor.extract();
+
+                return "/mmnfretes/upload/" + fileName;
+            }
         return "not_localized";
+    }
+
+    private String getFileName(int veiculo_id)
+    {
+        Date d = new Date();
+        DateFormat df = DateFormat.getDateInstance();
+
+        String name = veiculo_id + df.format(d).replace("/", "").replace(":", "").replace("-", "");
+        Calendar c = Calendar.getInstance();
+        name += c.getTime().getSeconds();
+        return name + ".jpg";
     }
 
     private Veiculos get(int veiculo_id)
     {
         Veiculos veiculo = new Veiculos();
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.onID(veiculo, veiculo_id);
         session.close();
         return veiculo;
@@ -105,7 +127,7 @@ public class VeiculosController
     String getInfoVeiculo(int id, HttpSession httpSession)
     {
         Veiculos veiculo = new Veiculos();
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.onID(veiculo, id);
         session.close();
 
@@ -120,7 +142,7 @@ public class VeiculosController
         int usuario_id = ((Usuarios) httpSession.getAttribute(("usuarioLogado"))).getId();
         v.setTransportadoras_id(getTransportadora(usuario_id).getId());
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.save(v);
         session.commit();
         session.close();
@@ -130,13 +152,13 @@ public class VeiculosController
 
     @RequestMapping(value = "alteraveiculo", produces = "text/html;charset=utf-8")
     public @ResponseBody
-    String alterar(Veiculos v, HttpSession httpSession)
+    String alterar(Veiculos veiculo, HttpSession httpSession)
     {
         int usuario_id = ((Usuarios) httpSession.getAttribute(("usuarioLogado"))).getId();
-        v.setTransportadoras_id(getTransportadora(usuario_id).getId());
+        veiculo.setTransportadoras_id(getTransportadora(usuario_id).getId());
 
-        Session session = ConfigureSession.getSession();
-        session.update(v);
+        Session session = SessionProvider.openSession();
+        session.update(veiculo);
         session.commit();
         session.close();
 
@@ -147,6 +169,7 @@ public class VeiculosController
     public @ResponseBody
     String upload(int veiculo_id, HttpServletRequest request, HttpSession httpSession)
     {
+        InputStream inputStream = null;
         try
         {
             TransportadorasController tc = new TransportadorasController();
@@ -155,30 +178,41 @@ public class VeiculosController
 
             int transportadora_id = transportadora.getId();
 
-            String path = request.getRealPath("/upload");
-            path = path.substring(0, path.indexOf("\\build"));
-            path += "\\web\\upload\\";
-
             DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
             ServletFileUpload fileUpload = new ServletFileUpload(diskFileItemFactory);
             List<FileItem> items = fileUpload.parseRequest(request);
+            if (items.isEmpty())
+                return "0";
 
-            for (FileItem item : items)
-            {
-                if (!item.isFormField())
-                {
-                    item.write(new File(path + "/" + transportadora_id + "-" + veiculo_id + ".jpg"));
-                }
-            }
+            inputStream = items.get(0).getInputStream();
+            gravaImg(transportadora_id, veiculo_id, inputStream);
+            inputStream.close();
 
-            InputStream foto = items.get(0).getInputStream();
-            // String result = gravaImg(transportadora_id, veiculo_id, foto);
-            items.get(0).delete();
             return "OK";
+        }
+        catch (FileUploadException ex)
+        {
+            if (inputStream != null)
+                closeIS(inputStream);
+            return " ERRO " + ex.getMessage();
+        }
+        catch (IOException ex)
+        {
+            if (inputStream != null)
+                closeIS(inputStream);
+            return " ERRO " + ex.getMessage();
+        }
+    }
+
+    private void closeIS(InputStream inputStream)
+    {
+        try
+        {
+            inputStream.close();
         }
         catch (Exception ex)
         {
-            return " ERRO " + ex.getMessage();
+
         }
     }
 
@@ -191,7 +225,7 @@ public class VeiculosController
         Veiculos veiculo = null;
 
         String retorno = "0";
-        session = ConfigureSession.getSession();
+        session = SessionProvider.openSession();
 
         if (veiculos_id == 0)
         {
@@ -220,7 +254,7 @@ public class VeiculosController
         Historico historico = new Historico();
         Cotacoes cotacoes = new Cotacoes();
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
 
         session.createCriteria(cotacoes, RESULT_TYPE.MULTIPLE)
                 .add(Restrictions.eq(FILTER_TYPE.WHERE, "veiculos_id", veiculos_id))
@@ -232,7 +266,7 @@ public class VeiculosController
 
         session.close();
 
-        return (cotacoes.ResultList.isEmpty() || historico.ResultList.isEmpty());
+        return (cotacoes.ResultList.isEmpty() && historico.ResultList.isEmpty());
     }
 
     @RequestMapping(value = "excluirveiculo", produces = "text/html;charset=utf-8")
@@ -245,7 +279,7 @@ public class VeiculosController
         if (!podeExcluir(id))
             return "0";
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.delete(veiculo);
         session.commit();
         session.close();
@@ -264,7 +298,7 @@ public class VeiculosController
         TransportadorasController t_controller = new TransportadorasController();
         Transportadoras transportadora = t_controller.getByUsuario(((Usuarios) httpSession.getAttribute("usuarioLogado")).getId());
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
 
         Join join = new Join(veiculos);
         join.addJoin(JOIN_TYPE.INNER, carrocerias, "carrocerias.id = veiculos.carrocerias_id");
@@ -289,6 +323,7 @@ public class VeiculosController
             vei.setTipos_carga(tipos_carga);
             retorno.add(vei);
         }
+
         session.close();
 
         ModelAndView mav = new ModelAndView("listaveiculos");
@@ -313,7 +348,7 @@ public class VeiculosController
         termoBusca += " or categorias_veiculos.descricao like '%" + nome + "%'";
         termoBusca += " or carrocerias.descricao like '%" + nome + "%')";
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
 
         Join join = new Join(veiculos);
         join.addJoin(JOIN_TYPE.INNER, carroceria, "carrocerias.id = veiculos.carrocerias_id");

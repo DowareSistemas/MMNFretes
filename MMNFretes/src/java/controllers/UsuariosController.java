@@ -20,7 +20,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sessionProvider.ConfigureSession;
+import sessionProvider.SessionProvider;
 import util.Util;
 
 /**
@@ -40,7 +40,7 @@ public class UsuariosController
         Session session = null;
         try
         {
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.save(usuario);
             session.commit();
             session.close();
@@ -63,7 +63,7 @@ public class UsuariosController
 
         try
         {
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.createCriteria(usuario, RESULT_TYPE.MULTIPLE)
                     .add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()))
                     .execute();
@@ -96,7 +96,7 @@ public class UsuariosController
             Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
             usuario.setId(usuarioLogado.getId());
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.update(usuario);
             session.commit();
             session.close();
@@ -121,7 +121,7 @@ public class UsuariosController
         {
             Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.onID(usuario, usuario.getId());
             session.close();
             
@@ -146,7 +146,7 @@ public class UsuariosController
             transportadoras.getUsuarios().setTipo_usuario(1);
             transportadoras.getUsuarios().setNome(transportadoras.getNome());
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.save(transportadoras);
             session.commit();
             session.close();

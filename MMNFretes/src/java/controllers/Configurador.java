@@ -13,7 +13,7 @@ import java.net.URLDecoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sessionProvider.ConfigureSession;
+import sessionProvider.SessionProvider;
 
 /**
  *
@@ -49,7 +49,7 @@ public class Configurador
             br.close();
 
             System.out.println(builder.toString());
-            Session session = ConfigureSession.getSession();
+            Session session = SessionProvider.openSession();
             session.getActiveConnection().prepareStatement(builder.toString()).execute();
             session.close();
             

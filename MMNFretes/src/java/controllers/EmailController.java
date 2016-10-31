@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import javax.mail.Authenticator;
 import org.apache.commons.mail.SimpleEmail;
 
 /**

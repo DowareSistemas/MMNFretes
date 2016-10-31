@@ -79,25 +79,29 @@ function carregarVeiculo(id_veiculo)
             $('#cb_carroceria').val(veiculo.carrocerias_id);
             $('#btnExcluir-veiculo').fadeIn(200);
             $('#btnAdicionar-veiculo').text('Salvar');
+            carregaImgVeiculo(id_veiculo);
         }
     });
 }
 
 function carregaImgVeiculo(id_veiculo)
 {
+    var url = "/mmnfretes/veiculo_path?veiculo_id=" + id_veiculo;
     $.ajax({
-        url: "/mmnfretes/veiculo_path?veiculo_id=" + id_veiculo,
+        url: url,
         dataType: 'text',
         accepts: 'text',
         success: function (data)
         {
-            if (data != 'not_localized')
+            if (data !== 'not_localized')
             {
+                alert(data);
                 $('#img-preview').attr('src', data);
             }
         }
     });
 }
+
 
 //$("#upload-file-selector").
 function readURL(input)

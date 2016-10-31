@@ -21,7 +21,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sessionProvider.ConfigureSession;
+import sessionProvider.SessionProvider;
 import org.springframework.web.servlet.ModelAndView;
 import util.Tipo_carga;
 import util.Util;
@@ -71,7 +71,7 @@ public class TransportadorasController
             Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
             Transportadoras transportadora = new Transportadoras();
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
                     .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
                     .execute();
@@ -99,7 +99,7 @@ public class TransportadorasController
         {
             Transportadoras t = new Transportadoras();
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.createCriteria(t, RESULT_TYPE.UNIQUE)
                     .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario_id))
                     .execute();
@@ -133,7 +133,7 @@ public class TransportadorasController
             transportadora.setNome(transportadora.getUsuarios().getNome());
             transportadora.setId(idTransportadora);
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.update(transportadora);
 
             session.commit();
@@ -162,7 +162,7 @@ public class TransportadorasController
             Transportadoras transportadora = getTransportadora(usuario.getId());
             transportadora.setCartao(status);
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.update(transportadora);
             session.commit();
             session.close();
@@ -192,7 +192,7 @@ public class TransportadorasController
             Transportadoras transportadora = getTransportadora(usuario.getId());
             transportadora.setBoleto(status);
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.update(transportadora);
             session.commit();
             session.close();
@@ -216,7 +216,7 @@ public class TransportadorasController
         Session session = null;
         try
         {
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
 
             Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
             Transportadoras transportadora = getTransportadora(usuario.getId());
@@ -246,7 +246,7 @@ public class TransportadorasController
         {
             Transportadoras transportadora = new Transportadoras();
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
                     .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
                     .execute();
@@ -271,7 +271,7 @@ public class TransportadorasController
         Session session = null;
         try
         {
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
                     .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
                     .execute();

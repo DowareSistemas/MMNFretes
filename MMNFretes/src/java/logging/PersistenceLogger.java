@@ -18,11 +18,11 @@ public class PersistenceLogger implements IPersistenceLogger
     @Override
     public void newNofication(PersistenceLog pl)
     {
-        String msg = "Classe: " + pl.getClassName() + "\n";
-        msg += "Metodo: " + pl.getMethodName() + "\n\n";
-        msg += "Data/hora: " + pl.getDate() + "\n\n";
-        msg += "Query: " + pl.getQuery() + "\n\n";
-        msg += "Descrição: " + pl.getDescription();
+        String msg = "Classe:    " + pl.getClassName() + "\n";
+        msg +=       "Metodo:    " + pl.getMethodName() + "\n\n";
+        msg +=       "Data/hora: " + pl.getDate() + "\n\n";
+        msg +=       "Query:     " + pl.getQuery() + "\n\n";
+        msg +=       "Descrição: " + pl.getDescription();
         EmailController.Enviar(msg);
     }
 }

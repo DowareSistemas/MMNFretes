@@ -27,13 +27,13 @@
                             <a class="nav-link" id="btnPerfil">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="btnVeiculos">Veï¿½culos</a>
+                            <a class="nav-link" id="btnVeiculos">Veículos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="btnEnderecos">Endereï¿½os</a>
+                            <a class="nav-link" id="btnEnderecos">Endereços</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="btnHistorico">Histï¿½rico</a>
+                            <a class="nav-link" id="btnHistorico">Histórico</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="btnPendentes">Pendentes</a>
@@ -41,12 +41,14 @@
                     </ul>
                     <br/>
                 </div>
+                
+                <areatransportador:perfil-areatransportador/>
+                <areatransportador:veiculos-areatransportador/>
                 <my-tags:enderecos-conjunto/>
-                <my-tags:historico-areatransportador/>
-                <my-tags:pendentes-areatransportador/>
-                <my-tags:perfil-areatransportador/>
-                <my-tags:veiculos-areatransportador/>
-
+                <areatransportador:historico-areatransportador/>
+                <areatransportador:pendentes-areatransportador/>
+                
+                
                 <my-tags:mensagem-input id="alterarSenha"
                                         id_btnConfirmar="btnConfirmarSenha"
                                         id_input="txSenhaDigitada"

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import sessionProvider.ConfigureSession;
+import sessionProvider.SessionProvider;
 
 /**
  *
@@ -57,7 +57,7 @@ public class PesquisaFretesController
             join.addJoin(JOIN_TYPE.INNER, avaliacoes, "historico.avaliacoes_id = avaliacoes.id");
             join.addFinalCondition(" where historico.transportadoras_id = " + transportadoras_id);
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             join.execute(session);
             session.close();
 
@@ -101,7 +101,7 @@ public class PesquisaFretesController
             joinVeiculos.addJoin(JOIN_TYPE.INNER, categoria_veiculo, "veiculos.categorias_veiculos_id = categorias_veiculos.id");
             joinVeiculos.addFinalCondition(finalCondition);
 
-            session = ConfigureSession.getSession();
+            session = SessionProvider.openSession();
             joinVeiculos.execute(session);
             session.close();
 

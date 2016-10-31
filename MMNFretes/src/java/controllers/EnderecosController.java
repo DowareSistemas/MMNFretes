@@ -21,7 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import sessionProvider.ConfigureSession;
+import sessionProvider.SessionProvider;
 
 /**
  *
@@ -38,7 +38,7 @@ public class EnderecosController
         endereco.setUsuarios_id(usuario.getId());
         endereco.setInativo(false);
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.save(endereco);
         session.commit();
         session.close();
@@ -52,7 +52,7 @@ public class EnderecosController
     {
         Enderecos endereco = new Enderecos();
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.onID(endereco, endereco_id);
         session.close();
 
@@ -66,7 +66,7 @@ public class EnderecosController
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
         Enderecos endereco = new Enderecos();
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.createCriteria(endereco, RESULT_TYPE.MULTIPLE)
                 .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
                 .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", 0))
@@ -88,7 +88,7 @@ public class EnderecosController
         endereco.setId(endereco_id);
         endereco.setUsuarios_id(usuario.getId());
 
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         session.update(endereco);
         session.commit();
         session.close();
@@ -100,7 +100,7 @@ public class EnderecosController
     public @ResponseBody
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
-        Session session = ConfigureSession.getSession();
+        Session session = SessionProvider.openSession();
         Enderecos endereco = session.onID(Enderecos.class, endereco_id);
         endereco.setInativo(true);
 
