@@ -42,10 +42,10 @@
                     <br/>
                 </div>
                 <my-tags:enderecos-conjunto/>
-                <my-tags:historico-areatransportador/>
-                <my-tags:pendentes-areatransportador/>
-                <my-tags:perfil-areatransportador/>
-                <my-tags:veiculos-areatransportador/>
+                <areatransportador:historico-areatransportador/>
+                <areatransportador:pendentes-areatransportador/>
+                <areatransportador:perfil-areatransportador/>
+                <areatransportador:veiculos-areatransportador/>
 
                 <my-tags:mensagem-input id="alterarSenha"
                                         id_btnConfirmar="btnConfirmarSenha"
