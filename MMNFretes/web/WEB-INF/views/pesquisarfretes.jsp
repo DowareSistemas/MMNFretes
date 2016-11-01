@@ -28,6 +28,7 @@
                         <div class="col-md-12">
                             <!-- Form de pesquisa -->
                             <form class="form-group panel-aside">
+                                <h4 class="text-muted text-uppercase text-center">Calcular trajeto</h4>
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                                     <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem">
@@ -45,7 +46,7 @@
                             <div class="panel-aside">
                                 <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
                                 <!-- Filtro de pesquisa: Veículos -->
-                                <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
+                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
                                     Veículos 
                                 </button><br>
                                 <div class="collapse" id="veiculos">
@@ -56,7 +57,7 @@
                                     </div>
                                 </div>
                                 <!-- Filtro de pesquisa: Carrocerias -->
-                                <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
+                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
                                     Carrocerias 
                                 </button><br>
                                 <div class="collapse" id="Carrocerias">
@@ -65,7 +66,7 @@
                                     </div>
                                 </div>
                                 <!-- Filtro de pesquisa: Rastreador -->
-                                <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
+                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
                                     Rastreador 
                                 </button><br>
                                 <div class="collapse" id="Rastreador">
@@ -75,7 +76,7 @@
                                     </div>
                                 </div>
                                 <!-- Filtro de pesquisa: Formas de Pagamento -->
-                                <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
+                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
                                     Formas de Pagamento 
                                 </button><br>
                                 <div class="collapse" id="Formas-de-Pagamento">
