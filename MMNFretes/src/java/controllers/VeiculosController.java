@@ -21,6 +21,7 @@ import entidades.Tipos_carga;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.fileupload.FileItem;
@@ -36,6 +38,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
@@ -47,6 +50,7 @@ import sessionProvider.SessionProvider;
 @Controller
 public class VeiculosController
 {
+
     public List<Tipos_carga> getTipos_Carga()
     {
         Tipos_carga tipos_carga = new Tipos_carga();
@@ -77,39 +81,36 @@ public class VeiculosController
         return session.getList(categorias_veiculos);
     }
 
-    @RequestMapping(value = "veiculo_path", produces = "text/html;chatset=utf-8")
+    @RequestMapping(value = "veiculo_path", produces = "text/html;chatset=utf-8", method = RequestMethod.GET)
     public @ResponseBody
     String getFotoPath(int veiculo_id, HttpSession httpSession, HttpServletRequest request)
     {
-        String path = request.getRealPath("/upload");
+        ServletContext context = request.getServletContext();
+        String path = context.getRealPath("/upload");
         path = path.substring(0, path.indexOf("\\build"));
         path += "\\web\\upload\\";
-
         Veiculos veiculo = get(veiculo_id);
 
         if (veiculo.getId() > 0)
             if (veiculo.getFoto() != null)
             {
-                String fileName = getFileName(veiculo_id);
+                String fileName = getFileName(veiculo);
                 FileExtractor extractor = new FileExtractor();
                 extractor.setBufferSize(1024);
                 extractor.setInputStream(veiculo.getFoto());
                 extractor.setFileToExtract(path + fileName);
                 extractor.extract();
-
+     
                 return "/mmnfretes/upload/" + fileName;
             }
+
         return "not_localized";
     }
 
-    private String getFileName(int veiculo_id)
+    private String getFileName(Veiculos veiculo)
     {
-        Date d = new Date();
-        DateFormat df = DateFormat.getDateInstance();
-
-        String name = veiculo_id + df.format(d).replace("/", "").replace(":", "").replace("-", "");
         Calendar c = Calendar.getInstance();
-        name += c.getTime().getSeconds();
+        String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras().getId() + c.getTime().getMinutes());
         return name + ".jpg";
     }
 
@@ -130,7 +131,7 @@ public class VeiculosController
         Session session = SessionProvider.openSession();
         session.onID(veiculo, id);
         session.close();
-
+        //  veiculo.mountedQuery = getFotoPath(id, httpSession, request);
         Gson gson = new Gson();
         return gson.toJson(veiculo);
     }
@@ -229,7 +230,7 @@ public class VeiculosController
 
         if (veiculos_id == 0)
         {
-            veiculo = session.Last(Veiculos.class, "transportadoras_id = " + transportadoras_id);
+            veiculo = session.last(Veiculos.class, "transportadoras_id = " + transportadoras_id);
             veiculo.setFoto(foto);
             session.update(veiculo);
             retorno = "1";
