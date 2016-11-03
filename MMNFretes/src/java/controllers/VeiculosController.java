@@ -39,6 +39,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
@@ -83,7 +84,7 @@ public class VeiculosController
 
     @RequestMapping(value = "veiculo_path", produces = "text/html;chatset=utf-8", method = RequestMethod.GET)
     public @ResponseBody
-    String getFotoPath(int veiculo_id, HttpSession httpSession, HttpServletRequest request)
+    String getFotoPath(@RequestParam(value = "veiculo_id") int veiculo_id, HttpServletRequest request)
     {
         ServletContext context = request.getServletContext();
         String path = context.getRealPath("/upload");
@@ -110,7 +111,7 @@ public class VeiculosController
     private String getFileName(Veiculos veiculo)
     {
         Calendar c = Calendar.getInstance();
-        String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras().getId() + c.getTime().getMinutes());
+        String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras().getId());
         return name + ".jpg";
     }
 

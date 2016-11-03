@@ -6,6 +6,7 @@
 package controllers;
 
 import br.com.persistor.enums.JOIN_TYPE;
+import br.com.persistor.generalClasses.FileExtractor;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
 import entidades.Avaliacoes;
@@ -16,10 +17,14 @@ import entidades.Transportadoras;
 import entidades.Veiculos;
 import entidadesTemporarias.ResultadoPesquisa;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
 
@@ -36,9 +41,16 @@ public class PesquisaFretesController
             @RequestParam(value = "categorias", required = false) String filtro_cat,
             @RequestParam(value = "carrocerias", required = false) String filtro_carroc,
             @RequestParam(value = "rastreador", required = false) boolean rastreador,
-            @RequestParam(value = "distancia", required = false) double distancia)
+            @RequestParam(value = "distancia", required = false) double distancia,
+            HttpServletRequest request)
     {
-        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia);
+        if (filtro_cat.endsWith(","))
+            filtro_cat = filtro_cat.substring(0, (filtro_cat.length() - 1));
+
+        if (filtro_carroc.endsWith(","))
+            filtro_carroc = filtro_carroc.substring(0, (filtro_carroc.length() - 1));
+
+        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia, request);
 
         ModelAndView mav = new ModelAndView("pesquisarfretes");
         mav.addObject("resultados", lista);
@@ -79,7 +91,12 @@ public class PesquisaFretesController
         return new ArrayList<Historico>();
     }
 
-    private List<ResultadoPesquisa> pesquisar(String filtro_cat, String filtro_carroc, boolean rastreador, double distancia)
+    private List<ResultadoPesquisa> pesquisar(
+            String filtro_cat,
+            String filtro_carroc,
+            boolean rastreador,
+            double distancia,
+            HttpServletRequest request)
     {
         List<ResultadoPesquisa> resultados = new ArrayList<ResultadoPesquisa>();
 
@@ -133,7 +150,9 @@ public class PesquisaFretesController
                 if (total_estrelas > 0 && total_avaliacoes > 0)
                     estrelas = (total_estrelas / total_avaliacoes);
 
-                ResultadoPesquisa resultado = new ResultadoPesquisa(veiculo, estrelas, preco_frete);
+                String foto_path = getFotoPath(veiculo, request);
+
+                ResultadoPesquisa resultado = new ResultadoPesquisa(veiculo, estrelas, preco_frete, foto_path);
                 resultados.add(resultado);
             }
         }
@@ -143,5 +162,35 @@ public class PesquisaFretesController
                 session.close();
         }
         return resultados;
+    }
+
+    private String getFotoPath(Veiculos veiculo, HttpServletRequest request)
+    {
+        ServletContext context = request.getServletContext();
+        String path = context.getRealPath("/upload");
+        path = path.substring(0, path.indexOf("\\build"));
+        path += "\\web\\upload\\";
+
+        if (veiculo.getId() > 0)
+            if (veiculo.getFoto() != null)
+            {
+                String fileName = getFileName(veiculo);
+                FileExtractor extractor = new FileExtractor();
+                extractor.setBufferSize(1024);
+                extractor.setInputStream(veiculo.getFoto());
+                extractor.setFileToExtract(path + fileName);
+                extractor.extract();
+
+                return "/mmnfretes/upload/" + fileName;
+            }
+
+        return "not_localized";
+    }
+
+    private String getFileName(Veiculos veiculo)
+    {
+        Calendar c = Calendar.getInstance();
+        String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras().getId());
+        return name + ".jpg";
     }
 }

@@ -15,29 +15,32 @@ import java.util.List;
  */
 public class ResultadoPesquisa
 {
+
     private Veiculos veiculo;
     private List<Integer> av_positivas;
     private List<Integer> av_negativas;
     private double preco_frete;
+    private String foto_path;
 
-    public ResultadoPesquisa(Veiculos veiculo, int av_posit, double preco)
+    public ResultadoPesquisa(Veiculos veiculo, int av_posit, double preco, String foto)
     {
         av_negativas = new ArrayList<Integer>();
         av_negativas = new ArrayList<Integer>();
-        
-        for(int i = 0; i < av_posit; i ++)
+
+        for (int i = 0; i < av_posit; i++)
         {
             av_positivas.add(i);
         }
-        
+
         int negativas = (Math.round(av_posit) - 5);
-        for(int i = 0; i < negativas; i++)
+        for (int i = 0; i < negativas; i++)
         {
             av_negativas.add(i);
         }
 
         this.preco_frete = preco;
         this.veiculo = veiculo;
+        this.foto_path = foto.isEmpty() ? "none" : foto;
     }
 
     public Veiculos getVeiculo()
@@ -78,5 +81,15 @@ public class ResultadoPesquisa
     public void setPreco_frete(double preco_frete)
     {
         this.preco_frete = preco_frete;
+    }
+
+    public String getFoto_path()
+    {
+        return foto_path;
+    }
+
+    public void setFoto_path(String foto_path)
+    {
+        this.foto_path = foto_path;
     }
 }
