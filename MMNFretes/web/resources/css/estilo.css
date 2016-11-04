@@ -48,6 +48,7 @@ and open the template in the editor.
 
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
+
 /* CSS geral do bootstrap */
 .navbar-default {
     border-bottom: 1px solid #337ab7;
@@ -151,7 +152,7 @@ body {
         bottom: 20px;
         padding: 20px;
         overflow-x: hidden;
-        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        overflow-y: auto;/* Scrollable contents if viewport is shorter than content. */
         background-color: #f8f8f8;
         border: 1px solid #e7e7e7;
         border-radius: 5px;
@@ -164,4 +165,5 @@ body {
         padding: 15px;
         border: 1px solid #337ab7;
     }
+
 }
