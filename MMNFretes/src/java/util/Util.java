@@ -20,18 +20,11 @@ public class Util
 
     public static boolean isUsuario(Usuarios usuario)
     {
-        if (usuario.getTipo_usuario() == 0)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return (usuario.getTipo_usuario() == 0);
     }
 
     public List<String> getListaCidades()
     {
-
         List<String> cidades = new ArrayList<String>();
         try
         {
@@ -44,13 +37,11 @@ public class Util
 
             //  ServletContext context = getContext();
             File folder = new File(pathArr[0] + "/ARQUIVOSCONFIG/");
-          
 
         } catch (Exception ex)
         {
-            ex.printStackTrace();;
+            ex.printStackTrace();
         }
-
         return cidades;
     }
 

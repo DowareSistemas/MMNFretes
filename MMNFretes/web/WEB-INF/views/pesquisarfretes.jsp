@@ -4,6 +4,8 @@
     Author     : emers
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes"%>
@@ -103,9 +105,18 @@
                             </div>
                         </div>
                     </section>
-                    
+
                     <!-- Conteúdo de pesquisa -->
-                    <%-- <pesquisarfretes:conteudo-pesquisar/> --%>              
+                    <c:forEach var="resultado" items="${resultados}">
+                        <pesquisarfretes:conteudo-pesquisar
+                            carroceria="${resultado.veiculo.carrocerias.descricao}"
+                            categoria="${resultado.veiculo.categorias_veiculos.descricao}"
+                            preco="${resultado.preco_frete}"
+                            transportadora="${resultado.veiculo.transportadoras.nome}"
+                            veiculo="${resultado.veiculo.descricao}"
+                            foto="${resultado.foto_path}"
+                            />           
+                    </c:forEach>
                 </div>
             </main>
             <footer>

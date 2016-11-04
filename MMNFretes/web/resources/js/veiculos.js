@@ -62,6 +62,8 @@ $('#txBusca-veiculo').keypress(function (e)
     }
 });
 
+var imgVeiculo;
+
 function carregarVeiculo(id_veiculo)
 {
     $.ajax({
@@ -79,29 +81,26 @@ function carregarVeiculo(id_veiculo)
             $('#cb_carroceria').val(veiculo.carrocerias_id);
             $('#btnExcluir-veiculo').fadeIn(200);
             $('#btnAdicionar-veiculo').text('Salvar');
-            carregaImgVeiculo(id_veiculo);
+            getImgVeiculo(id_veiculo);
+            getImgVeiculo(id_veiculo);
         }
     });
 }
 
-function carregaImgVeiculo(id_veiculo)
+function getImgVeiculo(id_veiculo)
 {
-    var url = "/mmnfretes/veiculo_path?veiculo_id=" + id_veiculo;
-    $.ajax({
-        url: url,
-        dataType: 'text',
-        accepts: 'text',
-        success: function (data)
-        {
-            if (data !== 'not_localized')
+    var url = "/mmnfretes/veiculo_path";
+
+    var prm =
             {
-                alert(data);
-                $('#img-preview').attr('src', data);
-            }
-        }
+                veiculo_id: id_veiculo
+            };
+
+    $.get(url, prm, function (data)
+    {
+        $('#img-preview').attr('src', data);
     });
 }
-
 
 //$("#upload-file-selector").
 function readURL(input)
@@ -114,7 +113,7 @@ function readURL(input)
         reader.onload = function (e)
         {
             $('#img-preview').attr('src', e.target.result);
-        }
+        };
 
         reader.readAsDataURL(input.files[0]);
     }
@@ -146,9 +145,9 @@ function uploadImagem()
         {
             $('#img-preview').attr('src', 'resources/img/checked_truck-512.png');
             $('#upload').val(null);
-            location.reload();
         }
     }).submit();
+    location.reload();
 }
 
 function alteraVeiculo()

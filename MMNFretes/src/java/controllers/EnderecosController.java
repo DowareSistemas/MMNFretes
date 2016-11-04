@@ -101,6 +101,7 @@ public class EnderecosController
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
         Session session = SessionProvider.openSession();
+        
         Enderecos endereco = session.onID(Enderecos.class, endereco_id);
         endereco.setInativo(true);
 

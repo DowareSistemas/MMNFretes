@@ -38,7 +38,7 @@ public class SessionProvider
             config.setUser("root");
             config.setPassword("81547686");
             config.setMaxStatements(1000);
-            config.setPersistenceLogger(PersistenceLogger.class.getName());
+            config.setPersistenceLogger(PersistenceLogger.class);
 
             return factory.getSession(config);
         }
