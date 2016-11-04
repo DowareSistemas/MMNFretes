@@ -18,6 +18,7 @@ public class PersistenceLogger implements IPersistenceLogger
     @Override
     public void newNofication(PersistenceLog pl)
     {
+        System.err.println("Deu erro");
         String msg = "Classe:    " + pl.getClassName() + "\n";
         msg +=       "Metodo:    " + pl.getMethodName() + "\n\n";
         msg +=       "Data/hora: " + pl.getDate() + "\n\n";

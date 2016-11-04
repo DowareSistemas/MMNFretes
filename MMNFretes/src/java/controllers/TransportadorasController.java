@@ -46,138 +46,80 @@ public class TransportadorasController
             tipos_carga.add(new Tipo_carga(2, "Toneladas"));
             tipos_carga.add(new Tipo_carga(3, "Passageiros"));
 
-            VeiculosController veiculosController =  new VeiculosController();
-            
+            VeiculosController veiculosController = new VeiculosController();
+
             ModelAndView modelAndView = new ModelAndView("areatransportador");
             modelAndView.addObject("tipos_carga", tipos_carga);
             modelAndView.addObject("categorias_veiculos", veiculosController.getCategorias());
             modelAndView.addObject("carrocerias", veiculosController.getCarrocerias());
             return modelAndView;
-        }
-        else
-        {
+        } else
             return new ModelAndView("");
-        }
     }
 
     @RequestMapping(value = "/infoTransportador", produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String getInfo(HttpSession httpSession)
     {
-        Session session = null;
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Transportadoras transportadora = new Transportadoras();
 
-        try
-        {
-            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            Transportadoras transportadora = new Transportadoras();
+        Session session = SessionProvider.openSession();
+        session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
+                .execute();
+        session.close();
 
-            session = SessionProvider.openSession();
-            session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
-                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
-                    .execute();
-
-            Gson gson = new Gson();
-            session.close();
-
-            return gson.toJson(transportadora);
-
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
-            return " ";
-        }
+        Gson gson = new Gson();
+        return gson.toJson(transportadora);
     }
 
     public Transportadoras getByUsuario(int usuario_id)
     {
-        Session session = null;
-        try
-        {
-            Transportadoras t = new Transportadoras();
+        Transportadoras transportadora = new Transportadoras();
 
-            session = SessionProvider.openSession();
-            session.createCriteria(t, RESULT_TYPE.UNIQUE)
-                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario_id))
-                    .execute();
-            session.close();
+        Session session = SessionProvider.openSession();
+        session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario_id))
+                .execute();
+        session.close();
 
-            return t;
-
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
-            return new Transportadoras();
-        }
+        return transportadora;
     }
 
     @RequestMapping("/alteraInfoTransportadora")
     public @ResponseBody
     String alteraInfoTransportadora(Transportadoras transportadora, HttpSession httpSession)
     {
-        Session session = null;
-        try
-        {
-            Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            int idTransportadora = getIdTransportadora(usuarioLogado.getId());
+        Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        int idTransportadora = getIdTransportadora(usuarioLogado.getId());
 
-            transportadora.getUsuarios().setId(usuarioLogado.getId());
-            transportadora.getUsuarios().setTipo_usuario(usuarioLogado.getTipo_usuario());
-            transportadora.setNome(transportadora.getUsuarios().getNome());
-            transportadora.setId(idTransportadora);
+        transportadora.getUsuarios().setId(usuarioLogado.getId());
+        transportadora.getUsuarios().setTipo_usuario(usuarioLogado.getTipo_usuario());
+        transportadora.setNome(transportadora.getUsuarios().getNome());
+        transportadora.setId(idTransportadora);
 
-            session = SessionProvider.openSession();
-            session.update(transportadora);
+        Session session = SessionProvider.openSession();
+        session.update(transportadora);
+        session.commit();
+        session.close();
 
-            session.commit();
-            session.close();
-
-            return "OK";
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
-            return " ";
-        }
+        return "OK";
     }
 
     @RequestMapping("/alteraStatusCartao")
     public @ResponseBody
     String alteraCartao(@PathParam(value = "status") boolean status, HttpSession httpSession)
     {
-        Session session = null;
-        try
-        {
-            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            Transportadoras transportadora = getTransportadora(usuario.getId());
-            transportadora.setCartao(status);
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Transportadoras transportadora = getTransportadora(usuario.getId());
+        transportadora.setCartao(status);
 
-            session = SessionProvider.openSession();
-            session.update(transportadora);
-            session.commit();
-            session.close();
-            return "OK";
-
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
-
-            return " ";
-        }
+        Session session = SessionProvider.openSession();
+        session.update(transportadora);
+        session.commit();
+        session.close();
+        return "OK";
     }
 
     @RequestMapping("/alteraStatusBoleto")
@@ -198,13 +140,10 @@ public class TransportadorasController
             session.close();
             return "OK";
 
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             if (session != null)
-            {
                 session.close();
-            }
             return "ERRO";
         }
     }
@@ -213,80 +152,40 @@ public class TransportadorasController
     public @ResponseBody
     String alteraNegociacao(@PathParam(value = "status") boolean status, HttpSession httpSession)
     {
-        Session session = null;
-        try
-        {
-            session = SessionProvider.openSession();
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Transportadoras transportadora = getTransportadora(usuario.getId());
+        transportadora.setNegociacao_direta(status);
 
-            Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-            Transportadoras transportadora = getTransportadora(usuario.getId());
-            transportadora.setNegociacao_direta(status);
-
-            session.update(transportadora);
-            session.commit();
-            session.close();
-            return "OK";
-
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
-            return "ERRO";
-        }
+        Session session = SessionProvider.openSession();
+        session.update(transportadora);
+        session.commit();
+        session.close();
+        return "OK";
     }
 
-    private Transportadoras getTransportadora(int idUsuario) throws Exception
+    private Transportadoras getTransportadora(int idUsuario)
     {
-        Session session = null;
+        Transportadoras transportadora = new Transportadoras();
 
-        try
-        {
-            Transportadoras transportadora = new Transportadoras();
+        Session session = SessionProvider.openSession();
+        session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
+                .execute();
+        session.close();
 
-            session = SessionProvider.openSession();
-            session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
-                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
-                    .execute();
-            session.close();
-
-            return transportadora;
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
-
-            throw new Exception(ex.getMessage());
-        }
+        return transportadora;
     }
 
     private int getIdTransportadora(int idUsuario)
     {
         Transportadoras transportadora = new Transportadoras();
-        Session session = null;
-        try
-        {
-            session = SessionProvider.openSession();
-            session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
-                    .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
-                    .execute();
-            session.close();
 
-            return transportadora.getId();
-        }
-        catch (Exception ex)
-        {
-            if (session != null)
-            {
-                session.close();
-            }
+        Session session = SessionProvider.openSession();
+        session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", idUsuario))
+                .execute();
+        session.close();
 
-            return 0;
-        }
+        return transportadora.getId();
     }
 }
