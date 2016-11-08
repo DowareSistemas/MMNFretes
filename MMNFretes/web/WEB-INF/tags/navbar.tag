@@ -10,10 +10,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <button type="button" class="navbar-toggle collapsed pp-01"  data-toggle="collapse" data-target="#collapse-shopping-cart" aria-expanded="false">
-                    7 <!-- Quantidade de cotações -->
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                </button>
             </div>
             <!-- Collapse da navbar -->
             <div class="collapse navbar-collapse" id="bs-navbar-collapse">
@@ -24,8 +20,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown visible-sm visible-md visible-lg">
                         <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-shopping-cart">
-                            12 <!-- Quantidade de cotações -->
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span class="badge">12</span>
+                            <i class="glyphicon glyphicon-shopping-cart"></i>
                         </a>
                     </li>
                     <!-- Usuário DESLOGADO -->
@@ -69,47 +65,6 @@
                     </li>
                 </ul>
             </div> <!-- Collapse da navbar -->
-
-            <!-- Collapse do shopping cart -->
-            <div class="collapse navbar-collapse" id="collapse-shopping-cart">
-                <ul class="nav navbar-nav visible-xs">
-                    <li>
-                        <table class="table-responsive">
-                            <div class="col-xs-12">
-                                <button type="button" class="btn btn-success btn-block" style="margin-bottom: 10px">Finalizar</button>
-                            </div>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="col-xs-12">
-                                            <h5 class="text-primary">Nome da Transportadora</h5>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <p>
-                                                <span class="glyphicon glyphicon-star"></span>
-                                                <span class="glyphicon glyphicon-star"></span>
-                                                <span class="glyphicon glyphicon-star"></span>
-                                                <span class="glyphicon glyphicon-star-empty"></span>
-                                                <span class="glyphicon glyphicon-star-empty"></span>
-                                            </p>
-                                        </div>    
-                                    </td>
-                                    <td>
-                                        <div class="col-xs-12">
-                                            <h5>R$ 00000,00</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-xs-12">
-                                            <span class="btn btn-danger pull-right"><i class="glyphicon glyphicon-trash"></i></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </li>
-                </ul>
-            </div> <!-- Collapse do shopping cart -->
         </div>
     </div>
 </nav>

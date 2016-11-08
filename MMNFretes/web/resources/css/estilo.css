@@ -57,6 +57,9 @@ and open the template in the editor.
     background-color: #337ab7;
     color: #ffffff;
 }
+.badge {
+    background-color: #337ab7;
+}
 
 /* CSS geral do site */
 body {
