@@ -80,7 +80,7 @@ public class VeiculosController
         return session.getList(categorias_veiculos);
     }
 
-    @RequestMapping(value = "veiculo_path", produces = "text/html;chatset=utf-8", method = RequestMethod.GET)
+    @RequestMapping(value = "veiculo_path", produces = "text/html;chatset=utf-8", method = RequestMethod.POST)
     public @ResponseBody
     String getFotoPath(@RequestParam(value = "veiculo_id") int veiculo_id, HttpServletRequest request)
     {
@@ -102,7 +102,8 @@ public class VeiculosController
 
                 return "/mmnfretes/upload/" + fileName;
             }
-
+     
+        
         return "not_localized";
     }
 
@@ -190,12 +191,14 @@ public class VeiculosController
             inputStream.close();
 
             return "OK";
-        } catch (FileUploadException ex)
+        }
+        catch (FileUploadException ex)
         {
             if (inputStream != null)
                 closeIS(inputStream);
             return " ERRO " + ex.getMessage();
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             if (inputStream != null)
                 closeIS(inputStream);
@@ -208,7 +211,8 @@ public class VeiculosController
         try
         {
             inputStream.close();
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
 
         }
@@ -304,19 +308,16 @@ public class VeiculosController
         criteria.add(JOIN_TYPE.INNER, tipos_carga, "tipos_carga.id = veiculos.tipos_carga_id");
         criteria.add(Restrictions.eq(FILTER_TYPE.WHERE, "veiculos.transportadoras_id ", transportadora.getId()));
         criteria.execute();
-        criteria.loadList(veiculos);
-
         session.close();
-        
+ 
+        List<Veiculos> listVeiculos = criteria.loadList(veiculos);
         List<Veiculos> retorno = new ArrayList<Veiculos>();
 
-        for (Object object : veiculos.ResultList)
+        for (Veiculos vei : listVeiculos)
         {
-            Veiculos vei = (Veiculos) object;
-
-            criteria.loadEntity(carrocerias);
-            criteria.loadEntity(categorias);
-            criteria.loadEntity(tipos_carga);
+            carrocerias = (Carrocerias) criteria.loadEntity(carrocerias);
+            categorias = (Categorias_veiculos) criteria.loadEntity(categorias);
+            tipos_carga = (Tipos_carga) criteria.loadEntity(tipos_carga);
 
             vei.setCarrocerias(carrocerias);
             vei.setCategorias_veiculos(categorias);

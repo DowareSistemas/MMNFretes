@@ -1,5 +1,28 @@
 $(document).ready(function ()
 {
+    // Fake file upload
+    document.getElementById('fake-file-button-browse-perfil').addEventListener('click', function ()
+    {
+        document.getElementById('upload-perfil').click();
+    });
+
+    document.getElementById('upload-perfil').addEventListener('change', function ()
+    {
+        document.getElementById('fake-file-input-name-perfil').value = this.value;
+        document.getElementById('upload-perfil').removeAttribute('disabled');
+
+        var input = this;
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+            reader.onload = function (e)
+            {
+                $('#img-perfil').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+
     $('#veiculos-area-transportador').hide();
     $('#enderecos').hide();
     $('#historico-area-transportador').hide();
@@ -58,33 +81,32 @@ $('#btnPendentes').click(function ()
 
 function carregaInfoTransportador()
 {
-    $.ajax
-            ({
-                url: "/mmnfretes/infoTransportador",
-                dataType: 'json',
-                accepts: "application/json",
-                success: function (transportador_result)
-                {
-                    $('#txCPF_CNPJ').val(transportador_result.CPF_CNPJ);
-                    $('#txANTT').val(transportador_result.ANTT);
-                    $('#txWebsite').val(transportador_result.website);
+    $.ajax({
+        url: "/mmnfretes/infoTransportador",
+        dataType: 'json',
+        accepts: "application/json",
+        success: function (transportador_result)
+        {
+            $('#txCPF_CNPJ').val(transportador_result.CPF_CNPJ);
+            $('#txANTT').val(transportador_result.ANTT);
+            $('#txWebsite').val(transportador_result.website);
 
-                    if (transportador_result.cartao === true)
-                    {
-                        $('#Cartao').prop('checked', true);
-                    }
+            if (transportador_result.cartao === true)
+            {
+                $('#Cartao').prop('checked', true);
+            }
 
-                    if (transportador_result.boleto === true)
-                    {
-                        $('#Boleto').prop('checked', true);
-                    }
+            if (transportador_result.boleto === true)
+            {
+                $('#Boleto').prop('checked', true);
+            }
 
-                    if (transportador_result.negociacao_direta === true)
-                    {
-                        $('#NegociacaoDireta').prop('checked', true);
-                    }
-                }
-            });
+            if (transportador_result.negociacao_direta === true)
+            {
+                $('#NegociacaoDireta').prop('checked', true);
+            }
+        }
+    });
 
     $.ajax({
         url: "/mmnfretes/infoUsuario",
@@ -95,8 +117,8 @@ function carregaInfoTransportador()
             $('#txNome').val(usuario_result.nome);
             $('#txTelefone1').val(usuario_result.telefone1);
             $('#txTelefone2').val(usuario_result.telefone2);
-            $('#txEmail').val(usuario_result.email);
-            $('#txSenha').val(usuario_result.senha);
+            $('#txEmail-transportador').val(usuario_result.email.toString());
+            $('#txSenha-transportador').val(usuario_result.senha.toString());
         }
     });
 }
@@ -117,8 +139,8 @@ $('#btnSalvar-info').click(function ()
 function hab_desab_formInfo(estado)
 {
     $('#txNome').prop('disabled', estado);
-    $('#txEmail').prop('disabled', estado);
-    $('#txSenha').prop('disabled', estado);
+    $('#txEmail-transportador').prop('disabled', estado);
+    $('#txSenha-transportador').prop('disabled', estado);
     $('#txTelefone1').prop('disabled', estado);
     $('#txTelefone2').prop('disabled', estado);
     $('#txCPF_CNPJ').prop('disabled', estado);
@@ -128,46 +150,41 @@ function hab_desab_formInfo(estado)
 
 $('#btnConfirmarSenha').click(function ()
 {
-    var nome = $('#txNome').val();
-    var email = $('#txEmail').val();
-    var senha = $('#txSenha').val();
-    var telefone1 = $('#txTelefone1').val();
-    var telefone2 = $('#txTelefone2').val();
-    var cpf_cnpj = $('#txCPF_CNPJ').val();
-    var antt = $('#txANTT').val();
-    var website = $('#txWebsite').val();
-
     var senhaDigitada = $('#txSenhaDigitada').val();
 
     if (senha === senhaDigitada)
     {
-        var url = "/mmnfretes/alteraInfoTransportadora?usuarios.nome=" + nome +
-                "&usuarios.email=" + email +
-                "&usuarios.senha=" + senha +
-                "&usuarios.telefone1=" + telefone1 +
-                "&usuarios.telefone2=" + telefone2 +
-                "&CPF_CNPJ=" + cpf_cnpj +
-                "&ANTT=" + antt +
-                "&website=" + website;
+        $('#formulario-info-transportador').ajaxForm({
+            success: function (data)
+            {
+                $('#form-img-perfil').attr('action', '/mmnfretes/uploadimgperfil');
+                uploadImgPerfil();
 
-        $.ajax({
-            url: url,
-            contentType: "application/x-javascript; charset:ISO-8859-1"
-        });
+                carregaInfoTransportador();
+                hab_desab_formInfo(true);
 
-        hab_desab_formInfo(true);
-        carregaInfoTransportador();
+                $('#btnSalvar-info').hide();
+                $('#btnEditarInfo').fadeIn(200);
+            }
+        }).submit();
 
-        $('#btnSalvar-info').hide();
-        $('#btnEditarInfo').fadeIn(200);
-        
-    }
-    else
+
+    } else
     {
         $('#senhaIncorreta').modal('toggle');
         $('#senhaIncorreta').modal('show');
     }
 });
+
+function uploadImgPerfil()
+{
+    $('#form-img-perfil').ajaxForm({
+        success: function (data)
+        {
+            $('#upload-perfil').val(null);
+        }
+    }).submit();
+}
 
 $('#btnSenhaIncorreta').click(function ()
 {
@@ -212,5 +229,3 @@ $('#NegociacaoDireta').change(function ()
                 }
             });
 });
-
-

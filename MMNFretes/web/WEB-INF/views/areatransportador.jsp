@@ -63,9 +63,9 @@
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
                                               classe_btnSIM="btn btn-danger" 
-                                              texto_btnNAO="Nï¿½O" 
+                                              texto_btnNAO="NÃO" 
                                               texto_btnSIM="SIM"
-                                              texto_corpo="Deseja excluir o veï¿½culo?" 
+                                              texto_corpo="Deseja excluir o veículo?" 
                                               id_btnSIM="btnConf_del_veiculo" />
                 </div>
             </main>

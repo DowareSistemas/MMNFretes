@@ -15,33 +15,44 @@
                         </div>-->
                         <div class="col-md-12">
                             <div class="form-group">
-                                <form role="form" action="">
-                                    <div class="row">
-                                        <div class="form-group col-md-3">
-                                            <div class="row">
-                                                <div class="form-group col-md-12">
-                                                    <img src="resources/img/img-text.jpg" class="img-thumbnail img-responsive" alt="Responsive image">
-                                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <img src="resources/img/img-text.jpg"  id="img-perfil" class="img-thumbnail img-responsive" alt="Responsive image">
                                             </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-12">
-                                                    <div class="input-group">
-                                                        <input type="text" id="fake-file-input-name" disabled="disabled" placeholder="Nenhuma imagem selecionada" class="form-control input-sm">
-                                                        <input id="files-input-upload" accept="image/png, image/jpeg, image/gif" type="file" style="display:none">
-                                                        <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" id="fake-file-button-browse" type="button">
-                                                                <i class="glyphicon glyphicon-pencil"></i>
-                                                            </button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-12">
-                                                    <textarea class="form-control" rows="7" placeholder="Descrição"></textarea>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="fake-file-input-name-perfil" disabled="disabled" placeholder="Nenhuma imagem selecionada" class="form-control input-sm">
+                                                    
+                                                    <%--  FORMULARIO FOTO --%>
+                                                    <form id="form-img-perfil" runat="server" method="post" enctype="multipart/form-data" action="">
+                                                        <input id="upload-perfil" accept="image/png, image/jpeg, image/gif" type="file" style="display:none" name="file">
+                                                    </form>
+                                                    <%--  FIM FORM FOTO --%>
+                                                    
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default btn-sm" id="fake-file-button-browse-perfil" type="button">
+                                                            <i class="glyphicon glyphicon-pencil"></i>
+                                                        </button>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <textarea class="form-control" rows="7" placeholder="Descrição"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <%--  FORMULARIO INFO  --%>
+                                    <form role="form" id="formulario-info-transportador" method="POST" action="/mmnfretes/alteraInfoTransportadora">
                                         <div class="form-group col-md-9">
                                             <div class="row">
                                                 <div class="form-group col-md-12">
@@ -52,11 +63,11 @@
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label>Email:</label>
-                                                    <input type="email" id="txEmail" name="usuarios.email" class="form-control" placeholder="Email">
+                                                    <input type="email" id="txEmail-transportador" name="usuarios.email" class="form-control" placeholder="Email">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>Senha:</label>
-                                                    <input type="password" id="txSenha" name="usuarios.senha" class="form-control" placeholder="Senha">
+                                                    <input type="password" id="txSenha-transportador" name="usuarios.senha" class="form-control" placeholder="Senha">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -92,9 +103,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                </form>
+                                    </form>
+                                    <%-- FIM Formulario Info --%>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,15 +143,3 @@
         </div>
     </div>
 </article>
-<script type="text/javascript">
-    // Fake file upload
-    document.getElementById('fake-file-button-browse').addEventListener('click', function () {
-        document.getElementById('files-input-upload').click();
-    });
-
-    document.getElementById('files-input-upload').addEventListener('change', function () {
-        document.getElementById('fake-file-input-name').value = this.value;
-
-        document.getElementById('fake-file-button-upload').removeAttribute('disabled');
-    });
-</script>

@@ -2,6 +2,31 @@ var id = 0;
 
 $(document).ready(function ()
 {
+    document.getElementById('fake-file-button-browse-veiculos').addEventListener('click', function ()
+    {
+        document.getElementById('upload').click();
+    });
+
+    document.getElementById('upload').addEventListener('change', function ()
+    {
+        document.getElementById('fake-file-input-name-veiculos').value = this.value;
+        document.getElementById('upload').removeAttribute('disabled');
+
+        var input = this;
+
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+            reader.onload = function (e)
+            {
+                $('#img-preview').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+
     listarVeiculos();
     $('#btnExcluir-veiculo').hide();
 });
@@ -23,6 +48,7 @@ function listarVeiculos()
             $('#tabela-veiculos').html("");
             $('#tabela-veiculos').append(data);
             $('#btnAdicionar-veiculo').text('Adicionar');
+            $('#formulario-info-veiculo').attr('action', '/mmnfretes/salvaveiculo');
         }
     });
 }
@@ -73,6 +99,8 @@ function carregarVeiculo(id_veiculo)
         success: function (veiculo)
         {
             id = veiculo.id;
+            $('#formulario-info-veiculo').attr('action', '/mmnfretes/alteraveiculo');
+            $('#txID').val(id);
             $('#txDescricao_veiculo').val(veiculo.descricao);
             $('#txCapacidade_veiculo').val(veiculo.capacidade);
             $('#cbCategoria_veiculo').val(veiculo.categorias_veiculos_id);
@@ -96,12 +124,13 @@ function getImgVeiculo(id_veiculo)
                 veiculo_id: id_veiculo
             };
 
-    $.get(url, prm, function (data)
+    $.post(url, prm, function (data)
     {
         $('#img-preview').attr('src', data);
     });
 }
 
+/*
 //$("#upload-file-selector").
 function readURL(input)
 {
@@ -122,7 +151,7 @@ function readURL(input)
 $("#upload").change(function ()
 {
     readURL(this);
-});
+}); */
 
 
 function buscarVeiculo()
@@ -160,28 +189,7 @@ function alteraVeiculo()
         return;
     }
 
-    var descricao = $('#txDescricao_veiculo').val();
-    var capacidade = $('#txCapacidade_veiculo').val();
-    var preco_frete = $('#txPreco_frete_veiculo').val();
-    var rastreador = $('#rdo_rastreador_veiculo').is(':checked');
-    var categoria = $('#cbCategoria_veiculo').val();
-    var tipo_carga = $('#cbTipo_carga').val();
-    var carroceria = $('#cb_carroceria').val();
-
-    var url = "/mmnfretes/alteraveiculo?" +
-            "id=" + id +
-            "&descricao=" + descricao +
-            "&capacidade=" + capacidade +
-            "&tipo_carga_id=" + tipo_carga +
-            "&preco_frete=" + preco_frete +
-            "&rastreador=" + rastreador +
-            "&categorias_veiculos_id=" + categoria +
-            "&tipos_carga_id=" + tipo_carga +
-            "&carrocerias_id=" + carroceria;
-
-    $.ajax({
-        url: url,
-        contentType: "application/x-javascript; charset:ISO-8859-1",
+    $('#formulario-info-veiculo').ajaxForm({
         success: function (data)
         {
             $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);
@@ -189,7 +197,7 @@ function alteraVeiculo()
             listarVeiculos();
             limparCampos();
         }
-    });
+    }).submit();
 }
 
 function validaCampos()
@@ -219,6 +227,7 @@ function validaCampos()
 function limparCampos()
 {
     id = 0;
+    $('#txID').val(0);
     $('#btnExcluir-veiculo').fadeOut(200);
     $('#txDescricao_veiculo').val('');
     $('#txCapacidade_veiculo').val('');
@@ -226,6 +235,7 @@ function limparCampos()
     $('#cbCategoria_veiculo').val(1);
     $('#cbTipo_carga').val(1);
     $('#cb_carroceria').val(1);
+    $('#formulario-info-veiculo').attr('action', '/mmnfretes/salvaveiculo');
 }
 
 function adicionaVeiculo()
@@ -237,30 +247,12 @@ function adicionaVeiculo()
         return;
     }
 
-    var descricao = $('#txDescricao_veiculo').val();
-    var capacidade = $('#txCapacidade_veiculo').val();
-    var preco_frete = $('#txPreco_frete_veiculo').val();
-    var rastreador = $('#rdo_rastreador_veiculo').is(':checked');
-    var categoria = $('#cbCategoria_veiculo').val();
-    var tipo_carga = $('#cbTipo_carga').val();
-    var carroceria = $('#cb_carroceria').val();
-
-    $.ajax({
-        url: "/mmnfretes/salvaveiculo?" +
-                "descricao=" + descricao +
-                "&capacidade=" + capacidade +
-                "&tipo_carga_id=" + tipo_carga +
-                "&preco_frete=" + preco_frete +
-                "&rastreador=" + rastreador +
-                "&categorias_veiculos_id=" + categoria +
-                "&tipos_carga_id=" + tipo_carga +
-                "&carrocerias_id=" + carroceria,
-        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+    $('#formulario-info-veiculo').ajaxForm({
         success: function (data)
         {
             $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);
             uploadImagem();
             listarVeiculos();
         }
-    });
+    }).submit();
 }

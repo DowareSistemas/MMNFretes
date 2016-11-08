@@ -37,11 +37,11 @@ public class Interceptador extends HandlerInterceptorAdapter
 
     private boolean enderecoPermitido(String url)
     {
-        if(url.contains("upload"))
+        if (url.contains("upload"))
         {
             return true;
         }
-        
+
         if (url.contains("pesquisar"))
         {
             return true;
@@ -81,8 +81,8 @@ public class Interceptador extends HandlerInterceptorAdapter
         {
             return true;
         }
-        
-        if(url.contains("pesquisafrete"))
+
+        if (url.contains("pesquisafrete"))
         {
             return true;
         }

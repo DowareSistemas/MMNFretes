@@ -5,19 +5,33 @@
             <h1 class="text-center">Veículos</h1>
         </div>
         <div class="panel-body">
+
             <div class="row">
+                
                 <div class="col-sm-4">
                     <img id="img-preview" src="resources/img/checked_truck-512.png" class="img-thumbnail" alt="Cinque Terre" width="720" height="720">
                     <span>
+                        <input type="text" id="fake-file-input-name-veiculos" disabled="disabled" placeholder="Nenhuma imagem selecionada" class="form-control input-sm">
                         <form id="form-img" runat="server" method="post" enctype="multipart/form-data" action="">
-                            <input id="upload" class="col-sm-12" accept="image/png, image/jpeg, image/gif" type="file" name="file">
+                            <input id="upload" class="col-sm-12" accept="image/png, image/jpeg, image/gif" style="display: none" type="file" name="file">
                             <i class="fa_icon icon-upload-alt"></i>Editar Imagem
                         </form>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-sm" id="fake-file-button-browse-veiculos" type="button">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </button>
+                        </span>
                     </span>
                 </div>
+
                 <div class="col-sm-8">
-                    <div class="row">
-                        <form role="form">
+                    <form role="form" id="formulario-info-veiculo" method="POST" action="">
+                        <div class="row">
+
+                            <div class="form-group col-sm-6" hidden>
+                                id aqui
+                                <input type="text" id="txID" name="id">
+                            </div>
                             <div class="form-group col-sm-6">
                                 <input type="text" id="txDescricao_veiculo" name="descricao" maxlength="100" class="form-control" placeholder="Nome do Veículo" required>
                             </div>
@@ -32,57 +46,58 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <select name="categorias_veiculos_id" id="cbCategoria_veiculo" class="form-control"required>
-                                <option disabled selected>Categoria do veículo</option>
-                                <c:forEach var="categoria" items="${categorias_veiculos}">
-                                    <option value="${categoria.id}"> ${categoria.descricao} </option>
-                                </c:forEach>
-                            </select>
                         </div>
-                        <div class="form-group col-sm-6">
-                            <select name="carrocerias_id" id="cb_carroceria" class="form-control"required>
-                                <option disabled selected>Carroceria</option>
-                                <c:forEach var="carroceria" items="${carrocerias}">
-                                    <option value="${carroceria.id}"> ${carroceria.descricao} </option>
-                                </c:forEach>
-                            </select>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <select name="categorias_veiculos_id" id="cbCategoria_veiculo" class="form-control"required>
+                                    <option disabled selected>Categoria do veículo</option>
+                                    <c:forEach var="categoria" items="${categorias_veiculos}">
+                                        <option value="${categoria.id}"> ${categoria.descricao} </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <select name="carrocerias_id" id="cb_carroceria" class="form-control"required>
+                                    <option disabled selected>Carroceria</option>
+                                    <c:forEach var="carroceria" items="${carrocerias}">
+                                        <option value="${carroceria.id}"> ${carroceria.descricao} </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <input name="preco_frete" id="txPreco_frete_veiculo" type="number" class="form-control" placeholder="Valor (R$)" required>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <input name="preco_frete" id="txPreco_frete_veiculo" type="number" class="form-control" placeholder="Valor (R$)" required>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input disabled selected type="text" class="form-control" placeholder="Kilômetro" required>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-6">
-                            <input disabled selected type="text" class="form-control" placeholder="Kilômetro" required>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Rastreador
+                                        <div class="material-switch pull-right">
+                                            <input name="rastreador" id="ck_rastreador_veiculo" type="checkbox"/>
+                                            <label for="rastreador" class="label-primary"></label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    Rastreador
-                                    <div class="material-switch pull-right">
-                                        <input name="rastreador" id="ck_rastreador_veiculo" type="checkbox"/>
-                                        <label for="rastreador" class="label-primary"></label>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div class="row">
+                            <div class="btn-group col-sm-4">
+                                <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger col-sm-12">Excluir</button>
+                            </div>
+                            <div class="btn-group col-sm-8">
+                                <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary col-sm-12">Adicionar</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="btn-group col-sm-4">
-                            <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger col-sm-12">Excluir</button>
-                        </div>
-                        <div class="btn-group col-sm-8">
-                            <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary col-sm-12">Adicionar</button>
-                        </div>
-                    </div>
                 </div>
-            </div><hr/>
+                </form>
+            </div>
+            <hr/>
             <div class="row">
                 <div class="col-sm-12">
                     <h2 class="text-primary">Lista Veículos</h2>

@@ -7,7 +7,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <form role="form" id="formulario-info-usuario" method="POST">
+                        <form role="form" id="formulario-info-usuario" method="POST" action="/mmnfretes/alteraInfoUsuario">
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label>Usuário:</label>

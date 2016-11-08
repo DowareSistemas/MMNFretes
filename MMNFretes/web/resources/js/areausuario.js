@@ -144,29 +144,18 @@ $('#btnConfirmarSenha').click(function ()
     var senha = $('#txSenha-usuario').val();
     var senhaConfirmada = $('#txSenhaConfirmada').val();
 
-    var nome = $('#txNome-usuario').val();
-    var email = $('#txEmail-usuario').val();
-    var telefone1 = $('#txTelefone1').val();
-    var telefone2 = $('#txTelefone2').val();
-
     if (senha === senhaConfirmada)
     {
-        var url = "/mmnfretes/alteraInfoUsuario?senha=" + senha +
-                "&nome=" + nome +
-                "&email=" + email +
-                "&telefone1=" + telefone1 +
-                "&telefone2=" + telefone2;
+        $('#formulario-info-usuario').ajaxForm({
+            success: function ()
+            {
+                hab_desab_formInfo(true);
+                carregaInfoUsuario();
+                $('#btnAlterar-info').fadeIn();
+                $('#btnSalvar-info').hide();
+            }
 
-        $.ajax
-                ({
-                    url: url,
-                    contentType: "application/x-javascript; charset:ISO-8859-1"
-                });
-
-        hab_desab_formInfo(true);
-        carregaInfoUsuario();
-        $('#btnAlterar-info').fadeIn();
-        $('#btnSalvar-info').hide();
+        }).submit();
 
     } else
     {
