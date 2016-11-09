@@ -245,7 +245,7 @@ function adicionaVeiculo()
         $('#valid-campos').modal('show');
         return;
     }
-
+    $('#txID').val('0');
     $('#formulario-info-veiculo').ajaxForm({
         success: function (data)
         {

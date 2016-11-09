@@ -12,6 +12,9 @@
                             <div class="form-group">
                                 <form role="form" id="formulario-endereco" action="/mmnfretes/adicionaEndereco" method="POST">
                                     <div class="row">
+                                        <div hidden>
+                                            <input type="text" id="txID-endereco" name="id">
+                                        </div>
                                         <div class="form-group col-md-3">
                                             <label>CEP:</label>
                                             <input type="tel" id="txCep" name="CEP" class="form-control" placeholder="CEP" required>

@@ -35,10 +35,9 @@
                         </div>
                         <div class="col-md-8">
                             <!--  Formulario Info  -->
-                            <form role="form" id="formulario-info-veiculo" method="POST">
+                            <form role="form" id="formulario-info-veiculo" method="GET">
                                 <div class="row">
                                     <div hidden>
-                                        id aqui
                                         <input type="text" id="txID" name="id">
                                     </div>
                                     <div class="form-group col-md-12">
@@ -101,7 +100,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <%--
+
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 Rastreador
@@ -110,7 +109,7 @@
                                                     <label for="rastreador" class="label-primary"></label>
                                                 </div>
                                             </li>
-</ul>--%>
+                                        </ul>
                                     </div>
 
                                 </div>
