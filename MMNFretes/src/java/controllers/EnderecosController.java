@@ -82,10 +82,9 @@ public class EnderecosController
     }
 
     @RequestMapping("/alteraEndereco")
-    public String alteraEndereco(@PathParam(value = "endereco_id") int endereco_id, Enderecos endereco, HttpSession httpSession)
+    public String alteraEndereco(Enderecos endereco, HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        endereco.setId(endereco_id);
         endereco.setUsuarios_id(usuario.getId());
 
         Session session = SessionProvider.openSession();
