@@ -13,6 +13,7 @@ and open the template in the editor.
 .mask-telefone{}
 .mask-celular{}
 .mask-cep{}
+.mask-capacidade {}
 
 .tab-veiculos-col-veiculo
 {
@@ -56,6 +57,9 @@ and open the template in the editor.
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     background-color: #337ab7;
     color: #ffffff;
+}
+.badge {
+    background-color: #337ab7;
 }
 
 /* CSS geral do site */
@@ -166,4 +170,8 @@ body {
         border: 1px solid #337ab7;
     }
 
+}
+.img-areatransportador {
+    width: 300px;
+    height: 306px;
 }
