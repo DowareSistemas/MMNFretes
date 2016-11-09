@@ -118,7 +118,6 @@ function carregarVeiculo(id_veiculo)
 function getImgVeiculo(id_veiculo)
 {
     var url = "/mmnfretes/veiculo_path";
-
     var prm =
             {
                 veiculo_id: id_veiculo

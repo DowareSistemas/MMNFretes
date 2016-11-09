@@ -103,22 +103,7 @@
 </ul>--%>
                                     </div>
 
-
-
-
-
-
-
                                 </div>
-                                <div class="row">
-                                    <div class="btn-group col-md-4">
-                                        <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger col-md-12">Excluir</button>
-                                    </div>
-                                    <div class="btn-group col-md-8">
-                                        <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary col-md-12">Adicionar</button>
-                                    </div>
-                                </div>
-
                             </form>
                             <!-- Formulario Info: FIM -->
                         </div>

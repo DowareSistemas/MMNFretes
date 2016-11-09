@@ -103,14 +103,12 @@ public class VeiculosController
                 return "/mmnfretes/upload/" + fileName;
             }
      
-        
         return "not_localized";
     }
 
     private String getFileName(Veiculos veiculo)
     {
-        Calendar c = Calendar.getInstance();
-        String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras().getId());
+        String name = (veiculo.getId() + "" + veiculo.getCarrocerias_id() + "" + veiculo.getCategorias_veiculos_id() + "" + veiculo.getTransportadoras().getId());
         return name + ".jpg";
     }
 
