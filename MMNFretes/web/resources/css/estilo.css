@@ -10,10 +10,11 @@ and open the template in the editor.
 
 
 /* Mascaras de Inputs */
-.mask-telefone{}
-.mask-celular{}
-.mask-cep{}
-.mask-capacidade {}
+.mask-telefone
+.mask-celular
+.mask-cep
+.mask-capacidade
+.mask-valor 
 
 .tab-veiculos-col-veiculo
 {

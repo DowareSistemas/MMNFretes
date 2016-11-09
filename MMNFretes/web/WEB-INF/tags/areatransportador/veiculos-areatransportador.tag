@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label>Capacidade:</label>
-                                        <input type="number" name="capacidade" id="txCapacidade_veiculo" class="form-control mask-capacidade" title="Capacidade" required>
+                                        <input type="tel" name="capacidade" id="txCapacidade_veiculo" class="form-control mask-capacidade" title="Capacidade" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Carga:</label>
@@ -72,7 +72,6 @@
                                     <div class="form-group col-md-6">
                                         <label>Carroceria:</label>
                                         <select name="carrocerias_id" id="cb_carroceria" class="form-control" required title="Carroceria">
-                                            <option disabled selected>Carroceria</option>
                                             <c:forEach var="carroceria" items="${carrocerias}">
                                                 <option value="${carroceria.id}"> ${carroceria.descricao} </option>
                                             </c:forEach>
@@ -80,13 +79,24 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Valor Kilômetro:</label>
-                                        <input name="preco_frete" id="txPreco_frete_veiculo" type="number" class="form-control" title="Valor por quilômetro" required>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">R$</span>
+                                            <input name="preco_frete" id="txPreco_frete_veiculo" type="tel" class="form-control mask-valor" title="Valor por quilômetro" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="btn-group col-md-12">
-                                        <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger col-md-12">Excluir</button>
-                                        <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary col-md-12">Adicionar</button>
+                                    <div class="form-group col-md-6">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger">Excluir</button>
+                                        <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary">Adicionar</button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -96,7 +106,7 @@
                                             <li class="list-group-item">
                                                 Rastreador
                                                 <div class="material-switch pull-right">
-                                                    <input name="rastreador" id="ck_rastreador_veiculo" type="checkbox"/>
+                                                    <input name="rastreador" id="ck_rastreador_veiculo" teyp="checkbox"/>
                                                     <label for="rastreador" class="label-primary"></label>
                                                 </div>
                                             </li>
