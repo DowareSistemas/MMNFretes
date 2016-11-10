@@ -46,11 +46,11 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-3">
                                         <label>Capacidade:</label>
-                                        <input type="tel" name="capacidade" id="txCapacidade_veiculo" class="form-control mask-capacidade" title="Capacidade" required>
+                                        <input type="tel" name="capacidade" id="txCapacidade_veiculo" class="form-control mask-capacidade" title="Capacidade" maxlength="11" required>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-5">
                                         <label>Carga:</label>
                                         <select name="tipos_carga_id" id="cbTipo_carga" class="form-control" required title="Tipo de carga">
                                             <c:forEach var="tipo_carga" items="${tipos_carga}">
@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label>Carroceria:</label>
                                         <select name="carrocerias_id" id="cb_carroceria" class="form-control" required title="Carroceria">
                                             <c:forEach var="carroceria" items="${carrocerias}">
@@ -76,61 +76,48 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-5">
                                         <label>Valor Kilômetro:</label>
                                         <div class="input-group">
                                             <span class="input-group-addon">R$</span>
-                                            <input name="preco_frete" id="txPreco_frete_veiculo" type="tel" class="form-control mask-valor" title="Valor por quilômetro" required>
+                                            <input name="preco_frete" id="txPreco_frete_veiculo" type="tel" class="form-control mask-valor" title="Valor por quilômetro" maxlength="12" required>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-
-                                    </div>
-                                    <div class="form-group col-md-6">
-
+                                    <div class="form-group col-md-3">
+                                        <label>Rastreador:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <input type="checkbox">
+                                            </span>
+                                            <input type="text" class="form-control" disabled placeholder="Sim">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger">Excluir</button>
-                                        <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary">Adicionar</button>
+                                        <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary pull-right">Adicionar</button>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                Rastreador
-                                                <div class="material-switch pull-right">
-                                                    <input name="rastreador" id="ck_rastreador_veiculo" teyp="checkbox"/>
-                                                    <label for="rastreador" class="label-primary"></label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-
                                 </div>
                             </form>
                             <!-- Formulario Info: FIM -->
                         </div>
                     </div>
-                    <hr/>
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="text-primary">Lista Veículos</h2>
-                            <div id="custom-search-input">
-                                <div class="input-group col-md-6">
-                                    <input type="text" id="txBusca-veiculo"  class="form-control campo-btn-busca" placeholder="Buscar veículo" />
+                            <h3 class="text-primary">Lista Veículos</h3>
+                                <div class="input-group">
+                                    <input type="text" id="txBusca-veiculo"  class="form-control" placeholder="Buscar veículo" />
                                     <span class="input-group-btn">
-                                        <button class="btn btn-info campo-btn-busca" id="btBuscar-veiculo" type="button">
+                                        <button class="btn btn-primary" id="btBuscar-veiculo" type="button">
                                             <i class="glyphicon glyphicon-search"></i>
                                         </button>
                                     </span>
                                 </div>
-                            </div><br/>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-12">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -147,8 +134,8 @@
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> <!-- Panel body -->
+            </div <!-- Panel Primary -->
         </div>
     </div>
 </article>
