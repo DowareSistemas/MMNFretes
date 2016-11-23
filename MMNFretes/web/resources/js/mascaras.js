@@ -5,5 +5,7 @@ $(document).ready(function ()
     $('.mask-celular').mask('(00)00000-0000');
     $('.mask-capacidade').mask("#.##0", {reverse: true});
     $('.mask-valor').mask("#.##0,00", {reverse: true});
+    $('mask-antt').mask('0000/0000');
+    $('.mask-cpf-cnpj').mask("#.###/###0-00","#.##0-00", {reverse: true});
     //as demais classes adicionar apartir daqui
 });

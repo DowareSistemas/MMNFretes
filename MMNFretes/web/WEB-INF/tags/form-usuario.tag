@@ -34,7 +34,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-primary">Criar Conta</button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Criar Conta</button>
                         </div>
                     </div>
                 </form>

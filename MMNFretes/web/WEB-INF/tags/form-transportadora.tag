@@ -35,18 +35,18 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>Número ANTT:</label>
-                            <input type="text"  name="ANTT" class="form-control" title="Número ANTT" required>
+                            <input type="tel"  name="ANTT" class="form-control mask-antt" title="Número ANTT" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>Número CPF ou CNPJ:</label>
-                            <input type="text" name="CPF_CNPJ" class="form-control" title="Número CPF ou CNPJ" required>
+                            <input type="tel" name="CPF_CNPJ" class="form-control mask-cpf-cnpj" title="Número CPF ou CNPJ" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-primary">Criar Conta</button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Criar Conta</button>
                         </div>
                     </div>
                 </form>
@@ -54,3 +54,6 @@
         </div>
     </div>
 </article>
+<!-- Scripts de mascara para inputs -->
+<script src="resources/js/jquery-mask.js"></script>
+<script src="resources/js/mascaras.js"></script>
