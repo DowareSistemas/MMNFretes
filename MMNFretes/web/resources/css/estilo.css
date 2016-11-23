@@ -8,6 +8,11 @@ and open the template in the editor.
     Author     : emers
 */
 
+/* CONTEÚDO EM TESTE 
+================================================================================ */
+
+/* CONTEÚDO EM TESTE 
+================================================================================ */
 
 /* Mascaras de Inputs */
 .mask-telefone
@@ -40,11 +45,6 @@ and open the template in the editor.
     font-size: 24px;
     margin: 0px;
 }
-/* CONTEÚDO EM TESTE 
-================================================================================ */
-
-/* CONTEÚDO EM TESTE 
-================================================================================ */
 
 /* CSS geral do bootstrap */
 .navbar-default {
@@ -56,6 +56,9 @@ and open the template in the editor.
 }
 .badge {
     background-color: #337ab7;
+}
+.jumbotron {
+    background-color: #fff;
 }
 
 /* CSS geral do site */

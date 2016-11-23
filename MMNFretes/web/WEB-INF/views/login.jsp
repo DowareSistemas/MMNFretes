@@ -17,20 +17,39 @@
     </head>
 
     <body>
-        <my-tags:navbar/>
-        <%--<my-tags:navbar-login>--%>
+
         <div class="container">
-            <div class="col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h1 class="text-center">Criar Conta</h1>
+            <header>
+                <my-tags:navbar/>
+            </header>
+            <main>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="btn-group col-md-12">
+                            <h1>Criar conta</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="btn-group col-md-6">
+                            <button type="button" class="btn btn-block btn-default" id="usuario">Usuário</button>
+                        </div>
+                        <div class="btn-group col-md-6">
+                            <button type="button" class="btn btn-block btn-default" id="transportador">Transportador</button>
+                        </div>
                     </div>
                     <my-tags:form-usuario/>
                     <my-tags:form-transportadora/>
                 </div>
+                <div class="col-md-8">
+                        <my-tags:sobre/>
+                </div>
+                <my-tags:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
             </div>
-            <my-tags:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
-            <my-tags:sobre/>
+            </main>
+            <footer>
+                
+            </footer>
         </div>
         <!-- Scripts da página -->
         <script src="resources/js/jquery.js"></script>
