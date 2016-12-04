@@ -1,7 +1,7 @@
 $(document).ready(function ()
 {
-    
-})
+
+});
 
 $('#btnBuscarFretes').click(function ()
 {
@@ -12,37 +12,38 @@ $('#btnBuscarFretes').click(function ()
                 origin: $('#txCep_origem').val(),
                 destination: $('#txCep_destino').val(),
                 travelMode: google.maps.DirectionsTravelMode.DRIVING
-
             };
 
-    directionsService.route(request,function (response,status)
+    var filtroPesquisa =
+            {
+                categorias: "",
+                carrocerias: "",
+                rastreador: "",
+                distancia: ""
+            };
+
+    directionsService.route(request, function (response, status)
     {
         if (status == google.maps.DirectionsStatus.OK)
         {
             var distancia = response.routes[0].legs[0].distance.text;
-            var url = getURL(distancia);
-            window.location = url;
+            var url = "/gcfretes/pesquisafrete";
+
+            distancia = distancia.replace(" km", "");
+            distancia = distancia.replace(",", ".");
+
+            filtroPesquisa.carrocerias = getFiltroCarrocerias();
+            filtroPesquisa.categorias = getFiltroCategorias();
+            filtroPesquisa.rastreador = $('#rdoSIM').is(':checked');
+            filtroPesquisa.distancia = distancia;
+
+            $.get(url, filtroPesquisa, function (result)
+            {
+                $('#resultados-pesquisa').html(result);
+            });
         }
     });
 });
-
-function getURL(distancia)
-{
-    distancia = distancia.replace(" km","");
-    distancia = distancia.replace(",",".");
-    
-    var filtro_carrocerias = getFiltroCarrocerias();
-    var filtro_categorias = getFiltroCategorias();
-    var rastreador = $('#rdoSIM').is(':checked');
-
-    var url = "/mmnfretes/pesquisafrete?categorias={0}&carrocerias={1}&rastreador={2}&distancia={3}";
-    url = url.replace("{0}",filtro_categorias);
-    url = url.replace("{1}",filtro_carrocerias);
-    url = url.replace("{2}",rastreador);
-    url = url.replace("{3}",distancia);
-
-    return url;
-}
 
 function getFiltroCarrocerias()
 {
@@ -55,7 +56,7 @@ function getFiltroCarrocerias()
     var cacamba = $('#ckCacamba').is(':checked');
     var gradeBaixa = $('#ckGradeBaixa').is(':checked');
 
-    if (bau)
+    if (bau)       
         retorno += "1,";
     if (sider)
         retorno += "2,";

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="col-md-12">
             <div class="navbar-header">
-                <h1 class="pp-04"><a class="navbar-brand pp-04" href="/mmnfretes/pesquisar">GC Fretes</a></h1>
+                <h1 class="pp-04"><a class="navbar-brand pp-04" href="/gcfretes/pesquisar">GC Fretes</a></h1>
                 <button type="button" class="navbar-toggle collapsed pp-01" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
                                                 <label for="email">Email:</label>
                                                 <input type="email" class="form-control" id="txEmail" name="email">
                                             </div>
-                                            <div class="form-group" action="/mmnfretes/efetuaLogin">
+                                            <div class="form-group" action="/gcfretes/efetualogin">
                                                 <label for="pwd">Senha:</label>
                                                 <input type="password" class="form-control" id="txSenha" name="senha">
                                             </div>
@@ -49,7 +49,7 @@
                                             </div>
                                         </form><hr>
                                         <div class="text-center">
-                                            Novo aqui ? <a href="http://localhost:8080/mmnfretes/paginaLogin"><b class="text-uppercase">junte-se a nós</b></a>
+                                            Novo aqui ? <a href="gcfretes/paginalogin"><b class="text-uppercase">junte-se a nós</b></a>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                     </li>
                     <!-- Usuário LOGADO -->
                     <li class="active">
-                        <a href="http://localhost:8080/mmnfretes/areausuario">
+                        <a href="gcfretes/areausuario">
                             Perfil
                             <span class="sr-only">(current)</span>
                         </a>

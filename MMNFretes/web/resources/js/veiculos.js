@@ -42,13 +42,13 @@ $('#btnAdicionar-veiculo').click(function ()
 function listarVeiculos()
 {
     $.ajax({
-        url: "/mmnfretes/listarveiculos",
+        url: "/gcfretes/listarveiculos",
         success: function (data)
         {
             $('#tabela-veiculos').html("");
             $('#tabela-veiculos').append(data);
             $('#btnAdicionar-veiculo').text('Adicionar');
-            $('#formulario-info-veiculo').attr('action', '/mmnfretes/salvaveiculo');
+            $('#formulario-info-veiculo').attr('action', '/gcfretes/salvaveiculo');
         }
     });
 }
@@ -57,7 +57,7 @@ $('#btnConf_del_veiculo').click(function ()
 {
     var veiculo_id = id;
     $.ajax({
-        url: "/mmnfretes/excluirveiculo?id=" + veiculo_id,
+        url: "/gcfretes/excluirveiculo?id=" + veiculo_id,
         dataType: 'text',
         accepts: 'text',
         success: function (result)
@@ -93,13 +93,13 @@ var imgVeiculo;
 function carregarVeiculo(id_veiculo)
 {
     $.ajax({
-        url: "/mmnfretes/infoveiculo?id=" + id_veiculo,
+        url: "/gcfretes/infoveiculo?id=" + id_veiculo,
         dataType: 'json',
         accepts: 'json',
         success: function (veiculo)
         {
             id = veiculo.id;
-            $('#formulario-info-veiculo').attr('action', '/mmnfretes/alteraveiculo');
+            $('#formulario-info-veiculo').attr('action', '/gcfretes/alteraveiculo');
             $('#txID').val(id);
             $('#txDescricao_veiculo').val(veiculo.descricao);
             $('#txCapacidade_veiculo').val(veiculo.capacidade);
@@ -108,6 +108,7 @@ function carregarVeiculo(id_veiculo)
             $('#txPreco_frete_veiculo').val(veiculo.preco_frete);
             $('#cb_carroceria').val(veiculo.carrocerias_id);
             $('#btnExcluir-veiculo').fadeIn(200);
+            $('#ckRastreador').prop(':checked', veiculo.rastreador);
             $('#btnAdicionar-veiculo').text('Salvar');
             getImgVeiculo(id_veiculo);
             getImgVeiculo(id_veiculo);
@@ -117,7 +118,7 @@ function carregarVeiculo(id_veiculo)
 
 function getImgVeiculo(id_veiculo)
 {
-    var url = "/mmnfretes/veiculo_path";
+    var url = "/gcfretes/veiculo_path";
     var prm =
             {
                 veiculo_id: id_veiculo
@@ -129,35 +130,11 @@ function getImgVeiculo(id_veiculo)
     });
 }
 
-/*
-//$("#upload-file-selector").
-function readURL(input)
-{
-
-    if (input.files && input.files[0])
-    {
-        var reader = new FileReader();
-
-        reader.onload = function (e)
-        {
-            $('#img-preview').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#upload").change(function ()
-{
-    readURL(this);
-}); */
-
-
 function buscarVeiculo()
 {
     var nomeVeiculo = $('#txBusca-veiculo').val();
     $.ajax({
-        url: "/mmnfretes/buscarveiculos?nome=" + nomeVeiculo,
+        url: "/gcfretes/buscarveiculos?nome=" + nomeVeiculo,
         success: function (data)
         {
             $('#tabela-veiculos').html("");
@@ -175,7 +152,6 @@ function uploadImagem()
             $('#upload').val(null);
         }
     }).submit();
-    location.reload();
 }
 
 function alteraVeiculo()
@@ -191,7 +167,7 @@ function alteraVeiculo()
     $('#formulario-info-veiculo').ajaxForm({
         success: function (data)
         {
-            $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);
+            $('#form-img').attr('action', '/gcfretes/uploadimg?veiculo_id=' + id);
             uploadImagem();
             listarVeiculos();
             limparCampos();
@@ -204,7 +180,7 @@ function validaCampos()
     var descricao = $('#txDescricao_veiculo').val();
     var capacidade = $('#txCapacidade_veiculo').val();
     var preco_frete = $('#txPreco_frete_veiculo').val();
-    var rastreador = $('#rdo_rastreador_veiculo').is(':checked');
+    var rastreador = $('#ckRastreador').is(':checked');
     var categoria = $('#cbCategoria_veiculo').val();
     var tipo_carga = $('#cbTipo_carga').val();
     var carroceria = $('#cb_carroceria').val();
@@ -234,7 +210,8 @@ function limparCampos()
     $('#cbCategoria_veiculo').val(1);
     $('#cbTipo_carga').val(1);
     $('#cb_carroceria').val(1);
-    $('#formulario-info-veiculo').attr('action', '/mmnfretes/salvaveiculo');
+    $('#fake-file-input-name-veiculos').val('');
+    $('#formulario-info-veiculo').attr('action', '/gcfretes/salvaveiculo');
 }
 
 function adicionaVeiculo()
@@ -249,7 +226,7 @@ function adicionaVeiculo()
     $('#formulario-info-veiculo').ajaxForm({
         success: function (data)
         {
-            $('#form-img').attr('action', '/mmnfretes/uploadimg?veiculo_id=' + id);
+            $('#form-img').attr('action', '/gcfretes/uploadimg?veiculo_id=' + id);
             uploadImagem();
             listarVeiculos();
         }

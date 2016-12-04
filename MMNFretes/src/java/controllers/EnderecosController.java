@@ -32,7 +32,7 @@ public class EnderecosController
 {
 
     @RequestMapping(value = "/adicionaEndereco")
-    public String adicionar(Model model, Enderecos endereco, HttpSession httpSession)
+    public String adicionar(Enderecos endereco, HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
         endereco.setUsuarios_id(usuario.getId());

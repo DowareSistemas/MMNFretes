@@ -26,7 +26,7 @@ import util.Util;
 public class LoginController
 {
 
-    @RequestMapping("/paginaLogin")
+    @RequestMapping("/paginalogin")
     public String redirecionaLogin()
     {
         return "login";

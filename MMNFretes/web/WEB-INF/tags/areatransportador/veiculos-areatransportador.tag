@@ -87,7 +87,7 @@
                                         <label>Rastreador:</label>
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                <input type="checkbox">
+                                                <input name="rastreador" id="ckRastreador"  type="checkbox">
                                             </span>
                                             <input type="text" class="form-control" disabled placeholder="Sim">
                                         </div>

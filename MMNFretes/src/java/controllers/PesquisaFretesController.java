@@ -16,9 +16,12 @@ import entidades.Historico;
 import entidades.Transportadoras;
 import entidades.Veiculos;
 import entidadesTemporarias.ResultadoPesquisa;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -52,7 +55,7 @@ public class PesquisaFretesController
 
         List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia, request);
 
-        ModelAndView mav = new ModelAndView("pesquisarfretes");
+        ModelAndView mav = new ModelAndView("resultadosfretes");
         mav.addObject("resultados", lista);
         return mav;
     }
@@ -105,7 +108,7 @@ public class PesquisaFretesController
 
         Join joinVeiculos = new Join(veiculos);
         joinVeiculos.addJoin(JOIN_TYPE.INNER, transportadora, "veiculos.transportadoras_id = transportadoras.id");
-        joinVeiculos.addJoin(JOIN_TYPE.INNER, carroceria, "veiculos.carrocerias_id	 = carrocerias.id");
+        joinVeiculos.addJoin(JOIN_TYPE.INNER, carroceria, "veiculos.carrocerias_id = carrocerias.id");
         joinVeiculos.addJoin(JOIN_TYPE.INNER, categoria_veiculo, "veiculos.categorias_veiculos_id = categorias_veiculos.id");
         joinVeiculos.addFinalCondition(finalCondition);
 
@@ -117,13 +120,9 @@ public class PesquisaFretesController
 
         for (Veiculos veiculo : listaVeiculos)
         {
-            carroceria = joinVeiculos.getEntity(Carrocerias.class);
-            categoria_veiculo = joinVeiculos.getEntity(Categorias_veiculos.class);
-            transportadora = joinVeiculos.getEntity(Transportadoras.class);
-
-            veiculo.setCarrocerias(carroceria);
-            veiculo.setCategorias_veiculos(categoria_veiculo);
-            veiculo.setTransportadoras(transportadora);
+            veiculo.setCarrocerias((Carrocerias) joinVeiculos.getEntity(Carrocerias.class));
+            veiculo.setCategorias_veiculos((Categorias_veiculos) joinVeiculos.getEntity(Categorias_veiculos.class));
+            veiculo.setTransportadoras((Transportadoras) joinVeiculos.getEntity(Transportadoras.class));
 
             double preco_frete = (veiculo.getPreco_frete() * distancia);
             int total_avaliacoes = 0;
@@ -151,23 +150,36 @@ public class PesquisaFretesController
 
     private String getFotoPath(Veiculos veiculo, HttpServletRequest request)
     {
-        ServletContext context = request.getServletContext();
-        String path = context.getRealPath("/upload");
-        path = path.substring(0, path.indexOf("\\build"));
-        path += "\\web\\upload\\";
+        try
+        {
+            ServletContext context = request.getServletContext();
+            String path = context.getRealPath("/upload");
+            path = path.substring(0, path.indexOf("\\build"));
+            path += "\\web\\upload\\";
 
-        if (veiculo.getId() > 0)
-            if (veiculo.getFoto() != null)
-            {
-                String fileName = getFileName(veiculo);
-                FileExtractor extractor = new FileExtractor();
-                extractor.setBufferSize(1024);
-                extractor.setInputStream(veiculo.getFoto());
-                extractor.setFileToExtract(path + fileName);
-                extractor.extract();
+            if (veiculo.getId() > 0)
+                if (veiculo.getFoto() != null)
+                {
+                    String fileName = getFileName(veiculo);
+                    String imageFile = (path + fileName);
 
-                return "/mmnfretes/upload/" + fileName;
-            }
+                    FileExtractor extractor = new FileExtractor();
+                    extractor.setBufferSize(1024);
+                    extractor.setInputStream(veiculo.getFoto());
+                    extractor.setFileToExtract(imageFile);
+                    extractor.extract();
+                    
+                    BufferedImage image = ImageIO.read(new File(imageFile));
+                    
+                    return (image == null
+                            ? "not_localized" 
+                            : "/gcfretes/upload/" + fileName);
+                }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
 
         return "not_localized";
     }

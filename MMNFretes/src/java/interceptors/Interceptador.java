@@ -30,7 +30,7 @@ public class Interceptador extends HandlerInterceptorAdapter
         }
         else
         {
-            response.sendRedirect("paginaLogin");
+            response.sendRedirect("paginalogin");
             return false;
         }
     }
@@ -67,7 +67,7 @@ public class Interceptador extends HandlerInterceptorAdapter
             return true;
         }
 
-        if (url.contains("paginaLogin"))
+        if (url.contains("paginalogin"))
         {
             return true;
         }

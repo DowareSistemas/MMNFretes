@@ -2,17 +2,20 @@ var modoEdicaoInfo = false;
 
 $('#btnAdicionar-endereco').click(function ()
 {
+    if ($('#formulario-endereco').attr('action') === '/gcfretes/adicionaEndereco')
+        $('#txID-endereco').val(0);
+
     $('#formulario-endereco').ajaxForm
             ({
                 success: function (data)
                 {
-                    $('#txID-endereco').val('0');
+
                     $('#enderecos-items').html("");
                     $('#enderecos-items').append(data);
                     $('#formulario-endereco')[0].reset();
                     $('#btnExcluir-endereco').fadeOut(100);
                     $('#btnAdicionar-endereco').text('Adicionar');
-                    $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
+                    $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
                 }
             });
 });
@@ -56,7 +59,7 @@ function hab_desab_formInfo(estado)
 function carregaInfoUsuario()
 {
     $.ajax({
-        url: "/mmnfretes/infoUsuario",
+        url: "/gcfretes/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
         success: function (usuario)
@@ -74,10 +77,10 @@ function carregaInfoUsuario()
 function carregaEnderecos()
 {
     $.ajax({
-        url: "/mmnfretes/listaEnderecos",
+        url: "/gcfretes/listaEnderecos",
         success: function (data)
         {
-            $('#formulario-endereco').attr('action', '/mmnfretes/adicionaEndereco');
+            $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
             $('#enderecos-items').html("");
             $('#enderecos-items').append(data);
             $('#formulario-endereco')[0].reset();
@@ -97,7 +100,7 @@ $('#btnConfirmaExclusaoEndereco').click(function ()
     var self = $(this);
 
     $.ajax({
-        url: "/mmnfretes/inativaEndereco?endereco_id=" + self.val(),
+        url: "/gcfretes/inativaEndereco?endereco_id=" + self.val(),
         success: function (mensagem)
         {
             $('#btnExcluir-endereco').fadeOut(100);
@@ -112,14 +115,14 @@ $('#btnConfirmaExclusaoEndereco').click(function ()
 function carregaEnderecoEdicao(endereco_id)
 {
     $.ajax({
-        url: "/mmnfretes/carregaEndereco?endereco_id=" + endereco_id,
+        url: "/gcfretes/carregaEndereco?endereco_id=" + endereco_id,
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         dataType: 'json',
         success: function (endereco)
         {
             $('#txID-endereco').val(endereco.id);
             $('#btnAdicionar-endereco').text('Salvar alterações');
-            $('#formulario-endereco').attr('action', '/mmnfretes/alteraEndereco');
+            $('#formulario-endereco').attr('action', '/gcfretes/alteraEndereco');
             $('#btnExcluir-endereco').fadeOut(100);
             $('#txCep').val(endereco.CEP);
             $('#cbUf').val(endereco.UF);

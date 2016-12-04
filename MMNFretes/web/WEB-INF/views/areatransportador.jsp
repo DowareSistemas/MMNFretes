@@ -53,14 +53,15 @@
                                             titulo="Confirmar senha"
                                             type_input="password" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-ok id="senhaIncorreta" id_btnOK="btnSenhaIncorreta"
-                                         mensagem="As senhas nï¿½o coincidem!" />
+                    <my-tags:mensagem-ok id="senhaIncorreta" 
+                                         id_btnOK="btnSenhaIncorreta"
+                                         mensagem="As senhas não coincidem!" />
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-ok id="valid-campos"
-                                         mensagem="Existem campos nï¿½o preenchidos!" />
+                                         mensagem="Existem campos não preenchidos!" />
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-ok id="valid-exclusao" 
-                                         mensagem="Nï¿½o ï¿½ possï¿½vel excluï¿½r este veï¿½culo. Ele estï¿½ relacionado a uma ou mais cotaï¿½ï¿½es ou possui algum histï¿½rico." />
+                                         mensagem="Não é possível excluír este veículo. Ele está relacionado a uma ou mais cotações ou possui algum histórico de frete." />
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
                                               classe_btnSIM="btn btn-danger" 
@@ -74,62 +75,6 @@
 
             </footer>
         </div>
-
-
-
-
-
-        <%-- <div class="row">
-            <div class="col-sm-3 panel">
-                <br>
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="nav-item">
-                        <a class="nav-link" id="btnPerfil">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="btnVeiculos">Veículos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="btnEnderecos">Endereços</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="btnHistorico">Histórico</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="btnPendentes">Pendentes</a>
-                    </li>
-                </ul>
-                <br/>
-            </div>
-            <my-tags:enderecos-conjunto/>
-            <areatransportador:historico-areatransportador/>
-            <areatransportador:pendentes-areatransportador/>
-            <areatransportador:perfil-areatransportador/>
-            <areatransportador:veiculos-areatransportador/>
-
-                <my-tags:mensagem-input id="alterarSenha"
-                                        id_btnConfirmar="btnConfirmarSenha"
-                                        id_input="txSenhaDigitada"
-                                        titulo="Confirmar senha"
-                                        type_input="password" />
-
-                <my-tags:mensagem-ok id="senhaIncorreta" id_btnOK="btnSenhaIncorreta"
-                                     mensagem="As senhas nï¿½o coincidem!" />
-
-                <my-tags:mensagem-ok id="valid-campos"
-                                     mensagem="Existem campos nï¿½o preenchidos!" />
-
-                <my-tags:mensagem-ok id="valid-exclusao" 
-                                     mensagem="Nï¿½o ï¿½ possï¿½vel excluï¿½r este veï¿½culo. Ele estï¿½ relacionado a uma ou mais cotaï¿½ï¿½es ou possui algum histï¿½rico." />
-
-                <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
-                                          classe_btnSIM="btn btn-danger" 
-                                          texto_btnNAO="Nï¿½O" 
-                                          texto_btnSIM="SIM"
-                                          texto_corpo="Deseja excluir o veï¿½culo?" 
-                                          id_btnSIM="btnConf_del_veiculo" />
-
-            </div> --%>
     </div>
     <!-- Scripts da página -->
     <script src="resources/js/jquery.js"></script>

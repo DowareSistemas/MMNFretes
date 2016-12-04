@@ -10,10 +10,10 @@
                         <div class="col-md-12">
                             <h3 class="text-primary">Gerenciar endereços</h3>
                             <div class="form-group">
-                                <form role="form" id="formulario-endereco" action="/mmnfretes/adicionaEndereco" method="POST">
+                                <form role="form" id="formulario-endereco" action="/gcfretes/adicionaEndereco" method="GET">
                                     <div class="row">
                                         <div hidden>
-                                            <input type="text" id="txID-endereco" name="id">
+                                            <input type="number" id="txID-endereco" name="id">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>CEP:</label>

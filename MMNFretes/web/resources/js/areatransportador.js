@@ -82,7 +82,7 @@ $('#btnPendentes').click(function ()
 function carregaInfoTransportador()
 {
     $.ajax({
-        url: "/mmnfretes/infoTransportador",
+        url: "/gcfretes/infoTransportador",
         dataType: 'json',
         accepts: "application/json",
         success: function (transportador_result)
@@ -109,7 +109,7 @@ function carregaInfoTransportador()
     });
 
     $.ajax({
-        url: "/mmnfretes/infoUsuario",
+        url: "/gcfretes/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
         success: function (usuario_result)
@@ -151,13 +151,14 @@ function hab_desab_formInfo(estado)
 $('#btnConfirmarSenha').click(function ()
 {
     var senhaDigitada = $('#txSenhaDigitada').val();
-
+    var senha = $('#txSenha').val();
+    
     if (senha === senhaDigitada)
     {
         $('#formulario-info-transportador').ajaxForm({
             success: function (data)
             {
-                $('#form-img-perfil').attr('action', '/mmnfretes/uploadimgperfil');
+                $('#form-img-perfil').attr('action', '/gcfretes/uploadimgperfil');
                 uploadImgPerfil();
 
                 carregaInfoTransportador();
@@ -198,7 +199,7 @@ $('#Cartao').change(function ()
 {
     $.ajax
             ({
-                url: "/mmnfretes/alteraStatusCartao?status=" + $('#Cartao').is(':checked'),
+                url: "/gcfretes/alteraStatusCartao?status=" + $('#Cartao').is(':checked'),
                 success: function ()
                 {
                     carregaInfoTransportador();
@@ -210,7 +211,7 @@ $('#Boleto').change(function ()
 {
     $.ajax
             ({
-                url: "/mmnfretes/alteraStatusBoleto?status=" + $('#Boleto').is(':checked'),
+                url: "/gcfretes/alteraStatusBoleto?status=" + $('#Boleto').is(':checked'),
                 success: function ()
                 {
                     carregaInfoTransportador();
@@ -222,7 +223,7 @@ $('#NegociacaoDireta').change(function ()
 {
     $.ajax
             ({
-                url: "/mmnfretes/alteraStatusNegociacao?status=" + $('#NegociacaoDireta').is(':checked'),
+                url: "/gcfretes/alteraStatusNegociacao?status=" + $('#NegociacaoDireta').is(':checked'),
                 success: function ()
                 {
                     carregaInfoTransportador();

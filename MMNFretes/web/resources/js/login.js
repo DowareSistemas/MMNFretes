@@ -21,7 +21,7 @@ $('#btnLogin').click(function ()
     var senha = $('#txSenha').val();
     $.ajax
             ({
-                url: "/mmnfretes/efetualogin?email=" + email + "&senha=" + senha,
+                url: "/gcfretes/efetualogin?email=" + email + "&senha=" + senha,
                 contentType: "application/x-www-form-urlencoded;charset=UTF-8",
                 success: function (result)
                 {
@@ -31,7 +31,7 @@ $('#btnLogin').click(function ()
                         $('#senhaIncorreta').modal('show');
                     } else
                     {
-                        $(location).attr('href', '/mmnfretes/' + result);
+                        $(location).attr('href', '/gcfretes/' + result);
                     }
                 }
             });

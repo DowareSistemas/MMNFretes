@@ -107,17 +107,9 @@
                         </div>
                     </section>
 
-                    <!-- Conteúdo de pesquisa -->
-                    <c:forEach var="resultado" items="${resultados}">
-                        <pesquisarfretes:conteudo-pesquisar
-                            carroceria="${resultado.veiculo.carrocerias.descricao}"
-                            categoria="${resultado.veiculo.categorias_veiculos.descricao}"
-                            preco="${resultado.preco_frete}"
-                            transportadora="${resultado.veiculo.transportadoras.nome}"
-                            veiculo="${resultado.veiculo.descricao}"
-                            foto="${resultado.foto_path}"
-                            />           
-                    </c:forEach>
+                    <div id="resultados-pesquisa">
+
+                    </div>
                 </div>
             </main>
             <footer>
@@ -136,8 +128,8 @@
         <script src="resources/js/mascaras.js"></script>
         <!-- Scripts de login 
         ========================================================================================= -->
-        <script src="resources/js/login.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws"></script>
+        <script src="resources/js/login.js"></script>
         <script src="resources/js/pesquisarfretes.js"></script>
     </body>
 </html>

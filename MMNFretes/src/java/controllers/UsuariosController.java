@@ -32,7 +32,7 @@ public class UsuariosController
     public String gravaUsuario(Usuarios usuario, HttpSession httpSession)
     {
         if (usuarioExiste(usuario))
-            return "redirect:paginaLogin";
+            return "redirect:paginalogin";
         usuario.setTipo_usuario(0);
 
         Session session = SessionProvider.openSession();
@@ -118,6 +118,6 @@ public class UsuariosController
         if (Util.isUsuario(usuario))
             return "areausuario";
         else
-            return "redirect:paginaLogin";
+            return "redirect:paginalogin";
     }
 }

@@ -100,7 +100,7 @@ public class VeiculosController
                 extractor.setFileToExtract(path + fileName);
                 extractor.extract();
 
-                return "/mmnfretes/upload/" + fileName;
+                return "/gcfretes/upload/" + fileName;
             }
      
         return "not_localized";
