@@ -1,10 +1,17 @@
-<div class="col-sm-8">
+<section>
     <div class="jumbotron">
-        <h2 class="text-center text-info">Sobre o site</h2>
-    <p class="text-justify"><br>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center text-uppercase">Um pouco sobre nós</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-justify">
+                    Vestibulum congue ligula eget risus congue, nec placerat massa feugiat. Sed ut volutpat ligula, in viverra tortor. Sed porta sed odio vitae rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas efficitur fermentum mauris non rutrum. Aliquam suscipit efficitur dolor, id scelerisque felis ultrices sit amet. Nunc non rutrum purus. Proin bibendum pretium semper. Phasellus gravida ex non urna viverra placerat. Phasellus sit amet lectus eu dui mattis fermentum sit amet vel sem. Curabitur sollicitudin felis ornare, semper orci eget, euismod sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget dignissim sem.
+                </p>
+            </div>
+        </div>
 
-        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-
-        Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-</div>
-</div>
+    </div>
+</section>
