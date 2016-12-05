@@ -156,6 +156,11 @@ function uploadImagem()
 
 function alteraVeiculo()
 {
+    var str = $('#txPreco_frete_veiculo').val();
+    str = str.replace(".", "");
+    str = str.replace(",", ".");
+    $('#txPreco_frete_veiculo').val(parseFloat(str).toFixed(2));
+
     if (validaCampos() === false)
     {
         $('#valid-campos').modal('toggle');
@@ -216,6 +221,11 @@ function limparCampos()
 
 function adicionaVeiculo()
 {
+    var str = $('#txPreco_frete_veiculo').val();
+    str = str.replace(".", "");
+    str = str.replace(",", ".");
+    $('#txPreco_frete_veiculo').val(parseFloat(str).toFixed(2));
+
     if (validaCampos() === false)
     {
         $('#valid-campos').modal('toggle');

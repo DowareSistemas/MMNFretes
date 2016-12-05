@@ -1,6 +1,8 @@
+var usuarioLogado = false;
+
 $(document).ready(function ()
 {
-
+    $('#lbIncorretos').hide();
 });
 
 $('#btnBuscarFretes').click(function ()
@@ -56,7 +58,7 @@ function getFiltroCarrocerias()
     var cacamba = $('#ckCacamba').is(':checked');
     var gradeBaixa = $('#ckGradeBaixa').is(':checked');
 
-    if (bau)       
+    if (bau)
         retorno += "1,";
     if (sider)
         retorno += "2,";
@@ -110,3 +112,32 @@ function getFiltroCategorias()
 
     return retorno;
 }
+
+/*  Este metodo é acionado pelo input id #btnAdicionar-cotacao
+ *  presente em conteudo-pesquisar.tag, na linha ~40-50
+ */
+function showCriarConta()
+{
+    $('#criarconta-entrar').modal('toggle');
+    $('#criarconta-entrar').modal('show');
+}
+
+$('#btnEntrar').click(function ()
+{
+    $('#form-criarconta-login').ajaxForm(
+            {
+                success: function (response)
+                {
+                    if (response === 'incorreto')
+                    {
+                        $('#lbIncorretos').fadeIn(1000);
+                        $('#lbIncorretos').fadeOut(3000);
+                    }
+                    else
+                    {
+                        $('#criarconta-entrar').modal('hide');
+                        usuarioLogado = true;
+                    }
+                }
+            }).submit();
+});

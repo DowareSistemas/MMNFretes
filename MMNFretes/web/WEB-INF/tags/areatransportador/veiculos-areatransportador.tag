@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-8">
                             <!--  Formulario Info  -->
-                            <form role="form" id="formulario-info-veiculo" method="GET">
+                            <form role="form" id="formulario-info-veiculo" method="POST">
                                 <div class="row">
                                     <div hidden>
                                         <input type="text" id="txID" name="id">

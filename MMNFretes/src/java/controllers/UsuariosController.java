@@ -28,7 +28,7 @@ import util.Util;
 @Controller
 public class UsuariosController
 {
-    @RequestMapping("/cadastrausuario")
+    @RequestMapping(value = "/cadastrausuario", method = RequestMethod.POST)
     public String gravaUsuario(Usuarios usuario, HttpSession httpSession)
     {
         if (usuarioExiste(usuario))
@@ -61,7 +61,7 @@ public class UsuariosController
         return (usuario.ResultList.size() > 0); // se for maior que 0, existe
     }
 
-    @RequestMapping(value = "/alteraInfoUsuario")
+    @RequestMapping(value = "/alteraInfoUsuario", method = RequestMethod.POST)
     public @ResponseBody
     String alteraInfoUsuario(Usuarios usuario, HttpSession httpSession)
     {
@@ -94,7 +94,7 @@ public class UsuariosController
         return resultado;
     }
 
-    @RequestMapping("/cadastratransportadora")
+    @RequestMapping(value = "/cadastratransportadora", method = RequestMethod.POST)
     public String gravaTransportadora(Transportadoras transportadoras, HttpSession httpSession)
     {
         transportadoras.getUsuarios().setTipo_usuario(1);

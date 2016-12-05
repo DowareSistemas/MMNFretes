@@ -34,8 +34,6 @@ public class Historico extends Entity
    private Veiculos veiculos; 
    private int usuarios_id; 
    private Usuarios usuarios; 
-   private int formas_pagamento_id; 
-   private Formas_pagamento formas_pagamento; 
    private int avaliacoes_id; 
    private Avaliacoes avaliacoes; 
 
@@ -162,28 +160,6 @@ public class Historico extends Entity
    {
        return usuarios;
    }
-
-
-   public void setFormas_pagamento(Formas_pagamento formas_pagamento)
-   {
-       this.formas_pagamento = formas_pagamento;
-   }
-   public void setFormas_pagamento_id(int formas_pagamento_id)
-   {
-       this.formas_pagamento_id = formas_pagamento_id;
-   }
-
-   public int getFormas_pagamento_id()
-   {
-       return formas_pagamento_id;
-   }
-
-   @OneToOne(source = "formas_pagamento_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Formas_pagamento getFormas_pagamento()
-   {
-       return formas_pagamento;
-   }
-
 
    public void setAvaliacoes(Avaliacoes avaliacoes)
    {

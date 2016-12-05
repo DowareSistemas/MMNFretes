@@ -1,11 +1,11 @@
-<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/areausuario/" prefix="areausuario"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -24,8 +24,8 @@
                         <div class="col-md-12">
                             <div class="panel-aside">
                                 <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Perfil</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-enderecos">Endereços</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="tela-enderecos">EndereÃ§os</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="tela-historico">HistÃ³rico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
                             </div>
                         </div>
@@ -34,41 +34,41 @@
             </aside>
             <main>
                 <div class="aside-fixed-main">
-                    <!-- Conteúdo da página -->
+                    <!-- ConteÃºdo da pÃ¡gina -->
                     <areausuario:perfil-areausuario/>
                     <my-tags:enderecos-conjunto/>
                     <areausuario:historico-areausuario/>
                     <areausuario:pendentes-areausuario/>
-                    <!-- Dinâmica da página -->
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
                                             id_input="txSenhaConfirmada" 
                                             type_input="password" 
                                             titulo="Confirmar senha:" />
-                    <!-- Dinâmica da página -->
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
                                             id_input="txSenhaConfirmada" 
                                             type_input="password" 
                                             titulo="Confirmar senha:" />
-                    <!-- Dinâmica da página -->
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-input id="editar-grupo"
                                             id_btnConfirmar="btnSalvaGrupo"
                                             id_input="txNomeGrupo"
                                             titulo="Renomear grupo"
                                             type_input="text" />
-                    <!-- Dinâmica da página -->
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
                                               classe_btnSIM="btn btn-danger" 
-                                              texto_btnNAO="NÃO" 
+                                              texto_btnNAO="NÃƒO" 
                                               texto_btnSIM="SIM"
-                                              texto_corpo="Deseja excluir o endereço?" 
+                                              texto_corpo="Deseja excluir o endereÃ§o?" 
                                               id_btnSIM="btnConfirmaExclusaoEndereco" />
-                    <!-- Dinâmica da página -->
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" 
                                          id="senhaIncorreta"
-                                         mensagem="As senhas não coincidem!" />
-                    <!-- Modal de mais informações -->
+                                         mensagem="As senhas nÃ£o coincidem!" />
+                    <!-- Modal de mais informaÃ§Ãµes -->
                     <my-tags:detalhes_cotacao_usuario/>
                 </div>
             </main>
@@ -76,7 +76,7 @@
 
             </footer>
         </div>
-        <!-- Scripts da página -->
+        <!-- Scripts da pÃ¡gina -->
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>

@@ -9,7 +9,6 @@ $('#btnAdicionar-endereco').click(function ()
             ({
                 success: function (data)
                 {
-
                     $('#enderecos-items').html("");
                     $('#enderecos-items').append(data);
                     $('#formulario-endereco')[0].reset();

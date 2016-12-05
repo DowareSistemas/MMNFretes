@@ -42,7 +42,8 @@
                             <h4 class="center-block"><fmt:formatNumber type="currency" 
                                                                        maxFractionDigits="3" 
                                                                        value="${preco}" /></h4>
-                            <button type="button" class="btn center-block btn-primary">Adicionar</button>
+                            
+                            <button type="button" onclick="showCriarConta()" class="btn center-block btn-primary">Adicionar</button>
                         </div>
                     </div>
                 </div>

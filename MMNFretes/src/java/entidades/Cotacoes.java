@@ -1,8 +1,7 @@
 /* 28/09/2016 20:45:21 */
-/* AUTO-GENERATED CLASS */
-/* DOES NOT ADD ACCESSOR METHODS */
-/* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
-
+ /* AUTO-GENERATED CLASS */
+ /* DOES NOT ADD ACCESSOR METHODS */
+ /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
 package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
@@ -22,129 +21,154 @@ import java.io.InputStream;
  */
 public class Cotacoes extends Entity
 {
-   private double valor; 
-   private int status; 
-   private boolean aprovado; 
-   private int usuarios_id; 
-   private Usuarios usuarios; 
-   private int transportadoras_id; 
-   private Transportadoras transportadoras; 
-   private int veiculos_id; 
-   private Veiculos veiculos; 
-   private int grupos_contacoes_id; 
-   private Grupos_contacoes grupos_contacoes; 
 
-   public void setValor(double valor)
-   {
-       this.valor = valor;
-   }
+    private int id;
+    private double valor;
+    private int status;
+    private String cep_origem;
+    private String cep_destino;
+    private double distancia;
+    private int usuario_id;
+    private int transportadora_id;
+    private int veiculos_id;
+    private int grupo_cotacoes_id;
 
-   public double getValor()
-   {
-       return valor;
-   }
+    private Usuarios usuarios;
+    private Transportadoras transportadoras;
+    private Veiculos veiculos;
 
-   public void setStatus(int status)
-   {
-       this.status = status;
-   }
+    @OneToOne(source = "usuarios_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
+    public Usuarios getUsuarios()
+    {
+        return usuarios;
+    }
 
-   public int getStatus()
-   {
-       return status;
-   }
+    public void setUsuarios(Usuarios usuarios)
+    {
+        this.usuarios = usuarios;
+    }
 
-   public void setAprovado(boolean aprovado)
-   {
-       this.aprovado = aprovado;
-   }
+    @OneToOne(source = "transportadoras_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
+    public Transportadoras getTransportadoras()
+    {
+        return transportadoras;
+    }
 
-   public boolean isAprovado()
-   {
-       return aprovado;
-   }
+    public void setTransportadoras(Transportadoras transportadoras)
+    {
+        this.transportadoras = transportadoras;
+    }
 
+    @OneToOne(source = "veiculos_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
+    public Veiculos getVeiculos()
+    {
+        return veiculos;
+    }
 
-   public void setUsuarios(Usuarios usuarios)
-   {
-       this.usuarios = usuarios;
-   }
-   public void setUsuarios_id(int usuarios_id)
-   {
-       this.usuarios_id = usuarios_id;
-   }
+    public void setVeiculos(Veiculos veiculos)
+    {
+        this.veiculos = veiculos;
+    }
 
-   public int getUsuarios_id()
-   {
-       return usuarios_id;
-   }
+    @PrimaryKey(increment = INCREMENT.AUTO)
+    public int getId()
+    {
+        return id;
+    }
 
-   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Usuarios getUsuarios()
-   {
-       return usuarios;
-   }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
+    public double getValor()
+    {
+        return valor;
+    }
 
-   public void setTransportadoras(Transportadoras transportadoras)
-   {
-       this.transportadoras = transportadoras;
-   }
-   public void setTransportadoras_id(int transportadoras_id)
-   {
-       this.transportadoras_id = transportadoras_id;
-   }
+    public void setValor(double valor)
+    {
+        this.valor = valor;
+    }
 
-   public int getTransportadoras_id()
-   {
-       return transportadoras_id;
-   }
+    public int getStatus()
+    {
+        return status;
+    }
 
-   @OneToOne(source = "transportadoras_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Transportadoras getTransportadoras()
-   {
-       return transportadoras;
-   }
+    public void setStatus(int status)
+    {
+        this.status = status;
+    }
 
+    public String getCep_origem()
+    {
+        return cep_origem;
+    }
 
-   public void setVeiculos(Veiculos veiculos)
-   {
-       this.veiculos = veiculos;
-   }
-   public void setVeiculos_id(int veiculos_id)
-   {
-       this.veiculos_id = veiculos_id;
-   }
+    public void setCep_origem(String cep_origem)
+    {
+        this.cep_origem = cep_origem;
+    }
 
-   public int getVeiculos_id()
-   {
-       return veiculos_id;
-   }
+    public String getCep_destino()
+    {
+        return cep_destino;
+    }
 
-   @OneToOne(source = "veiculos_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Veiculos getVeiculos()
-   {
-       return veiculos;
-   }
+    public void setCep_destino(String cep_destino)
+    {
+        this.cep_destino = cep_destino;
+    }
 
+    public double getDistancia()
+    {
+        return distancia;
+    }
 
-   public void setGrupos_contacoes(Grupos_contacoes grupos_contacoes)
-   {
-       this.grupos_contacoes = grupos_contacoes;
-   }
-   public void setGrupos_contacoes_id(int grupos_contacoes_id)
-   {
-       this.grupos_contacoes_id = grupos_contacoes_id;
-   }
+    public void setDistancia(double distancia)
+    {
+        this.distancia = distancia;
+    }
 
-   public int getGrupos_contacoes_id()
-   {
-       return grupos_contacoes_id;
-   }
+    public int getUsuario_id()
+    {
+        return usuario_id;
+    }
 
-   @OneToOne(source = "grupos_contacoes_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Grupos_contacoes getGrupos_contacoes()
-   {
-       return grupos_contacoes;
-   }
+    public void setUsuario_id(int usuario_id)
+    {
+        this.usuario_id = usuario_id;
+    }
+
+    public int getTransportadora_id()
+    {
+        return transportadora_id;
+    }
+
+    public void setTransportadora_id(int transportadora_id)
+    {
+        this.transportadora_id = transportadora_id;
+    }
+
+    public int getVeiculos_id()
+    {
+        return veiculos_id;
+    }
+
+    public void setVeiculos_id(int veiculos_id)
+    {
+        this.veiculos_id = veiculos_id;
+    }
+
+    public int getGrupo_cotacoes_id()
+    {
+        return grupo_cotacoes_id;
+    }
+
+    public void setGrupo_cotacoes_id(int grupo_cotacoes_id)
+    {
+        this.grupo_cotacoes_id = grupo_cotacoes_id;
+    }
+
 }

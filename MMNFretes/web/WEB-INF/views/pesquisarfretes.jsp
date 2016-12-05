@@ -18,12 +18,14 @@
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
+        <link href="resources/css/criarconta-entrar.css" rel="stylesheet" media="screen">
         <title>JSP Page</title>
     </head>
     <body>      
         <div class="container">
             <header>
                 <my-tags:navbar/>
+                <pesquisarfretes:criarconta-entrar/>
             </header>
             <aside>
                 <div class="aside-fixed">
@@ -34,11 +36,11 @@
                                 <h4 class="text-muted text-uppercase text-center">Calcular trajeto</h4>
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem">
+                                    <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino">
+                                    <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
                                 </div>
                                 <button type="button" class="btn btn-primary btn-block" id="btnBuscarFretes">Buscar</button>
                             </form>

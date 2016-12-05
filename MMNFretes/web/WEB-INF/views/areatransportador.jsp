@@ -4,13 +4,13 @@
     Author     : emers
 --%>
 
-<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/areatransportador" prefix="areatransportador"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -29,9 +29,9 @@
                         <div class="col-md-12">
                             <div class="panel-aside">
                                 <button class="btn btn-primary btn-block" type="button" id="btnPerfil">Perfil</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="btnVeiculos">Veículos</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="btnEnderecos">Endereços</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="btnHistorico">Histórico</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnVeiculos">VeÃ­culos</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnEnderecos">EndereÃ§os</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnHistorico">HistÃ³rico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnPendentes">Pendentes</button><br>
                             </div>
                         </div>
@@ -40,34 +40,34 @@
             </aside>
             <main>
                 <div class="aside-fixed-main">
-                    <!-- Conteúdo da página -->
+                    <!-- ConteÃºdo da pÃ¡gina -->
                     <my-tags:enderecos-conjunto/>
                     <areatransportador:historico-areatransportador/>
                     <areatransportador:pendentes-areatransportador/>
                     <areatransportador:perfil-areatransportador/>
                     <areatransportador:veiculos-areatransportador/>
-                    <!-- Dinâmica da página -->
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-input id="alterarSenha"
                                             id_btnConfirmar="btnConfirmarSenha"
                                             id_input="txSenhaDigitada"
                                             titulo="Confirmar senha"
                                             type_input="password" />
-                    <!-- Dinâmica da página -->
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-ok id="senhaIncorreta" 
                                          id_btnOK="btnSenhaIncorreta"
-                                         mensagem="As senhas não coincidem!" />
-                    <!-- Dinâmica da página -->
+                                         mensagem="As senhas nÃ£o coincidem!" />
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-ok id="valid-campos"
-                                         mensagem="Existem campos não preenchidos!" />
-                    <!-- Dinâmica da página -->
+                                         mensagem="Existem campos nÃ£o preenchidos!" />
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-ok id="valid-exclusao" 
-                                         mensagem="Não é possível excluír este veículo. Ele está relacionado a uma ou mais cotações ou possui algum histórico de frete." />
-                    <!-- Dinâmica da página -->
+                                         mensagem="NÃ£o Ã© possÃ­vel excluÃ­r este veÃ­culo. Ele estÃ¡ relacionado a uma ou mais cotaÃ§Ãµes ou possui algum histÃ³rico de frete." />
+                    <!-- DinÃ¢mica da pÃ¡gina -->
                     <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
                                               classe_btnSIM="btn btn-danger" 
-                                              texto_btnNAO="NÃO" 
+                                              texto_btnNAO="NÃƒO" 
                                               texto_btnSIM="SIM"
-                                              texto_corpo="Deseja excluir o veículo?" 
+                                              texto_corpo="Deseja excluir o veÃ­culo?" 
                                               id_btnSIM="btnConf_del_veiculo" />
                 </div>
             </main>
@@ -76,14 +76,14 @@
             </footer>
         </div>
     </div>
-    <!-- Scripts da página -->
+    <!-- Scripts da pÃ¡gina -->
     <script src="resources/js/jquery.js"></script>
     <script src="resources/js/jquery-form.js"></script>
     <script src="resources/js/jquery-mask.js"></script>
     <script src="resources/js/bootstrap.js"></script>
     <script src="resources/js/areausuario.js"></script>
     <script src="resources/js/areatransportador.js"></script>
-    <script src="resources/js/veiculos.js"></script>
+    <script  src="resources/js/veiculos.js"></script>
     <!-- Scripts de mascara para inputs -->
     <script src="resources/js/jquery-mask.js"></script>
     <script src="resources/js/mascaras.js"></script>

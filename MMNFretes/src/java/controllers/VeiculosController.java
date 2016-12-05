@@ -135,7 +135,7 @@ public class VeiculosController
         return gson.toJson(veiculo);
     }
 
-    @RequestMapping(value = "salvaveiculo", produces = "text/html;charset=utf-8")
+    @RequestMapping(value = "salvaveiculo", method = RequestMethod.POST)
     public @ResponseBody
     String salvar(Veiculos veiculo, HttpSession httpSession)
     {
@@ -150,7 +150,7 @@ public class VeiculosController
         return "OK";
     }
 
-    @RequestMapping(value = "alteraveiculo", produces = "text/html;charset=utf-8")
+    @RequestMapping(value = "alteraveiculo", method = RequestMethod.POST)
     public @ResponseBody
     String alterar(Veiculos veiculo, HttpSession httpSession)
     {

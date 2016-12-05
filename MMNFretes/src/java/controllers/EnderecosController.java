@@ -19,6 +19,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
@@ -31,7 +32,7 @@ import sessionProvider.SessionProvider;
 public class EnderecosController
 {
 
-    @RequestMapping(value = "/adicionaEndereco")
+    @RequestMapping(value = "/adicionaEndereco", method = RequestMethod.POST)
     public String adicionar(Enderecos endereco, HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
@@ -46,7 +47,7 @@ public class EnderecosController
         return "redirect:listaEnderecos";
     }
 
-    @RequestMapping(value = "/carregaEndereco", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/carregaEndereco", produces = "application/json; charset=utf-8")
     public @ResponseBody
     String carregaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
@@ -81,7 +82,7 @@ public class EnderecosController
         return modelAndView;
     }
 
-    @RequestMapping("/alteraEndereco")
+    @RequestMapping(value = "/alteraEndereco", method = RequestMethod.POST)
     public String alteraEndereco(Enderecos endereco, HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
@@ -95,7 +96,7 @@ public class EnderecosController
         return "redirect:listaEnderecos";
     }
 
-    @RequestMapping(value = "/inativaEndereco", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/inativaEndereco", method = RequestMethod.POST)
     public @ResponseBody
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
