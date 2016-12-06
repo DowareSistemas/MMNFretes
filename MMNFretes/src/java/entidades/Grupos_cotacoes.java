@@ -20,7 +20,7 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
-public class Grupos_contacoes extends Entity
+public class Grupos_cotacoes extends Entity
 {
    private int id; 
    private String descricao; 

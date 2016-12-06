@@ -24,6 +24,8 @@ public class PersistenceLogger implements IPersistenceLogger
         msg +=       "Data/hora: " + pl.getDate() + "\n\n";
         msg +=       "Query:     " + pl.getQuery() + "\n\n";
         msg +=       "Descrição: " + pl.getDescription();
-        EmailController.Enviar(msg);
+
+        System.err.println(msg);
+// EmailController.Enviar(msg);
     }
 }

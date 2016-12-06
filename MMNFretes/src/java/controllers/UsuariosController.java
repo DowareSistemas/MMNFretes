@@ -28,6 +28,7 @@ import util.Util;
 @Controller
 public class UsuariosController
 {
+
     @RequestMapping(value = "/cadastrausuario", method = RequestMethod.POST)
     public String gravaUsuario(Usuarios usuario, HttpSession httpSession)
     {
@@ -47,8 +48,9 @@ public class UsuariosController
 
     /**
      * Para verificar se existe mais de uma pessoa com o mesmo email
+     *
      * @param usuario
-     * @return 
+     * @return
      */
     private boolean usuarioExiste(Usuarios usuario)
     {
@@ -57,7 +59,7 @@ public class UsuariosController
                 .add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()))
                 .execute();
         session.close();
-      
+
         return (usuario.ResultList.size() > 0); // se for maior que 0, existe
     }
 
@@ -108,6 +110,16 @@ public class UsuariosController
         httpSession.setAttribute("usuarioLogado", transportadoras.getUsuarios());
 
         return "redirect:areatransportador";
+    }
+
+    @RequestMapping(value = "/usuarioatual", method = RequestMethod.POST, produces = "text/plain; charset=utf-8")
+    public @ResponseBody
+    String getUsuarioAtual(HttpSession session)
+    {
+        Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogado");
+        return (usuario == null
+                ? "0"
+                : usuario.getId() + "");
     }
 
     @RequestMapping("/areausuario")

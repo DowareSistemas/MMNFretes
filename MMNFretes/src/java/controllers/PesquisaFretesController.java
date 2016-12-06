@@ -24,6 +24,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +46,8 @@ public class PesquisaFretesController
             @RequestParam(value = "carrocerias", required = false) String filtro_carroc,
             @RequestParam(value = "rastreador", required = false) boolean rastreador,
             @RequestParam(value = "distancia", required = false) double distancia,
-            HttpServletRequest request)
+            HttpServletRequest request,
+            HttpSession httpSession)
     {
         if (filtro_cat.endsWith(","))
             filtro_cat = filtro_cat.substring(0, (filtro_cat.length() - 1));
@@ -53,7 +55,7 @@ public class PesquisaFretesController
         if (filtro_carroc.endsWith(","))
             filtro_carroc = filtro_carroc.substring(0, (filtro_carroc.length() - 1));
 
-        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia, request);
+        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia, request, httpSession);
 
         ModelAndView mav = new ModelAndView("resultadosfretes");
         mav.addObject("resultados", lista);
@@ -88,18 +90,17 @@ public class PesquisaFretesController
                 : lista);
     }
 
-    private List<ResultadoPesquisa> pesquisar(
-            String filtro_cat,
-            String filtro_carroc,
-            boolean rastreador,
-            double distancia,
-            HttpServletRequest request)
+    private String getFinalCondition(String filtro_cat, String filtro_carroc, boolean rastreador)
     {
-        List<ResultadoPesquisa> resultados = new ArrayList<ResultadoPesquisa>();
-
         String finalCondition = " where categorias_veiculos.id in (" + filtro_cat + ") ";
         finalCondition += "and carrocerias.id in (" + filtro_carroc + ") ";
         finalCondition += "and veiculos.rastreador = " + (rastreador == true ? "1" : "0");
+        return finalCondition;
+    }
+
+    private Join getPreparedJoin(String filtro_cat, String filtro_carroc, boolean rastreador)
+    {
+        String finalCondition = getFinalCondition(filtro_cat, filtro_carroc, rastreador);
 
         Transportadoras transportadora = new Transportadoras();
         Veiculos veiculos = new Veiculos();
@@ -116,30 +117,54 @@ public class PesquisaFretesController
         joinVeiculos.execute(session);
         session.close();
 
+        return joinVeiculos;
+    }
+
+    private int getEstrelas(int transportadora_id)
+    {
+        int total_avaliacoes = 0;
+        int total_estrelas = 0;
+        List<Historico> historicos = listHistorico(transportadora_id);
+
+        for (Historico historico : historicos)
+        {
+            Avaliacoes a = historico.getAvaliacoes();
+            total_estrelas += a.getEstrelas();
+            total_avaliacoes++;
+        }
+
+        int estrelas = 0;
+        if (total_estrelas > 0 && total_avaliacoes > 0)
+            estrelas = (total_estrelas / total_avaliacoes);
+
+        return estrelas;
+    }
+
+    private List<ResultadoPesquisa> pesquisar(
+            String filtro_cat,
+            String filtro_carroc,
+            boolean rastreador,
+            double distancia,
+            HttpServletRequest request,
+            HttpSession httpSession)
+    {
+        Veiculos veiculos = new Veiculos();
+        Join joinVeiculos = getPreparedJoin(filtro_cat, filtro_carroc, rastreador);
+
+        List<ResultadoPesquisa> resultados = new ArrayList<ResultadoPesquisa>();
         List<Veiculos> listaVeiculos = joinVeiculos.getList(veiculos);
 
         for (Veiculos veiculo : listaVeiculos)
         {
+            if (new CotacoesController().existeCotacaoComVeiculo(veiculo.getId(), httpSession))
+                continue;
+
             veiculo.setCarrocerias((Carrocerias) joinVeiculos.getEntity(Carrocerias.class));
             veiculo.setCategorias_veiculos((Categorias_veiculos) joinVeiculos.getEntity(Categorias_veiculos.class));
             veiculo.setTransportadoras((Transportadoras) joinVeiculos.getEntity(Transportadoras.class));
 
             double preco_frete = (veiculo.getPreco_frete() * distancia);
-            int total_avaliacoes = 0;
-            int total_estrelas = 0;
-            List<Historico> historicos = listHistorico(transportadora.getId());
-
-            for (Historico historico : historicos)
-            {
-                Avaliacoes a = historico.getAvaliacoes();
-                total_estrelas += a.getEstrelas();
-                total_avaliacoes++;
-            }
-
-            int estrelas = 0;
-            if (total_estrelas > 0 && total_avaliacoes > 0)
-                estrelas = (total_estrelas / total_avaliacoes);
-
+            int estrelas = getEstrelas(veiculo.getTransportadoras_id());
             String foto_path = getFotoPath(veiculo, request);
 
             ResultadoPesquisa resultado = new ResultadoPesquisa(veiculo, estrelas, preco_frete, foto_path);
@@ -168,11 +193,11 @@ public class PesquisaFretesController
                     extractor.setInputStream(veiculo.getFoto());
                     extractor.setFileToExtract(imageFile);
                     extractor.extract();
-                    
+
                     BufferedImage image = ImageIO.read(new File(imageFile));
-                    
+
                     return (image == null
-                            ? "not_localized" 
+                            ? "not_localized"
                             : "/gcfretes/upload/" + fileName);
                 }
         }

@@ -6,8 +6,10 @@
 <%@attribute name="carroceria" required="true" %>
 <%@attribute name="transportadora" required="true" %>
 <%@attribute name="foto" required="true" %>
+<%@attribute name="transportadora_id" required="true" %>
+<%@attribute name="veiculo_id" required="true" %>
 
-<article>
+<article id="resultado${veiculo_id}">
     <div class="row">
         <div class="col-md-12 ">
             <div class="thumbnail">
@@ -39,11 +41,11 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-5">
                         <div class="pull-right panel-default">
-                            <h4 class="center-block"><fmt:formatNumber type="currency" 
+                            <h4 class="center-block" id="lbValorFrete"><fmt:formatNumber type="currency" 
                                                                        maxFractionDigits="3" 
                                                                        value="${preco}" /></h4>
                             
-                            <button type="button" onclick="showCriarConta()" class="btn center-block btn-primary">Adicionar</button>
+                            <button type="button" onclick="adicionarVeiculoCotacao(${transportadora_id}, ${veiculo_id}, ${preco})" class="btn center-block btn-primary">Adicionar</button>
                         </div>
                     </div>
                 </div>

@@ -37,55 +37,39 @@ public class Interceptador extends HandlerInterceptorAdapter
 
     private boolean enderecoPermitido(String url)
     {
-        if (url.contains("upload"))
-        {
+        if (url.contains("usuarioatual"))
             return true;
-        }
+        
+        if (url.contains("upload"))
+            return true;
 
         if (url.contains("pesquisar"))
-        {
             return true;
-        }
 
         if (url.contains("cadastratransportadora"))
-        {
             return true;
-        }
 
         if (url.contains("cadastrausuario"))
-        {
             return true;
-        }
 
         if (url.contains("efetualogin"))
-        {
             return true;
-        }
 
         if (url.contains("resources"))
-        {
             return true;
-        }
 
         if (url.contains("paginalogin"))
-        {
             return true;
-        }
 
         if (url.contains("cadastratransportadora"))
-        {
             return true;
-        }
 
         if (url.contains("maps.googleapis.com/maps/api"))
-        {
             return true;
-        }
 
         if (url.contains("pesquisafrete"))
-        {
             return true;
-        }
+
         return false;
     }
 }

@@ -19,5 +19,7 @@
         transportadora="${resultado.veiculo.transportadoras.nome}"
         veiculo="${resultado.veiculo.descricao}"
         foto="${resultado.foto_path}"
+        transportadora_id="${resultado.veiculo.transportadoras.id}"
+        veiculo_id="${resultado.veiculo.id}"
         />           
 </c:forEach>

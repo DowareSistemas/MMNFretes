@@ -1,21 +1,35 @@
 var usuarioLogado = false;
+var distancia;
 
 $(document).ready(function ()
 {
     $('#lbIncorretos').hide();
+
+    $.post("/gcfretes/usuarioatual", function (data)
+    {
+        if (data !== '0')
+        {
+            usuarioLogado = true;
+            countCotacoes();
+        } else
+            $('#btnVisualizaCotacoes').hide();
+    });
 });
 
 $('#btnBuscarFretes').click(function ()
 {
-    var directionsService = new google.maps.DirectionsService();
+    buscarFretes();
+});
 
+function buscarFretes()
+{
+    var directionsService = new google.maps.DirectionsService();
     var request =
             {
                 origin: $('#txCep_origem').val(),
                 destination: $('#txCep_destino').val(),
                 travelMode: google.maps.DirectionsTravelMode.DRIVING
             };
-
     var filtroPesquisa =
             {
                 categorias: "",
@@ -28,7 +42,7 @@ $('#btnBuscarFretes').click(function ()
     {
         if (status == google.maps.DirectionsStatus.OK)
         {
-            var distancia = response.routes[0].legs[0].distance.text;
+            distancia = response.routes[0].legs[0].distance.text;
             var url = "/gcfretes/pesquisafrete";
 
             distancia = distancia.replace(" km", "");
@@ -45,7 +59,7 @@ $('#btnBuscarFretes').click(function ()
             });
         }
     });
-});
+}
 
 function getFiltroCarrocerias()
 {
@@ -116,11 +130,43 @@ function getFiltroCategorias()
 /*  Este metodo é acionado pelo input id #btnAdicionar-cotacao
  *  presente em conteudo-pesquisar.tag, na linha ~40-50
  */
-function showCriarConta()
+function adicionarVeiculoCotacao(transportadora_id, veiculo_id, valorFrete)
 {
-    $('#criarconta-entrar').modal('toggle');
-    $('#criarconta-entrar').modal('show');
+    if (!usuarioLogado)
+    {
+        showCriarcontaEntrar();
+        return;
+    }
+
+    var cotacao =
+            {
+                valor: parseFloat(valorFrete).toFixed(2),
+                status: 0,
+                cep_origem: $('#txCep_origem').val(),
+                cep_destino: $('#txCep_destino').val(),
+                distancia: distancia,
+                transportadoras_id: transportadora_id,
+                veiculos_id: veiculo_id
+            };
+
+    var url = "/gcfretes/addveiculocotacao";
+
+    $.post(url, cotacao, function (response)
+    {
+        var idCard = "resultado" + veiculo_id;
+        buscarFretes();
+        countCotacoes();
+    });
 }
+
+$('#btnVisualizaCotacoes').click(function ()
+{
+    var url = "/gcfretes/listarpendentes";
+    $.get(url, function (data)
+    {
+        $('#tabelaCotacoesAtivas').html(data);
+    });
+});
 
 $('#btnEntrar').click(function ()
 {
@@ -132,8 +178,7 @@ $('#btnEntrar').click(function ()
                     {
                         $('#lbIncorretos').fadeIn(1000);
                         $('#lbIncorretos').fadeOut(3000);
-                    }
-                    else
+                    } else
                     {
                         $('#criarconta-entrar').modal('hide');
                         usuarioLogado = true;
@@ -141,3 +186,33 @@ $('#btnEntrar').click(function ()
                 }
             }).submit();
 });
+
+function showCriarcontaEntrar()
+{
+    $('#criarconta-entrar').modal('toggle');
+    $('#criarconta-entrar').modal('show');
+}
+
+function removeVeiculoCotacao(id_cotacao)
+{
+    var url = "/gcfretes/removecotacao?id=" + id_cotacao;
+    var trId = "cotacao" + id_cotacao;
+    $.get(url, function (respose)
+    {
+        if (respose === '1')
+        {
+            $('#' + trId).fadeOut(500);
+            countCotacoes();
+            buscarFretes();
+        }
+    });
+}
+
+function countCotacoes()
+{
+    var url = "/gcfretes/countcotacoes";
+    $.get(url, function (response)
+    {
+        $('#countCotacoes').text(response);
+    });
+}

@@ -11,7 +11,8 @@ package enums;
  */
 public class STATUS_COTACAO
 {
-    public static final int AGUARDANDO_APROVACAO = 0;
-    public static final int APROVADO = 1;
-    public static final int REPROVADO = 2;
+    public static final int SELECIONANDO = 0;
+    public static final int AGUARDANDO_APROVACAO = 1;
+    public static final int APROVADO = 2;
+    public static final int REPROVADO = 3;
 }

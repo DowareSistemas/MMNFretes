@@ -18,9 +18,9 @@
                     <li><a href="">Link</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown visible-sm visible-md visible-lg">
-                        <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-shopping-cart">
-                            <span class="badge">12</span>
+                    <li id="btnVisualizaCotacoes" class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-lista-cotacoes">
+                            <span class="badge" id="countCotacoes">0</span>
                             <i class="glyphicon glyphicon-shopping-cart"></i>
                         </a>
                     </li>
@@ -70,7 +70,7 @@
 </nav>
 
 <!-- Modal de cotações -->
-<div id="modal-shopping-cart" class="modal fade" role="dialog">
+<div id="modal-lista-cotacoes" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal conteúdo (Desktop) -->
@@ -88,43 +88,12 @@
                     <thead>
                         <tr>
                             <th class="text-uppercase">Nome da Transportadora</th>
+                            <th class="text-uppercase">Veículo</th>
                             <th class="text-uppercase">Preço</th>
-                            <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <h5 class="text-primary">Nome da Transportadora</h5>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <p>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star-empty"></span>
-                                            <span class="glyphicon glyphicon-star-empty"></span>
-                                        </p>
-                                    </div> 
-                                </div>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <h5>R$ 00000,00</h5>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <button type="button" class="btn btn-danger pull-right">Remover</button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody id="tabelaCotacoesAtivas">
+             
                     </tbody>
                 </table>
             </div>

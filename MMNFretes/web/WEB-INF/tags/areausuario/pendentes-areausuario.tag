@@ -8,14 +8,19 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-2">
                                 <label>Grupos:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+
                                 <select class="form-control" id="cbGrupos">
                                     <option value="Volta Redonda">Volta Redonda</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <label>Editar Grupo:</label>
+
                                 <button type="button" class="btn btn-primary btn-block">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>

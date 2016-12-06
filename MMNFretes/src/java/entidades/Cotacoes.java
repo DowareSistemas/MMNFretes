@@ -28,8 +28,8 @@ public class Cotacoes extends Entity
     private String cep_origem;
     private String cep_destino;
     private double distancia;
-    private int usuario_id;
-    private int transportadora_id;
+    private int usuarios_id;
+    private int transportadoras_id;
     private int veiculos_id;
     private int grupo_cotacoes_id;
 
@@ -131,24 +131,24 @@ public class Cotacoes extends Entity
         this.distancia = distancia;
     }
 
-    public int getUsuario_id()
+    public int getUsuarios_id()
     {
-        return usuario_id;
+        return usuarios_id;
     }
 
-    public void setUsuario_id(int usuario_id)
+    public void setUsuarios_id(int usuario_id)
     {
-        this.usuario_id = usuario_id;
+        this.usuarios_id = usuario_id;
     }
 
-    public int getTransportadora_id()
+    public int getTransportadoras_id()
     {
-        return transportadora_id;
+        return transportadoras_id;
     }
 
-    public void setTransportadora_id(int transportadora_id)
+    public void setTransportadoras_id(int transportadora_id)
     {
-        this.transportadora_id = transportadora_id;
+        this.transportadoras_id = transportadora_id;
     }
 
     public int getVeiculos_id()
