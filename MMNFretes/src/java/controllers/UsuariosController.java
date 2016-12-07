@@ -122,6 +122,17 @@ public class UsuariosController
                 : usuario.getId() + "");
     }
 
+    @RequestMapping(value = "/paginaperfil")
+    public String paginaPerfil(HttpSession httpSession)
+    {
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+
+        if (Util.isUsuario(usuario))
+            return "areausuario";
+        else
+            return "areatransportador";
+    }
+
     @RequestMapping("/areausuario")
     public String rediriocionaAreaUsuario(HttpSession session)
     {

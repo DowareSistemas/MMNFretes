@@ -6,6 +6,7 @@ package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
 import br.com.persistor.abstractClasses.Entity;
+import br.com.persistor.annotations.NamedQuery;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
 import br.com.persistor.annotations.OneToOne;
@@ -19,9 +20,9 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
+@NamedQuery(queryName = "updateStatus", queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?")
 public class Cotacoes extends Entity
 {
-
     private int id;
     private double valor;
     private int status;

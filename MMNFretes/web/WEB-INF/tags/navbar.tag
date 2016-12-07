@@ -98,7 +98,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Finalizar</button>
+                <button type="button" id="btnFinalizarCotacao" class="btn btn-success">Finalizar</button>
             </div>
         </div> <!-- Modal conteúdo (Desktop) -->
     </div>

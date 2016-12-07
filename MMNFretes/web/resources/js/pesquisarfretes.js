@@ -216,3 +216,10 @@ function countCotacoes()
         $('#countCotacoes').text(response);
     });
 }
+
+$('#btnFinalizarCotacao').click(function ()
+{
+    var url = "/gcfretes/upstatuscotacao?status=" + 1;
+    $.get(url);
+    window.location.href = "/gcfretes/paginaperfil";
+});
