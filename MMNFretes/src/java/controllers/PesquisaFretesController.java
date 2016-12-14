@@ -12,6 +12,7 @@ import br.com.persistor.sessionManager.Join;
 import entidades.Avaliacoes;
 import entidades.Carrocerias;
 import entidades.Categorias_veiculos;
+import entidades.Configuracoes;
 import entidades.Historico;
 import entidades.Transportadoras;
 import entidades.Veiculos;
@@ -177,10 +178,8 @@ public class PesquisaFretesController
     {
         try
         {
-            ServletContext context = request.getServletContext();
-            String path = context.getRealPath("/upload");
-            path = path.substring(0, path.indexOf("\\build"));
-            path += "\\web\\upload\\";
+            Configuracoes config = new ConfiguracoesController().findConfig("foto_path");
+            String path = config.getValor();
 
             if (veiculo.getId() > 0)
                 if (veiculo.getFoto() != null)

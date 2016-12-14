@@ -9,7 +9,7 @@ import br.com.persistor.enums.DB_TYPE;
 import br.com.persistor.generalClasses.DBConfig;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.SessionFactory;
-import logging.PersistenceLogger;
+import logging.PersistenceLoggerImpl;
 
 /**
  *
@@ -25,9 +25,7 @@ public class SessionProvider
         try
         {
             if (factory == null)
-            {
                 factory = new SessionFactory();
-            }
 
             DBConfig config = new DBConfig();
 
@@ -38,7 +36,19 @@ public class SessionProvider
             config.setUser("root");
             config.setPassword("81547686");
             config.setMaxStatements(1000);
-            config.setPersistenceLogger(PersistenceLogger.class);
+            config.setPersistenceLogger(PersistenceLoggerImpl.class);
+            
+            /*
+            config.setDb_type(DB_TYPE.MySQL);
+            config.setHost("192.175.112.170");
+            config.setDatabase("doware_gcfretes");
+            config.setPort(3306);
+            config.setUser("doware_gcfretes");
+            config.setPassword("R36?=x8%WqOV");
+            config.setMaxStatements(1000);
+            // config.setMaxPoolSize(10);
+            config.setPersistenceLogger(PersistenceLoggerImpl.class);
+            */
 
             return factory.getSession(config);
         }
@@ -46,6 +56,6 @@ public class SessionProvider
         {
 
         }
-        return  null;
+        return null;
     }
 }
