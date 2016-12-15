@@ -21,7 +21,7 @@
     <body>
         <div class="container">
             <header>
-                <my-tags:navbar/>
+                <my-tags:navbar redireciona_perfil="true"/>
             </header>
             <aside>
                 <div class="aside-fixed">

@@ -21,7 +21,7 @@
 
         <div class="container">
             <header>
-                <my-tags:navbar/>
+                <my-tags:navbar redireciona_perfil="true"/>
             </header>
             <main>
                 <div class="row">

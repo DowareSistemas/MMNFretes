@@ -30,6 +30,9 @@ $(document).ready(function ()
     carregaInfoUsuario();
     hab_desab_formInfo(true);
     carregaEnderecos();
+    $('#li-deslogado').hide();
+    $('#li-logado').hide();
+    $('#btnVisualizaCotacoes').hide();
 });
 
 $('#cbGrupos').change(function ()

@@ -24,8 +24,9 @@
     <body>      
         <div class="container">
             <header>
-                <my-tags:navbar/>
+                <my-tags:navbar redireciona_perfil="false"/>
                 <pesquisarfretes:criarconta-entrar/>
+                <pesquisarfretes:pesquisar-mapa/>
             </header>
             <aside>
                 <div class="aside-fixed">
@@ -35,11 +36,11 @@
                             <form class="form-group panel-aside">
                                 <h4 class="text-muted text-uppercase text-center">Calcular trajeto</h4>
                                 <div class="form-group input-group">
-                                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
+                                    <span class="btn input-group-addon" id="btnPesquisaCepOrigem" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                                     <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
                                 </div>
                                 <div class="form-group input-group">
-                                    <span class="btn input-group-addon" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
+                                    <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                                     <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
                                 </div>
                                 <button type="button" class="btn btn-primary btn-block" id="btnBuscarFretes">Buscar</button>
@@ -130,7 +131,8 @@
         <script src="resources/js/mascaras.js"></script>
         <!-- Scripts de login 
         ========================================================================================= -->
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
+        <script src="resources/js/maps.js"></script>
         <script src="resources/js/login.js"></script>
         <script src="resources/js/pesquisarfretes.js"></script>
     </body>

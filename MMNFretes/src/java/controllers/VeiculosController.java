@@ -97,7 +97,7 @@ public class VeiculosController
         {
             Configuracoes config = new ConfiguracoesController().findConfig("foto_path");
             String path = config.getValor();
-
+            
             Veiculos veiculo = get(veiculo_id);
 
             if (veiculo.getId() > 0)
@@ -105,7 +105,6 @@ public class VeiculosController
                 {
                     String fileName = getFileName(veiculo);
                     String imageFile = (path + fileName);
-                    
                     FileExtractor extractor = new FileExtractor();
                     extractor.setBufferSize(1024);
                     extractor.setInputStream(veiculo.getFoto());

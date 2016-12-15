@@ -27,7 +27,9 @@ $(document).ready(function ()
     $('#enderecos').hide();
     $('#historico-area-transportador').hide();
     $('#pendentes-area-transportador').hide();
-
+    $('#li-deslogado').hide();
+    $('#li-logado').hide();
+    $('#btnVisualizaCotacoes').hide();
     $('#btnSalvar-info').hide();
 
     carregaInfoTransportador();

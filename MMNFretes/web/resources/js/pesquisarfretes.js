@@ -1,3 +1,5 @@
+/* global cep_atual */
+
 var usuarioLogado = false;
 var distancia;
 
@@ -58,6 +60,33 @@ function buscarFretes()
                 $('#resultados-pesquisa').html(result);
             });
         }
+    });
+}
+
+$('#btnPesquisaCepOrigem').click(function ()
+{
+    showPesquisaEndereco($('#txCep_origem'));
+});
+
+$('#btnPesquisaCepDestino').click(function ()
+{
+    showPesquisaEndereco($('#txCep_destino'));
+});
+
+function showPesquisaEndereco(element)
+{
+    $('#pesquisa-mapa').modal('toggle');
+    $('#pesquisa-mapa').modal('show');
+    
+    $('#btnConfirmarCepMaps').click(function ()
+    {
+        var cep = cep_atual;
+        if (!(cep.indexOf("-") > (-1)))
+        {
+            showPesquisaEndereco(element);
+            return ;
+        }
+        element.val(cep);
     });
 }
 
