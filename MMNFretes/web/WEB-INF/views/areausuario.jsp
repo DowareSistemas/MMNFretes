@@ -64,7 +64,7 @@
                                          id="senhaIncorreta"
                                          mensagem="As senhas não coincidem!" />
                     <!-- Modal de mais informações -->
-                    <my-tags:detalhes_cotacao_usuario/>
+                    <my-tags:detalhes_cotacao/>
                 </div>
             </main>
             <footer>
@@ -75,6 +75,7 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/enderecos.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>

@@ -4,7 +4,7 @@
     Author     : Sammy Guergachi <sguergachi at gmail.com>
 --%>
 
-<div class="modal fade bd-example-modal-sm" data-backdrop="static" data-keyboard="false" id="mensagem-sn" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade bd-example-modal-sm modal-centralizado" data-backdrop="static" data-keyboard="false" id="mensagem-sn" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">

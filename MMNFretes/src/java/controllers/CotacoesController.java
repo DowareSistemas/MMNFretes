@@ -211,6 +211,17 @@ public class CotacoesController
         return (count + "");
     }
 
+    @RequestMapping(value = "/getcotacao", produces = "application/json; charset=utf-8", method = RequestMethod.POST)
+    public @ResponseBody
+    String getCotacao(@RequestParam(value = "id") int id)
+    {
+        Session session = SessionProvider.openSession();
+        Cotacoes cotacao = session.onID(Cotacoes.class, id);
+        session.close();
+        
+        return new Gson().toJson(cotacao);
+    }
+    
     @RequestMapping(value = "/listagrupos", produces = "application/json; charset=utf-8")
     public @ResponseBody
     String listGrupos(HttpSession httpSession)

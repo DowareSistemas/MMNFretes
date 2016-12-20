@@ -42,6 +42,38 @@ $('#cbGrupos').change(function ()
     listaCotacoes(itemCb.val());
 });
 
+function mostraDetalhesItem(id_item)
+{
+    $('#detalhes_cotacao').modal('toggle');
+    $('#detalhes_cotacao').modal('show');
+
+    var url = "/gcfretes/getcotacao?id=" + id_item;
+    $.post(url, function (cotacao)
+    {
+        $('#lbNomeTransportador').text(cotacao.transportadoras.nome);
+        $('#lbNomeVeiculo').text(cotacao.veiculos.descricao);
+        carregaEnderecoByCEP(cotacao.cep_origem, '#lbEndereco-origem');
+        carregaEnderecoByCEP(cotacao.cep_destino, '#lbEndereco-destino');
+        $('#lbDistancia').text(cotacao.distancia + " Km");
+        $('#lbValorItemCotacao').text(parseFloat(cotacao.valor.toString()).toFixed(2));
+    });
+}
+
+function carregaEnderecoByCEP(Cep, element)
+{
+    var url = "http://viacep.com.br/ws/" + Cep + "/json/";
+    var endereco = $.get(url, function (enderecoResult)
+    {
+        var enderecoRetorno = "";
+        enderecoRetorno += enderecoResult.logradouro + ", ";
+        enderecoRetorno += enderecoResult.bairro + " - ";
+        enderecoRetorno += enderecoResult.uf + ", ";
+        enderecoRetorno += enderecoResult.cep;
+
+        $(element).text(enderecoRetorno);
+    });
+}
+
 function cancelaItemCotacao(id_item)
 {
     showMsgSimNao('Deseja realmente remover este item da cotação?');

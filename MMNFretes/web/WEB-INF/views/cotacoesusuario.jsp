@@ -6,8 +6,23 @@
         <td>
             <button onclick="mostraDetalhesItem(${cotacao.id})" type="button" class="btn btn-info btn-xs center-block" data-toggle="modal" data-target="#detalhes_cotacao_usuario">+ Inf.</button>
         </td>
-        
-        <td>${cotacao.status}</td>
+
+        <c:if test="${cotacao.status eq 0}">
+            <td> Selecionando </td>
+        </c:if>
+
+        <c:if test="${cotacao.status eq 1}">
+            <td> Aguardando aprovação </td>
+        </c:if>        
+
+        <c:if test="${cotacao.status eq 2}">
+            <td> Aprovado </td>
+        </c:if>
+
+        <c:if test="${cotacao.status eq 3}">
+            <td> Recusado </td>
+        </c:if>
+            
         <td>${cotacao.transportadoras.nome}</td>
 
         <td>
@@ -19,9 +34,9 @@
         <td>
             <fmt:formatNumber type="currency" maxFractionDigits="3" value="${cotacao.valor}"/>
         </td>
-        
+
         <td>
-            <button type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-xs col-sm-8">Cancelar</button>
+            <button type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-sm">Cancelar</button>
         </td>
     </tr>
 </c:forEach>

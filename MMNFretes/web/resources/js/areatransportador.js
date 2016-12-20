@@ -50,7 +50,8 @@ function cancelaItemCotacao(id_item)
 
 function mostraDetalhesItem(id_item)
 {
-
+    $('#detalhes_cotacao').modal('toggle');
+    $('#detalhes_cotacao').modal('show');
 }
 
 function pesquisaCotacao(termoBusca)
