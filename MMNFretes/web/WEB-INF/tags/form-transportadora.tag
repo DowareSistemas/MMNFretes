@@ -54,6 +54,3 @@
         </div>
     </div>
 </article>
-<!-- Scripts de mascara para inputs -->
-<script src="resources/js/jquery-mask.js"></script>
-<script src="resources/js/mascaras.js"></script>

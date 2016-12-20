@@ -4,7 +4,7 @@
 <c:forEach var="cotacao" items="${cotacoes}">
     <tr>
         <td>
-            <button onclick="mostraDetalhesItem(${cotacao.id})" type="button" class="btn btn-info btn-xs center-block" data-toggle="modal" data-target="#detalhes_cotacao_usuario">+ Inf.</button>
+            <button onclick="mostraDetalhesItem(${cotacao.id})" type="button" class="btn btn-info btn-xs center-block" data-toggle="modal" data-target="#detalhes_cotacao_usuario">+ Info</button>
         </td>
 
         <c:if test="${cotacao.status eq 0}">
