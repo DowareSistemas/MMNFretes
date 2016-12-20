@@ -37,7 +37,7 @@ $('#transportador').click(function ()
 $('#usuario').click(function ()
 {
     $('#formulario-usuario').fadeIn();
-    $('#formulario-transportador').hide()();
+    $('#formulario-transportador').hide();
     $('#formulario-transportador').hide();
 });
 
