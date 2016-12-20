@@ -30,28 +30,29 @@ function carregaEnderecos()
         }
     });
 }
+var endereco_atual = 0;
 
 $('#btnExcluir-endereco').click(function ()
 {
-    var self = $(this);
-    $('#btnConfirmaExclusaoEndereco').val(self.val());
+    endereco_atual = $(this).val();
+    showMsgSimNao("Deseja realmente excluir este endereço?");
 });
 
-$('#btnConfirmaExclusaoEndereco').click(function ()
+$('#msg-sn-btnSIM').click(function ()
 {
-    var self = $(this);
+    var endereco =
+            {
+                endereco_id: endereco_atual
+            };
 
-    $.ajax({
-        url: "/gcfretes/inativaEndereco?endereco_id=" + self.val(),
-        success: function (mensagem)
-        {
-            $('#btnExcluir-endereco').fadeOut(100);
-            $('#btnAdicionar-endereco').text('Adicionar');
-            carregaEnderecos();
-        }
+    var url = "/gcfretes/inativaEndereco";
+    $.post(url, endereco, function ()
+    {
+        $('#btnExcluir-endereco').fadeOut(100);
+        $('#btnAdicionar-endereco').text('Adicionar');
+        carregaEnderecos();
     });
-
-    self.val(0);
+    endereco_atual = 0;
 });
 
 function carregaEnderecoEdicao(endereco_id)
@@ -75,6 +76,7 @@ function carregaEnderecoEdicao(endereco_id)
             $('#txLogradouro').val(endereco.logradouro);
             $('#btnExcluir-endereco').fadeIn(500);
             $('#btnExcluir-endereco').val(endereco_id);
+            endereco_atual = endereco_id;
         }
     });
 }

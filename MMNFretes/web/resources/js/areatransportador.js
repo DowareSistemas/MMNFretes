@@ -37,6 +37,22 @@ $(document).ready(function ()
     pesquisaCotacao('');
 });
 
+function cancelaItemCotacao(id_item)
+{
+    showMsgSimNao('Deseja realmente remover este item da cotação?');
+
+    $('#msg-sn-btnSIM').click(function ()
+    {
+        removeVeiculoCotacao(id_item);
+        pesquisaCotacao();
+    });
+}
+
+function mostraDetalhesItem(id_item)
+{
+
+}
+
 function pesquisaCotacao(termoBusca)
 {
     var parametros =
@@ -45,7 +61,7 @@ function pesquisaCotacao(termoBusca)
                 grupo_id: 0,
                 resultView: 'cotacoestransportador'
             };
-            
+
     var url = '/gcfretes/buscarcotacao';
     $.post(url, parametros, function (response)
     {

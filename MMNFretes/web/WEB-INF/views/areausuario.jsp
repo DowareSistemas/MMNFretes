@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <header>
                 <my-tags:navbar redireciona_perfil="true"/>
             </header>
@@ -58,12 +58,7 @@
                                             titulo="Renomear grupo"
                                             type_input="text" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
-                                              classe_btnSIM="btn btn-danger" 
-                                              texto_btnNAO="NÃO" 
-                                              texto_btnSIM="SIM"
-                                              texto_corpo="Deseja excluir o endereço?" 
-                                              id_btnSIM="btnConfirmaExclusaoEndereco" />
+                    <my-tags:mensagem-sim-nao />
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" 
                                          id="senhaIncorreta"
@@ -83,8 +78,8 @@
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/enderecos.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>
-        <!-- Scripts de mascara para inputs -->
         <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/mascaras.js"></script>
+        <script src="resources/js/mensagens.js"></script>
     </body>
 </html>

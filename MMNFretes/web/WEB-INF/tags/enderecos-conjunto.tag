@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger" data-toggle="modal" data-target="#mensagem-sn">Excluir</button>
+                                            <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger">Excluir</button>
                                             <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary pull-right">Adicionar</button>
                                         </div>
                                     </div>      

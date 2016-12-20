@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <button type="button" id="btnExcluir-veiculo" data-toggle="modal" data-target="#mensagem-sn" class="btn btn-danger">Excluir</button>
+                                        <button type="button" id="btnExcluir-veiculo" class="btn btn-danger">Excluir</button>
                                         <button type="button" id="btnAdicionar-veiculo" class="btn btn-primary pull-right">Adicionar</button>
                                     </div>
                                 </div>

@@ -6,11 +6,13 @@ $(document).ready(function ()
         {
             $('#li-logado').fadeIn(500);
             $('#li-deslogado').fadeOut(500);
+            $('#li-sair').fadeIn(500);
             countCotacoes();
         }else
         {
             $('#li-deslogado').fadeIn(500);
             $('#li-logado').fadeOut(500);
+            $('#li-sair').fadeOut(500);
         }
     });
 });
@@ -65,6 +67,7 @@ function efetualLogin(redireciona)
                 $('#btnVisualizaCotacoes').fadeIn(500);
                 $('#li-logado').fadeIn(500);
                 $('#li-deslogado').fadeOut(500);
+                $('#li-sair').fadeIn(500);
                 countCotacoes();
             }
         }

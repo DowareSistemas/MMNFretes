@@ -128,19 +128,27 @@ public class UsuariosController
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
         if (Util.isUsuario(usuario))
-            return "areausuario";
+            return "redirect:areausuario";
         else
-            return "areatransportador";
+            return "redirect:areatransportador";
     }
 
     @RequestMapping("/areausuario")
-    public String rediriocionaAreaUsuario(HttpSession session)
+    public String rediriocionaAreaUsuario(HttpSession httpSession)
     {
-        Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogado");
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
         if (Util.isUsuario(usuario))
             return "areausuario";
         else
             return "redirect:paginalogin";
+    }
+    
+    @RequestMapping("/loggout")
+    public String loggout(HttpSession httpSession)
+    {
+        httpSession.setAttribute("usuarioLogado", null);
+        return "redirect:pesquisar";
+        
     }
 }

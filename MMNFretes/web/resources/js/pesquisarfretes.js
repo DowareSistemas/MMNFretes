@@ -12,9 +12,13 @@ $(document).ready(function ()
         if (data !== '0')
         {
             usuarioLogado = true;
+            $('#li-sair').show();
             countCotacoes();
         } else
+        {
             $('#btnVisualizaCotacoes').hide();
+            $('#li-sair').hide();
+        }
     });
 });
 
@@ -79,7 +83,7 @@ function showPesquisaEndereco(element)
     $('#btnConfirmarCepMaps').click(function ()
     {
         var cep = cep_atual;
-        
+
         /*
          *  Este bloco foi criado por causa de um possível
          * bug que existe na API do Google para o Maps.
@@ -96,7 +100,7 @@ function showPesquisaEndereco(element)
         if (!(cep.indexOf("-") > (-1)))
         {
             var enderecoExtenco = $('#lbDescricao-endereco').text();
-            var partes = enderecoExtenco.split(','); 
+            var partes = enderecoExtenco.split(',');
 
             for (var i = 0; i < partes.length; i++)
             {
@@ -277,9 +281,14 @@ function showCriarcontaEntrar()
 
 function removeVeiculoCotacao(id_cotacao)
 {
-    var url = "/gcfretes/removecotacao?id=" + id_cotacao;
+    var cotacao =
+            {
+                id: id_cotacao
+            };
+
+    var url = "/gcfretes/removecotacao";
     var trId = "cotacao" + id_cotacao;
-    $.get(url, function (respose)
+    $.post(url, cotacao, function (respose)
     {
         if (respose === '1')
         {

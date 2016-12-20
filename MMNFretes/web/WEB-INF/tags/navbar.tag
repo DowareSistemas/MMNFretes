@@ -59,10 +59,17 @@
                         </ul>
                     </li>
                     <!-- Usuário LOGADO -->
-                    <li class="active" id="li-logado">
+                    <li  id="li-logado">
                         <a href="paginaperfil">
                             Perfil
                             <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    
+                    <li id="li-sair">
+                        <a href="loggout">
+                            Sair
+                            <span class="sr-only"></span>
                         </a>
                     </li>
                 </ul>

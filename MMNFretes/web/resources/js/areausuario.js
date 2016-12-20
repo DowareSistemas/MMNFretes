@@ -42,6 +42,25 @@ $('#cbGrupos').change(function ()
     listaCotacoes(itemCb.val());
 });
 
+function cancelaItemCotacao(id_item)
+{
+    showMsgSimNao('Deseja realmente remover este item da cotação?');
+
+    $('#msg-sn-btnSIM').click(function ()
+    {
+        var cotacao =
+                {
+                    id: id_item
+                };
+        var url = "/gcfretes/removecotacao";
+        $.post(url, cotacao, function (respose)
+        {
+            if (respose === '1')
+                listaCotacoes($('#cbGrupos').val());
+        });
+    });
+}
+
 function listaCotacoes(grupo_id)
 {
     var parametros =
@@ -60,7 +79,6 @@ function listaCotacoes(grupo_id)
 
 function listaGruposCotacoes()
 {
-
     $.get("/gcfretes/listagrupos", function (grupos)
     {
         var isFirst = true;

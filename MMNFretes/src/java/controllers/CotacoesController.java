@@ -124,13 +124,13 @@ public class CotacoesController
         c.add(JOIN_TYPE.INNER, usuarios, "cotacoes.usuarios_id = usuarios.id");
         c.add(JOIN_TYPE.INNER, veiculos, "cotacoes.veiculos_id = veiculos.id");
 
-        c.add(Restrictions.beginPrecedence());
+        c.beginPrecedence();
         c.add(Restrictions.like(FILTER_TYPE.WHERE, "usuarios.nome", searchTerm, MATCH_MODE.ANYWHERE));
         c.add(Restrictions.like(FILTER_TYPE.OR, "transportadoras.nome", searchTerm, MATCH_MODE.ANYWHERE));
         c.add(Restrictions.like(FILTER_TYPE.OR, "veiculos.descricao", searchTerm, MATCH_MODE.ANYWHERE));
-        c.add(Restrictions.endPrecendence());
+        c.endPrecedence();
 
-        c.add(Restrictions.beginPrecedence());
+        c.beginPrecedence();
         c.add(Restrictions.ne(FILTER_TYPE.AND, "cotacoes.status", 0));
 
         if (util.Util.isUsuario(usuarioLogado))
@@ -140,7 +140,7 @@ public class CotacoesController
 
         if (grupo_id > 0)
             c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.grupo_cotacoes_id", grupo_id));
-        c.add(Restrictions.endPrecendence());
+        c.endPrecedence();
 
         c.execute();
         c.loadList(cotacoes);
@@ -167,7 +167,7 @@ public class CotacoesController
         return mav;
     }
 
-    @RequestMapping(value = "removecotacao")
+    @RequestMapping(value = "removecotacao", method = RequestMethod.POST)
     public @ResponseBody
     String remove(@RequestParam(value = "id") int id)
     {
@@ -183,9 +183,11 @@ public class CotacoesController
          * pode ser que um novo grupo seja criado, esse grupo entao vai ficar
          * "solto" no banco, ocupando espaco desnecessariamente.
          */
-        Grupos_cotacoes grupo = session.onID(Grupos_cotacoes.class, c.getGrupo_cotacoes_id());
         if (session.count(Cotacoes.class, "grupo_cotacoes_id = " + c.getGrupo_cotacoes_id()) == 0)
+        {
+            Grupos_cotacoes grupo = session.onID(Grupos_cotacoes.class, c.getGrupo_cotacoes_id());
             session.delete(grupo);
+        }
 
         session.commit();
         session.close();
@@ -217,11 +219,11 @@ public class CotacoesController
         Grupos_cotacoes gc = new Grupos_cotacoes();
 
         Session session = SessionProvider.openSession();
-        
+
         Query q = session.createQuery(gc, "@listaGrupos");
         q.setParameter(1, usuarioLogado.getId());
         q.execute();
-        
+
         return new Gson().toJson(session.getList(gc));
     }
 
