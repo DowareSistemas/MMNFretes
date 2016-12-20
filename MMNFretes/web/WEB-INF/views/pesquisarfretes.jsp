@@ -22,7 +22,7 @@
         <title>JSP Page</title>
     </head>
     <body>      
-        <div class="container">
+        <div class="container-fluid">
             <header>
                 <my-tags:navbar redireciona_perfil="false"/>
                 <pesquisarfretes:criarconta-entrar/>

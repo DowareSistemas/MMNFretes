@@ -23,9 +23,11 @@ import java.io.InputStream;
 @NamedQuery(queryName = "updateStatus", queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?")
 public class Cotacoes extends Entity
 {
+
     private int id;
     private double valor;
     private int status;
+    private Date data;
     private String cep_origem;
     private String cep_destino;
     private double distancia;
@@ -37,6 +39,16 @@ public class Cotacoes extends Entity
     private Usuarios usuarios;
     private Transportadoras transportadoras;
     private Veiculos veiculos;
+
+    public Date getData()
+    {
+        return data;
+    }
+
+    public void setData(Date data)
+    {
+        this.data = data;
+    }
 
     @OneToOne(source = "usuarios_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
     public Usuarios getUsuarios()

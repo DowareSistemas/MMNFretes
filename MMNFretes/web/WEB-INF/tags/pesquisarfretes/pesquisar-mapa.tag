@@ -34,7 +34,7 @@
                 <div class="pull-left">
                     <label class="h4" id="lbDescricao-endereco"> Teste </label>
                 </div>
-                <button type="button" id="btnConfirmarCepMaps" class="btn btn-primary" data-dismiss="modal"> OK </button>
+                <button type="button" id="btnConfirmarCepMaps" class="btn btn-primary"> OK </button>
             </div>
         </div>
     </div>

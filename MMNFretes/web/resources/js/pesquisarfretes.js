@@ -1,4 +1,4 @@
-/* global cep_atual */
+/* global cep_atual, parseFloat */
 
 var usuarioLogado = false;
 var distancia;
@@ -75,19 +75,72 @@ $('#btnPesquisaCepDestino').click(function ()
 
 function showPesquisaEndereco(element)
 {
-    $('#pesquisa-mapa').modal('toggle');
     $('#pesquisa-mapa').modal('show');
-    
     $('#btnConfirmarCepMaps').click(function ()
     {
         var cep = cep_atual;
+        
+        /*
+         *  Este bloco foi criado por causa de um possível
+         * bug que existe na API do Google para o Maps.
+         * 
+         * As vezes o CEP retornado não é válido (faltando o "-" em diante),
+         * então aqui é verificado se de cara o Maps
+         * retornou um CEP válido.
+         * Se sim, não vai entrar no if;
+         * Caso contrário, 
+         * é capturado o endereço por extenço
+         * e em seguida analizado palavra por palavra, afim de 
+         * encontrar o CEP.
+         */
         if (!(cep.indexOf("-") > (-1)))
         {
+            var enderecoExtenco = $('#lbDescricao-endereco').text();
+            var partes = enderecoExtenco.split(','); 
+
+            for (var i = 0; i < partes.length; i++)
+            {
+                /*
+                 * Aqui verificamos se o índice "-" é 5,
+                 * por que:
+                 * 
+                 * Ex:   CEP  27281-440
+                 *                 |
+                 *                 |-> índice 5: pode ser um cep
+                 */
+                if (partes[i].trim().indexOf("-") == 5)
+                {
+                    /*
+                     * Para supondo que o Cep acima 27281-440
+                     * tenha o índice 5 na posição "-",
+                     * fazemos uma verificação para saber se quando
+                     * removemos o "-", resulta em um numero.
+                     * Se sim, chegamos a conclusão que encontramos um
+                     * CEP válido para pesquisar a distância na 
+                     */
+                    if (isNumber(partes[i].replace("-", "")))
+                    {
+                        $('#pesquisa-mapa').modal('hide');
+                        $(element).val(partes[i]);
+                        return;
+                    }
+                }
+            }
+
             showPesquisaEndereco(element);
-            return ;
+            $('#lbDescricao-endereco').text('O CEP selecionado não é válido');
+            $('#lbDescricao-endereco').show();
+            $('#lbDescricao-endereco').css('color', 'red');
+            return;
         }
+        $('#pesquisa-mapa').modal('hide');
         element.val(cep);
     });
+}
+
+function isNumber(obj)
+{
+    return !isNaN(parseFloat(obj));
 }
 
 function getFiltroCarrocerias()

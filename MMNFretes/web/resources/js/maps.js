@@ -36,6 +36,7 @@ function initialize()
             {
                 if (results[0])
                 {
+                    $('#lbDescricao-endereco').css('color', 'black');
                     $('#lbDescricao-endereco').hide();
                     $("#lbDescricao-endereco").text(results[0].formatted_address);
                     cep_atual = results[7].address_components[0].short_name;
@@ -50,6 +51,7 @@ $('#pesquisa-mapa').on("shown.bs.modal", function ()
 {
     google.maps.event.trigger(map, "resize");
     map.setCenter(latlng);
+    carregarNoMapa($('#txtEndereco').val());
 });
 
 $(document).ready(function ()

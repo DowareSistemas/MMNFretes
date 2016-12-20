@@ -81,6 +81,7 @@
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/areausuario.js"></script>
+        <script src="resources/js/enderecos.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>
         <!-- Scripts de mascara para inputs -->
         <script src="resources/js/jquery-mask.js"></script>

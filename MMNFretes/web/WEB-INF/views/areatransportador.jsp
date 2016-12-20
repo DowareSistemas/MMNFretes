@@ -19,7 +19,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <header>
                 <my-tags:navbar redireciona_perfil="true"/>
             </header>
@@ -81,7 +81,7 @@
     <script src="resources/js/jquery-form.js"></script>
     <script src="resources/js/jquery-mask.js"></script>
     <script src="resources/js/bootstrap.js"></script>
-    <script src="resources/js/areausuario.js"></script>
+    <script src="resources/js/enderecos.js"></script>
     <script src="resources/js/areatransportador.js"></script>
     <script  src="resources/js/veiculos.js"></script>
     <!-- Scripts de mascara para inputs -->

@@ -2,7 +2,7 @@
 
 <!--Navbar fixa no topo-->
 <nav class="navbar navbar-default  navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="col-md-12">
             <div class="navbar-header">
                 <h1 class="pp-04"><a class="navbar-brand pp-04" href="/gcfretes/pesquisar">GC Fretes</a></h1>

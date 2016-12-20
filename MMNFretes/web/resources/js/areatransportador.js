@@ -34,7 +34,24 @@ $(document).ready(function ()
 
     carregaInfoTransportador();
     hab_desab_formInfo(true);
+    pesquisaCotacao('');
 });
+
+function pesquisaCotacao(termoBusca)
+{
+    var parametros =
+            {
+                query: termoBusca,
+                grupo_id: 0,
+                resultView: 'cotacoestransportador'
+            };
+            
+    var url = '/gcfretes/buscarcotacao';
+    $.post(url, parametros, function (response)
+    {
+        $('#tabela-cotacoes').html(response);
+    });
+}
 
 $('#btnPerfil').click(function ()
 {
@@ -154,7 +171,7 @@ $('#btnConfirmarSenha').click(function ()
 {
     var senhaDigitada = $('#txSenhaDigitada').val();
     var senha = $('#txSenha').val();
-    
+
     if (senha === senhaDigitada)
     {
         $('#formulario-info-transportador').ajaxForm({

@@ -63,7 +63,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="text-primary">Lista Endereços</h3>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>CEP</th>

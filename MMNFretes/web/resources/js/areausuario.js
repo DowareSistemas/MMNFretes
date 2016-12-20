@@ -1,5 +1,22 @@
 var modoEdicaoInfo = false;
 
+$(document).ready(function ()
+{
+    $('#btnExcluir').hide();
+    $('#pendentes').hide();
+    $('#historico').hide();
+    $('#enderecos').hide();
+    $('#btnSalvar-info').hide();
+    $('#btnEditar-grupo').hide();
+    carregaInfoUsuario();
+    hab_desab_formInfo(true);
+    carregaEnderecos();
+    $('#li-deslogado').hide();
+    $('#li-logado').hide();
+    $('#btnVisualizaCotacoes').hide();
+    listaGruposCotacoes();
+});
+
 $('#btnAdicionar-endereco').click(function ()
 {
     if ($('#formulario-endereco').attr('action') === '/gcfretes/adicionaEndereco')
@@ -19,21 +36,44 @@ $('#btnAdicionar-endereco').click(function ()
             });
 });
 
-$(document).ready(function ()
+$('#cbGrupos').change(function ()
 {
-    $('#btnExcluir').hide();
-    $('#pendentes').hide();
-    $('#historico').hide();
-    $('#enderecos').hide();
-    $('#btnSalvar-info').hide();
-    $('#btnEditar-grupo').hide();
-    carregaInfoUsuario();
-    hab_desab_formInfo(true);
-    carregaEnderecos();
-    $('#li-deslogado').hide();
-    $('#li-logado').hide();
-    $('#btnVisualizaCotacoes').hide();
+    var itemCb = $(this);
+    listaCotacoes(itemCb.val());
 });
+
+function listaCotacoes(grupo_id)
+{
+    var parametros =
+            {
+                query: "",
+                grupo_id: grupo_id,
+                resultView: "cotacoesusuario"
+            };
+
+    var url = "/gcfretes/buscarcotacao";
+    $.post(url, parametros, function (result)
+    {
+        $('#tabela-cotacoes-usuario').html(result);
+    });
+}
+
+function listaGruposCotacoes()
+{
+
+    $.get("/gcfretes/listagrupos", function (grupos)
+    {
+        var isFirst = true;
+        for (var grupo in grupos)
+        {
+            $('#cbGrupos').append(new Option(grupos[grupo].descricao, grupos[grupo].id));
+
+            if (isFirst)
+                listaCotacoes(grupos[grupo].id);
+            isFirst = false;
+        }
+    });
+}
 
 $('#cbGrupos').change(function ()
 {
@@ -56,87 +96,6 @@ function hab_desab_formInfo(estado)
     $('#txConfirm-senha').prop('disabled', estado);
     $('#txTelefone1').prop('disabled', estado);
     $('#txTelefone2').prop('disabled', estado);
-}
-
-function carregaInfoUsuario()
-{
-    $.ajax({
-        url: "/gcfretes/infoUsuario",
-        dataType: 'json',
-        accepts: "application/json",
-        success: function (usuario)
-        {
-            $('#txNome-usuario').val(usuario.nome);
-            $('#txEmail-usuario').val(usuario.email);
-            $('#txSenha-usuario').val(usuario.senha);
-            $('#txConfirm-senha').val(usuario.senha);
-            $('#txTelefone1').val(usuario.telefone1);
-            $('#txTelefone2').val(usuario.telefone2);
-        }
-    });
-}
-
-function carregaEnderecos()
-{
-    $.ajax({
-        url: "/gcfretes/listaEnderecos",
-        success: function (data)
-        {
-            $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
-            $('#enderecos-items').html("");
-            $('#enderecos-items').append(data);
-            $('#formulario-endereco')[0].reset();
-            $('#btnExcluir-endereco').fadeOut(100);
-        }
-    });
-}
-
-$('#btnExcluir-endereco').click(function ()
-{
-    var self = $(this);
-    $('#btnConfirmaExclusaoEndereco').val(self.val());
-});
-
-$('#btnConfirmaExclusaoEndereco').click(function ()
-{
-    var self = $(this);
-
-    $.ajax({
-        url: "/gcfretes/inativaEndereco?endereco_id=" + self.val(),
-        success: function (mensagem)
-        {
-            $('#btnExcluir-endereco').fadeOut(100);
-            $('#btnAdicionar-endereco').text('Adicionar');
-            carregaEnderecos();
-        }
-    });
-
-    self.val(0);
-});
-
-function carregaEnderecoEdicao(endereco_id)
-{
-    $.ajax({
-        url: "/gcfretes/carregaEndereco?endereco_id=" + endereco_id,
-        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-        dataType: 'json',
-        success: function (endereco)
-        {
-            $('#txID-endereco').val(endereco.id);
-            $('#btnAdicionar-endereco').text('Salvar alterações');
-            $('#formulario-endereco').attr('action', '/gcfretes/alteraEndereco');
-            $('#btnExcluir-endereco').fadeOut(100);
-            $('#txCep').val(endereco.CEP);
-            $('#cbUf').val(endereco.UF);
-            $('#cbMunicipio').val(endereco.municipio);
-            $('#txComplemento').val(endereco.complemento);
-            $('#txBairro').val(endereco.bairro);
-            $('#txNumero').val(endereco.numero);
-            $('#txLogradouro').val(endereco.logradouro);
-            $('#btnExcluir-endereco').fadeIn(500);
-            $('#btnExcluir-endereco').val(endereco_id);
-        }
-    });
 }
 
 $('#btnAlterar-info').click(function ()
