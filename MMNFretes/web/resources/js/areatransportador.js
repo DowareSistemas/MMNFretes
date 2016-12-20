@@ -27,12 +27,48 @@ $(document).ready(function ()
     $('#enderecos').hide();
     $('#historico-area-transportador').hide();
     $('#pendentes-area-transportador').hide();
-
+    $('#li-deslogado').hide();
+    $('#li-logado').hide();
+    $('#btnVisualizaCotacoes').hide();
     $('#btnSalvar-info').hide();
 
     carregaInfoTransportador();
     hab_desab_formInfo(true);
+    pesquisaCotacao('');
 });
+
+function cancelaItemCotacao(id_item)
+{
+    showMsgSimNao('Deseja realmente remover este item da cotação?');
+
+    $('#msg-sn-btnSIM').click(function ()
+    {
+        removeVeiculoCotacao(id_item);
+        pesquisaCotacao();
+    });
+}
+
+function mostraDetalhesItem(id_item)
+{
+    $('#detalhes_cotacao').modal('toggle');
+    $('#detalhes_cotacao').modal('show');
+}
+
+function pesquisaCotacao(termoBusca)
+{
+    var parametros =
+            {
+                query: termoBusca,
+                grupo_id: 0,
+                resultView: 'cotacoestransportador'
+            };
+
+    var url = '/gcfretes/buscarcotacao';
+    $.post(url, parametros, function (response)
+    {
+        $('#tabela-cotacoes').html(response);
+    });
+}
 
 $('#btnPerfil').click(function ()
 {
@@ -152,7 +188,7 @@ $('#btnConfirmarSenha').click(function ()
 {
     var senhaDigitada = $('#txSenhaDigitada').val();
     var senha = $('#txSenha').val();
-    
+
     if (senha === senhaDigitada)
     {
         $('#formulario-info-transportador').ajaxForm({

@@ -5,12 +5,16 @@
  */
 package controllers;
 
+import br.com.persistor.enums.COMMIT_MODE;
 import br.com.persistor.enums.FILTER_TYPE;
 import br.com.persistor.enums.JOIN_TYPE;
+import br.com.persistor.enums.MATCH_MODE;
 import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.ICriteria;
 import br.com.persistor.interfaces.Session;
+import br.com.persistor.sessionManager.Query;
+import com.google.gson.Gson;
 import entidades.Cotacoes;
 import entidades.Grupos_cotacoes;
 import entidades.Transportadoras;
@@ -23,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,7 +57,8 @@ public class CotacoesController
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
         cotacao.setUsuarios_id(usuarioLogado.getId());
-        cotacao.setGrupo_cotacoes_id(getGrupo_id(usuarioLogado.getId()));
+        cotacao.setGrupo_cotacoes_id(getGrupo_cotacao_em_aberto(usuarioLogado.getId()));
+        cotacao.setData(br.com.persistor.generalClasses.Util.getDateFromFormat("yyyy-MM-dd"));
 
         Session session = SessionProvider.openSession();
         session.save(cotacao);
@@ -83,47 +89,173 @@ public class CotacoesController
         c.loadList(veiculos);
         c.loadList(cotacoes);
         session.close();
-        
+
         List<Cotacoes> result = session.getList(cotacoes);
-        
-        for(int i = 0; i < result.size(); i++)
+
+        for (int i = 0; i < result.size(); i++)
         {
             result.get(i).setTransportadoras(session.getList(transportadoras).get(i));
             result.get(i).setVeiculos(session.getList(veiculos).get(i));
         }
-        
+
         ModelAndView mav = new ModelAndView("viewcotacoes-navbar");
         mav.addObject("cotacoes", result);
-        return  mav;
+        return mav;
     }
-    
-    @RequestMapping(value = "removecotacao")
+
+    @RequestMapping(value = "/buscarcotacao", method = RequestMethod.POST)
+    public ModelAndView buscar(
+            @RequestParam(value = "query") String searchTerm,
+            @RequestParam(value = "grupo_id") int grupo_id,
+            @RequestParam(value = "resultView") String resultView,
+            HttpSession httpSession)
+    {
+        Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+
+        Cotacoes cotacoes = new Cotacoes();
+        Usuarios usuarios = new Usuarios();
+        Transportadoras transportadoras = new Transportadoras();
+        Veiculos veiculos = new Veiculos();
+
+        Session session = SessionProvider.openSession();
+
+        ICriteria c = session.createCriteria(cotacoes, RESULT_TYPE.MULTIPLE);
+        c.add(JOIN_TYPE.INNER, transportadoras, "cotacoes.transportadoras_id = transportadoras.id");
+        c.add(JOIN_TYPE.INNER, usuarios, "cotacoes.usuarios_id = usuarios.id");
+        c.add(JOIN_TYPE.INNER, veiculos, "cotacoes.veiculos_id = veiculos.id");
+
+        c.beginPrecedence();
+        c.add(Restrictions.like(FILTER_TYPE.WHERE, "usuarios.nome", searchTerm, MATCH_MODE.ANYWHERE));
+        c.add(Restrictions.like(FILTER_TYPE.OR, "transportadoras.nome", searchTerm, MATCH_MODE.ANYWHERE));
+        c.add(Restrictions.like(FILTER_TYPE.OR, "veiculos.descricao", searchTerm, MATCH_MODE.ANYWHERE));
+        c.endPrecedence();
+
+        c.beginPrecedence();
+        c.add(Restrictions.ne(FILTER_TYPE.AND, "cotacoes.status", 0));
+
+        if (util.Util.isUsuario(usuarioLogado))
+            c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.usuarios_id", usuarioLogado.getId()));
+        else
+            c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.transportadoras_id", new TransportadorasController().getByUsuario(usuarioLogado.getId()).getId()));
+
+        if (grupo_id > 0)
+            c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.grupo_cotacoes_id", grupo_id));
+        c.endPrecedence();
+
+        c.execute();
+        c.loadList(cotacoes);
+        c.loadList(usuarios);
+        c.loadList(transportadoras);
+        c.loadList(veiculos);
+
+        session.close();
+
+        List<Cotacoes> listCotacoes = session.getList(cotacoes);
+        List<Usuarios> listUsuarios = session.getList(usuarios);
+        List<Transportadoras> listTransportadoras = session.getList(transportadoras);
+        List<Veiculos> listVeiculos = session.getList(veiculos);
+
+        for (int i = 0; i < listCotacoes.size(); i++)
+        {
+            listCotacoes.get(i).setUsuarios(listUsuarios.get(i));
+            listCotacoes.get(i).setTransportadoras(listTransportadoras.get(i));
+            listCotacoes.get(i).setVeiculos(listVeiculos.get(i));
+        }
+
+        ModelAndView mav = new ModelAndView(resultView);
+        mav.addObject("cotacoes", listCotacoes);
+        return mav;
+    }
+
+    @RequestMapping(value = "removecotacao", method = RequestMethod.POST)
     public @ResponseBody
     String remove(@RequestParam(value = "id") int id)
     {
         Session session = SessionProvider.openSession();
+
         Cotacoes c = session.onID(Cotacoes.class, id);
         session.delete(c);
+
+        /**
+         * Aqui é necessário verificar se ainda existe alguma cotação
+         * pertencente a este grupo. Se não houver nenhuma cotação, o grupo deve
+         * ser excluido, por que na proxima vez que for adicionar uma cotação,
+         * pode ser que um novo grupo seja criado, esse grupo entao vai ficar
+         * "solto" no banco, ocupando espaco desnecessariamente.
+         */
+        if (session.count(Cotacoes.class, "grupo_cotacoes_id = " + c.getGrupo_cotacoes_id()) == 0)
+        {
+            Grupos_cotacoes grupo = session.onID(Grupos_cotacoes.class, c.getGrupo_cotacoes_id());
+            session.delete(grupo);
+        }
+
         session.commit();
         session.close();
-        
+
         return (c.deleted
                 ? "1"
                 : "0");
     }
-    
+
     @RequestMapping(value = "countcotacoes", produces = "text/plain; charset=utf-8")
     public @ResponseBody
     String count(HttpSession httpSession)
     {
-        Usuarios usuario = (Usuarios)httpSession.getAttribute("usuarioLogado");
-      
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+
         String whereCondition = "usuarios_id = " + usuario.getId() + " and status = 0";
         Session session = SessionProvider.openSession();
         int count = session.count(Cotacoes.class, whereCondition);
         session.close();
 
         return (count + "");
+    }
+
+    @RequestMapping(value = "/getcotacao", produces = "application/json; charset=utf-8", method = RequestMethod.POST)
+    public @ResponseBody
+    String getCotacao(@RequestParam(value = "id") int id)
+    {
+        Session session = SessionProvider.openSession();
+        Cotacoes cotacao = session.onID(Cotacoes.class, id);
+        session.close();
+        
+        return new Gson().toJson(cotacao);
+    }
+    
+    @RequestMapping(value = "/listagrupos", produces = "application/json; charset=utf-8")
+    public @ResponseBody
+    String listGrupos(HttpSession httpSession)
+    {
+        Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Grupos_cotacoes gc = new Grupos_cotacoes();
+
+        Session session = SessionProvider.openSession();
+
+        Query q = session.createQuery(gc, "@listaGrupos");
+        q.setParameter(1, usuarioLogado.getId());
+        q.execute();
+
+        return new Gson().toJson(session.getList(gc));
+    }
+
+    @RequestMapping(value = "/upstatuscotacao")
+    public @ResponseBody
+    String upStatus(@RequestParam(value = "status") int status, HttpSession httpSession)
+    {
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        int grupo_cotacao = getGrupo_cotacao_em_aberto(usuario.getId());
+        Cotacoes cotacoes = new Cotacoes();
+
+        Session session = SessionProvider.openSession();
+
+        Query q = session.createQuery(cotacoes, "@updateStatus");
+        q.setCommit_mode(COMMIT_MODE.AUTO);
+        q.setParameter(1, status);
+        q.setParameter(2, grupo_cotacao);
+        q.execute();
+
+        session.close();
+        return "1";
     }
 
     public boolean existeCotacaoComVeiculo(int id_veiculo, HttpSession httpSession)
@@ -147,7 +279,7 @@ public class CotacoesController
         return (!session.getList(cotacoes).isEmpty());
     }
 
-    private int getGrupo_id(int usuario_id)
+    private int getGrupo_cotacao_em_aberto(int usuario_id)
     {
         Cotacoes cotacoes = new Cotacoes();
 

@@ -21,7 +21,8 @@ public class EmailController
             SimpleEmail email = new SimpleEmail();
             email.setHostName("smtp.gmail.com");// o servidor SMTP para envio do e-mail
             email.setSmtpPort(587);
-            email.setTLS(true);
+            email.setTLS(false);
+            email.setSSL(true);
             email.setAuthentication("atendimento.doware@gmail.com", "Ford1932");
             email.addTo("atendimento.doware@gmail.com", "Doware"); //destinatário
             email.setFrom("atendimento.doware@gmail.com", "Doware"); // remetente

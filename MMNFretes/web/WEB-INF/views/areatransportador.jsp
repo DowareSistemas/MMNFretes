@@ -19,9 +19,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <header>
-                <my-tags:navbar/>
+                <my-tags:navbar redireciona_perfil="true"/>
             </header>
             <aside>
                 <div class="aside-fixed">
@@ -63,12 +63,7 @@
                     <my-tags:mensagem-ok id="valid-exclusao" 
                                          mensagem="Não é possível excluír este veículo. Ele está relacionado a uma ou mais cotações ou possui algum histórico de frete." />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
-                                              classe_btnSIM="btn btn-danger" 
-                                              texto_btnNAO="NÃO" 
-                                              texto_btnSIM="SIM"
-                                              texto_corpo="Deseja excluir o veículo?" 
-                                              id_btnSIM="btnConf_del_veiculo" />
+                    <my-tags:mensagem-sim-nao/>
                 </div>
             </main>
             <footer>
@@ -81,11 +76,12 @@
     <script src="resources/js/jquery-form.js"></script>
     <script src="resources/js/jquery-mask.js"></script>
     <script src="resources/js/bootstrap.js"></script>
-    <script src="resources/js/areausuario.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
     <script src="resources/js/areatransportador.js"></script>
-    <script  src="resources/js/veiculos.js"></script>
-    <!-- Scripts de mascara para inputs -->
+    <script src="resources/js/enderecos.js"></script>
+    <script src="resources/js/veiculos.js"></script>
     <script src="resources/js/jquery-mask.js"></script>
     <script src="resources/js/mascaras.js"></script>
+    <script src="resources/js/mensagens.js"></script>
 </body>
 </html>

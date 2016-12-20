@@ -1,4 +1,4 @@
-<div class="col-sm-9" id="historico-area-transportador">
+<div class="col-md-12" id="historico-area-transportador">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h2 class="text-center">Histórico</h2>
@@ -16,7 +16,7 @@
             </div><br/>
             <div class="row">
                 <div class="col-sm-12 table-overflow">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Cliente</th>

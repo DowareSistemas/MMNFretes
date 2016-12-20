@@ -14,9 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <header>
-                <my-tags:navbar/>
+                <my-tags:navbar redireciona_perfil="true"/>
             </header>
             <aside>
                 <div class="aside-fixed">
@@ -58,18 +58,13 @@
                                             titulo="Renomear grupo"
                                             type_input="text" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-sim-nao classe_btnNAO="btn btn-default"
-                                              classe_btnSIM="btn btn-danger" 
-                                              texto_btnNAO="NÃO" 
-                                              texto_btnSIM="SIM"
-                                              texto_corpo="Deseja excluir o endereço?" 
-                                              id_btnSIM="btnConfirmaExclusaoEndereco" />
+                    <my-tags:mensagem-sim-nao />
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" 
                                          id="senhaIncorreta"
                                          mensagem="As senhas não coincidem!" />
                     <!-- Modal de mais informações -->
-                    <my-tags:detalhes_cotacao_usuario/>
+                    <my-tags:detalhes_cotacao/>
                 </div>
             </main>
             <footer>
@@ -80,10 +75,12 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/areausuario.js"></script>
+        <script src="resources/js/enderecos.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>
-        <!-- Scripts de mascara para inputs -->
         <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/mascaras.js"></script>
+        <script src="resources/js/mensagens.js"></script>
     </body>
 </html>

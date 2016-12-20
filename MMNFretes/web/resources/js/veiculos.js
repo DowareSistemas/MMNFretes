@@ -53,7 +53,12 @@ function listarVeiculos()
     });
 }
 
-$('#btnConf_del_veiculo').click(function ()
+$('#btnExcluir-veiculo').click(function ()
+{
+    showMsgSimNao("Confirmar exclusão do veículo?"); 
+});
+
+$('#msg-sn-btnSIM').click(function ()
 {
     var veiculo_id = id;
     $.ajax({

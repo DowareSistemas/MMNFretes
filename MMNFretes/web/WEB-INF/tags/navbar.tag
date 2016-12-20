@@ -1,6 +1,8 @@
+<%@attribute name="redireciona_perfil" required="true" %>
+
 <!--Navbar fixa no topo-->
 <nav class="navbar navbar-default  navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="col-md-12">
             <div class="navbar-header">
                 <h1 class="pp-04"><a class="navbar-brand pp-04" href="/gcfretes/pesquisar">GC Fretes</a></h1>
@@ -25,7 +27,7 @@
                         </a>
                     </li>
                     <!-- Usuário DESLOGADO -->
-                    <li class="dropdown">
+                    <li class="dropdown" id="li-deslogado">
                         <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Entrar 
                             <span class="caret"></span>
@@ -34,22 +36,22 @@
                             <li>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="">
+                                        <form>
                                             <div class="form-group">
                                                 <label for="email">Email:</label>
                                                 <input type="email" class="form-control" id="txEmail" name="email">
                                             </div>
-                                            <div class="form-group" action="/gcfretes/efetualogin">
+                                            <div class="form-group">
                                                 <label for="pwd">Senha:</label>
                                                 <input type="password" class="form-control" id="txSenha" name="senha">
                                             </div>
-                                            <button type="button" id="btnLogin" class="btn btn-primary btn-block">Entrar</button><hr>
+                                            <button type="button" id="btnLogin" onclick="efetualLogin(${redireciona_perfil})" class="btn btn-primary btn-block">Entrar</button><hr>
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-link btn-sm">Esqueceu sua senha?</button>
                                             </div>
                                         </form><hr>
                                         <div class="text-center">
-                                            Novo aqui ? <a href="gcfretes/paginalogin"><b class="text-uppercase">junte-se a nós</b></a>
+                                            Novo aqui ? <a href="paginalogin"><b class="text-uppercase">junte-se a nós</b></a>
                                         </div>
                                     </div>
                                 </div>
@@ -57,10 +59,17 @@
                         </ul>
                     </li>
                     <!-- Usuário LOGADO -->
-                    <li class="active">
-                        <a href="gcfretes/areausuario">
+                    <li  id="li-logado">
+                        <a href="paginaperfil">
                             Perfil
                             <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    
+                    <li id="li-sair">
+                        <a href="loggout">
+                            Sair
+                            <span class="sr-only"></span>
                         </a>
                     </li>
                 </ul>
@@ -98,7 +107,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Finalizar</button>
+                <button type="button" id="btnFinalizarCotacao" class="btn btn-success">Finalizar</button>
             </div>
         </div> <!-- Modal conteúdo (Desktop) -->
     </div>

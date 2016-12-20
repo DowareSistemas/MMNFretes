@@ -37,9 +37,12 @@ public class Interceptador extends HandlerInterceptorAdapter
 
     private boolean enderecoPermitido(String url)
     {
+        if (url.contains("config"))
+            return true;
+
         if (url.contains("usuarioatual"))
             return true;
-        
+
         if (url.contains("upload"))
             return true;
 

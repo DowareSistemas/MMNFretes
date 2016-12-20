@@ -1,4 +1,4 @@
-<div class="col-sm-9" id="pendentes-area-transportador">
+<div class="col-md-12" id="pendentes-area-transportador">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h2 class="text-center">Pendentes</h2>
@@ -30,35 +30,8 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <button type="button" class="btn btn-info btn-xs center-block">+ Inf.</button>
-                                </td>
-                                <td>Status</td>
-                                <td>Cliente</td>
-                                <td>Data</td>
-                                <td>Veículo</td>
-                                <td>Pagamento</td>
-                                <td>Valor</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs col-sm-8">Ação</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button type="button" class="btn btn-info btn-xs center-block">+ Inf.</button>
-                                </td>
-                                <td>Status</td>
-                                <td>Cliente</td>
-                                <td>Data</td>
-                                <td>Veículo</td>
-                                <td>Pagamento</td>
-                                <td>Valor</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-xs col-sm-8">Cancelar</button>
-                                </td>
-                            </tr>
+                        <tbody id="tabela-cotacoes">
+                        
                         </tbody>
                     </table>
                     <div class="alert alert-info">

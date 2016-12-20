@@ -6,6 +6,7 @@ package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
 import br.com.persistor.abstractClasses.Entity;
+import br.com.persistor.annotations.NamedQuery;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
 import br.com.persistor.annotations.OneToOne;
@@ -19,12 +20,14 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
+@NamedQuery(queryName = "updateStatus", queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?")
 public class Cotacoes extends Entity
 {
 
     private int id;
     private double valor;
     private int status;
+    private Date data;
     private String cep_origem;
     private String cep_destino;
     private double distancia;
@@ -36,6 +39,16 @@ public class Cotacoes extends Entity
     private Usuarios usuarios;
     private Transportadoras transportadoras;
     private Veiculos veiculos;
+
+    public Date getData()
+    {
+        return data;
+    }
+
+    public void setData(Date data)
+    {
+        this.data = data;
+    }
 
     @OneToOne(source = "usuarios_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
     public Usuarios getUsuarios()
