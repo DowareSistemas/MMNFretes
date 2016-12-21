@@ -4,7 +4,7 @@
 <c:forEach var="cotacao" items="${cotacoes}">
     <tr>
         <td>
-            <button type="button" class="btn btn-info btn-xs center-block">+ Inf.</button>
+            <a type="button" onclick="mostraDetalhesItem(${cotacao.id})" class="btn btn-info btn-xs center-block"> + Info </a>
         </td>
 
         <c:if test="${cotacao.status eq 0}">
@@ -32,7 +32,8 @@
         </td>
 
         <td>
-            <button type="button" class="btn btn-primary btn-xs col-sm-8">Ação</button>
+            <a type="button" class="btn btn-primary btn-sm btn-xs"> Aprovar </a>
+            <a type="button" class="btn btn-danger btn-sm btn-xs"> Recusar </a>
         </td>
     </tr>
 </c:forEach>

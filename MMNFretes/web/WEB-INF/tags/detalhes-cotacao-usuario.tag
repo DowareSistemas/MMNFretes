@@ -22,13 +22,13 @@
                     <div class="row">
                         <label class="h5"> Endereço de origem </label>
                         <br/>
-                        <label id="lbEndereco-origem"> </label>
+                        <label id="lbEndereco-origem"> Recuperando endereço, por favor aguarde... </label>
                     </div>
 
                     <div class="row">
                         <label class="h5"> Endereço de destino </label>
                         <br/>
-                        <label id="lbEndereco-destino"> </label>
+                        <label id="lbEndereco-destino">  Recuperando endereço, por favor aguarde... </label>
                     </div>
 
                     <div class="row">
@@ -45,6 +45,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-success" id="btnSolicitarDesconto" value="0"> Solicitar desconto </button>
                 <button class="btn btn-success" id="btnGerarBoleto" > Gerar boleto </button>
                 <button class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>

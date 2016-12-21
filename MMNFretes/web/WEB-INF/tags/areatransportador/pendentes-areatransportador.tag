@@ -27,7 +27,7 @@
                                 <th>Veículo</th>
                                 <th>Pagamento</th>
                                 <th>Valor</th>
-                                <th></th>
+                                <th>Ações </th>
                             </tr>
                         </thead>
                         <tbody id="tabela-cotacoes">

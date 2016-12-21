@@ -68,7 +68,7 @@ public class CotacoesController
         return (cotacao.saved ? "1" : "0");
     }
 
-    @RequestMapping(value = "listarpendentes")
+    @RequestMapping(value = "/listarpendentes")
     public ModelAndView listar(HttpSession httpSession)
     {
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
@@ -167,7 +167,7 @@ public class CotacoesController
         return mav;
     }
 
-    @RequestMapping(value = "removecotacao", method = RequestMethod.POST)
+    @RequestMapping(value = "/removecotacao", method = RequestMethod.POST)
     public @ResponseBody
     String remove(@RequestParam(value = "id") int id)
     {
@@ -197,7 +197,7 @@ public class CotacoesController
                 : "0");
     }
 
-    @RequestMapping(value = "countcotacoes", produces = "text/plain; charset=utf-8")
+    @RequestMapping(value = "/countcotacoes", produces = "text/plain; charset=utf-8")
     public @ResponseBody
     String count(HttpSession httpSession)
     {
@@ -218,10 +218,10 @@ public class CotacoesController
         Session session = SessionProvider.openSession();
         Cotacoes cotacao = session.onID(Cotacoes.class, id);
         session.close();
-        
+
         return new Gson().toJson(cotacao);
     }
-    
+
     @RequestMapping(value = "/listagrupos", produces = "application/json; charset=utf-8")
     public @ResponseBody
     String listGrupos(HttpSession httpSession)
@@ -255,6 +255,27 @@ public class CotacoesController
         q.execute();
 
         session.close();
+        return "1";
+    }
+
+    @RequestMapping(value = "/solicitadesconto", method = RequestMethod.POST)
+    public @ResponseBody
+    String solicitaDesconto(@RequestParam(value = "cotacao_id") int cotacao_id)
+    {
+        Session session = SessionProvider.openSession();
+        Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+
+        if (cotacao.isDesconto_pendente())
+        {
+            session.close();
+            return "0";
+        }
+
+        cotacao.setDesconto_pendente(true);
+        session.update(cotacao);
+        session.commit();
+        session.close();
+
         return "1";
     }
 

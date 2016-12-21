@@ -1,3 +1,13 @@
+/*
+ * Variavel que determina o tipo de desconto
+ *  0 - Percentual;
+ *  1 - Valor;
+ */
+/* global parseFloat */
+
+var tipo_desconto = 0;
+
+
 $(document).ready(function ()
 {
     // Fake file upload
@@ -48,10 +58,99 @@ function cancelaItemCotacao(id_item)
     });
 }
 
+$('#btnDesconto').click(function ()
+{
+    if ($('#btnDesconto').text() === 'Voltar para detalhes')
+    {
+        $('#btnDesconto').text('Solicitação de desconto');
+        $('#div-detalhes').show();
+        $('#div-desconto').hide();
+        return;
+    }
+
+    if ($('#btnDesconto').text() === 'Solicitação de desconto')
+    {
+        $('#btnDesconto').text('Voltar para detalhes');
+        $('#div-detalhes').hide();
+        $('#div-desconto').show();
+        return;
+    }
+});
+
 function mostraDetalhesItem(id_item)
 {
-    $('#detalhes_cotacao').modal('toggle');
-    $('#detalhes_cotacao').modal('show');
+    $('#btnDesconto').text('Solicitação de desconto');
+    $('#btnDesconto').hide();
+    $('#div-desconto').hide();
+    $('#div-detalhes').show();
+    $('#detalhes_cotacao_transportador').modal('toggle');
+    $('#detalhes_cotacao_transportador').modal('show');
+
+    var url = "/gcfretes/getcotacao?id=" + id_item;
+    $.post(url, function (cotacao)
+    {
+        $('#lbNomeCliente').text(cotacao.usuarios.nome);
+        $('#lbNomeVeiculo').text(cotacao.veiculos.descricao);
+        carregaEnderecoByCEP(cotacao.cep_origem, '#lbEndereco-origem');
+        carregaEnderecoByCEP(cotacao.cep_destino, '#lbEndereco-destino');
+        $('#lbDistancia').text(cotacao.distancia + " Km");
+        $('#lbValorItemCotacao').text(parseFloat(cotacao.valor.toString()).toFixed(2));
+
+        if (cotacao.desconto_pendente)
+            $('#btnDesconto').show();
+    });
+}
+
+$('#btnDescPercentual').click(function ()
+{
+    $('#lbTextoDesconto').text('Desconto (%):');
+    tipo_desconto = 0; /* 0 - Percentual */
+    calculaDesconto();
+});
+
+$('#btnDescValor').click(function ()
+{
+    $('#lbTextoDesconto').text('Desconto (R$):');
+    tipo_desconto = 1; /* 1 - valor */
+    calculaDesconto();
+});
+
+$('#txValorDesconto').keyup(function ()
+{
+    calculaDesconto();
+});
+
+function calculaDesconto()
+{
+    var tx = ($('#lbValorAtual').text().replace('R$ ', '')).trim();
+    var valorAtual = parseFloat(tx);
+    var valorDigitado = parseInt($('#txValorDesconto').val());
+    var valorFinal = 0;
+
+    if (tipo_desconto === 0) /* percentual */
+        valorFinal = (((valorAtual / 100) * valorDigitado) + valorAtual);
+
+    if (tipo_desconto === 1) /* valor */
+        valorFinal = (valorAtual + valorDigitado);
+
+    $('#lbValorFinal').text(('R$: ' + parseFloat(valorFinal).toFixed(2)).replace('.', ','));
+    if ($('#lbValorFinal').text().indexOf('NaN') > (-1))
+        $('#lbValorFinal').text('R$: 0,00');
+}
+
+function carregaEnderecoByCEP(Cep, element)
+{
+    var url = "http://viacep.com.br/ws/" + Cep + "/json/";
+    var endereco = $.get(url, function (enderecoResult)
+    {
+        var enderecoRetorno = "";
+        enderecoRetorno += enderecoResult.logradouro + ", ";
+        enderecoRetorno += enderecoResult.bairro + " - ";
+        enderecoRetorno += enderecoResult.uf + ", ";
+        enderecoRetorno += enderecoResult.cep;
+
+        $(element).text(enderecoRetorno);
+    });
 }
 
 function pesquisaCotacao(termoBusca)
