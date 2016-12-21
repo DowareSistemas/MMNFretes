@@ -56,6 +56,9 @@
 
             </footer>
         </div>
+        <!-- Scripts de mascara para inputs -->
+        <script src="resources/js/jquery-mask.js"></script>
+        <script src="resources/js/mascaras.js"></script>
         <!-- Scripts da página -->
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-mask.js"></script>
