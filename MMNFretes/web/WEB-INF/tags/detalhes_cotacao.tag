@@ -10,13 +10,13 @@
                     <div class="row">
                         <label class="h5"> Transportador </label>
                         <br/>
-                        <label id="lbNomeTransportador"> GC Fretes LTDA </label>
+                        <label id="lbNomeTransportador"> </label>
                     </div>
 
                     <div class="row">
                         <label class="h5"> Veículo </label>
                         <br/>
-                        <label id="lbNomeVeiculo"> Veiculo </label>
+                        <label id="lbNomeVeiculo"> </label>
                     </div>
 
                     <div class="row">
@@ -34,18 +34,19 @@
                     <div class="row">
                         <label class="h5"> Distância </label>
                         <br/>
-                        <label id="lbDistancia"> 90 Km </label>
+                        <label id="lbDistancia"> </label>
                     </div>
 
                     <div class="row">
-                        <label class="h5"> Valor R$ </label>
+                        <label class="h5"> Valor (R$) </label>
                         <br/>
-                        <label id="lbValorItemCotacao"> 445,00 </label>
+                        <label id="lbValorItemCotacao"> 0,00 </label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-success" id="btnGerarBoleto" > Gerar boleto </button>
+                <button class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

@@ -41,7 +41,14 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>Número CPF ou CNPJ:</label>
-                            <input type="tel" name="CPF_CNPJ" class="form-control" title="Número CPF ou CNPJ" required>
+                            <input type="tel" name="CPF_CNPJ" class="form-control mask-cpf-cnpj" title="Número CPF ou CNPJ" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>
+                                <input type="checkbox"> Li e concordo com os termos de uso! <a href="" title="Termos de uso">Termos de uso</a>.
+                            </label>
                         </div>
                     </div>
                     <div class="row">

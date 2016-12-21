@@ -34,6 +34,13 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
+                            <label>
+                                <input type="checkbox"> Li e concordo com os termos de uso! <a href="" title="Termos de uso">Termos de uso</a>.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-success btn-lg btn-block">Criar Conta</button>
                         </div>
                     </div>
