@@ -15,6 +15,7 @@ import br.com.persistor.interfaces.ICriteria;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Query;
 import com.google.gson.Gson;
+import entidades.Configuracoes;
 import entidades.Cotacoes;
 import entidades.Grupos_cotacoes;
 import entidades.Transportadoras;
@@ -264,6 +265,7 @@ public class CotacoesController
     {
         Session session = SessionProvider.openSession();
         Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+        Configuracoes config = new ConfiguracoesController().findConfig("html_path");
 
         if (cotacao.isDesconto_pendente())
         {
@@ -275,7 +277,8 @@ public class CotacoesController
         session.update(cotacao);
         session.commit();
         session.close();
-
+        
+        new EmailController().solicitacaoDescontoCotacao(cotacao, config.getValor());
         return "1";
     }
 

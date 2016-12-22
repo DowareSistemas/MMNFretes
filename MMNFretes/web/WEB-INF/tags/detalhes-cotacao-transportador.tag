@@ -51,7 +51,7 @@
                     <!--  div desconto -->
                     <div id="div-desconto">
                         <div class="row">
-                            <label class="h5"> Responder solicitação de desconto </label>
+                            <label class="h4"> Responder solicitação de desconto </label>
 
                             <div class="row">
                                 <div class="col-md-2">
