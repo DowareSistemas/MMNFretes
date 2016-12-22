@@ -44,15 +44,12 @@ $('#cbGrupos').change(function ()
 
 $('#btnSolicitarDesconto').click(function ()
 {
+    $('#btnSolicitarDesconto').fadeOut(600);
+    
     var self = $(this);
     var url = "/gcfretes/solicitadesconto?cotacao_id=" + self.val();
     $.post(url, function (response)
     {
-        if (response === '1')
-        {
-            $('#btnSolicitarDesconto').text('Solicitação enviada!');
-            $('#btnSolicitarDesconto').fadeOut(4000);
-        }
     });
 });
 

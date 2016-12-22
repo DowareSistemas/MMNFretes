@@ -16,6 +16,8 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import com.sun.mail.smtp.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 /**
  *
@@ -24,40 +26,43 @@ import com.sun.mail.smtp.*;
 public class EmailController
 {
 
-    public void solicitacaoDescontoCotacao(Cotacoes cotacao, String htmlFolder)
+    private static EmailController emailController = null;
+    private String htmlFolder = "";
+
+    private EmailController()
+    {
+        htmlFolder = new ConfiguracoesController().findConfig("html_path").getValor();
+    }
+
+    public static EmailController getInstance()
+    {
+        if (emailController == null)
+            emailController = new EmailController();
+
+        return emailController;
+    }
+
+    public void solicitacaoDescontoCotacao(Cotacoes cotacao)
     {
         String conteudo = "";
         String nomeArquivo = "solicitacao_desconto.html";
+
         try
         {
-            File file = new File(htmlFolder + nomeArquivo);
-            if (file.exists())
-            {
-                FileReader fr = new FileReader(file);
-                BufferedReader br = new BufferedReader(fr);
-                String linha = "";
+            conteudo = getContentFile(nomeArquivo);
+            if (conteudo.isEmpty())
+                return;
 
-                while ((linha = br.readLine()) != null)
-                {
-                    conteudo += linha;
-                }
+            conteudo = conteudo.replace("{nomecliente}", cotacao.getUsuarios().getNome());
 
-                br.close();
-                fr.close();
+            Transportadoras transp = new TransportadorasController().find(cotacao.getTransportadoras_id());
+            HtmlEmail email = prepareHtmlEmail();
 
-                conteudo = conteudo.replace(
-                        "{nomecliente}",
-                        cotacao.getUsuarios().getNome());
-
-                Transportadoras transp = new TransportadorasController().find(cotacao.getTransportadoras_id());
-                HtmlEmail email = prepareHtmlEmail();
-
-                email.addTo(
-                        transp.getUsuarios().getEmail(),
-                        transp.getNome());
-                email.setHtmlMsg(conteudo);
-                email.send();
-            }
+            email.addTo(
+                    transp.getUsuarios().getEmail(),
+                    transp.getNome());
+            email.setHtmlMsg(conteudo);
+            email.send();
         }
         catch (Exception ex)
         {
@@ -70,6 +75,61 @@ public class EmailController
         }
     }
 
+    public void descontoAprovado(Cotacoes cotacao, String valor_desconto)
+    {
+        String conteudo = "";
+        String nomeArquivo = "desconto_aprovado.html";
+
+        try
+        {
+            conteudo = getContentFile(nomeArquivo);
+            if (conteudo.isEmpty())
+                return;
+
+            conteudo = conteudo.replace("{transportadora}", cotacao.getTransportadoras().getNome());
+            conteudo = conteudo.replace("{valor_desconto}", valor_desconto);
+            conteudo = conteudo.replace("{valor_final}", "R$" + String.format("%.2f", cotacao.getValor()));
+
+            HtmlEmail email = prepareHtmlEmail();
+
+            email.addTo(cotacao.getUsuarios().getEmail(), cotacao.getUsuarios().getNome());
+            email.setHtmlMsg(conteudo);
+            email.send();
+        }
+        catch (Exception ex)
+        {
+            new PersistenceLoggerImpl().newNofication(new PersistenceLog(
+                    "EmailController",
+                    "void descontoAprovado(Cotacoes cotacao, String valor_desconto)",
+                    br.com.persistor.generalClasses.Util.getDateTime(),
+                    br.com.persistor.generalClasses.Util.getFullStackTrace(ex),
+                    ""));
+        }
+    }
+
+    private String getContentFile(String fileName) throws Exception
+    {
+        String conteudo = "";
+
+        File file = new File(htmlFolder + fileName);
+        if (file.exists())
+        {
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+
+            while ((linha = br.readLine()) != null)
+            {
+                conteudo += linha;
+            }
+
+            br.close();
+            fr.close();
+        }
+
+        return conteudo;
+    }
+
     private HtmlEmail prepareHtmlEmail() throws Exception
     {
         HtmlEmail email = new HtmlEmail();
@@ -79,7 +139,7 @@ public class EmailController
         email.setSSL(true);
         email.setTLS(true);
         email.setAuthenticator(new DefaultAuthenticator("automatico@gcfretes.com.br", "Lb6]oFD2dTH1"));
-        
+
         return email;
     }
 

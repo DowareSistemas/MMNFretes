@@ -7,6 +7,11 @@
 
 var tipo_desconto = 0;
 
+/*Quando clicar o botao de detalhes 
+ * da cotacao, vai carregar no modal
+ * pelo Id e vai armazenar aqui
+ */
+var cotacao_atual = 0;
 
 $(document).ready(function ()
 {
@@ -79,6 +84,7 @@ $('#btnDesconto').click(function ()
 
 function mostraDetalhesItem(id_item)
 {
+    cotacao_atual = id_item;
     $('#btnDesconto').text('Solicitação de desconto');
     $('#btnDesconto').hide();
     $('#div-desconto').hide();
@@ -95,7 +101,7 @@ function mostraDetalhesItem(id_item)
         carregaEnderecoByCEP(cotacao.cep_destino, '#lbEndereco-destino');
         $('#lbDistancia').text(cotacao.distancia + " Km");
         $('#lbValorItemCotacao').text(parseFloat(cotacao.valor.toString()).toFixed(2));
-
+        $('#lbValorAtual').text('R$ ' + parseFloat(cotacao.valor).toFixed(2));
         if (cotacao.desconto_pendente)
             $('#btnDesconto').show();
     });
@@ -120,6 +126,45 @@ $('#txValorDesconto').keyup(function ()
     calculaDesconto();
 });
 
+$('#btnConfirmaDesconto').click(function ()
+{
+    $('#btnConfirmaDesconto').fadeOut(1000);
+    $('#btnRecusaDesconto').fadeOut(1000);
+
+    var tx = ($('#lbValorAtual').text().replace('R$ ', '')).trim();
+    var valorAtual = parseFloat(tx);
+    var valorDigitado = parseInt($('#txValorDesconto').val());
+    var valorFinal = 0;
+    var desconto = '';
+
+    if (tipo_desconto === 0) /* percentual */
+    {
+        valorFinal = (valorAtual - ((valorAtual / 100) * valorDigitado));
+        desconto = (valorDigitado.toFixed(2) + "%");
+    }
+
+    if (tipo_desconto === 1) /* valor */
+    {
+        valorFinal = (valorAtual - valorDigitado);
+        desconto = ("R$" + valorDigitado);
+    }
+
+    var parametros =
+            {
+                cotacao_id: cotacao_atual,
+                valor_desconto: desconto,
+                valor_final: valorFinal
+            };
+    var url = "/gcfretes/aprovadesconto";
+    $.post(url, parametros, function (response)
+    {
+        $('#btnDesconto').fadeOut(1000);
+        $('#div-detalhes').show();
+        $('#div-desconto').hide();
+        $('#lbValorItemCotacao').text(parseFloat(valorFinal).toFixed(2));
+    });
+});
+
 function calculaDesconto()
 {
     var tx = ($('#lbValorAtual').text().replace('R$ ', '')).trim();
@@ -128,10 +173,10 @@ function calculaDesconto()
     var valorFinal = 0;
 
     if (tipo_desconto === 0) /* percentual */
-        valorFinal = (((valorAtual / 100) * valorDigitado) + valorAtual);
+        valorFinal = (valorAtual - ((valorAtual / 100) * valorDigitado));
 
     if (tipo_desconto === 1) /* valor */
-        valorFinal = (valorAtual + valorDigitado);
+        valorFinal = (valorAtual - valorDigitado);
 
     $('#lbValorFinal').text(('R$: ' + parseFloat(valorFinal).toFixed(2)).replace('.', ','));
     if ($('#lbValorFinal').text().indexOf('NaN') > (-1))
@@ -227,19 +272,13 @@ function carregaInfoTransportador()
             $('#txWebsite').val(transportador_result.website);
 
             if (transportador_result.cartao === true)
-            {
                 $('#Cartao').prop('checked', true);
-            }
 
             if (transportador_result.boleto === true)
-            {
                 $('#Boleto').prop('checked', true);
-            }
 
             if (transportador_result.negociacao_direta === true)
-            {
                 $('#NegociacaoDireta').prop('checked', true);
-            }
         }
     });
 

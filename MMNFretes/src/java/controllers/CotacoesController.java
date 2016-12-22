@@ -26,9 +26,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -265,7 +263,6 @@ public class CotacoesController
     {
         Session session = SessionProvider.openSession();
         Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
-        Configuracoes config = new ConfiguracoesController().findConfig("html_path");
 
         if (cotacao.isDesconto_pendente())
         {
@@ -277,9 +274,37 @@ public class CotacoesController
         session.update(cotacao);
         session.commit();
         session.close();
-        
-        new EmailController().solicitacaoDescontoCotacao(cotacao, config.getValor());
+
+        EmailController email = EmailController.getInstance();
+        email.solicitacaoDescontoCotacao(cotacao);
         return "1";
+    }
+
+    @RequestMapping(value = "/aprovadesconto", method = RequestMethod.POST)
+    public @ResponseBody
+    String aprovaDesconto(
+            @RequestParam(value = "cotacao_id") int cotacao_id,
+            @RequestParam(value = "valor_desconto") String valor_desconto,
+            @RequestParam(value = "valor_final") double valor_final)
+    {
+        Session session = SessionProvider.openSession();
+
+        Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+        cotacao.setValor(valor_final);
+        cotacao.setDesconto_pendente(false);
+        
+        session.update(cotacao);
+        session.commit();
+        session.close();
+        
+        if(cotacao.updated)
+        {
+            EmailController emailC = EmailController.getInstance();
+            emailC.descontoAprovado(cotacao, valor_desconto);
+            return "1";
+        }
+        else
+            return "0";
     }
 
     public boolean existeCotacaoComVeiculo(int id_veiculo, HttpSession httpSession)

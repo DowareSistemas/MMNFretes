@@ -67,7 +67,7 @@
                                         </div>
 
                                         <div class="col-sm-2">
-                                            <label class="h4" id="lbValorAtual"> R$ 145,00 </label>
+                                            <label class="h4" id="lbValorAtual"> R$ 0,00 </label>
                                         </div>
                                     </div>
 
@@ -98,8 +98,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="pull-right">
-                                        <button class="btn btn-danger btn-sm"> Recusar desconto </button>
-                                        <button class="btn btn-primary btn-sm"> Confirmar desconto </button>
+                                        <button class="btn btn-danger btn-sm" id="btnRecusaDesconto"> Recusar desconto </button>
+                                        <button class="btn btn-primary btn-sm" id="btnConfirmaDesconto"> Confirmar desconto </button>
                                     </div>
                                 </div>
                             </div>
