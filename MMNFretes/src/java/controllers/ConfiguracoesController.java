@@ -99,6 +99,8 @@ public class ConfiguracoesController
             config.setConfig("foto_path");
             config.setDescricao("Diretório onde serão armazenadas as fotos dos veículos do sistema.");
 
+            config.setConfig("html_path");
+            config.setDescricao("Local onde serão armazenados os arquivos html a serem enviados como email");
             session.save(config);
             session.commit();
         }

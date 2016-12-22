@@ -55,14 +55,14 @@ public class TransportadorasController
             DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
             ServletFileUpload fileUpload = new ServletFileUpload(diskFileItemFactory);
             List<FileItem> items = fileUpload.parseRequest(request);
-            
+
             if (items.isEmpty())
                 return "0";
-            if(items.get(0) == null)
+            if (items.get(0) == null)
                 return "0";
-            if(items.get(0).getInputStream() == null)
+            if (items.get(0).getInputStream() == null)
                 return "0";
-            
+
             inputStream = items.get(0).getInputStream();
             transportadora.setFoto_logo(inputStream);
             alteraInfoTransportadora(transportadora, httpSession);
@@ -228,6 +228,15 @@ public class TransportadorasController
         session.close();
 
         return transportadora;
+    }
+
+    public Transportadoras find(int id)
+    {
+        Session session = SessionProvider.openSession();
+        Transportadoras t = session.onID(Transportadoras.class, id);
+        session.close();
+
+        return t;
     }
 
     private int getIdTransportadora(int idUsuario)

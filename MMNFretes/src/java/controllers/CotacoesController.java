@@ -15,6 +15,7 @@ import br.com.persistor.interfaces.ICriteria;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Query;
 import com.google.gson.Gson;
+import entidades.Configuracoes;
 import entidades.Cotacoes;
 import entidades.Grupos_cotacoes;
 import entidades.Transportadoras;
@@ -25,9 +26,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +67,7 @@ public class CotacoesController
         return (cotacao.saved ? "1" : "0");
     }
 
-    @RequestMapping(value = "listarpendentes")
+    @RequestMapping(value = "/listarpendentes")
     public ModelAndView listar(HttpSession httpSession)
     {
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
@@ -167,7 +166,7 @@ public class CotacoesController
         return mav;
     }
 
-    @RequestMapping(value = "removecotacao", method = RequestMethod.POST)
+    @RequestMapping(value = "/removecotacao", method = RequestMethod.POST)
     public @ResponseBody
     String remove(@RequestParam(value = "id") int id)
     {
@@ -197,7 +196,7 @@ public class CotacoesController
                 : "0");
     }
 
-    @RequestMapping(value = "countcotacoes", produces = "text/plain; charset=utf-8")
+    @RequestMapping(value = "/countcotacoes", produces = "text/plain; charset=utf-8")
     public @ResponseBody
     String count(HttpSession httpSession)
     {
@@ -218,10 +217,10 @@ public class CotacoesController
         Session session = SessionProvider.openSession();
         Cotacoes cotacao = session.onID(Cotacoes.class, id);
         session.close();
-        
+
         return new Gson().toJson(cotacao);
     }
-    
+
     @RequestMapping(value = "/listagrupos", produces = "application/json; charset=utf-8")
     public @ResponseBody
     String listGrupos(HttpSession httpSession)
@@ -256,6 +255,56 @@ public class CotacoesController
 
         session.close();
         return "1";
+    }
+
+    @RequestMapping(value = "/solicitadesconto", method = RequestMethod.POST)
+    public @ResponseBody
+    String solicitaDesconto(@RequestParam(value = "cotacao_id") int cotacao_id)
+    {
+        Session session = SessionProvider.openSession();
+        Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+
+        if (cotacao.isDesconto_pendente())
+        {
+            session.close();
+            return "0";
+        }
+
+        cotacao.setDesconto_pendente(true);
+        session.update(cotacao);
+        session.commit();
+        session.close();
+
+        EmailController email = EmailController.getInstance();
+        email.solicitacaoDescontoCotacao(cotacao);
+        return "1";
+    }
+
+    @RequestMapping(value = "/aprovadesconto", method = RequestMethod.POST)
+    public @ResponseBody
+    String aprovaDesconto(
+            @RequestParam(value = "cotacao_id") int cotacao_id,
+            @RequestParam(value = "valor_desconto") String valor_desconto,
+            @RequestParam(value = "valor_final") double valor_final)
+    {
+        Session session = SessionProvider.openSession();
+
+        Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+        cotacao.setValor(valor_final);
+        cotacao.setDesconto_pendente(false);
+        
+        session.update(cotacao);
+        session.commit();
+        session.close();
+        
+        if(cotacao.updated)
+        {
+            EmailController emailC = EmailController.getInstance();
+            emailC.descontoAprovado(cotacao, valor_desconto);
+            return "1";
+        }
+        else
+            return "0";
     }
 
     public boolean existeCotacaoComVeiculo(int id_veiculo, HttpSession httpSession)

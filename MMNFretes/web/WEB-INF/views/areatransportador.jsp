@@ -16,6 +16,7 @@
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
+        <link href="resources/css/criarconta-entrar.css" rel="stylesheet" media="screen">
         <title>JSP Page</title>
     </head>
     <body>
@@ -64,6 +65,7 @@
                                          mensagem="Não é possível excluír este veículo. Ele está relacionado a uma ou mais cotações ou possui algum histórico de frete." />
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-sim-nao/>
+                    <my-tags:detalhes-cotacao-transportador/>
                 </div>
             </main>
             <footer>

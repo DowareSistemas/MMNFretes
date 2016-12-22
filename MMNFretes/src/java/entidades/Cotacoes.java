@@ -31,6 +31,7 @@ public class Cotacoes extends Entity
     private String cep_origem;
     private String cep_destino;
     private double distancia;
+    private boolean desconto_pendente;
     private int usuarios_id;
     private int transportadoras_id;
     private int veiculos_id;
@@ -142,6 +143,16 @@ public class Cotacoes extends Entity
     public void setDistancia(double distancia)
     {
         this.distancia = distancia;
+    }
+
+    public boolean isDesconto_pendente()
+    {
+        return desconto_pendente;
+    }
+
+    public void setDesconto_pendente(boolean desconto_pendente)
+    {
+        this.desconto_pendente = desconto_pendente;
     }
 
     public int getUsuarios_id()

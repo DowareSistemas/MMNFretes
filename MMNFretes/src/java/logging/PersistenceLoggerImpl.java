@@ -41,7 +41,7 @@ public class PersistenceLoggerImpl implements IPersistenceLogger
         {
             Configuracoes config = new ConfiguracoesController().findConfig("log_path");
             
-            String fileName = Util.getDateTime().replace(":", " ") + ".txt";
+            String fileName = "GC_FRETES " + Util.getDateTime().replace(":", " ") + ".txt";
             
             arquivo = new FileWriter(new File(config.getValor() + fileName));
             arquivo.write(msg);

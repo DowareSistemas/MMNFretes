@@ -42,8 +42,22 @@ $('#cbGrupos').change(function ()
     listaCotacoes(itemCb.val());
 });
 
+$('#btnSolicitarDesconto').click(function ()
+{
+    $('#btnSolicitarDesconto').fadeOut(600);
+    
+    var self = $(this);
+    var url = "/gcfretes/solicitadesconto?cotacao_id=" + self.val();
+    $.post(url, function (response)
+    {
+    });
+});
+
 function mostraDetalhesItem(id_item)
 {
+    $('#btnSolicitarDesconto').hide();
+    $('#btnGerarBoleto').hide();
+
     $('#detalhes_cotacao').modal('toggle');
     $('#detalhes_cotacao').modal('show');
 
@@ -56,6 +70,14 @@ function mostraDetalhesItem(id_item)
         carregaEnderecoByCEP(cotacao.cep_destino, '#lbEndereco-destino');
         $('#lbDistancia').text(cotacao.distancia + " Km");
         $('#lbValorItemCotacao').text(parseFloat(cotacao.valor.toString()).toFixed(2));
+        $('#btnSolicitarDesconto').val(id_item);
+
+        if (cotacao.status === 1)
+            if (!cotacao.desconto_pendente)
+                $('#btnSolicitarDesconto').show();
+
+        if (cotacao.status === 2)
+            $('#btnGerarBoleto').show();
     });
 }
 

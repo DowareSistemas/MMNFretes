@@ -64,7 +64,7 @@
                                          id="senhaIncorreta"
                                          mensagem="As senhas não coincidem!" />
                     <!-- Modal de mais informações -->
-                    <my-tags:detalhes_cotacao/>
+                    <my-tags:detalhes-cotacao-usuario/>
                 </div>
             </main>
             <footer>

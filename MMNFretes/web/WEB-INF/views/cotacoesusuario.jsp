@@ -4,7 +4,7 @@
 <c:forEach var="cotacao" items="${cotacoes}">
     <tr>
         <td>
-            <button onclick="mostraDetalhesItem(${cotacao.id})" type="button" class="btn btn-info btn-xs center-block" data-toggle="modal" data-target="#detalhes_cotacao_usuario">+ Info</button>
+            <a onclick="mostraDetalhesItem(${cotacao.id})" type="button" class="btn btn-info btn-xs center-block" data-toggle="modal" data-target="#detalhes_cotacao_usuario">+ Info</a>
         </td>
 
         <c:if test="${cotacao.status eq 0}">
@@ -36,7 +36,7 @@
         </td>
 
         <td>
-            <button type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-sm">Cancelar</button>
+            <a type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-sm">Cancelar</a>
         </td>
     </tr>
 </c:forEach>
