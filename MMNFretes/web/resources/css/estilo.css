@@ -11,7 +11,7 @@ and open the template in the editor.
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
 .panel-primary {
-    color: #3A9AD5;
+    color: #337ab7;
 }
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
@@ -52,14 +52,14 @@ and open the template in the editor.
 
 /* CSS geral do bootstrap */
 .navbar-default {
-    border-bottom: 1px solid #3A9AD5;
+    border-bottom: 1px solid #337ab7;
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    background-color: #3A9AD5;
+    background-color: #337ab7;
     color: #ffffff;
 }
 .badge {
-    background-color: #3A9AD5;
+    background-color: #337ab7;
 }
 .jumbotron {
     background-color: #fff;
@@ -170,7 +170,7 @@ body {
     .panel-aside {
         border-radius: 5px;
         padding: 15px;
-        border: 1px solid #3A9AD5;
+        border: 1px solid #337ab7;
     }
 
 }
