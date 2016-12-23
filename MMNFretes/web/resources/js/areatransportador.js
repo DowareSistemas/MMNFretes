@@ -78,6 +78,7 @@ $('#btnDesconto').click(function ()
         $('#btnDesconto').text('Voltar para detalhes');
         $('#div-detalhes').hide();
         $('#div-desconto').show();
+        pesquisaCotacao();
         return;
     }
 });
@@ -85,6 +86,10 @@ $('#btnDesconto').click(function ()
 function mostraDetalhesItem(id_item)
 {
     cotacao_atual = id_item;
+    $('#btnConfirmaDesconto').show();
+    $('#btnRecusaDesconto').show();
+    $('#txValorDesconto').val(0);
+    $('#lbValorFinal').text('R$ 0,00');
     $('#btnDesconto').text('Solicitação de desconto');
     $('#btnDesconto').hide();
     $('#div-desconto').hide();
@@ -126,6 +131,35 @@ $('#txValorDesconto').keyup(function ()
     calculaDesconto();
 });
 
+$('#btnRecusaDesconto').click(function ()
+{
+    var url = "/gcfretes/reprovadesconto?cotacao_id=" + cotacao_atual;
+    $.post(url, function ()
+    {
+        $('#btnDesconto').fadeOut(1000);
+        $('#div-detalhes').show();
+        $('#div-desconto').hide();
+    });
+});
+
+function aprovaItemCotacao(cotacao_id)
+{
+    var url = "/gcfretes/aprovaitemcotacao?cotacao_id=" + cotacao_id;
+    $.post(url, function (response)
+    {
+        pesquisaCotacao('');
+    });
+}
+
+function reprovaItemCotacao(cotacao_id)
+{
+    var url = "/gcfretes/reprovaitemcotacao?cotacao_id=" + cotacao_id;
+    $.post(url, function (response)
+    {
+        pesquisaCotacao('');
+    });
+}
+
 $('#btnConfirmaDesconto').click(function ()
 {
     $('#btnConfirmaDesconto').fadeOut(1000);
@@ -162,6 +196,7 @@ $('#btnConfirmaDesconto').click(function ()
         $('#div-detalhes').show();
         $('#div-desconto').hide();
         $('#lbValorItemCotacao').text(parseFloat(valorFinal).toFixed(2));
+        pesquisaCotacao();
     });
 });
 
@@ -186,7 +221,7 @@ function calculaDesconto()
 function carregaEnderecoByCEP(Cep, element)
 {
     var url = "http://viacep.com.br/ws/" + Cep + "/json/";
-    var endereco = $.get(url, function (enderecoResult)
+    $.get(url, function (enderecoResult)
     {
         var enderecoRetorno = "";
         enderecoRetorno += enderecoResult.logradouro + ", ";

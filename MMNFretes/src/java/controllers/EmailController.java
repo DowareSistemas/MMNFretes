@@ -107,6 +107,35 @@ public class EmailController
         }
     }
 
+    public void reprovaDesconto(Cotacoes cotacao)
+    {
+        String conteudo = "";
+        String nomeArquivo = "desconto_reprovado.html";
+
+        try
+        {
+            conteudo = getContentFile(nomeArquivo);
+            if (conteudo.isEmpty())
+                return;
+
+            conteudo = conteudo.replace("{transportadora}", cotacao.getTransportadoras().getNome());
+            HtmlEmail email = prepareHtmlEmail();
+            
+            email.addTo(cotacao.getUsuarios().getEmail(), cotacao.getUsuarios().getNome());
+            email.setHtmlMsg(conteudo);
+            email.send();
+        }
+        catch (Exception ex)
+        {
+            new PersistenceLoggerImpl().newNofication(new PersistenceLog(
+                    "EmailController",
+                    "void reprovaDesconto(Cotacoes cotacao)",
+                    br.com.persistor.generalClasses.Util.getDateTime(),
+                    br.com.persistor.generalClasses.Util.getFullStackTrace(ex),
+                    ""));
+        }
+    }
+
     private String getContentFile(String fileName) throws Exception
     {
         String conteudo = "";

@@ -20,7 +20,8 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
-@NamedQuery(queryName = "updateStatus", queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?")
+@NamedQuery(queryName = "updateStatus",
+        queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?")
 public class Cotacoes extends Entity
 {
 
@@ -32,6 +33,7 @@ public class Cotacoes extends Entity
     private String cep_destino;
     private double distancia;
     private boolean desconto_pendente;
+    private boolean desconto_bloqueado;
     private int usuarios_id;
     private int transportadoras_id;
     private int veiculos_id;
@@ -153,6 +155,16 @@ public class Cotacoes extends Entity
     public void setDesconto_pendente(boolean desconto_pendente)
     {
         this.desconto_pendente = desconto_pendente;
+    }
+
+    public boolean isDesconto_bloqueado()
+    {
+        return desconto_bloqueado;
+    }
+
+    public void setDesconto_bloqueado(boolean desconto_bloqueado)
+    {
+        this.desconto_bloqueado = desconto_bloqueado;
     }
 
     public int getUsuarios_id()
