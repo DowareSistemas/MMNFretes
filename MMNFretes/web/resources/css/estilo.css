@@ -10,9 +10,7 @@ and open the template in the editor.
 
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
-.panel-primary {
-    color: #337ab7;
-}
+
 /* CONTEÚDO EM TESTE 
 ================================================================================ */
 
@@ -45,14 +43,10 @@ and open the template in the editor.
     padding: 15px;
     min-width: 250px;
 }
-.pp-04 {
-    font-size: 24px;
-    margin: 0px;
-}
-
 /* CSS geral do bootstrap */
 .navbar-default {
     border-bottom: 1px solid #337ab7;
+    height: 50px;
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     background-color: #337ab7;
@@ -71,8 +65,11 @@ body {
     background: #eee;
 }
 
-.navbar {
-    margin-bottom: 20px;
+.img-logo {
+    width: 45px;
+    height: 45px;
+    margin-top: -36px;
+    margin-left: -15px;
 }
 
 .table-overflow {

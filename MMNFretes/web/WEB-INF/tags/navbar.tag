@@ -5,7 +5,11 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="navbar-header">
-                <h1 class="pp-04"><a class="navbar-brand pp-04" href="/gcfretes/pesquisar">GC Fretes</a></h1>
+                <h1>
+                    <a class="link-logo" href="/gcfretes/pesquisar">
+                        <img class="img-logo" src="resources/img/logo.png" width="47" height="47">
+                        </a>
+                </h1>
                 <button type="button" class="navbar-toggle collapsed pp-01" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -65,7 +69,7 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    
+
                     <li id="li-sair">
                         <a href="loggout">
                             Sair
@@ -102,7 +106,7 @@
                         </tr>
                     </thead>
                     <tbody id="tabelaCotacoesAtivas">
-             
+
                     </tbody>
                 </table>
             </div>
