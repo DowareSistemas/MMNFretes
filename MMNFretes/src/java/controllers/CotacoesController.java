@@ -130,12 +130,29 @@ public class CotacoesController
         c.endPrecedence();
 
         c.beginPrecedence();
-        c.add(Restrictions.ne(FILTER_TYPE.AND, "cotacoes.status", 0));
 
+        String[] status_cotacoes;
         if (util.Util.isUsuario(usuarioLogado))
+        {
+            status_cotacoes = new String[]
+            {
+                STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
+                STATUS_COTACAO.APROVADO + "",
+                STATUS_COTACAO.REPROVADO + ""
+            };
             c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.usuarios_id", usuarioLogado.getId()));
+        }
         else
+        {
+            status_cotacoes = new String[]
+            {
+                STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
+                STATUS_COTACAO.APROVADO + ""
+            };
             c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.transportadoras_id", new TransportadorasController().getByUsuario(usuarioLogado.getId()).getId()));
+        }
+
+        c.add(Restrictions.in(FILTER_TYPE.AND, "cotacoes.status", status_cotacoes));
 
         if (grupo_id > 0)
             c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.grupo_cotacoes_id", grupo_id));
@@ -292,12 +309,12 @@ public class CotacoesController
         Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
         cotacao.setValor(valor_final);
         cotacao.setDesconto_pendente(false);
-        
+
         session.update(cotacao);
         session.commit();
         session.close();
-        
-        if(cotacao.updated)
+
+        if (cotacao.updated)
         {
             EmailController emailC = EmailController.getInstance();
             emailC.descontoAprovado(cotacao, valor_desconto);
@@ -305,6 +322,61 @@ public class CotacoesController
         }
         else
             return "0";
+    }
+
+    @RequestMapping(value = "/reprovadesconto", method = RequestMethod.POST)
+    public @ResponseBody
+    String reprovaDesconto(@RequestParam(value = "cotacao_id") int cotacao_id)
+    {
+        Session session = SessionProvider.openSession();
+
+        Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+        cotacao.setDesconto_bloqueado(true);
+        cotacao.setDesconto_pendente(false);
+
+        session.update(cotacao);
+        session.commit();
+        session.close();
+
+        EmailController emailC = EmailController.getInstance();
+        emailC.reprovaDesconto(cotacao);
+        return "1";
+    }
+
+    @RequestMapping(value = "/aprovaitemcotacao", method = RequestMethod.POST)
+    public @ResponseBody
+    String aprovaItemCotacao(@RequestParam(value = "cotacao_id") int cotacao_id)
+    {
+        Session session = SessionProvider.openSession();
+
+        Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+        cotacao.setStatus(STATUS_COTACAO.APROVADO);
+        cotacao.setDesconto_pendente(false);
+        cotacao.setDesconto_bloqueado(true);
+
+        session.update(cotacao);
+        session.commit();
+        session.close();
+
+        return "1";
+    }
+
+    @RequestMapping(value = "/reprovaitemcotacao", method = RequestMethod.POST)
+    public @ResponseBody
+    String reprovaItemCotacao(@RequestParam(value = "cotacao_id") int cotacao_id)
+    {
+        Session session = SessionProvider.openSession();
+
+        Cotacoes cotacao = session.onID(Cotacoes.class, cotacao_id);
+        cotacao.setStatus(STATUS_COTACAO.REPROVADO);
+        cotacao.setDesconto_pendente(false);
+        cotacao.setDesconto_bloqueado(true);
+
+        session.update(cotacao);
+        session.commit();
+        session.close();
+
+        return "1";
     }
 
     public boolean existeCotacaoComVeiculo(int id_veiculo, HttpSession httpSession)

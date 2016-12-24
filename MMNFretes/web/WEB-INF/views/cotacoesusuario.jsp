@@ -36,7 +36,7 @@
         </td>
 
         <td>
-            <a type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-sm">Cancelar</a>
+            <a type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-xs center-block">Cancelar</a>
         </td>
     </tr>
 </c:forEach>

@@ -32,8 +32,10 @@
         </td>
 
         <td>
-            <a type="button" class="btn btn-primary btn-sm btn-xs"> Aprovar </a>
-            <a type="button" class="btn btn-danger btn-sm btn-xs"> Recusar </a>
+            <c:if test="${(cotacao.status ne 2) and (cotacao.status ne 3)}">
+                <a type="button" class="btn btn-primary btn-sm btn-xs" onclick="aprovaItemCotacao(${cotacao.id})"> Aprovar </a>
+                <a type="button" class="btn btn-danger btn-sm btn-xs" onclick="reprovaItemCotacao(${cotacao.id})"> Recusar </a>
+            </c:if>
         </td>
     </tr>
 </c:forEach>

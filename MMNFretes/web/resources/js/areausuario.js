@@ -45,7 +45,7 @@ $('#cbGrupos').change(function ()
 $('#btnSolicitarDesconto').click(function ()
 {
     $('#btnSolicitarDesconto').fadeOut(600);
-    
+
     var self = $(this);
     var url = "/gcfretes/solicitadesconto?cotacao_id=" + self.val();
     $.post(url, function (response)
@@ -74,7 +74,8 @@ function mostraDetalhesItem(id_item)
 
         if (cotacao.status === 1)
             if (!cotacao.desconto_pendente)
-                $('#btnSolicitarDesconto').show();
+                if (!cotacao.desconto_bloqueado)
+                    $('#btnSolicitarDesconto').show();
 
         if (cotacao.status === 2)
             $('#btnGerarBoleto').show();
