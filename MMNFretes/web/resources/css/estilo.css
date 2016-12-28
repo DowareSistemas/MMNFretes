@@ -30,9 +30,6 @@ and open the template in the editor.
 
 /* PP Personalização Pessoal */
 
-.pp-01 {
-    height: 35px
-}
 @media (min-width: 768px) {
     .pp-02 {
         position: absolute;
@@ -46,12 +43,8 @@ and open the template in the editor.
 /* CSS geral do bootstrap */
 .navbar-default {
     border-bottom: 1px solid #337ab7;
-    height: 50px;
 }
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    background-color: #337ab7;
-    color: #ffffff;
-}
+
 .badge {
     background-color: #337ab7;
 }
@@ -59,17 +52,21 @@ and open the template in the editor.
     background-color: #fff;
 }
 
+
 /* CSS geral do site */
 body {
     padding-top: 70px;
     background: #eee;
 }
 
-.img-logo {
-    width: 45px;
-    height: 45px;
-    margin-top: -36px;
-    margin-left: -15px;
+/*Navbar Logo*/
+.navbar-logo {
+    margin: 1px;}
+
+@media(max-width: 768px) {
+    .navbar-logo-xs {
+        margin-left: 15px;
+    }
 }
 
 .table-overflow {
