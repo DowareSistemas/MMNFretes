@@ -1,4 +1,18 @@
 var modoEdicaoInfo = false;
+var cotacao_atual = 0;
+var cep_origem = '';
+var cep_destino = '';
+
+var enderecoObj =
+        {
+            CEP: '',
+            logradouro: '',
+            bairro: '',
+            municipio: '',
+            UF: '',
+            numero: '',
+            complemento: ''
+        };
 
 $(document).ready(function ()
 {
@@ -53,6 +67,27 @@ $('#btnSolicitarDesconto').click(function ()
     });
 });
 
+$('#btnGerarBoleto').click(function ()
+{
+    carregaEnderecoByCEP(cep_origem, null);
+
+    var params =
+            {
+                cotacao_id: cotacao_atual,
+                CEP: enderecoObj.CEP,
+                logradouro: enderecoObj.logradouro,
+                bairro: enderecoObj.bairro,
+                municipio: enderecoObj.municipio,
+                UF: enderecoObj.UF
+            };
+    var url = "/gcfretes/processarpagamento";
+    
+    $.post(url, params, function (data)
+    {
+        window.location.href = data;
+    });
+});
+
 function mostraDetalhesItem(id_item)
 {
     $('#btnSolicitarDesconto').hide();
@@ -79,6 +114,10 @@ function mostraDetalhesItem(id_item)
 
         if (cotacao.status === 2)
             $('#btnGerarBoleto').show();
+
+        cotacao_atual = id_item;
+        cep_origem = cotacao.cep_origem;
+        cep_destino = cotacao.cep_destino;
     });
 }
 
@@ -89,14 +128,25 @@ function carregaEnderecoByCEP(Cep, element)
     {
         var enderecoRetorno = "";
         enderecoRetorno += enderecoResult.logradouro + ", ";
-        enderecoRetorno += enderecoResult.bairro + " - ";
+        enderecoRetorno += enderecoResult.bairro + ", ";
+        enderecoRetorno += enderecoResult.localidade + " - ";
         enderecoRetorno += enderecoResult.uf + ", ";
         enderecoRetorno += enderecoResult.cep;
 
-        $(element).text(enderecoRetorno);
+        if (element !== null)
+            $(element).text(enderecoRetorno);
+        fillEnderecoObj(enderecoResult);
     });
 }
 
+function fillEnderecoObj(enderecoResult)
+{
+    enderecoObj.CEP = enderecoResult.cep;
+    enderecoObj.logradouro = enderecoResult.logradouro;
+    enderecoObj.bairro = enderecoResult.bairro;
+    enderecoObj.UF = enderecoResult.uf;
+    enderecoObj.municipio = enderecoResult.localidade;
+}
 function cancelaItemCotacao(id_item)
 {
     showMsgSimNao('Deseja realmente remover este item da cotação?');
