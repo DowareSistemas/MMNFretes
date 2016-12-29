@@ -94,20 +94,17 @@
                         <div class="col-md-12">
                             <h3 class="text-primary">Meios de Pagamento</h3>
                             <ul class="list-group">
+                                <!-- Pag Seguro CK -->
                                 <li class="list-group-item">
-                                    Boleto
+                                    PagSeguro
                                     <div class="material-switch pull-right">
-                                        <input id="Boleto" name="boleto" type="checkbox" title="Boleto"/>
+                                        <input id="Pagseguro" name="pag_seguro" type="checkbox" title="Boleto"/>
                                         <label for="Boleto" class="label-primary"></label>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    Cartão
-                                    <div class="material-switch pull-right">
-                                        <input id="Cartao" name="cartao" type="checkbox" title="Cartão de crédito"/>
-                                        <label for="Cartao" class="label-primary"></label>
-                                    </div>
-                                </li>
+                                <!-- Pag Seguro CK -->
+                                
+                                <!-- Negociacao Direta CK -->
                                 <li class="list-group-item">
                                     Negociação direta
                                     <div class="material-switch pull-right">
@@ -115,6 +112,8 @@
                                         <label for="NegociacaoDireta" class="label-primary"></label>
                                     </div>
                                 </li>
+                                <!-- Negociacao Direta CK -->
+                                
                             </ul>
                         </div>
                     </div>

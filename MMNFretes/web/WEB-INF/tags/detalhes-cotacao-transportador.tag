@@ -13,13 +13,13 @@
                         <div class="row">
                             <label class="h5"> Cliente </label>
                             <br/>
-                            <label id="lbNomeCliente"> </label>
+                            <label id="lbNomeCliente"> Recuperando informação, por favor aguarde... </label>
                         </div>
 
                         <div class="row">
                             <label class="h5"> Veículo </label>
                             <br/>
-                            <label id="lbNomeVeiculo"> </label>
+                            <label id="lbNomeVeiculo"> Recuperando informação, por favor aguarde... </label>
                         </div>
 
                         <div class="row">
@@ -37,7 +37,7 @@
                         <div class="row">
                             <label class="h5"> Distância </label>
                             <br/>
-                            <label id="lbDistancia"> </label>
+                            <label id="lbDistancia"> Recuperando informação, por favor aguarde... </label>
                         </div>
 
                         <div class="row">

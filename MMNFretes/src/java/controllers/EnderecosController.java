@@ -70,7 +70,7 @@ public class EnderecosController
         Session session = SessionProvider.openSession();
         session.createCriteria(endereco, RESULT_TYPE.MULTIPLE)
                 .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario.getId()))
-                .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", 0))
+                .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", false))
                 .execute();
         session.close();
 

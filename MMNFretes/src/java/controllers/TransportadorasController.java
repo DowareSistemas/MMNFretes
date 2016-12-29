@@ -160,22 +160,7 @@ public class TransportadorasController
         return "OK";
     }
 
-    @RequestMapping("/alteraStatusCartao")
-    public @ResponseBody
-    String alteraCartao(@PathParam(value = "status") boolean status, HttpSession httpSession)
-    {
-        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        Transportadoras transportadora = getTransportadora(usuario.getId());
-        transportadora.setCartao(status);
-
-        Session session = SessionProvider.openSession();
-        session.update(transportadora);
-        session.commit();
-        session.close();
-        return "OK";
-    }
-
-    @RequestMapping("/alteraStatusBoleto")
+    @RequestMapping("/alteraStatusPagSeguro")
     public @ResponseBody
     String alteraBoleto(@PathParam(value = "status") boolean status, HttpSession httpSession)
     {
@@ -185,7 +170,7 @@ public class TransportadorasController
         {
             Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
             Transportadoras transportadora = getTransportadora(usuario.getId());
-            transportadora.setBoleto(status);
+            transportadora.setPag_seguro(status);
 
             session = SessionProvider.openSession();
             session.update(transportadora);

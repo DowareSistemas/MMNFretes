@@ -305,12 +305,9 @@ function carregaInfoTransportador()
             $('#txCPF_CNPJ').val(transportador_result.CPF_CNPJ);
             $('#txANTT').val(transportador_result.ANTT);
             $('#txWebsite').val(transportador_result.website);
-
-            if (transportador_result.cartao === true)
-                $('#Cartao').prop('checked', true);
-
-            if (transportador_result.boleto === true)
-                $('#Boleto').prop('checked', true);
+            
+            if (transportador_result.pag_seguro === true)
+                $('#Pagseguro').prop('checked', true);
 
             if (transportador_result.negociacao_direta === true)
                 $('#NegociacaoDireta').prop('checked', true);
@@ -378,7 +375,6 @@ $('#btnConfirmarSenha').click(function ()
             }
         }).submit();
 
-
     } else
     {
         $('#senhaIncorreta').modal('toggle');
@@ -404,23 +400,11 @@ $('#btnSenhaIncorreta').click(function ()
     $('#alterarSenha').modal('show');
 });
 
-$('#Cartao').change(function ()
+$('#Pagseguro').change(function ()
 {
     $.ajax
             ({
-                url: "/gcfretes/alteraStatusCartao?status=" + $('#Cartao').is(':checked'),
-                success: function ()
-                {
-                    carregaInfoTransportador();
-                }
-            });
-});
-
-$('#Boleto').change(function ()
-{
-    $.ajax
-            ({
-                url: "/gcfretes/alteraStatusBoleto?status=" + $('#Boleto').is(':checked'),
+                url: "/gcfretes/alteraStatusPagSeguro?status=" + $('#Pagseguro').is(':checked'),
                 success: function ()
                 {
                     carregaInfoTransportador();

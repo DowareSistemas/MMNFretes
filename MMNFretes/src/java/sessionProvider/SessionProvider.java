@@ -7,6 +7,7 @@ package sessionProvider;
 
 import br.com.persistor.enums.DB_TYPE;
 import br.com.persistor.generalClasses.DBConfig;
+import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.SessionFactory;
 import logging.PersistenceLoggerImpl;
@@ -29,6 +30,16 @@ public class SessionProvider
 
             DBConfig config = new DBConfig();
 
+            config.setDb_type(DB_TYPE.PostgreSQL);
+            config.setHost("localhost");
+            config.setDatabase("mmn");
+            config.setPort(5432);
+            config.setUser("postgres");
+            config.setPassword("81547686");
+            config.setMaxStatements(1000);
+            config.setPersistenceLogger(PersistenceLoggerImpl.class);
+
+            /*
             config.setDb_type(DB_TYPE.MySQL);
             config.setHost("localhost");
             config.setDatabase("mmn");
@@ -37,8 +48,8 @@ public class SessionProvider
             config.setPassword("81547686");
             config.setMaxStatements(1000);
             config.setPersistenceLogger(PersistenceLoggerImpl.class);
-            
-            /*
+             */
+ /*
             config.setDb_type(DB_TYPE.MySQL);
             config.setHost("192.175.112.170");
             config.setDatabase("doware_gcfretes");
@@ -48,13 +59,13 @@ public class SessionProvider
             config.setMaxStatements(1000);
             // config.setMaxPoolSize(10);
             config.setPersistenceLogger(PersistenceLoggerImpl.class);
-            */
-
+             */
             return factory.getSession(config);
         }
         catch (Exception ex)
         {
-
+            PersistenceLoggerImpl logger = new PersistenceLoggerImpl();
+            logger.newNofication(new PersistenceLog("SessionProvider", "Session openSession()", null, ex, ""));
         }
         return null;
     }
