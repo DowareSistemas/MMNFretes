@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
 import util.Util;
 
@@ -27,9 +28,11 @@ public class LoginController
 {
 
     @RequestMapping("/paginalogin")
-    public String redirecionaLogin()
+    public ModelAndView redirecionaLogin()
     {
-        return "login";
+        ModelAndView mav = new ModelAndView("login");
+        mav.addObject("usuarioExiste", false);
+        return mav;
     }
 
     @RequestMapping("/efetualogin")

@@ -31,7 +31,7 @@ public class Categorias_veiculos extends Entity
        this.id = id;
    }
 
-   @PrimaryKey(increment = INCREMENT.AUTO)
+   @PrimaryKey(increment = INCREMENT.MANUAL)
    public int getId()
    {
        return id;

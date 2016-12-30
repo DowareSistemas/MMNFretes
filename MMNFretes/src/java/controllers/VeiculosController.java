@@ -118,7 +118,10 @@ public class VeiculosController
         }
         catch (Exception ex)
         {
-            logger.newNofication(new PersistenceLog("VeiculosController", "getFotoPath", Util.getDateTime(), Util.getFullStackTrace(ex), ""));
+            logger.newNofication(new PersistenceLog("VeiculosController", 
+                    "getFotoPath", 
+                    Util.getDateTime(), 
+                    Util.getFullStackTrace(ex), ""));
         }
         return "not_localized";
     }
@@ -171,8 +174,15 @@ public class VeiculosController
     {
         int usuario_id = ((Usuarios) httpSession.getAttribute(("usuarioLogado"))).getId();
         veiculo.setTransportadoras_id(getTransportadora(usuario_id).getId());
-
+        
         Session session = SessionProvider.openSession();
+        
+        if(veiculo.getFoto() == null)
+        {
+            Veiculos v = session.onID(Veiculos.class, veiculo.getId());
+            veiculo.setFoto(v.getFoto());
+        }
+        
         session.update(veiculo);
         session.commit();
         session.close();

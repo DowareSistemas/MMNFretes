@@ -86,7 +86,7 @@ public class Cotacoes extends Entity
         this.veiculos = veiculos;
     }
 
-    @PrimaryKey(increment = INCREMENT.AUTO)
+    @PrimaryKey(increment = INCREMENT.MANUAL)
     public int getId()
     {
         return id;

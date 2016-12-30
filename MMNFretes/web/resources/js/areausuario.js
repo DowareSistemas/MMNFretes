@@ -22,33 +22,32 @@ $(document).ready(function ()
     $('#enderecos').hide();
     $('#btnSalvar-info').hide();
     $('#btnEditar-grupo').hide();
-    carregaInfoUsuario();
-    hab_desab_formInfo(true);
-    carregaEnderecos();
     $('#li-deslogado').hide();
     $('#li-logado').hide();
     $('#btnVisualizaCotacoes').hide();
+    
+    carregaInfoUsuario();
+    hab_desab_formInfo(true);
     listaGruposCotacoes();
 });
 
-$('#btnAdicionar-endereco').click(function ()
+function carregaInfoUsuario()
 {
-    if ($('#formulario-endereco').attr('action') === '/gcfretes/adicionaEndereco')
-        $('#txID-endereco').val(0);
-
-    $('#formulario-endereco').ajaxForm
-            ({
-                success: function (data)
-                {
-                    $('#enderecos-items').html("");
-                    $('#enderecos-items').append(data);
-                    $('#formulario-endereco')[0].reset();
-                    $('#btnExcluir-endereco').fadeOut(100);
-                    $('#btnAdicionar-endereco').text('Adicionar');
-                    $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
-                }
-            });
-});
+    $.ajax({
+        url: "/gcfretes/infoUsuario",
+        dataType: 'json',
+        accepts: "application/json",
+        success: function (usuario)
+        {
+            $('#txNome-usuario').val(usuario.nome);
+            $('#txEmail-usuario').val(usuario.email);
+            $('#txSenha-usuario').val(usuario.senha);
+            $('#txConfirm-senha').val(usuario.senha);
+            $('#txTelefone1').val(usuario.telefone1);
+            $('#txTelefone2').val(usuario.telefone2);
+        }
+    });
+}
 
 $('#cbGrupos').change(function ()
 {
@@ -81,7 +80,7 @@ $('#btnGerarBoleto').click(function ()
                 UF: enderecoObj.UF
             };
     var url = "/gcfretes/processarpagamento";
-    
+
     $.post(url, params, function (data)
     {
         window.location.href = data;
@@ -147,6 +146,7 @@ function fillEnderecoObj(enderecoResult)
     enderecoObj.UF = enderecoResult.uf;
     enderecoObj.municipio = enderecoResult.localidade;
 }
+
 function cancelaItemCotacao(id_item)
 {
     showMsgSimNao('Deseja realmente remover este item da cotação?');

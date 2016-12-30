@@ -20,7 +20,7 @@ public class Configuracoes extends Entity
     private String descricao;
     private String valor;
 
-    @PrimaryKey(increment = INCREMENT.AUTO)
+    @PrimaryKey(increment = INCREMENT.MANUAL)
     public int getId()
     {
         return id;

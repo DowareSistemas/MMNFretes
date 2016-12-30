@@ -34,7 +34,7 @@ public class Grupos_cotacoes extends Entity
        this.id = id;
    }
 
-   @PrimaryKey(increment = INCREMENT.AUTO)
+   @PrimaryKey(increment = INCREMENT.MANUAL)
    public int getId()
    {
        return id;

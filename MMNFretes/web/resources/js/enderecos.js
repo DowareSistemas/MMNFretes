@@ -1,20 +1,28 @@
-function carregaInfoUsuario()
+var endereco_atual = 0;
+
+$(document).ready(function ()
 {
-    $.ajax({
-        url: "/gcfretes/infoUsuario",
-        dataType: 'json',
-        accepts: "application/json",
-        success: function (usuario)
-        {
-            $('#txNome-usuario').val(usuario.nome);
-            $('#txEmail-usuario').val(usuario.email);
-            $('#txSenha-usuario').val(usuario.senha);
-            $('#txConfirm-senha').val(usuario.senha);
-            $('#txTelefone1').val(usuario.telefone1);
-            $('#txTelefone2').val(usuario.telefone2);
-        }
-    });
-}
+    carregaEnderecos(); 
+});
+
+$('#btnAdicionar-endereco').click(function ()
+{
+    if ($('#formulario-endereco').attr('action') === '/gcfretes/adicionaEndereco')
+        $('#txID-endereco').val(0);
+
+    $('#formulario-endereco').ajaxForm
+            ({
+                success: function (data)
+                {
+                    $('#enderecos-items').html("");
+                    $('#enderecos-items').append(data);
+                    $('#formulario-endereco')[0].reset();
+                    $('#btnExcluir-endereco').fadeOut(100);
+                    $('#btnAdicionar-endereco').text('Adicionar');
+                    $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
+                }
+            });
+});
 
 function carregaEnderecos()
 {
@@ -30,7 +38,6 @@ function carregaEnderecos()
         }
     });
 }
-var endereco_atual = 0;
 
 $('#btnExcluir-endereco').click(function ()
 {

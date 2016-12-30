@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
 import util.Util;
 
@@ -30,10 +31,15 @@ public class UsuariosController
 {
 
     @RequestMapping(value = "/cadastrausuario", method = RequestMethod.POST)
-    public String gravaUsuario(Usuarios usuario, HttpSession httpSession)
+    public ModelAndView gravaUsuario(Usuarios usuario, HttpSession httpSession)
     {
         if (usuarioExiste(usuario))
-            return "redirect:paginalogin";
+        {
+            ModelAndView mav = new ModelAndView("login");
+            mav.addObject("usuarioExiste", true);
+            return mav;
+        }
+
         usuario.setTipo_usuario(0);
 
         Session session = SessionProvider.openSession();
@@ -43,7 +49,30 @@ public class UsuariosController
 
         httpSession.setAttribute("usuarioLogado", usuario);
 
-        return "redirect:areausuario";
+        return new ModelAndView("redirect:areausuario");
+    }
+
+    @RequestMapping(value = "/cadastratransportadora", method = RequestMethod.POST)
+    public ModelAndView gravaTransportadora(Transportadoras transportadoras, HttpSession httpSession)
+    {
+        if (usuarioExiste(transportadoras.getUsuarios()))
+        {
+            ModelAndView mav = new ModelAndView("login");
+            mav.addObject("usuarioExiste", true);
+            return mav;
+        }
+
+        transportadoras.getUsuarios().setTipo_usuario(1);
+        transportadoras.getUsuarios().setNome(transportadoras.getNome());
+
+        Session session = SessionProvider.openSession();
+        session.save(transportadoras);
+        session.commit();
+        session.close();
+
+        httpSession.setAttribute("usuarioLogado", transportadoras.getUsuarios());
+
+        return new ModelAndView("redirect:areatransportador");
     }
 
     /**
@@ -96,22 +125,6 @@ public class UsuariosController
         return resultado;
     }
 
-    @RequestMapping(value = "/cadastratransportadora", method = RequestMethod.POST)
-    public String gravaTransportadora(Transportadoras transportadoras, HttpSession httpSession)
-    {
-        transportadoras.getUsuarios().setTipo_usuario(1);
-        transportadoras.getUsuarios().setNome(transportadoras.getNome());
-
-        Session session = SessionProvider.openSession();
-        session.save(transportadoras);
-        session.commit();
-        session.close();
-
-        httpSession.setAttribute("usuarioLogado", transportadoras.getUsuarios());
-
-        return "redirect:areatransportador";
-    }
-
     @RequestMapping(value = "/usuarioatual", method = RequestMethod.POST, produces = "text/plain; charset=utf-8")
     public @ResponseBody
     String getUsuarioAtual(HttpSession session)
@@ -143,12 +156,12 @@ public class UsuariosController
         else
             return "redirect:paginalogin";
     }
-    
+
     @RequestMapping("/loggout")
     public String loggout(HttpSession httpSession)
     {
         httpSession.setAttribute("usuarioLogado", null);
         return "redirect:pesquisar";
-        
+
     }
 }

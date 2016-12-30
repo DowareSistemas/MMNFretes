@@ -7,6 +7,7 @@ package controllers;
 
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.generalClasses.FileExtractor;
+import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
 import entidades.Avaliacoes;
@@ -26,6 +27,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import logging.PersistenceLoggerImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -202,7 +204,8 @@ public class PesquisaFretesController
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            PersistenceLoggerImpl log = new PersistenceLoggerImpl();
+            log.newNofication(new PersistenceLog(getClass().getName(), "String getFotoPath(Veiculos veiculo, HttpServletRequest request)", null, ex, ""));
         }
 
         return "not_localized";

@@ -4,6 +4,7 @@
     Author     : Marcos Vinícius
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <!DOCTYPE html>
@@ -19,9 +20,10 @@
 
     <body>
 
-        <div class="container">
+        <div class="container-fluid">
             <header>
                 <my-tags:navbar redireciona_perfil="true"/>
+                <my-tags:mensagem-ok id="msgUsuarioExiste" id_btnOK="btnUsrExstOK" mensagem="Já existe um usuário com o email informado. Informe outro email"/>
             </header>
             <main>
                 <div class="row">
@@ -56,10 +58,7 @@
 
             </footer>
         </div>
-        <!-- Scripts de mascara para inputs -->
-        <script src="resources/js/jquery-mask.js"></script>
-        <script src="resources/js/mascaras.js"></script>
-        <!-- Scripts da página -->
+
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/mascaras.js"></script>
@@ -67,5 +66,17 @@
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/login.js"></script>
         <!-- Scripts de mascara para inputs -->
+
+        <c:if test="${usuarioExiste eq true}">
+            <script>
+                $('#msgUsuarioExiste').modal('toggle');
+                $('#msgUsuarioExiste').modal('show');
+
+                $('#btnUsrExstOK').click(function ()
+                {
+                    window.location.href = '/gcfretes/paginalogin';
+                });
+            </script>
+        </c:if>
     </body>
 </html>

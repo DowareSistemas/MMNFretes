@@ -49,13 +49,14 @@ function listarVeiculos()
             $('#tabela-veiculos').append(data);
             $('#btnAdicionar-veiculo').text('Adicionar');
             $('#formulario-info-veiculo').attr('action', '/gcfretes/salvaveiculo');
+            limparCampos();
         }
     });
 }
 
 $('#btnExcluir-veiculo').click(function ()
 {
-    showMsgSimNao("Confirmar exclusão do veículo?"); 
+    showMsgSimNao("Confirmar exclusão do veículo?");
 });
 
 $('#msg-sn-btnSIM').click(function ()
@@ -113,12 +114,26 @@ function carregarVeiculo(id_veiculo)
             $('#txPreco_frete_veiculo').val(veiculo.preco_frete);
             $('#cb_carroceria').val(veiculo.carrocerias_id);
             $('#btnExcluir-veiculo').fadeIn(200);
-            $('#ckRastreador').prop(':checked', veiculo.rastreador);
+            $('#ckRastreador').prop('checked', veiculo.rastreador);
             $('#btnAdicionar-veiculo').text('Salvar');
             getImgVeiculo(id_veiculo);
             getImgVeiculo(id_veiculo);
+            checkStatusRastreador();
         }
     });
+}
+
+$('#ckRastreador').change(function ()
+{
+    checkStatusRastreador();
+});
+
+function checkStatusRastreador()
+{
+    if ($('#ckRastreador').prop('checked') === true)
+        $('#descricaoRastreador').val('Sim');
+    else
+        $('#descricaoRastreador').val('Não');
 }
 
 function getImgVeiculo(id_veiculo)
@@ -150,6 +165,12 @@ function buscarVeiculo()
 
 function uploadImagem()
 {
+    if ($('#fake-file-input-name-veiculos').val() === '')
+    {
+        $('#img-preview').attr('src', 'resources/img/checked_truck-512.png');
+        return;
+    }
+
     $('#form-img').ajaxForm({
         success: function (data)
         {
@@ -180,7 +201,6 @@ function alteraVeiculo()
             $('#form-img').attr('action', '/gcfretes/uploadimg?veiculo_id=' + id);
             uploadImagem();
             listarVeiculos();
-            limparCampos();
         }
     }).submit();
 }
