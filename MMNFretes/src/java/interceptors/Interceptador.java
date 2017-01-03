@@ -37,6 +37,9 @@ public class Interceptador extends HandlerInterceptorAdapter
 
     private boolean enderecoPermitido(String url)
     {
+        if (url.contains("admin"))
+            return true;
+        
         if (url.contains("config"))
             return true;
 
