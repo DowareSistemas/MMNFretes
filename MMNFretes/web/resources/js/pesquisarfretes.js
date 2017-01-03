@@ -53,11 +53,12 @@ function buscarFretes()
 
             distancia = distancia.replace(" km", "");
             distancia = distancia.replace(",", ".");
-
+            distancia = distancia.replace(".", "");
+            
             filtroPesquisa.carrocerias = getFiltroCarrocerias();
             filtroPesquisa.categorias = getFiltroCategorias();
             filtroPesquisa.rastreador = $('#rdoSIM').is(':checked');
-            filtroPesquisa.distancia = distancia;
+            filtroPesquisa.distancia = parseFloat(distancia);
 
             $.get(url, filtroPesquisa, function (result)
             {

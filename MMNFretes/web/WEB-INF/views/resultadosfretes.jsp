@@ -12,14 +12,88 @@
 
 <!-- Conteúdo de pesquisa -->
 <c:forEach var="resultado" items="${resultados}">
-    <pesquisarfretes:conteudo-pesquisar
-        carroceria="${resultado.veiculo.carrocerias.descricao}"
-        categoria="${resultado.veiculo.categorias_veiculos.descricao}"
-        preco="${resultado.preco_frete}"
-        transportadora="${resultado.veiculo.transportadoras.nome}"
-        veiculo="${resultado.veiculo.descricao}"
-        foto="${resultado.foto_path}"
-        transportadora_id="${resultado.veiculo.transportadoras.id}"
-        veiculo_id="${resultado.veiculo.id}"
-        />           
+
+
+    <article id="resultado${resultado.veiculo.id}">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="thumbnail">
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 visible-sm visible-md visible-lg">
+                            <div class="ratings">
+                                <c:if test="${resultado.foto_path eq 'not_localized'}">
+                                    <img src="resources/img/checked_truck-512.png" class="img-thumbnail img-responsive" alt="Cinque Terre">    
+                                </c:if>
+
+                                <c:if test="${resultado.foto_path ne 'not_localized'}">
+                                    <img src="${resultado.foto_path}" class="img-thumbnail img-responsive" alt="Cinque Terre">
+                                </c:if>
+                            </div>
+                        </div> 
+                        <div class="col-xs-8 col-sm-5">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <h3 class="text-primary">${resultado.veiculo.descricao}</h3>
+                            </div>
+
+                            <div class="col-sm-12 col-md-12">
+                                <h4 class="text-primary">${resultado.veiculo.transportadoras.nome}</h4>
+                            </div>
+
+                            <div class="col-md-10">
+                                <h5 class="text-primary">${resultado.veiculo.transportadoras.usuarios.telefone1}</h5>
+                                <h5 class="text-primary">${resultado.veiculo.transportadoras.usuarios.telefone2}</h5>
+                                <h5 class="text-primary">${resultado.veiculo.transportadoras.usuarios.email}</h5>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-12 colmd-12">
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5">
+                            <div class="pull-right panel-default">
+                                <h4 class="center-block" id="lbValorFrete"><fmt:formatNumber type="currency" 
+                                                  maxFractionDigits="3" 
+                                                  value="${resultado.preco_frete}" /></h4>
+
+                                <button type="button" onclick="adicionarVeiculoCotacao(${resultado.veiculo.transportadoras.id}, ${resultado.veiculo.id}, ${resultado.preco_frete})" class="btn center-block btn-primary">Adicionar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="visible-sm visible-md visible-lg"><hr>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3">
+                                <label for="sel1">Categoria: </label>
+                                <p>${resultado.veiculo.categorias_veiculos.descricao}</p>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <label for="sel1">Carroceria: </label>
+                                <p>${resultado.veiculo.carrocerias.descricao}</p>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <label for="sel1">Rastreador: </label>
+                                <c:if test="${resultado.veiculo.rastreador eq true}">
+                                    <p> Sim <p/>
+                                </c:if>
+
+                                <c:if test="${resultado.veiculo.rastreador eq false}">
+                                    <p> Não </p>
+                                </c:if>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <label for="sel1">Forma de Pagamento: </label>
+                                <p>Cartão</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
 </c:forEach>

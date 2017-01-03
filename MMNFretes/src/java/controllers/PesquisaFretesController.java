@@ -16,6 +16,7 @@ import entidades.Categorias_veiculos;
 import entidades.Configuracoes;
 import entidades.Historico;
 import entidades.Transportadoras;
+import entidades.Usuarios;
 import entidades.Veiculos;
 import entidadesTemporarias.ResultadoPesquisa;
 import java.awt.image.BufferedImage;
@@ -109,11 +110,13 @@ public class PesquisaFretesController
         Veiculos veiculos = new Veiculos();
         Carrocerias carroceria = new Carrocerias();
         Categorias_veiculos categoria_veiculo = new Categorias_veiculos();
+        Usuarios usuarios = new Usuarios();
 
         Join joinVeiculos = new Join(veiculos);
         joinVeiculos.addJoin(JOIN_TYPE.INNER, transportadora, "veiculos.transportadoras_id = transportadoras.id");
         joinVeiculos.addJoin(JOIN_TYPE.INNER, carroceria, "veiculos.carrocerias_id = carrocerias.id");
         joinVeiculos.addJoin(JOIN_TYPE.INNER, categoria_veiculo, "veiculos.categorias_veiculos_id = categorias_veiculos.id");
+        joinVeiculos.addJoin(JOIN_TYPE.INNER, usuarios, "transportadoras.usuarios_id = usuarios.id");
         joinVeiculos.addFinalCondition(finalCondition);
 
         Session session = SessionProvider.openSession();
@@ -164,7 +167,10 @@ public class PesquisaFretesController
 
             veiculo.setCarrocerias((Carrocerias) joinVeiculos.getEntity(Carrocerias.class));
             veiculo.setCategorias_veiculos((Categorias_veiculos) joinVeiculos.getEntity(Categorias_veiculos.class));
-            veiculo.setTransportadoras((Transportadoras) joinVeiculos.getEntity(Transportadoras.class));
+           
+            Transportadoras transp = (Transportadoras) joinVeiculos.getEntity(Transportadoras.class);
+            transp.setUsuarios((Usuarios) joinVeiculos.getEntity(Usuarios.class));
+            veiculo.setTransportadoras(transp);
 
             double preco_frete = (veiculo.getPreco_frete() * distancia);
             int estrelas = getEstrelas(veiculo.getTransportadoras_id());
