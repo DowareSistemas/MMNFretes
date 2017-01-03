@@ -2,7 +2,8 @@ var endereco_atual = 0;
 
 $(document).ready(function ()
 {
-    carregaEnderecos(); 
+    carregaEnderecos();
+    carregaEstados();
 });
 
 $('#btnAdicionar-endereco').click(function ()
@@ -22,6 +23,31 @@ $('#btnAdicionar-endereco').click(function ()
                     $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
                 }
             });
+});
+
+function carregaEstados()
+{
+    var url = "/gcfretes/listaestados";
+    $.get(url, function (estados)
+    {
+        for (var estado in estados)
+            $('#cbUf').append(new Option(estados[estado].nome, estados[estado].id));
+    });
+}
+
+$('#cbUf').change(function ()
+{
+    var estado_id = parseInt($('#cbUf').val());
+    var url = "/gcfretes/listacidades?estado_id=" + estado_id;
+
+    $('#cbMunicipio').empty();
+    $('#cbMunicipio').append(new Option('Selecionar', '0', true, true));
+
+    $.get(url, function (cidades)
+    {
+        for (var cidade in cidades)
+            $('#cbMunicipio').append(new Option(cidades[cidade].nome, cidades[cidade].id));
+    });
 });
 
 function carregaEnderecos()

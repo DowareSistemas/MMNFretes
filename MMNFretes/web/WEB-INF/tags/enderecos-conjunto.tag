@@ -22,13 +22,15 @@
                                         <div class="form-group col-md-2">
                                             <label>UF:</label>
                                             <select class="form-control" id="cbUf" name="UF" required>
-                                                <option value="RJ">RJ</option>
+                                                <option value="0" selected> Selecione </option>
+                                                <!-- Adicionado dinamicamente -->
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Município:</label>
                                             <select class="form-control" id="cbMunicipio" name="municipio" required>
-                                                <option value="Volta Redonda">Volta Redonda</option>
+                                                <option value="0" selected> Selecione </option>
+                                                <!-- Adicionado dinamicamente -->
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
