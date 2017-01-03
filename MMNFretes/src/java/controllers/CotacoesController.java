@@ -57,7 +57,7 @@ public class CotacoesController
 
         cotacao.setUsuarios_id(usuarioLogado.getId());
         cotacao.setGrupo_cotacoes_id(getGrupo_cotacao_em_aberto(usuarioLogado.getId()));
-        cotacao.setData(br.com.persistor.generalClasses.Util.getDateFromFormat("yyyy-MM-dd"));
+        cotacao.setData(new Date());
 
         Session session = SessionProvider.openSession();
         session.save(cotacao);
