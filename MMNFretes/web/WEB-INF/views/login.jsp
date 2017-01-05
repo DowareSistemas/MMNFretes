@@ -15,7 +15,7 @@
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
-        <title>Login-MMN Fretes</title>  
+        <title>Cadastre-se - GC Fretes</title>  
     </head>
 
     <body>

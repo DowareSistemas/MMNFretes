@@ -19,7 +19,7 @@
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
         <link href="resources/css/criarconta-entrar.css" rel="stylesheet" media="screen">
-        <title>JSP Page</title>
+        <title>GC Fretes - Gestão Compartilhada de Fretes</title>
     </head>
     <body>      
         <div class="container-fluid">
