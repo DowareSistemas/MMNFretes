@@ -12,8 +12,7 @@
 
 <!-- Conteúdo de pesquisa -->
 <c:forEach var="resultado" items="${resultados}">
-
-
+    
     <article id="resultado${resultado.veiculo.id}">
         <div class="row">
             <div class="col-md-12 ">
@@ -58,7 +57,7 @@
                         <div class="col-xs-4 col-sm-4 col-md-5">
                             <div class="pull-right panel-default">
                                 <h4 class="center-block" id="lbValorFrete"><fmt:formatNumber type="currency" 
-                                                  maxFractionDigits="3" 
+                                                  maxFractionDigits="2" 
                                                   value="${resultado.preco_frete}" /></h4>
 
                                 <button type="button" onclick="adicionarVeiculoCotacao(${resultado.veiculo.transportadoras.id}, ${resultado.veiculo.id}, ${resultado.preco_frete})" class="btn center-block btn-primary">Adicionar</button>
