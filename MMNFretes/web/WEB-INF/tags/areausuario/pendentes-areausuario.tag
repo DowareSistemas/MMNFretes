@@ -38,7 +38,7 @@
                                         <th>Transportador</th>
                                         <th>Data</th>
                                         <th>Veículo</th>
-                                        <th>Pagamento</th>
+                                        <th>Distância</th>
                                         <th>Valor</th>
                                         <th></th>
                                     </tr>

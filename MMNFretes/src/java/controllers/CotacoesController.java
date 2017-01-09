@@ -138,7 +138,9 @@ public class CotacoesController
             {
                 STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
                 STATUS_COTACAO.APROVADO + "",
-                STATUS_COTACAO.REPROVADO + ""
+                STATUS_COTACAO.REPROVADO + "",
+                STATUS_COTACAO.AGUARDANDO_ENTREGA + "",
+                STATUS_COTACAO.AGUARDANDO_PAGAMENTO + "",
             };
             c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.usuarios_id", usuarioLogado.getId()));
         }
@@ -147,7 +149,9 @@ public class CotacoesController
             status_cotacoes = new String[]
             {
                 STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
-                STATUS_COTACAO.APROVADO + ""
+                STATUS_COTACAO.APROVADO + "",
+                STATUS_COTACAO.AGUARDANDO_PAGAMENTO + "",
+                STATUS_COTACAO.AGUARDANDO_ENTREGA + ""
             };
             c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.transportadoras_id", new TransportadorasController().getByUsuario(usuarioLogado.getId()).getId()));
         }

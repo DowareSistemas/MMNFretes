@@ -16,6 +16,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import com.sun.mail.smtp.*;
+import entidades.Usuarios;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -120,7 +121,7 @@ public class EmailController
 
             conteudo = conteudo.replace("{transportadora}", cotacao.getTransportadoras().getNome());
             HtmlEmail email = prepareHtmlEmail();
-            
+
             email.addTo(cotacao.getUsuarios().getEmail(), cotacao.getUsuarios().getNome());
             email.setHtmlMsg(conteudo);
             email.send();
@@ -133,6 +134,39 @@ public class EmailController
                     br.com.persistor.generalClasses.Util.getDateTime(),
                     br.com.persistor.generalClasses.Util.getFullStackTrace(ex),
                     ""));
+        }
+    }
+    
+    public void clientePagouFrete(Cotacoes cotacao)
+    {
+        String conteudo = "";
+        String nomeArquivo = "cliente_pagou.html";
+
+        try
+        {
+            conteudo = conteudo.replace("{cliente}", cotacao.getUsuarios().getNome());
+            conteudo = conteudo.replace("{transportadora}", cotacao.getTransportadoras().getNome());
+            conteudo = conteudo.replace("{id_cotacao}", cotacao.getId() + "");
+            conteudo = conteudo.replace("{data}", br.com.persistor.generalClasses.Util.getDateTime());
+            
+            conteudo = getContentFile(nomeArquivo);
+            if(conteudo.isEmpty())
+                return;
+            
+            HtmlEmail email = prepareHtmlEmail();
+            email.addTo("atendimento@gcfretes.com.br", "Equipe GC Fretes");
+            email.setHtmlMsg(conteudo);
+            email.send();
+         }
+        catch (Exception ex)
+        {
+            new PersistenceLoggerImpl().newNofication(
+                    new PersistenceLog(
+                            getClass().getName(),
+                            "clientePagouFrete",
+                            br.com.persistor.generalClasses.Util.getDateTime(),
+                            ex,
+                            ""));
         }
     }
 

@@ -23,16 +23,24 @@
             <td> Recusado </td>
         </c:if>
 
+        <c:if test="${cotacao.status eq 4}">
+            <td> Aguardando pagamento </td>
+        </c:if>
+
+        <c:if test="${cotacao.status eq 5}">
+            <td> Aguardando entrega </td>
+        </c:if>
+
         <td>${cotacao.usuarios.nome}</td>
         <td><fmt:formatDate type="date" value ="${cotacao.data}" /></td>
         <td>${cotacao.veiculos.descricao}</td>
-        <td>Cartão</td>
+        <td>${cotacao.distancia} Km </td>
         <td>
             <fmt:formatNumber type="currency" maxFractionDigits="3" value="${cotacao.valor}"/>
         </td>
 
         <td>
-            <c:if test="${(cotacao.status ne 2) and (cotacao.status ne 3)}">
+            <c:if test="${contacao.status eq 1}">
                 <a type="button" class="btn btn-primary btn-sm btn-xs" onclick="aprovaItemCotacao(${cotacao.id})"> Aprovar </a>
                 <a type="button" class="btn btn-danger btn-sm btn-xs" onclick="reprovaItemCotacao(${cotacao.id})"> Recusar </a>
             </c:if>

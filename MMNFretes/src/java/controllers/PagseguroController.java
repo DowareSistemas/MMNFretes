@@ -14,13 +14,22 @@ import br.com.uol.pagseguro.domain.Item;
 import br.com.uol.pagseguro.domain.PaymentRequest;
 import br.com.uol.pagseguro.domain.Sender;
 import br.com.uol.pagseguro.domain.Shipping;
+import br.com.uol.pagseguro.domain.Transaction;
 import br.com.uol.pagseguro.enums.Currency;
 import br.com.uol.pagseguro.enums.ShippingType;
+import br.com.uol.pagseguro.enums.TransactionStatus;
 import br.com.uol.pagseguro.exception.PagSeguroServiceException;
+import br.com.uol.pagseguro.service.NotificationService;
+import br.com.uol.pagseguro.service.TransactionSearchService;
 import entidades.*;
+import enums.STATUS_COTACAO;
 import java.math.BigDecimal;
+import java.util.Random;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.management.Notification;
+import logging.PersistenceLoggerImpl;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +51,9 @@ public class PagseguroController
     private Enderecos endereco;
     private IPersistenceLogger logger;
 
+    private final String EMAIL = "atendimento.doware@gmail.com";
+    private final String TOKEN = "DCAB793175CF44C5B1E8DE3A798AA33B";
+
     public PagseguroController()
     {
 
@@ -58,7 +70,6 @@ public class PagseguroController
         this.cotacao = session.onID(Cotacoes.class, cotacao_id);
         this.endereco = endereco;
         session.close();
-
         return processar();
     }
 
@@ -101,6 +112,11 @@ public class PagseguroController
                 + ", DISTÂNCIA: " + cotacao.getDistancia() + " Km");
     }
 
+    private AccountCredentials getCredentials() throws PagSeguroServiceException
+    {
+        return new AccountCredentials(this.EMAIL, this.TOKEN);
+    }
+
     public String processar()
     {
         String url = "";
@@ -108,14 +124,21 @@ public class PagseguroController
         {
             String valor = String.format("%.2f", cotacao.getValor());
             valor = valor.replace(",", ".");
-            
+
             PaymentRequest pr = new PaymentRequest();
             pr.addItem(new Item("1", getDescription(), 1, new BigDecimal(valor)));
             pr.setCurrency(Currency.BRL);
             pr.setSender(new Sender(cotacao.getUsuarios().getNome(), cotacao.getUsuarios().getEmail()));
             pr.setReference("FRT-" + cotacao.getId());
             pr.setShipping(getShipping());
-            url = pr.register(new AccountCredentials("atendimento.doware@gmail.com", "DCAB793175CF44C5B1E8DE3A798AA33B"));
+            pr.setNotificationURL("http://gcfretes.com.br/gcfretes/notificacao");
+            url = pr.register(getCredentials());
+
+            cotacao.setStatus(STATUS_COTACAO.AGUARDANDO_PAGAMENTO);
+            Session session = SessionProvider.openSession();
+            session.update(cotacao);
+            session.commit();
+            session.close();
 
             return url;
         }
@@ -127,13 +150,100 @@ public class PagseguroController
 
         return url;
     }
-    
+
     @RequestMapping(value = "/notificacao", method = RequestMethod.POST)
     public @ResponseBody
     String registraNotificacao(@RequestParam(value = "notificationCode") String nCode,
             @RequestParam(value = "notificationType") String nType)
     {
-        
+        IPersistenceLogger pLogger = new PersistenceLoggerImpl();
+        try
+        {
+            consultaNotificacao(nCode);
+            
+        }
+        catch (Exception ex)
+        {
+            pLogger.newNofication(
+                    new PersistenceLog(
+                            getClass().getName(),
+                            "registraNotificacao",
+                            br.com.persistor.generalClasses.Util.getDateTime(),
+                            ex,
+                            ""));
+        }
         return "";
+    }
+
+    public void consultaNotificacao(String notificationCode) throws PagSeguroServiceException
+    {
+        Transaction transaction = NotificationService.checkTransaction(getCredentials(), notificationCode);
+        int id_cotacao = Integer.parseInt((transaction.getReference().split("-")[1]));
+
+        Session session = SessionProvider.openSession();
+        cotacao = session.onID(Cotacoes.class, id_cotacao);
+
+        if (!cotacao.getToken_envio().isEmpty())
+        {
+            session.close();
+            return;
+        }
+
+        if (transaction.getStatus() == TransactionStatus.PAID)
+        {
+            cotacao.setStatus(STATUS_COTACAO.AGUARDANDO_ENTREGA);
+            cotacao.setToken_envio(verificaToken(session));
+            cotacao.setToken_resposta(verificaToken(session));
+            session.update(cotacao);
+            
+            EmailController emailC = EmailController.getInstance();
+            emailC.clientePagouFrete(cotacao);
+        }
+
+        if (transaction.getStatus() == TransactionStatus.CANCELLED)
+        {
+            session.delete(cotacao);
+        }
+
+        session.commit();
+        session.close();
+    }
+
+    private String verificaToken(Session session)
+    {
+        String token = geraToken();
+        int count = session.count(Cotacoes.class, "token_envio = '" + token + "' OR token_resposta = '" + token + "'");
+        return ((count == 0 && (!cotacao.getToken_envio().equals(token) || !cotacao.getToken_resposta().equals(token)))
+                ? token
+                : verificaToken(session));
+    }
+
+    private String geraToken()
+    {
+        try
+        {
+            int primeiroDigito = 0;
+            int digitoVerificador = 0;
+
+            String result = "";
+            Random radom = new Random();
+            int numeroTmp = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                numeroTmp = radom.nextInt(10);
+                result += numeroTmp + "";
+
+                if (i == 0)
+                    primeiroDigito = numeroTmp;
+            }
+
+            digitoVerificador = (numeroTmp * primeiroDigito);
+            return (result + "-" + digitoVerificador);
+        }
+        catch (Exception ex)
+        {
+            return geraToken();
+        }
     }
 }
