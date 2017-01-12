@@ -5,9 +5,11 @@
  */
 package controllers;
 
+import br.com.persistor.enums.COMMIT_MODE;
 import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.interfaces.IPersistenceLogger;
 import br.com.persistor.interfaces.Session;
+import br.com.persistor.sessionManager.Query;
 import br.com.uol.pagseguro.domain.AccountCredentials;
 import br.com.uol.pagseguro.domain.Address;
 import br.com.uol.pagseguro.domain.Item;
@@ -198,6 +200,12 @@ public class PagseguroController
             
             EmailController emailC = EmailController.getInstance();
             emailC.clientePagouFrete(cotacao);
+            
+            Query q = session.createQuery(cotacao, "@deletaCotacoesRestantes");
+            q.setCommit_mode(COMMIT_MODE.MANUAL);
+            q.setParameter(1, cotacao.getGrupo_cotacoes_id());
+            q.setParameter(2, cotacao.getId());
+            q.execute();
         }
 
         if (transaction.getStatus() == TransactionStatus.CANCELLED)

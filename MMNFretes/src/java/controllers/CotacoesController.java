@@ -127,33 +127,57 @@ public class CotacoesController
         c.add(Restrictions.like(FILTER_TYPE.WHERE, "usuarios.nome", searchTerm, MATCH_MODE.ANYWHERE));
         c.add(Restrictions.like(FILTER_TYPE.OR, "transportadoras.nome", searchTerm, MATCH_MODE.ANYWHERE));
         c.add(Restrictions.like(FILTER_TYPE.OR, "veiculos.descricao", searchTerm, MATCH_MODE.ANYWHERE));
-        c.endPrecedence();
+        c.add(Restrictions.eq(FILTER_TYPE.OR, "cotacoes.token_envio", searchTerm));
+        c.add(Restrictions.eq(FILTER_TYPE.OR, "cotacoes.token_resposta", searchTerm));
 
+        try
+        {
+            int id = Integer.parseInt(searchTerm);
+            c.add(Restrictions.eq(FILTER_TYPE.OR, "cotacoes.id", id));
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+        c.endPrecedence();
         c.beginPrecedence();
 
-        String[] status_cotacoes;
-        if (util.Util.isUsuario(usuarioLogado))
+        String[] status_cotacoes = null;
+
+        if (!usuarioLogado.isAdmin())
         {
-            status_cotacoes = new String[]
+            if (util.Util.isUsuario(usuarioLogado))
             {
-                STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
-                STATUS_COTACAO.APROVADO + "",
-                STATUS_COTACAO.REPROVADO + "",
-                STATUS_COTACAO.AGUARDANDO_ENTREGA + "",
-                STATUS_COTACAO.AGUARDANDO_PAGAMENTO + "",
-            };
-            c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.usuarios_id", usuarioLogado.getId()));
+                status_cotacoes = new String[]
+                {
+                    STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
+                    STATUS_COTACAO.APROVADO + "",
+                    STATUS_COTACAO.REPROVADO + "",
+                    STATUS_COTACAO.AGUARDANDO_ENTREGA + "",
+                    STATUS_COTACAO.AGUARDANDO_PAGAMENTO + "",
+                };
+                c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.usuarios_id", usuarioLogado.getId()));
+            }
+            else
+            {
+                status_cotacoes = new String[]
+                {
+                    STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
+                    STATUS_COTACAO.APROVADO + "",
+                    STATUS_COTACAO.AGUARDANDO_PAGAMENTO + "",
+                    STATUS_COTACAO.AGUARDANDO_ENTREGA + ""
+                };
+                c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.transportadoras_id", new TransportadorasController().getByUsuario(usuarioLogado.getId()).getId()));
+            }
         }
         else
         {
             status_cotacoes = new String[]
             {
-                STATUS_COTACAO.AGUARDANDO_APROVACAO + "",
-                STATUS_COTACAO.APROVADO + "",
                 STATUS_COTACAO.AGUARDANDO_PAGAMENTO + "",
                 STATUS_COTACAO.AGUARDANDO_ENTREGA + ""
             };
-            c.add(Restrictions.eq(FILTER_TYPE.AND, "cotacoes.transportadoras_id", new TransportadorasController().getByUsuario(usuarioLogado.getId()).getId()));
         }
 
         c.add(Restrictions.in(FILTER_TYPE.AND, "cotacoes.status", status_cotacoes));
