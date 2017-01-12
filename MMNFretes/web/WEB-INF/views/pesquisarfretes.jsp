@@ -37,11 +37,11 @@
                                 <h4 class="text-muted text-uppercase text-center">Calcular trajeto</h4>
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" id="btnPesquisaCepOrigem" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="tel" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
+                                    <input type="number" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="tel" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
+                                    <input type="number" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
                                 </div>
                                 <button type="button" class="btn btn-primary btn-block" id="btnBuscarFretes">Buscar</button>
                             </form>
