@@ -38,7 +38,7 @@ public class SessionProvider
             config.setPassword("81547686");
             config.setMaxStatements(1000);
             config.setPersistenceLogger(PersistenceLoggerImpl.class);
-
+            
             /*
             config.setDb_type(DB_TYPE.PostgreSQL);
             config.setHost("localhost");

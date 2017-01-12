@@ -48,16 +48,16 @@ function buscarFretes()
     {
         if (status == google.maps.DirectionsStatus.OK)
         {
-            distancia = response.routes[0].legs[0].distance.text;
+            distancia =(response.routes[0].legs[0].distance.value / 1000);
             var url = "/gcfretes/pesquisafrete";
 
-            distancia = distancia.replace(" km", "");
-            distancia = distancia.replace(",", ".");
-
+          //  distancia = distancia.replace(" km", "");
+          //  distancia = distancia.replace(",", ".");
+            
             filtroPesquisa.carrocerias = getFiltroCarrocerias();
             filtroPesquisa.categorias = getFiltroCategorias();
             filtroPesquisa.rastreador = $('#rdoSIM').is(':checked');
-            filtroPesquisa.distancia = distancia;
+            filtroPesquisa.distancia = parseFloat(distancia).toFixed(2);
 
             $.get(url, filtroPesquisa, function (result)
             {

@@ -15,4 +15,6 @@ public class STATUS_COTACAO
     public static final int AGUARDANDO_APROVACAO = 1;
     public static final int APROVADO = 2;
     public static final int REPROVADO = 3;
+    public static final int AGUARDANDO_PAGAMENTO = 4;
+    public static final int AGUARDANDO_ENTREGA = 5;
 }

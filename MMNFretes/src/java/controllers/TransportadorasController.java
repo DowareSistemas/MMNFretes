@@ -8,19 +8,28 @@ package controllers;
 import br.com.persistor.enums.FILTER_TYPE;
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.enums.RESULT_TYPE;
+import br.com.persistor.generalClasses.FileExtractor;
+import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.ICriteria;
+import br.com.persistor.interfaces.IPersistenceLogger;
 import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
+import entidades.Configuracoes;
 import entidades.Transportadoras;
 import entidades.Usuarios;
+import entidades.Veiculos;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
+import logging.PersistenceLoggerImpl;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -121,23 +130,51 @@ public class TransportadorasController
         return gson.toJson(transportadora);
     }
 
-    public Transportadoras getByUsuario(int usuario_id)
+    @RequestMapping(value = "/foto_transportador")
+    public @ResponseBody
+    String getFotoLogo(HttpSession httpSession)
     {
-        Transportadoras transportadora = new Transportadoras();
-        Usuarios usuario = new Usuarios();
+        IPersistenceLogger logger = new PersistenceLoggerImpl();
+        try
+        {
+            Configuracoes config = new ConfiguracoesController().findConfig("foto_path");
+            String path = config.getValor();
 
-        Session session = SessionProvider.openSession();
-        ICriteria c = session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
-                .add(JOIN_TYPE.INNER, usuario, "transportadoras.usuarios_id = usuarios.id")
-                .add(Restrictions.eq(FILTER_TYPE.WHERE, "transportadoras.usuarios_id", usuario_id))
-                .execute();
+            Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+            Transportadoras transp = getTransportadora(usuarioLogado.getId());
 
-        usuario = (Usuarios) c.loadEntity(usuario);
-        transportadora = (Transportadoras) c.loadEntity(transportadora);
-        session.close();
+            if (transp.getId() > 0)
+                if (transp.getFoto_logo() != null)
+                {
+                    String fileName = getFileName(transp);
+                    String imageFile = (path + fileName);
+                    FileExtractor extractor = new FileExtractor();
+                    extractor.setBufferSize(1024);
+                    extractor.setInputStream(transp.getFoto_logo());
+                    extractor.setFileToExtract(imageFile);
+                    extractor.extract();
 
-        transportadora.setUsuarios(usuario);
-        return transportadora;
+                    BufferedImage image = ImageIO.read(new File(imageFile));
+
+                    return (image == null
+                            ? "not_localized"
+                            : "/gcfretes/upload/" + fileName);
+                }
+        }
+        catch (Exception ex)
+        {
+            logger.newNofication(new PersistenceLog("VeiculosController",
+                    "getFotoPath",
+                    br.com.persistor.generalClasses.Util.getDateTime(),
+                    br.com.persistor.generalClasses.Util.getFullStackTrace(ex), ""));
+        }
+        return "not_localized";
+    }
+
+    private String getFileName(Transportadoras t)
+    {
+        String name = (t.getId() + "" + t.getNome());
+        return name + ".jpg";
     }
 
     @RequestMapping("/alteraInfoTransportadora")
@@ -153,6 +190,13 @@ public class TransportadorasController
         transportadora.setId(idTransportadora);
 
         Session session = SessionProvider.openSession();
+
+        if(transportadora.getFoto_logo() == null)
+        {
+            Transportadoras t = session.onID(Transportadoras.class, idTransportadora);
+            transportadora.setFoto_logo(t.getFoto_logo());
+        }
+        
         session.update(transportadora);
         session.commit();
         session.close();
@@ -212,6 +256,25 @@ public class TransportadorasController
                 .execute();
         session.close();
 
+        return transportadora;
+    }
+
+    public Transportadoras getByUsuario(int usuario_id)
+    {
+        Transportadoras transportadora = new Transportadoras();
+        Usuarios usuario = new Usuarios();
+
+        Session session = SessionProvider.openSession();
+        ICriteria c = session.createCriteria(transportadora, RESULT_TYPE.UNIQUE)
+                .add(JOIN_TYPE.INNER, usuario, "transportadoras.usuarios_id = usuarios.id")
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "transportadoras.usuarios_id", usuario_id))
+                .execute();
+
+        usuario = (Usuarios) c.loadEntity(usuario);
+        transportadora = (Transportadoras) c.loadEntity(transportadora);
+        session.close();
+
+        transportadora.setUsuarios(usuario);
         return transportadora;
     }
 

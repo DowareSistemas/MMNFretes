@@ -7,6 +7,7 @@ package entidades;
 import br.com.persistor.abstractClasses.Entity;
 import br.com.persistor.abstractClasses.Entity;
 import br.com.persistor.annotations.NamedQuery;
+import br.com.persistor.annotations.NamedQueryes;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
 import br.com.persistor.annotations.OneToOne;
@@ -20,8 +21,15 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
-@NamedQuery(queryName = "updateStatus",
-        queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?")
+@NamedQueryes(
+        value =
+        {
+            @NamedQuery(queryName = "updateStatus",
+                    queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?"),
+
+            @NamedQuery(queryName = "deletaCotacoesRestantes",
+                    queryValue = "delete from cotacoes where grupo_cotacoes_id = ? and id <> ?")
+        })
 public class Cotacoes extends Entity
 {
 
@@ -38,10 +46,38 @@ public class Cotacoes extends Entity
     private int transportadoras_id;
     private int veiculos_id;
     private int grupo_cotacoes_id;
+    private String token_envio;
+    private String token_resposta;
 
     private Usuarios usuarios;
     private Transportadoras transportadoras;
     private Veiculos veiculos;
+
+    public Cotacoes()
+    {
+        this.token_envio = "";
+        this.token_resposta = "";
+    }
+
+    public String getToken_envio()
+    {
+        return token_envio;
+    }
+
+    public void setToken_envio(String token_envio)
+    {
+        this.token_envio = token_envio;
+    }
+
+    public String getToken_resposta()
+    {
+        return token_resposta;
+    }
+
+    public void setToken_resposta(String token_resposta)
+    {
+        this.token_resposta = token_resposta;
+    }
 
     public Date getData()
     {
@@ -75,7 +111,10 @@ public class Cotacoes extends Entity
         this.transportadoras = transportadoras;
     }
 
-    @OneToOne(source = "veiculos_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
+    @OneToOne(source = "veiculos_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO, ignore_onID =
+    {
+        "foto"
+    })
     public Veiculos getVeiculos()
     {
         return veiculos;

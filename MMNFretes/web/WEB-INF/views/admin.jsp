@@ -62,8 +62,7 @@
         <!-- Scripts de login 
         ========================================================================================= -->
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
-        <script src="resources/js/maps.js"></script>
+        <script src="resources/js/admin.js"></script>
         <script src="resources/js/login.js"></script>
-        <script src="resources/js/pesquisarfretes.js"></script>
     </body>
 </html>

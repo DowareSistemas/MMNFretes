@@ -22,7 +22,15 @@
         <c:if test="${cotacao.status eq 3}">
             <td> Recusado </td>
         </c:if>
-            
+
+        <c:if test="${cotacao.status eq 4}">
+            <td> Aguardando pagamento </td>
+        </c:if>
+
+        <c:if test="${cotacao.status eq 5}">
+            <td>  Aguardando entrega </td>
+        </c:if>
+
         <td>${cotacao.transportadoras.nome}</td>
 
         <td>
@@ -30,7 +38,7 @@
         </td>
 
         <td>${cotacao.veiculos.descricao}</td>
-        <td>*FALTA VER*</td>
+        <td>${cotacao.distancia} Km </td>
         <td>
             <fmt:formatNumber type="currency" maxFractionDigits="3" value="${cotacao.valor}"/>
         </td>

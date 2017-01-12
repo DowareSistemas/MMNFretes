@@ -50,6 +50,11 @@ $(document).ready(function ()
     carregaInfoTransportador();
     hab_desab_formInfo(true);
     pesquisaCotacao('');
+
+    $.get('/gcfretes/foto_transportador', function (url)
+    {
+        $('#img-perfil').attr('src', url);
+    });
 });
 
 function cancelaItemCotacao(id_item)
@@ -305,7 +310,7 @@ function carregaInfoTransportador()
             $('#txCPF_CNPJ').val(transportador_result.CPF_CNPJ);
             $('#txANTT').val(transportador_result.ANTT);
             $('#txWebsite').val(transportador_result.website);
-            
+
             if (transportador_result.pag_seguro === true)
                 $('#Pagseguro').prop('checked', true);
 
@@ -357,7 +362,7 @@ function hab_desab_formInfo(estado)
 $('#btnConfirmarSenha').click(function ()
 {
     var senhaDigitada = $('#txSenhaDigitada').val();
-    var senha = $('#txSenha').val();
+    var senha = $('#txSenha-transportador').val();
 
     if (senha === senhaDigitada)
     {
@@ -384,6 +389,11 @@ $('#btnConfirmarSenha').click(function ()
 
 function uploadImgPerfil()
 {
+    if ($('#fake-file-input-name-perfil').val() === '')
+    {
+        return;
+    }
+
     $('#form-img-perfil').ajaxForm({
         success: function (data)
         {
