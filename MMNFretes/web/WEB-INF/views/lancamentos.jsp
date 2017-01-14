@@ -99,7 +99,8 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h3>Nome do Cliente:</h3><br>Cliente
+                                                <h3>Nome do Cliente:</h3><br>
+                                                João das Coves
                                             </div>
                                             <div class="col-sm-12">
                                                 <h3>Rota:</h3><br>
