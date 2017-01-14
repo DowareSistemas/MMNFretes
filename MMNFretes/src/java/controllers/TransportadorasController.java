@@ -49,6 +49,11 @@ import util.Util;
 @Controller
 public class TransportadorasController
 {
+    @RequestMapping("lancamentos")
+    public String redirectLancamentos()
+    {
+        return "lancamentos";
+    }
 
     @RequestMapping("uploadimgperfil")
     public @ResponseBody
