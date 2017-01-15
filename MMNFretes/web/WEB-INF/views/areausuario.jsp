@@ -11,7 +11,7 @@
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
-        <title>JSP Page</title>
+        <title>Usuário - GC Fretes</title>
     </head>
     <body>
         <div class="container-fluid">
