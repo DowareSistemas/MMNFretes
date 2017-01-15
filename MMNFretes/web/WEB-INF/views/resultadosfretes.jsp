@@ -12,7 +12,7 @@
 
 <!-- Conteúdo de pesquisa -->
 <c:forEach var="resultado" items="${resultados}">
-    
+
     <article id="resultado${resultado.veiculo.id}">
         <div class="row">
             <div class="col-md-12 ">
@@ -43,14 +43,16 @@
                                 <h5 class="text-primary">${resultado.veiculo.transportadoras.usuarios.telefone2}</h5>
                                 <h5 class="text-primary">${resultado.veiculo.transportadoras.usuarios.email}</h5>
                             </div>
-                            
+
                             <div class="col-xs-12 col-sm-12 colmd-12">
                                 <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <c:forEach var="positivas" items="${resultado.av_positivas}">
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    </c:forEach>
+
+                                    <c:forEach var="negativa" items="${resultado.av_negativas}">
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </c:forEach>
                                 </p>
                             </div>
                         </div>

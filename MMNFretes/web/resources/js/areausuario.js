@@ -25,10 +25,82 @@ $(document).ready(function ()
     $('#li-deslogado').hide();
     $('#li-logado').hide();
     $('#btnVisualizaCotacoes').hide();
-    
+
     carregaInfoUsuario();
     hab_desab_formInfo(true);
     listaGruposCotacoes();
+    $('#lbToken_autorizacao').css('color', 'green');
+    $('#lbMensagemValidacaoToken').hide();
+    $('#lbToken_autorizacao').hide();
+});
+
+function showConfirmaRecebmento(id_cotacao)
+{
+    cotacao_atual = id_cotacao;
+    
+    $('#lbMensagemValidacaoToken').text('');
+    $('#lbToken_autorizacao').text('');
+    $('#txToken_envio').val('');
+    $('#btnEnviaToken').text('Enviar');
+    $('#modal-confirma-recebimento').modal('toggle');
+    $('#modal-confirma-recebimento').modal('show');
+}
+
+$('#btnEnviaToken').click(function ()
+{
+    if ($('#btnEnviaToken').text() === 'Enviar')
+    {
+        var params =
+                {
+                    cotacao_id: cotacao_atual,
+                    token: $('#txToken_envio').val()
+                };
+        var url = "/gcfretes/verificaToken";
+        $.post(url, params, function (response)
+        {
+            if (response === '0')
+            {
+                $('#lbMensagemValidacaoToken').css('color', 'red');
+                $('#lbMensagemValidacaoToken').text('Token não identificado');
+                $('#lbMensagemValidacaoToken').show();
+                $('#btnEnviaToken').text('Enviar');
+                $('#lbToken_autorizacao').hide();
+                return;
+            } else
+            {
+                $('#lbToken_autorizacao').text(response);
+                $('#lbToken_autorizacao').show();
+                $('#lbMensagemValidacaoToken').css('color', 'black');
+                $('#lbMensagemValidacaoToken').text('Token de autorização:');
+                $('#lbMensagemValidacaoToken').show();
+                $('#btnEnviaToken').text('Confirmar');
+                return;
+            }
+        });
+
+    } else
+    {
+        $('#modal-confirma-recebimento').modal('hide');
+        $('#modal-avaliacao').modal('toggle');
+        $('#modal-avaliacao').modal('show');
+    }
+});
+
+$('#btnEncerraCotacao').click(function ()
+{
+    var params =
+            {
+                cotacao_id: cotacao_atual,
+                token: $('#txToken_envio').val(),
+                estrelas: estrelas,
+                comentario: $('#txComentario').val()
+            };
+
+    var url = "/gcfretes/encerraCotacao";
+    $.post(url, params, function (response)
+    {
+        alert(response);
+    });
 });
 
 function carregaInfoUsuario()

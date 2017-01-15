@@ -15,9 +15,11 @@ import br.com.persistor.interfaces.ICriteria;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Query;
 import com.google.gson.Gson;
+import entidades.Avaliacoes;
 import entidades.Configuracoes;
 import entidades.Cotacoes;
 import entidades.Grupos_cotacoes;
+import entidades.Historico;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
@@ -403,6 +405,61 @@ public class CotacoesController
         session.update(cotacao);
         session.commit();
         session.close();
+
+        return "1";
+    }
+
+    @RequestMapping(value = "/verificaToken", method = RequestMethod.POST)
+    public @ResponseBody
+    String verificaToken(
+            @RequestParam(value = "cotacao_id") int id,
+            @RequestParam(value = "token") String token)
+    {
+        Session session = SessionProvider.openSession();
+        Cotacoes c = session.onID(Cotacoes.class, id);
+        session.close();
+
+        return (c.getToken_envio().equals(token)
+                ? c.getToken_resposta()
+                : "0");
+    }
+
+    @RequestMapping(value = "/encerraCotacao", method = RequestMethod.POST)
+    public @ResponseBody
+    String encerraCotacao(
+            @RequestParam(value = "cotacao_id") int id,
+            @RequestParam(value = "token") String token,
+            @RequestParam(value = "estrelas") int estrelas,
+            @RequestParam(value = "comentario") String comentario)
+    {
+        Session session = SessionProvider.openSession();
+        Cotacoes c = session.onID(Cotacoes.class, id);
+
+        if (!(c.getToken_envio().equals(token)))
+        {
+            session.close();
+            return "0";
+        }
+
+        Avaliacoes avaliacao = new Avaliacoes();
+        avaliacao.setEstrelas(estrelas);
+        avaliacao.setComentario(comentario);
+
+        Historico h = new Historico();
+        h.setCep_origem(c.getCep_origem());
+        h.setCep_destino(c.getCep_destino());
+        h.setDistancia(c.getDistancia());
+        h.setTransportadoras_id(c.getTransportadoras_id());
+        h.setVeiculos_id(c.getVeiculos_id());
+        h.setUsuarios_id(c.getUsuarios_id());
+        h.setValor(c.getValor());
+        h.setData(c.getData());
+        h.setAvaliacoes(avaliacao);
+
+        session.save(h);
+        session.delete(c);
+        
+        session.commit();
 
         return "1";
     }

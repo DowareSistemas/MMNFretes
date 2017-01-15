@@ -39,6 +39,8 @@
                     <my-tags:enderecos-conjunto/>
                     <areausuario:historico-areausuario/>
                     <areausuario:pendentes-areausuario/>
+                    <my-tags:confirmar-recebimento/>
+                    <areausuario:modal-avaliacao/>
                     <!-- Dinâmica da página -->
                     <my-tags:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
@@ -75,9 +77,11 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
-                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
+        <script src="resources/js/avaliacoes.js"></script>
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/enderecos.js"></script>
+        <script src="resources/js/historico.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>
         <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/mascaras.js"></script>

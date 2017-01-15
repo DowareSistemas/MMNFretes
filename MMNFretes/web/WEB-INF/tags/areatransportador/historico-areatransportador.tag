@@ -10,9 +10,9 @@
                         <div class="col-sm-12 form-group">
                             <div id="custom-search-input">
                                 <div class="input-group">
-                                    <input type="text" class="form-control campo-btn-busca" placeholder="Buscar por cliente, veículo ou forma de pagamento" />
+                                    <input type="text" id="txPesquisa-historico" class="form-control campo-btn-busca" placeholder="Buscar por cliente ou veículo" />
                                     <span class="input-group-btn">
-                                        <button class="btn btn-info campo-btn-busca" type="button">
+                                        <button id="btnBuscar-historico" class="btn btn-info campo-btn-busca" type="button">
                                             <i class="glyphicon glyphicon-search"></i>
                                         </button>
                                     </span>
@@ -25,25 +25,16 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Cliente</th>
+                                        <th>ID</th>
                                         <th>Data</th>
+                                        <th>Cliente</th>
                                         <th>Veículo</th>
-                                        <th>Pagamento</th>
+                                        <th>Distância</th>
                                         <th>Valor</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Cliente</td>
-                                        <td>Data</td>
-                                        <td>Veículo</td>
-                                        <td>Pagamento</td>
-                                        <td>Valor</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs center-block">+ Informações</button>
-                                        </td>
-                                    </tr>
+                                <tbody id="tabela-historico">
+   
                                 </tbody>
                             </table>
                         </div>

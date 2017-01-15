@@ -34,13 +34,14 @@
                                 <thead>
                                     <tr>
                                         <th></th>
+                                        <th>ID</th>
                                         <th>Status</th>
                                         <th>Transportador</th>
                                         <th>Data</th>
                                         <th>Veículo</th>
                                         <th>Distância</th>
                                         <th>Valor</th>
-                                        <th></th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabela-cotacoes-usuario">

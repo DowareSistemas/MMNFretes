@@ -136,7 +136,7 @@ public class EmailController
                     ""));
         }
     }
-    
+
     public void clientePagouFrete(Cotacoes cotacao)
     {
         String conteudo = "";
@@ -148,16 +148,16 @@ public class EmailController
             conteudo = conteudo.replace("{transportadora}", cotacao.getTransportadoras().getNome());
             conteudo = conteudo.replace("{id_cotacao}", cotacao.getId() + "");
             conteudo = conteudo.replace("{data}", br.com.persistor.generalClasses.Util.getDateTime());
-            
+
             conteudo = getContentFile(nomeArquivo);
-            if(conteudo.isEmpty())
+            if (conteudo.isEmpty())
                 return;
-            
+
             HtmlEmail email = prepareHtmlEmail();
             email.addTo("atendimento@gcfretes.com.br", "Equipe GC Fretes");
             email.setHtmlMsg(conteudo);
             email.send();
-         }
+        }
         catch (Exception ex)
         {
             new PersistenceLoggerImpl().newNofication(
@@ -167,6 +167,39 @@ public class EmailController
                             br.com.persistor.generalClasses.Util.getDateTime(),
                             ex,
                             ""));
+        }
+    }
+
+    public void instrucoesTransportador(Cotacoes cotacao)
+    {
+        String conteudo = "";
+        String nomeArquivo = "instrucoes_transportador.html";
+
+        try
+        {
+            conteudo = conteudo.replace("{nome_cliente}", cotacao.getUsuarios().getNome());
+            conteudo = conteudo.replace("{token_envio}", cotacao.getToken_envio());
+            conteudo = conteudo.replace("{token_resposta}", cotacao.getToken_resposta());
+
+            conteudo = getContentFile(nomeArquivo);
+            if (conteudo.isEmpty())
+                return;
+
+            Transportadoras transp = new TransportadorasController().find(cotacao.getTransportadoras_id());
+            HtmlEmail email = prepareHtmlEmail();
+            email.addTo(transp.getUsuarios().getEmail(),
+                    transp.getNome());
+            email.setHtmlMsg(conteudo);
+            email.send();
+        }
+        catch (Exception ex)
+        {
+            new PersistenceLoggerImpl().newNofication(new PersistenceLog(
+                    "EmailController",
+                    "void instrucoesTransportador(Cotacoes cotacao)",
+                    br.com.persistor.generalClasses.Util.getDateTime(),
+                    br.com.persistor.generalClasses.Util.getFullStackTrace(ex),
+                    ""));
         }
     }
 

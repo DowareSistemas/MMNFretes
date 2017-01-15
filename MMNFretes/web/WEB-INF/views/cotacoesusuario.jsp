@@ -7,6 +7,8 @@
             <a onclick="mostraDetalhesItem(${cotacao.id})" type="button" class="btn btn-info btn-xs center-block" data-toggle="modal" data-target="#detalhes_cotacao_usuario">+ Info</a>
         </td>
 
+        <td> ${cotacao.id} </td>
+
         <c:if test="${cotacao.status eq 0}">
             <td> Selecionando </td>
         </c:if>
@@ -43,8 +45,16 @@
             <fmt:formatNumber type="currency" maxFractionDigits="3" value="${cotacao.valor}"/>
         </td>
 
-        <td>
-            <a type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-xs center-block">Cancelar</a>
-        </td>
+        <c:if test="${cotacao.status eq 5}"> <!-- AGUARDANDO PAGAMENTO -->
+            <td>
+                <a type="button" onclick="showConfirmaRecebmento(${cotacao.id})" class="btn btn-success btn-xs center-block">Confirmar recebimento</a>
+            </td>
+        </c:if>
+
+        <c:if test="${cotacao.status ne 5}">
+            <td>
+                <a type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-xs center-block">Cancelar</a>
+            </td>
+        </c:if>
     </tr>
 </c:forEach>
