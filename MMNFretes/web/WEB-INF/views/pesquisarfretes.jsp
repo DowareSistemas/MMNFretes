@@ -9,6 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes"%>
+<%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <!DOCTYPE html>
 <html>
     <head>

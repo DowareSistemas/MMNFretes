@@ -10,6 +10,7 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes"%>
 <%@taglib tagdir="/WEB-INF/tags/admin/" prefix="admin"%>
+<%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,7 @@
         <title>Administrador - GC Fretes</title>
     </head>
     <body>
-        <body>
+    <body>
         <div class="container-fluid">
             <header>
                 <my-tags:navbar redireciona_perfil="true"/>
@@ -58,7 +59,7 @@
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/jquery-mask.js"></script>
-    <script src="resources/js/mascaras.js"></script>
+        <script src="resources/js/mascaras.js"></script>
         <!-- Scripts de login 
         ========================================================================================= -->
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>

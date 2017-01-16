@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/areausuario/" prefix="areausuario"%>
+<%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -42,31 +43,31 @@
                     <areausuario:pendentes-areausuario/>
                     <areausuario:lancamentos/>
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-input id="mensagem-input"
+                    <backend:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
                                             id_input="txSenhaConfirmada" 
                                             type_input="password" 
                                             titulo="Confirmar senha:" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-input id="mensagem-input"
+                    <backend:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
                                             id_input="txSenhaConfirmada" 
                                             type_input="password" 
                                             titulo="Confirmar senha:" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-input id="editar-grupo"
+                    <backend:mensagem-input id="editar-grupo"
                                             id_btnConfirmar="btnSalvaGrupo"
                                             id_input="txNomeGrupo"
                                             titulo="Renomear grupo"
                                             type_input="text" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-sim-nao />
+                    <backend:mensagem-sim-nao />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-ok id_btnOK="btnSenhaIncorreta" 
+                    <backend:mensagem-ok id_btnOK="btnSenhaIncorreta" 
                                          id="senhaIncorreta"
                                          mensagem="As senhas não coincidem!" />
                     <!-- Modal de mais informações -->
-                    <my-tags:detalhes-cotacao-usuario/>
+                    <backend:detalhes-cotacao-usuario/>
                 </div>
             </main>
             <footer>
@@ -77,7 +78,7 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
-                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/enderecos.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>
