@@ -128,6 +128,12 @@
                                                 Rastreador:<br>
                                                 Forma de Pagamento:<br>
                                             </div>
+                                            <div class="col-sm-6">
+                                                <input type="button" class="btn btn-info" value="+ Informações">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="button" class="btn btn-primary pull-right" value="Adicionar">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
