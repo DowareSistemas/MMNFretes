@@ -92,7 +92,7 @@
                             </div>
                         </div>
                     </section>
-                    <%-- Resultados dos Lançamentos --%>
+                    <%--Resultados dos Lançamentos--%>
                     <article>
                         <div class="row">
                             <div class="col-sm-12 ">
@@ -101,23 +101,25 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <h3>Nome do Cliente:</h3><br>
-                                                João das Coves
+                                                <strong>João das Coves</strong>
                                             </div>
                                             <div class="col-sm-12">
                                                 <h3>Rota:</h3><br>
-                                                Aproximadamente: 00,00 Km<br> 
+                                                <strong>Aproximadamente: 00,00 Km</strong><br> 
                                                 Endereço de origem: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
                                                 Endereço de destino: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
                                             </div>
                                             <div class="col-sm-12">
                                                 <h3>Carga:</h3><br>
-                                                Dimensões:<br>
-                                                Comprimento:<br>
-                                                Altura:<br>
-                                                Largura:<br>
-                                                Peso:<br>
-                                                Quantidade de volumes:<br>
-                                                Descrição:<br>
+                                                <strong>
+                                                    Dimensões:<br>
+                                                    Comprimento:<br>
+                                                    Altura:<br>
+                                                    Largura:<br>
+                                                    Peso:<br>
+                                                    Quantidade de volumes:<br>
+                                                    Descrição:<br>
+                                                </strong>
                                             </div>
                                             <div class="col-sm-12">
                                                 <h3>Veículo:</h3><br>
@@ -132,6 +134,7 @@
                             </div>
                         </div>
                     </article>
+                    <!--Fim-->
                 </div>
             </main>
             <footer>
