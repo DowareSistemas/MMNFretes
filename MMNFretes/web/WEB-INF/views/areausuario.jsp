@@ -28,7 +28,7 @@
                                 <button class="btn btn-primary btn-block" type="button" id="tela-enderecos">Endereços</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Lançamentos</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="tela-lancamentos">Lançamentos</button><br>
                             </div>
                         </div>
                     </div>
@@ -43,6 +43,7 @@
                     <areausuario:pendentes-areausuario/>
                     <my-tags:confirmar-recebimento/>
                     <areausuario:modal-avaliacao/>
+                    <areausuario:lancamentos/>
                     <!-- Dinâmica da página -->
                     <backend:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"

@@ -1,6 +1,6 @@
 <%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes"%>
-<article>
-    <div id="lancamentos">
+<article id="lancamentos">
+    <div>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2 class="text-center">Lançamentos de Fretes</h2>
@@ -9,14 +9,14 @@
                 <form>
                     <h3>Rota</h3>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-xs-12 col-md-6">
                             <label>CEP Origem:</label>
                             <div class="form-group input-group">
                                 <span class="btn input-group-addon" id="btnPesquisaCepOrigem" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
                                 <input type="number" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-xs-12 col-md-6">
                             <label>CEP Destino:</label>
                             <div class="form-group input-group">
                                 <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
@@ -26,27 +26,31 @@
                     </div>
                     <h3>Carga</h3>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-xs-12 col-md-4">
                             <label>Comprimento:</label>
                             <input type="number" class="form-control">
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-xs-12 col-md-4">
                             <label>Altura:</label>
                             <input type="number" class="form-control">
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-xs-12 col-md-4">
                             <label>Largura:</label>
                             <input type="number" class="form-control">
                         </div>
-                        <div class="col-sm-12">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
                             <label>Peso:</label>
                             <input type="number" class="form-control">
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-xs-12 col-md-4">
                             <label>Volumes:</label>
                             <input type="number" class="form-control">
                         </div>
-                        <div class="col-sm-12">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
                             <label>Descrição:</label>
                             <textarea rows="5" class="form-control"></textarea>
                         </div>
