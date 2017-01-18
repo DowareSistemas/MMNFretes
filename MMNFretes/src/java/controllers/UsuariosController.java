@@ -139,7 +139,10 @@ public class UsuariosController
     public String paginaPerfil(HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-
+        
+        if(usuario.isAdmin())
+            return "redirect:admin";
+        
         if (Util.isUsuario(usuario))
             return "redirect:areausuario";
         else

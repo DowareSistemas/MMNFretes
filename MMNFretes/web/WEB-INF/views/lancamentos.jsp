@@ -1,9 +1,8 @@
 <%-- 
-    Document   : pesquisarfretes
-    Created on : 15/08/2016, 21:41:01
+    Document   : lancamentos
+    Created on : 12/01/2017, 21:51:43
     Author     : emers
 --%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,7 +19,7 @@
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
         <link href="resources/css/criarconta-entrar.css" rel="stylesheet" media="screen">
-        <title>GC Fretes - Gestão Compartilhada de Fretes</title>
+        <title>Lançamentos - GC Fretes</title>
     </head>
     <body>      
         <div class="container-fluid">
@@ -32,24 +31,7 @@
             <aside>
                 <div class="aside-fixed">
                     <div class="row">
-                        <div class="col-md-12">
-                            <!-- Form de pesquisa -->
-                            <form class="form-group panel-aside">
-                                <h4 class="text-muted text-uppercase text-center">Calcular trajeto</h4>
-                                <div class="form-group input-group">
-                                    <span class="btn input-group-addon" id="btnPesquisaCepOrigem" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="number" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
-                                </div>
-                                <div class="form-group input-group">
-                                    <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="number" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
-                                </div>
-                                <button type="button" class="btn btn-primary btn-block" id="btnBuscarFretes">Buscar</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-12">
                             <div class="panel-aside">
                                 <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
                                 <!-- Filtro de pesquisa: Veículos -->
@@ -101,7 +83,7 @@
                 <div class="aside-fixed-main">
                     <section>
                         <div class="row">
-                            <div class="col-md-12 ">
+                            <div class="col-sm-12 ">
                                 <div class="alert alert-info fade in">
                                     <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                     Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
@@ -110,10 +92,46 @@
                             </div>
                         </div>
                     </section>
-
-                    <div id="resultados-pesquisa">
-
-                    </div>
+                    <%-- Resultados dos Lançamentos --%>
+                    <article>
+                        <div class="row">
+                            <div class="col-sm-12 ">
+                                <div class="panel panel-primary">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h3>Nome do Cliente:</h3><br>
+                                                João das Coves
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <h3>Rota:</h3><br>
+                                                Aproximadamente: 00,00 Km<br> 
+                                                Endereço de origem: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
+                                                Endereço de destino: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <h3>Carga:</h3><br>
+                                                Dimensões:<br>
+                                                Comprimento:<br>
+                                                Altura:<br>
+                                                Largura:<br>
+                                                Peso:<br>
+                                                Quantidade de volumes:<br>
+                                                Descrição:<br>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <h3>Veículo:</h3><br>
+                                                Tipo de veículo:<br>
+                                                Carroceria:<br>
+                                                Rastreador:<br>
+                                                Forma de Pagamento:<br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </main>
             <footer>

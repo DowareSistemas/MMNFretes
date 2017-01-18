@@ -58,7 +58,9 @@ body {
     padding-top: 70px;
     background: #eee;
 }
-
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 /*Navbar Logo*/
 .navbar-logo {
     margin: 1px;}

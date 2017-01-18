@@ -141,10 +141,9 @@ public class CotacoesController
         {
 
         }
-
         c.endPrecedence();
-        c.beginPrecedence();
 
+        c.beginPrecedence();
         String[] status_cotacoes = null;
 
         if (!usuarioLogado.isAdmin())

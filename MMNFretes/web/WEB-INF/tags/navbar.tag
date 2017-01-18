@@ -35,6 +35,19 @@
                         <i class="glyphicon glyphicon-shopping-cart"></i>
                     </a>
                 </li>
+                <!-- Usuário LOGADO -->
+                <li  id="li-logado">
+                    <a href="paginaperfil">
+                        Perfil
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li id="li-sair">
+                    <a href="loggout">
+                        Sair
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
                 <!-- Usuário DESLOGADO -->
                 <li class="dropdown" id="li-deslogado">
                     <a href="" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -66,20 +79,6 @@
                             </div>
                         </li> 
                     </ul>
-                </li>
-                <!-- Usuário LOGADO -->
-                <li  id="li-logado">
-                    <a href="paginaperfil">
-                        Perfil
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-
-                <li id="li-sair">
-                    <a href="loggout">
-                        Sair
-                        <span class="sr-only"></span>
-                    </a>
                 </li>
             </ul>
         </div> <!-- Collapse da navbar -->

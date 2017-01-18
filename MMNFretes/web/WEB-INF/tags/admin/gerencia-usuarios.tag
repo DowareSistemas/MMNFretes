@@ -1,9 +1,9 @@
-<article id="pagamentos-admin">
+<article id="gerencia-usuarios">
     <div class="row">    
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h2 class="text-center">Pagamentos</h2>
+                    <h2 class="text-center">Transportadoras</h2>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -26,17 +26,17 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Cliente</th>
-                                        <th>Transportador</th>
-                                        <th>Data</th>
-                                        <th>Status</th>
-                                        <th>Token (E)</th>
-                                        <th>Token (R)</th>
-                                        <th>Valor (R$)</th>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>ANTT</th>
+                                        <th>CNPJ</th>
+                                        <th>Plano</th>
+                                        <th>Ativo</th>
+                                        <th>Débito</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tabela-pagamentos">
+                                <tbody id="tabela-gerencia-transportadoras">
 
                                 </tbody>
                             </table>

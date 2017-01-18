@@ -10,6 +10,7 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes"%>
 <%@taglib tagdir="/WEB-INF/tags/admin/" prefix="admin"%>
+<%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,10 +21,10 @@
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
         <link href="resources/css/criarconta-entrar.css" rel="stylesheet" media="screen">
-        <title>JSP Page</title>
+        <title>Administrador - GC Fretes</title>
     </head>
     <body>
-        <body>
+    <body>
         <div class="container-fluid">
             <header>
                 <my-tags:navbar redireciona_perfil="true"/>
@@ -33,8 +34,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel-aside">
-                                <button class="btn btn-primary btn-block" type="button" id="">Pagamentos</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="">Cadastro</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnPagamentos">Pagamentos</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnFinanceiro">Financeiro</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnGerencia-usuarios">Usuários</button><br>
                             </div>
                         </div>
                     </div>
@@ -44,7 +46,8 @@
                 <div class="aside-fixed-main">
                     <!-- Conteúdo da página -->
                     <admin:pagamentos/>
-                    
+                    <admin:Financeiro/>
+                    <admin:gerencia-usuarios/>
                 </div>
             </main>
             <footer>
@@ -57,6 +60,8 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/jquery-mask.js"></script>
+        <script src="resources/js/mascaras.js"></script>
         <!-- Scripts de login 
         ========================================================================================= -->
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>

@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
+<%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,7 @@
         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
-        <title>Login-MMN Fretes</title>  
+        <title>Cadastre-se - GC Fretes</title>  
     </head>
 
     <body>
@@ -23,7 +24,7 @@
         <div class="container-fluid">
             <header>
                 <my-tags:navbar redireciona_perfil="true"/>
-                <my-tags:mensagem-ok id="msgUsuarioExiste" id_btnOK="btnUsrExstOK" mensagem="Já existe um usuário com o email informado. Informe outro email"/>
+                <backend:mensagem-ok id="msgUsuarioExiste" id_btnOK="btnUsrExstOK" mensagem="Já existe um usuário com o email informado. Informe outro email"/>
             </header>
             <main>
                 <div class="row">
@@ -51,7 +52,7 @@
                     <div class="col-md-8">
                         <my-tags:sobre/>
                     </div>
-                    <my-tags:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
+                    <backend:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
                 </div>
             </main>
             <footer>

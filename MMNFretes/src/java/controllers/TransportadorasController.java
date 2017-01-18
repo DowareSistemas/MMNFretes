@@ -49,6 +49,11 @@ import util.Util;
 @Controller
 public class TransportadorasController
 {
+    @RequestMapping("lancamentos")
+    public String redirectLancamentos()
+    {
+        return "lancamentos";
+    }
 
     @RequestMapping("uploadimgperfil")
     public @ResponseBody
@@ -94,6 +99,9 @@ public class TransportadorasController
     {
         Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogado");
 
+        if(usuario.isAdmin())
+            return new ModelAndView("redirect:admin");
+        
         if (!Util.isUsuario(usuario))
         {
             List<Tipo_carga> tipos_carga = new ArrayList<Tipo_carga>();

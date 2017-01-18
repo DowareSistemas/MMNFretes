@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/areatransportador" prefix="areatransportador"%>
+<%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +18,7 @@
         <link href="resources/css/bootstrap-theme.css" rel="stylesheet" media="screen">
         <link href="resources/css/estilo.css" rel="stylesheet" media="screen">
         <link href="resources/css/criarconta-entrar.css" rel="stylesheet" media="screen">
-        <title>JSP Page</title>
+        <title>Transportador - GC Fretes</title>
     </head>
     <body>
         <div class="container-fluid">
@@ -48,24 +49,24 @@
                     <areatransportador:perfil-areatransportador/>
                     <areatransportador:veiculos-areatransportador/>
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-input id="alterarSenha"
+                    <backend:mensagem-input id="alterarSenha"
                                             id_btnConfirmar="btnConfirmarSenha"
                                             id_input="txSenhaDigitada"
                                             titulo="Confirmar senha"
                                             type_input="password" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-ok id="senhaIncorreta" 
+                    <backend:mensagem-ok id="senhaIncorreta" 
                                          id_btnOK="btnSenhaIncorreta"
                                          mensagem="As senhas não coincidem!" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-ok id="valid-campos"
+                    <backend:mensagem-ok id="valid-campos"
                                          mensagem="Existem campos não preenchidos!" />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-ok id="valid-exclusao" 
+                    <backend:mensagem-ok id="valid-exclusao" 
                                          mensagem="Não é possível excluír este veículo. Ele está relacionado a uma ou mais cotações ou possui algum histórico de frete." />
                     <!-- Dinâmica da página -->
-                    <my-tags:mensagem-sim-nao/>
-                    <my-tags:detalhes-cotacao-transportador/>
+                    <backend:mensagem-sim-nao/>
+                    <backend:detalhes-cotacao-transportador/>
                 </div>
             </main>
             <footer>

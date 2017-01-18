@@ -7,7 +7,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-12 form-group">
+                        <div class="col-sm-8 form-group">
                             <div id="custom-search-input">
                                 <div class="input-group">
                                     <input type="text" class="form-control campo-btn-busca" placeholder="Buscar por cliente, veículo ou forma de pagamento" />
@@ -18,6 +18,24 @@
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label>
+                                <select class="form-control pull-right">
+                                    <option>Selecione</option>
+                                    <option>Perto</option>
+                                    <option>Longe</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label>
+                                <select class="form-control pull-right">
+                                    <option>Selecione</option>
+                                    <option>Maior Valor</option>
+                                    <option>Menor Valor</option>
+                                </select>
+                            </label>
                         </div>
                     </div>
                     <div class="row">

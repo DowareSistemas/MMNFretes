@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>
-                                <input type="checkbox"> Li e concordo com os termos de uso! <a href="" title="Termos de uso">Termos de uso</a>.
+                                <input type="checkbox" required> Li e concordo com os termos de uso! <a href="" title="Termos de uso">Termos de uso</a>.
                             </label>
                         </div>
                     </div>

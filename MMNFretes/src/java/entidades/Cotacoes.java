@@ -30,7 +30,8 @@ import java.io.InputStream;
             @NamedQuery(queryName = "deletaCotacoesRestantes",
                     queryValue = "delete from cotacoes where grupo_cotacoes_id = ? and id <> ?"),
 
-            @NamedQuery(queryName = "deletaGrupos", queryValue = "delete from grupos_cotacoes where id = ?")
+            @NamedQuery(queryName = "deletaGrupos",
+                    queryValue = "delete from grupos_cotacoes where id = ?")
         })
 public class Cotacoes extends Entity
 {

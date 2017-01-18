@@ -162,7 +162,7 @@ public class PagseguroController
         try
         {
             consultaNotificacao(nCode);
-            
+
         }
         catch (Exception ex)
         {
@@ -197,26 +197,20 @@ public class PagseguroController
             cotacao.setToken_envio(verificaToken(session));
             cotacao.setToken_resposta(verificaToken(session));
             session.update(cotacao);
-            
+
             EmailController emailC = EmailController.getInstance();
             emailC.clientePagouFrete(cotacao);
             emailC.instrucoesTransportador(cotacao);
-            
+
             Query q = session.createQuery(cotacao, "@deletaCotacoesRestantes");
             q.setCommit_mode(COMMIT_MODE.MANUAL);
             q.setParameter(1, cotacao.getGrupo_cotacoes_id());
             q.setParameter(2, cotacao.getId());
             q.execute();
-            
-            q = session.createQuery(cotacao, "@deletaGrupos");
-            q.setParameter(1, cotacao.getGrupo_cotacoes_id());
-            q.execute();
         }
 
         if (transaction.getStatus() == TransactionStatus.CANCELLED)
-        {
             session.delete(cotacao);
-        }
 
         session.commit();
         session.close();

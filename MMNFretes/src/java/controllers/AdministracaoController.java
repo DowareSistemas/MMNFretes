@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import entidades.Usuarios;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,9 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author emers
  */
 @Controller
-public class AdministracaoController {
+public class AdministracaoController
+{
+
     @RequestMapping("/admin")
-    public String redireciona(){
-        return "admin";
+    public String redireciona(HttpSession httpSession)
+    {
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        if(usuario == null)
+            return "redirect:login";
+        return (usuario.isAdmin()
+                ? "admin"
+                : "redirect:login");
     }
 }
