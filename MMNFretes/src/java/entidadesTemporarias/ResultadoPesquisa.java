@@ -24,7 +24,7 @@ public class ResultadoPesquisa
 
     public ResultadoPesquisa(Veiculos veiculo, int av_posit, double preco, String foto)
     {
-        av_negativas = new ArrayList<Integer>();
+        av_positivas = new ArrayList<Integer>();
         av_negativas = new ArrayList<Integer>();
 
         for (int i = 0; i < av_posit; i++)
@@ -32,7 +32,19 @@ public class ResultadoPesquisa
             av_positivas.add(i);
         }
 
-        int negativas = (Math.round(av_posit) - 5);
+        int negativas = 0;
+
+        if (av_positivas.isEmpty())
+            negativas = 5;
+        else if (av_posit == 4)
+            negativas = 1;
+        else if(av_posit == 3)
+            negativas = 2;
+        else if(av_posit == 2)
+            negativas = 3;
+        else if(av_posit == 1)
+            negativas = 4;
+
         for (int i = 0; i < negativas; i++)
         {
             av_negativas.add(i);

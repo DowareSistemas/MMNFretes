@@ -40,7 +40,7 @@
         </td>
 
         <td>
-            <c:if test="${contacao.status eq 1}">
+            <c:if test="${cotacao.status eq 1}">
                 <a type="button" class="btn btn-primary btn-sm btn-xs" onclick="aprovaItemCotacao(${cotacao.id})"> Aprovar </a>
                 <a type="button" class="btn btn-danger btn-sm btn-xs" onclick="reprovaItemCotacao(${cotacao.id})"> Recusar </a>
             </c:if>

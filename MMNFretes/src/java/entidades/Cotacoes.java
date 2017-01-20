@@ -28,7 +28,10 @@ import java.io.InputStream;
                     queryValue = "update cotacoes set status = ? where grupo_cotacoes_id = ?"),
 
             @NamedQuery(queryName = "deletaCotacoesRestantes",
-                    queryValue = "delete from cotacoes where grupo_cotacoes_id = ? and id <> ?")
+                    queryValue = "delete from cotacoes where grupo_cotacoes_id = ? and id <> ?"),
+
+            @NamedQuery(queryName = "deletaGrupos",
+                    queryValue = "delete from grupos_cotacoes where id = ?")
         })
 public class Cotacoes extends Entity
 {

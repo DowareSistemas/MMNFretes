@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <p> 
+                Sr. transportador,
+                o cliente {nome_cliente} efetuou o pagamento do frete
+                e aguarda pela entrega da sua mercadoria.
+                
+                Assim que chegar no local de entrega, voce deve procurar seu cliente,
+                ou alguem responsável pelo pedido, e deve apresentar o seguinte 
+                token
+            </p>
+            
+            <h5> Token de entrega: </h5>
+            <h2>{token_envio}</h2>
+            
+            <p>
+                 Voce deve solicitar ao responsável pelo pedido entre no site GC Fretes,
+                 vá até a negociação e clique em "Confirmar entrega".
+                 
+                 Será solicitado que o mesmo informe o token acima e como confirmação da
+                 entrega, vamos liberar um token de resposta, que é o seguinte:
+            </p>
+            
+            <h5> Token de confirmação: </h5>
+            <h2>{token_resposta}</h2>
+            
+            <h1> Atencão </h1>
+            <p>
+                Você não deve informar o token acima para o responsável do pedido.
+                Ao contrário, VOCÊ deve EXIGIR que o mesmo o informe, após ter feito a confirmação em nosso site.
+                
+                Com esse procedimento, temos a confirmação do cliente que a mercadoria foi entregue,
+                garantindo a segurança entre as partes envolvidas.
+            </p>
+        </div>
+    </body>
+</html>
