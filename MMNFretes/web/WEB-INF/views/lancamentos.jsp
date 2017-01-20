@@ -28,120 +28,67 @@
                 <pesquisarfretes:criarconta-entrar/>
                 <pesquisarfretes:pesquisar-mapa/>
             </header>
-            <aside>
-                <div class="aside-fixed">
+            <main>
+                <section>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="panel-aside">
-                                <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
-                                <!-- Filtro de pesquisa: Veículos -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
-                                    Veículos 
-                                </button><br>
-                                <div class="collapse" id="veiculos">
-                                    <div class="thumbnail">
-                                        <pesquisarfretes:filtro-veiculos-pesados/>
-                                        <pesquisarfretes:filtro-veiculos-medios/>
-                                        <pesquisarfretes:filtro-veiculos-leves/>
-                                    </div>
-                                </div>
-                                <!-- Filtro de pesquisa: Carrocerias -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
-                                    Carrocerias 
-                                </button><br>
-                                <div class="collapse" id="Carrocerias">
-                                    <div class="thumbnail">
-                                        <pesquisarfretes:filtro-carrocerias/>
-                                    </div>
-                                </div>
-                                <!-- Filtro de pesquisa: Rastreador -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
-                                    Rastreador 
-                                </button><br>
-                                <div class="collapse" id="Rastreador">
-                                    <div class="thumbnail">
-                                        <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                        <pesquisarfretes:filtro-rastreador/>
-                                    </div>
-                                </div>
-                                <!-- Filtro de pesquisa: Formas de Pagamento -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
-                                    Formas de Pagamento 
-                                </button><br>
-                                <div class="collapse" id="Formas-de-Pagamento">
-                                    <div class="thumbnail">
-                                        <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                        <pesquisarfretes:filtro-formas-pag/>
-                                    </div>
-                                </div>
+                        <div class="col-sm-12 ">
+                            <div class="alert alert-info fade in">
+                                <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
+                                Saiba mais informações<a href=""> clicando aqui!</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </aside>
-            <main>
-                <div class="aside-fixed-main">
-                    <section>
-                        <div class="row">
-                            <div class="col-sm-12 ">
-                                <div class="alert alert-info fade in">
-                                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
-                                    Saiba mais informações<a href=""> clicando aqui!</a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <%--Resultados dos Lançamentos--%>
-                    <article>
-                        <div class="row">
-                            <div class="col-sm-12 ">
-                                <div class="panel panel-primary">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h3>Nome do Cliente:</h3><br>
-                                                <strong>João das Coves</strong>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h3>Rota:</h3><br>
-                                                <strong>Aproximadamente: 00,00 Km</strong><br> 
-                                                Endereço de origem: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
-                                                Endereço de destino: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h3>Carga:</h3><br>
-                                                <strong>
-                                                    Dimensões:<br>
-                                                    Comprimento:<br>
-                                                    Altura:<br>
-                                                    Largura:<br>
-                                                    Peso:<br>
-                                                    Quantidade de volumes:<br>
-                                                    Descrição:<br>
-                                                </strong>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h3>Veículo:</h3><br>
-                                                Tipo de veículo:<br>
-                                                Carroceria:<br>
-                                                Rastreador:<br>
-                                                Forma de Pagamento:<br>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="button" class="btn btn-info" value="+ Informações">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="button" class="btn btn-primary pull-right" value="Adicionar">
-                                            </div>
+                </section>
+                <%--Resultados dos Lançamentos--%>
+                <article>
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h3>Nome do Cliente:</h3><br>
+                                            <strong>João das Coves</strong>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h3>Rota:</h3><br>
+                                            <strong>Aproximadamente: 00,00 Km</strong><br> 
+                                            Endereço de origem: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
+                                            Endereço de destino: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h3>Carga:</h3><br>
+                                            <strong>
+                                                Dimensões:<br>
+                                                Comprimento:<br>
+                                                Altura:<br>
+                                                Largura:<br>
+                                                Peso:<br>
+                                                Quantidade de volumes:<br>
+                                                Descrição:<br>
+                                            </strong>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h3>Veículo:</h3><br>
+                                            Tipo de veículo:<br>
+                                            Carroceria:<br>
+                                            Rastreador:<br>
+                                            Forma de Pagamento:<br>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="button" class="btn btn-info" value="+ Informações">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="button" class="btn btn-primary pull-right" value="Adicionar">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </article>
-                    <!--Fim-->
-                </div>
+                    </div>
+                </article>
+                <!--Fim-->
             </main>
             <footer>
 
