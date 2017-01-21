@@ -19,24 +19,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-2 form-group">
-                            <label>
-                                <select class="form-control pull-right">
-                                    <option>Selecione</option>
-                                    <option>Perto</option>
-                                    <option>Longe</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="col-sm-2 form-group">
-                            <label>
-                                <select class="form-control pull-right">
-                                    <option>Selecione</option>
-                                    <option>Maior Valor</option>
-                                    <option>Menor Valor</option>
-                                </select>
-                            </label>
-                        </div>
+                        <!--                        Filtros para posteriores atualizações-->
+                        <!--                        <div class="col-sm-2 form-group">
+                                                    <label>
+                                                        <select class="form-control pull-right">
+                                                            <option>Selecione</option>
+                                                            <option>Perto</option>
+                                                            <option>Longe</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-2 form-group">
+                                                    <label>
+                                                        <select class="form-control pull-right">
+                                                            <option>Selecione</option>
+                                                            <option>Maior Valor</option>
+                                                            <option>Menor Valor</option>
+                                                        </select>
+                                                    </label>
+                                                </div>-->
                     </div>
                     <div class="row">
                         <div class="col-sm-12 table-overflow">

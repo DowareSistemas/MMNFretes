@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
+<%@taglib tagdir="/WEB-INF/tags/login/" prefix="login"%>
 <%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <!DOCTYPE html>
 <html>
@@ -44,13 +45,14 @@
                                         <button type="button" class="btn btn-block btn-default text-uppercase" id="transportador">Transportador</button>
                                     </div>
                                 </div><br>
-                                <my-tags:form-usuario/>
-                                <my-tags:form-transportadora/>
+                                <login:form-usuario/>
+                                <login:form-transportadora/>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <my-tags:sobre/>
+                        <login:sobre/>
+                        <login:singup_pay/>
                     </div>
                     <backend:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
                 </div>
