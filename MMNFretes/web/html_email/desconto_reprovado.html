@@ -1,18 +1,109 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!DOCTYPE html PUBLIC>
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- The character set should be utf-8 -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:500" rel="stylesheet">
+        <style>
+            body {
+                background-color: #f3f3f3;
+            }
+            h1 {
+                font-size: 36px; }
+
+            h2 {
+                font-size: 30px; }
+
+            h3 {
+                font-size: 24px; }
+
+            h4 {
+                font-size: 18px; }
+
+            h5 {
+                font-size: 14px; }
+
+            h6 {
+                font-size: 12px; }
+            a:link, a:visited {
+                color: #3a9ad5;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            a:hover, a:active {
+                color: #00a79d;
+            }
+            header {
+                position: absolute; 
+                top: 0px;
+                width: 100%;
+            }
+            main {
+                position: absolute;
+                width: 100%;
+                top: 35%;
+                margin-left: -8px;
+            }
+            footer {
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+            }
+            img {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                margin-top: 15px;
+                margin-left: -50px;
+                left: 50%;
+            }
+        </style>
     </head>
+
     <body>
-        <div>
-            <h1> {transportadora} reprovou a solicitacao de desonto </h1>
-        </div>
+        <header style="font-family: 'Roboto', sans-serif;">
+            <img src="img/gc fretes.png">
+            <h4 style="text-align: center; margin: 15px; margin-top: 130px; color: #00a79d;">
+                Gestão Compartilhada de Fretes
+            </h4>
+        </header>
+        <main style="color: #333;">
+            <h2 style="text-align: center;
+                margin: 15px; 
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400; 
+                font-style: normal;">
+                Desculpe, mas á <strong>{transportadora}</strong> discorda da redução do valor.
+            </h2>
+            <h5 style="margin: 15px;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400;
+                font-style: normal;">
+                Código: <strong>{id_cotacao}</strong>
+            </h5>
+            <h5 style="margin: 15px; 
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400;
+                font-style: normal;">
+                Data do pagamento: <strong>{data}</strong>
+            </h5>
+        </main>
+        <footer style="color: #888;">
+            <h5 style="margin: 15px; 
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 700;
+                font-style: normal;">
+                Atenciosamente equipe da GC Fretes!
+            </h5>
+            <h6 style="text-align: center;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400;
+                margin: 15px; 
+                padding: 15px;">
+                Em caso de qualquer dúvida, fique à vontade para nos contatar no <a href="atendimento@gcfretes.com.br"><strong>atendimento@gcfretes.com.br</strong></a>.
+            </h6> 
+        </footer>
     </body>
 </html>

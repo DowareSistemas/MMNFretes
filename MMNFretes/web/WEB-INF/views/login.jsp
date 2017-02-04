@@ -29,33 +29,32 @@
             </header>
             <main>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-md-12">
+                    <article>
+                        <div class="col-md-4">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <div class="col-sm-12 form-group">
                                         <h1 class="text-center">Criar conta</h1>
+                                        <ul class="nav nav-tabs nav-justified">
+                                            <li class="active"><a data-toggle="tab" id="usuario">Cliente</a></li>
+                                            <li><a data-toggle="tab" id="transportador">Transportador</a></li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="button" class="btn btn-block btn-default text-uppercase" id="usuario">Usuário</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" class="btn btn-block btn-default text-uppercase" id="transportador">Transportador</button>
-                                    </div>
-                                </div><br>
-                                <login:form-usuario/>
-                                <login:form-transportadora/>
+                                <div class="panel-body">
+                                    <login:form-usuario/>
+                                    <login:form-transportadora/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        <login:sobre/>
-                        <login:singup_pay/>
-                    </div>
-                    <backend:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
+                    </article>
+                    <section>
+                        <div class="col-md-8">
+                            <login:sobre/>
+                        </div>
+                    </section>
                 </div>
+                <backend:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
             </main>
             <footer>
 
