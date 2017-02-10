@@ -80,14 +80,15 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/jquery-mask.js"></script>
+        <script src="resources/js/mascaras.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/avaliacoes.js"></script>
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/enderecos.js"></script>
         <script src="resources/js/historico.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>
-        <script src="resources/js/jquery-mask.js"></script>
-        <script src="resources/js/mascaras.js"></script>
+        <script src="resources/js/lancamentos.js"></script>
         <script src="resources/js/mensagens.js"></script>
     </body>
 </html>

@@ -13,14 +13,14 @@
                             <label>CEP Origem:</label>
                             <div class="form-group input-group">
                                 <span class="btn input-group-addon" id="btnPesquisaCepOrigem" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                <input type="number" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
+                                <input type="text" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <label>CEP Destino:</label>
                             <div class="form-group input-group">
                                 <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                <input type="number" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
+                                <input type="text" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
                             </div>
                         </div>
                     </div>
@@ -28,31 +28,31 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-4">
                             <label>Comprimento:</label>
-                            <input type="number" class="form-control">
+                            <input type="text" name="comprimento" id="txComprimento" class="form-control">
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <label>Altura:</label>
-                            <input type="number" class="form-control">
+                            <input type="text" name="altura" id="txAltura" class="form-control">
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <label>Largura:</label>
-                            <input type="number" class="form-control">
+                            <input type="text" name="largura" id="txLargura" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-md-4">
                             <label>Peso:</label>
-                            <input type="number" class="form-control">
+                            <input type="text" name="peso" id="txPeso" class="form-control">
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <label>Volumes:</label>
-                            <input type="number" class="form-control">
+                            <input type="text" name="volumes" id="txVolumes" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <label>Descrição:</label>
-                            <textarea rows="5" class="form-control"></textarea>
+                            <textarea rows="5" name="observacoes" id="txObs" class="form-control"></textarea>
                         </div>
                     </div>
                     <h3>Veículo</h3>
@@ -87,35 +87,29 @@
                                     <pesquisarfretes:filtro-rastreador/>
                                 </div>
                             </div>
-                            <!-- Filtro de pesquisa: Formas de Pagamento -->
-                            <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
-                                Formas de Pagamento 
-                            </button><br>
-                            <div class="collapse" id="Formas-de-Pagamento">
-                                <div class="thumbnail">
-                                    <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                    <pesquisarfretes:filtro-formas-pag/>
-                                </div>
-                            </div>
                         </div>
+                        <input type="button" class="btn btn-primary" id="btnSalvar-lancamento" value="Salvar"/>
                     </div>
+
+
                 </form>
                 <h3>Lista Lançamentos</h3>
                 <div class="table-overflow">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Status</th>
-                                <th>Transportador</th>
-                                <th>Data</th>
-                                <th>Veículo</th>
-                                <th>Pagamento</th>
-                                <th>Valor</th>
-                                <th></th>
+                                <th>ID</th>
+                                <th>CEP Origem</th>
+                                <th>CEP Destino</th>
+                                <th>Comprimento</th>
+                                <th>Altura</th>
+                                <th>Largura</th>
+                                <th>Volumes</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody id="tabela-lancamentos">
+
+                        </tbody>
                     </table>
                 </div>
             </div>

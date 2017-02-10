@@ -28,57 +28,7 @@
                 <pesquisarfretes:criarconta-entrar/>
                 <pesquisarfretes:pesquisar-mapa/>
             </header>
-            <aside>
-                <div class="aside-fixed">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="panel-aside">
-                                <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
-                                <!-- Filtro de pesquisa: Veículos -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
-                                    Veículos 
-                                </button><br>
-                                <div class="collapse" id="veiculos">
-                                    <div class="thumbnail">
-                                        <pesquisarfretes:filtro-veiculos-pesados/>
-                                        <pesquisarfretes:filtro-veiculos-medios/>
-                                        <pesquisarfretes:filtro-veiculos-leves/>
-                                    </div>
-                                </div>
-                                <!-- Filtro de pesquisa: Carrocerias -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Carrocerias" aria-expanded="false" aria-controls="collapseExample">
-                                    Carrocerias 
-                                </button><br>
-                                <div class="collapse" id="Carrocerias">
-                                    <div class="thumbnail">
-                                        <pesquisarfretes:filtro-carrocerias/>
-                                    </div>
-                                </div>
-                                <!-- Filtro de pesquisa: Rastreador -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Rastreador" aria-expanded="false" aria-controls="collapseExample">
-                                    Rastreador 
-                                </button><br>
-                                <div class="collapse" id="Rastreador">
-                                    <div class="thumbnail">
-                                        <h5 class="text-muted text-uppercase text-center">Veículos com rastreador</h5>
-                                        <pesquisarfretes:filtro-rastreador/>
-                                    </div>
-                                </div>
-                                <!-- Filtro de pesquisa: Formas de Pagamento -->
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#Formas-de-Pagamento" aria-expanded="false" aria-controls="collapseExample">
-                                    Formas de Pagamento 
-                                </button><br>
-                                <div class="collapse" id="Formas-de-Pagamento">
-                                    <div class="thumbnail">
-                                        <h5 class="text-muted text-uppercase text-center">Formas de Pagamento</h5>
-                                        <pesquisarfretes:filtro-formas-pag/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
+
             <main>
                 <div class="aside-fixed-main">
                     <section>
@@ -92,53 +42,62 @@
                             </div>
                         </div>
                     </section>
-                    <%--Resultados dos Lançamentos--%>
+                    <!-- Resultados dos Lançamentos -->
                     <article>
-                        <div class="row">
-                            <div class="col-sm-12 ">
-                                <div class="panel panel-primary">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h3>Nome do Cliente:</h3><br>
-                                                <strong>João das Coves</strong>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h3>Rota:</h3><br>
-                                                <strong>Aproximadamente: 00,00 Km</strong><br> 
-                                                Endereço de origem: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
-                                                Endereço de destino: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h3>Carga:</h3><br>
-                                                <strong>
-                                                    Dimensões:<br>
-                                                    Comprimento:<br>
-                                                    Altura:<br>
-                                                    Largura:<br>
-                                                    Peso:<br>
-                                                    Quantidade de volumes:<br>
-                                                    Descrição:<br>
-                                                </strong>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h3>Veículo:</h3><br>
-                                                Tipo de veículo:<br>
-                                                Carroceria:<br>
-                                                Rastreador:<br>
-                                                Forma de Pagamento:<br>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="button" class="btn btn-info" value="+ Informações">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="button" class="btn btn-primary pull-right" value="Adicionar">
+                        <c:forEach var="oportunidade" items="${oportunidades}">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h3>Nome do Cliente:</h3><br>
+                                                    <strong>${oportunidade.usuarios.nome}</strong>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <h3>Rota:</h3><br>
+                                                    <strong>Aproximadamente: ${oportunidade.distancia} Km</strong><br> 
+
+                                                    <label>Origem: </label>
+                                                    <label class="h5" id="endereco-origem"> 
+                                                        ${oportunidade.cep_origem}
+                                                    </label>
+                                                    <br/>
+                                                    <label>Destino: </label>
+                                                    <label class="h5" id="endereco-destino">
+                                                        ${oportunidade.cep_destino}
+                                                    </label>
+
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <h3>Carga:</h3><br>
+                                                    <strong>
+                                                        Comprimento: ${oportunidade.comprimento}<br>
+                                                        Altura: ${oportunidade.altura}<br>
+                                                        Largura: ${oportunidade.largura}<br>
+                                                        Peso: ${oportunidade.peso}<br>
+                                                        Volumes: ${oportunidade.volumes}<br>
+                                                        Observações:
+                                                    </strong>
+                                                    <textarea class="form-control" readonly="true">${oportunidade.observacoes}</textarea>
+                                                    <br/>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <h3>Valor: R$ 00,00</h3><br>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <input type="button" class="btn btn-info" value="+ Informações">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="button" class="btn btn-primary pull-right" id="btnAdicionar-oportunidade" onclick="adicionaCotacao(${oportunidade.id})" value="Adicionar">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </article>
                     <!--Fim-->
                 </div>
@@ -146,6 +105,12 @@
             <footer>
 
             </footer>
+
+            <backend:mensagem-input id="modal-valor-transportador"
+                                    id_btnConfirmar="btnConfirmaValor"
+                                    id_input="txValor-transportador"
+                                    titulo="Valor do frete"
+                                    type_input="number"/>
         </div>
 
         <!-- Scripts da página 
@@ -163,6 +128,7 @@
         <script src="resources/js/pesquisarfretes.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/maps.js"></script>
+        <script src="resources/js/lancamentos.js"></script>
 
     </body>
 </html>

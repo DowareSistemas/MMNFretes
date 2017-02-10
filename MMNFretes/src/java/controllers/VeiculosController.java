@@ -95,7 +95,7 @@ public class VeiculosController
         {
             Configuracoes config = new ConfiguracoesController().findConfig("foto_path");
             String path = config.getValor();
-            
+
             Veiculos veiculo = get(veiculo_id);
 
             if (veiculo.getId() > 0)
@@ -118,9 +118,9 @@ public class VeiculosController
         }
         catch (Exception ex)
         {
-            logger.newNofication(new PersistenceLog("VeiculosController", 
-                    "getFotoPath", 
-                    Util.getDateTime(), 
+            logger.newNofication(new PersistenceLog("VeiculosController",
+                    "getFotoPath",
+                    Util.getDateTime(),
                     Util.getFullStackTrace(ex), ""));
         }
         return "not_localized";
@@ -174,15 +174,15 @@ public class VeiculosController
     {
         int usuario_id = ((Usuarios) httpSession.getAttribute(("usuarioLogado"))).getId();
         veiculo.setTransportadoras_id(getTransportadora(usuario_id).getId());
-        
+
         Session session = SessionProvider.openSession();
-        
-        if(veiculo.getFoto() == null)
+
+        if (veiculo.getFoto() == null)
         {
             Veiculos v = session.onID(Veiculos.class, veiculo.getId());
             veiculo.setFoto(v.getFoto());
         }
-        
+
         session.update(veiculo);
         session.commit();
         session.close();
@@ -397,5 +397,20 @@ public class VeiculosController
     private Transportadoras getTransportadora(int usuario_id)
     {
         return new TransportadorasController().getByUsuario(usuario_id);
+    }
+
+    public List<Veiculos> getList(HttpSession httpSession)
+    {
+        Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Transportadoras t = getTransportadora(usuarioLogado.getId());
+        Veiculos v = new Veiculos();
+        
+        Session session = SessionProvider.openSession();
+        session.createCriteria(v, RESULT_TYPE.MULTIPLE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "transportadoras_id", t.getId()))
+                .execute();
+        session.close();
+        
+        return session.getList(v);
     }
 }

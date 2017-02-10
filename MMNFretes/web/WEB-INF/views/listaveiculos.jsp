@@ -5,7 +5,7 @@
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags" %>
+<%@taglib tagdir="/WEB-INF/tags/backend/" prefix="my-tags" %>
 
 <c:forEach var="veiculo" items="${veiculos}">
     <my-tags:tabela_veiculos

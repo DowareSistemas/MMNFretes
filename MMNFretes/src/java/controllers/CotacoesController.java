@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
+import util.Util;
 
 /**
  *
@@ -57,7 +58,9 @@ public class CotacoesController
     {
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
-        cotacao.setUsuarios_id(usuarioLogado.getId());
+        if (Util.isUsuario(usuarioLogado))
+            cotacao.setUsuarios_id(usuarioLogado.getId());
+
         cotacao.setGrupo_cotacoes_id(getGrupo_cotacao_em_aberto(usuarioLogado.getId()));
         cotacao.setData(new Date());
 
@@ -457,7 +460,7 @@ public class CotacoesController
 
         session.save(h);
         session.delete(c);
-        
+
         session.commit();
 
         return "1";
