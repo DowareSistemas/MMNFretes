@@ -33,10 +33,11 @@
             <!--Escolha do plano de pagamento do transportador-->
             <div class="form-group col-md-12">
                 <div class="radio">
-                    <label><input type="radio" name="Plano escolhido" id="participativo" required> <strong class="text-primary">Plano participativo:</strong> <strong>10%</strong> do valor do frete realizado.</label>
+                    <label><input type="radio" name="Plano escolhido" id="participativo" required> <strong class="text-primary">Plano participativo: </strong><strong>5% (cinco porcento)</strong> do valor de cada transporte realizado.</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="Plano escolhido" id="mensal" required> <strong class="text-primary">Plano Mensal:</strong> Valor de <strong>R$ 00,00</strong> por mês.</label>
+                    <label><input type="radio" name="Plano escolhido" id="mensal" required>
+                        <strong class="text-primary">Plano Mensal:</strong> Valor pago a cada mês de acordo com a <strong>quantidade e tipo de veículo</strong>. Confira os valores para cada veiculo <a href="#" class="link-panel" title="Valores dos veículos">clicando aqui</a>.</label>
                 </div>
             </div>
             <div class="form-group col-md-12">

@@ -26,61 +26,71 @@
             <header>
                 <my-tags:navbar redireciona_perfil="false"/>
                 <pesquisarfretes:criarconta-entrar/>
-                <pesquisarfretes:pesquisar-mapa/>
             </header>
             <main>
-                <section>
-                    <div class="row">
-                        <div class="col-sm-12 ">
-                            <div class="alert alert-info fade in">
-                                <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                Você poderá negociar valores após finalizar as cotações em sua página, no painel de <strong class="text-uppercase">pendentes</strong>.
-                                Saiba mais informações<a href=""> clicando aqui!</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
                 <%--Resultados dos Lançamentos--%>
                 <article>
                     <div class="row">
-                        <div class="col-sm-12 ">
-                            <div class="panel panel-primary">
+                        <div class="col-xs-12 ">
+                            <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <h3>Nome do Cliente:</h3><br>
-                                            <strong>João das Coves</strong>
+                                        <div class="col-xs-12">
+                                            <p>Origem: <strong class="pull-right">Volta Redonda, RJ</strong></p>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <h3>Rota:</h3><br>
-                                            <strong>Aproximadamente: 00,00 Km</strong><br> 
-                                            Endereço de origem: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
-                                            Endereço de destino: CEP, Bairro / Distrito, Logradouro / Nome, Número, Complemento, Município, UF.<br>
+                                        <div class="col-xs-12">
+                                            <p>Destino: <strong class="pull-right">Barra Mansa, RJ</strong></p>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <h3>Carga:</h3><br>
-                                            <strong>
-                                                Dimensões:<br>
-                                                Comprimento:<br>
-                                                Altura:<br>
-                                                Largura:<br>
-                                                Peso:<br>
-                                                Quantidade de volumes:<br>
-                                                Descrição:<br>
-                                            </strong>
+                                        <div class="col-xs-12">
+                                            <p>Dimensões: <strong class="pull-right">00,00 X 00,00 X 00,00 metros</strong></p>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <h3>Veículo:</h3><br>
-                                            Tipo de veículo:<br>
-                                            Carroceria:<br>
-                                            Rastreador:<br>
-                                            Forma de Pagamento:<br>
+                                        <div class="col-xs-6">
+                                            <p>Peso: <strong class="pull-right">00,00 Kg</strong></p>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <input type="button" class="btn btn-info" value="+ Informações">
+                                        <div class="col-xs-6">
+                                            <p>Volume(s): <strong class="pull-right">00</strong></p>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <input type="button" class="btn btn-primary pull-right" value="Adicionar">
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <select class="form-control">
+                                                    <option>Veículo 1</option>
+                                                    <option>Veículo 2</option>
+                                                    <option>Veículo 3</option>
+                                                </select>                                    
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <h4 class="text-primary text-center" style="margin-top: 10px;"><strong>R$ 0000,00</strong></h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <button class="col-xs-12 btn btn-info" data-toggle="collapse" data-target="#mais-informacoes">Mais Informações</button>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="button" class="col-xs-12 btn btn-primary" value="Adicionar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div id="mais-informacoes" class="collapse">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <h4><strong>João das Coves</strong></h4>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <h4 class="text-right">Distância: <strong>00,00 Km</strong></h4>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <h4>Descrição:</h4>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <p class="text-justify"><!--Desrição do lançamento-->
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                    Curabitur rhoncus justo erat, non accumsan quam facilisis vel. 
+                                                    Sed vel lacus a nulla semper bibendum. Integer rutrum iaculis efficitur. 
+                                                    Duis laoreet urna sem, a pharetra libero aliquam et. 
+                                                    Ut et felis eu lectus vulputate hendrerit quis vitae risus. 
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
