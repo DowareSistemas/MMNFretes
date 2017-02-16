@@ -33,7 +33,7 @@ public class SessionProvider
 
             config.setDb_type(DB_TYPE.PostgreSQL);
             config.setHost("localhost");
-            config.setDatabase("mmn");
+            config.setDatabase("mmn_teste");
             config.setPort(5432);
             config.setUser("postgres");
             config.setPassword("81547686");
