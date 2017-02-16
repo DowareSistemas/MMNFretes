@@ -30,39 +30,38 @@ public class ConfiguracoesController
     public @ResponseBody
     String autentica(
             @RequestParam(value = "usuario") String usuario,
-            @RequestParam(value = "senha")String senha)
-            
+            @RequestParam(value = "senha") String senha)
+
     {
         return (usuario.equals("SYS") && senha.equals("gcsys")
                 ? "1"
                 : "0");
-                
+
     }
-    
+
     @RequestMapping(value = "/updateconfig", produces = "text/html; charset=utf-8", method = RequestMethod.POST)
     public @ResponseBody
     String updateConfig(Configuracoes c)
     {
         Session session = SessionProvider.openSession();
-       
+
         Configuracoes config = session.onID(Configuracoes.class, c.getId());
         config.setValor(c.getValor());
-        
+
         session.update(config);
         session.commit();
         session.close();
-        
+
         return (config.updated
                 ? "1"
                 : "0");
     }
-    
+
     @RequestMapping(value = "/config")
     public ModelAndView redirect()
     {
         Configuracoes configuracoes = new Configuracoes();
         ModelAndView mav = new ModelAndView("config");
-        checkConfig();
 
         Session session = SessionProvider.openSession();
         session.createCriteria(configuracoes, RESULT_TYPE.MULTIPLE)
@@ -70,6 +69,7 @@ public class ConfiguracoesController
         session.close();
 
         mav.addObject("configs", session.getList(configuracoes));
+        mav.addObject("mensagem", checkConfig());
         return mav;
     }
 
@@ -84,43 +84,38 @@ public class ConfiguracoesController
         return config.getDescricao();
     }
 
-    private void checkConfig()
+    public String checkConfig()
     {
         Session session = SessionProvider.openSession();
-        if (session.count(Configuracoes.class, "") == 0)
-        {
-            Configuracoes config = new Configuracoes();
-
-            config.setConfig("log_path");
-            config.setDescricao("Diretório onde serão gerados os arquivos de log do sistema");
-
-            session.save(config);
-
-            config.setConfig("foto_path");
-            config.setDescricao("Diretório onde serão armazenadas as fotos dos veículos do sistema.");
-            
-            session.save(config);
-            
-            config.setConfig("html_path");
-            config.setDescricao("Local onde serão armazenados os arquivos html a serem enviados como email");
-            
-            session.save(config);
-            
-            session.commit();
-        }
+        
+        if(session.count(Configuracoes.class, "config = 'log_path'") == 0)
+            session.createQuery(new Configuracoes(), "@log_path").execute();
+        
+        if(session.count(Configuracoes.class, "config = 'foto_path'") == 0)
+            session.createQuery(new Configuracoes(), "@foto_path").execute();
+        
+        if(session.count(Configuracoes.class, "config = 'html_path'") == 0)
+            session.createQuery(new Configuracoes(), "@html_path").execute();
+        
+        if(session.count(Configuracoes.class, "config = 'versao'") == 0)
+            session.createQuery(new Configuracoes(), "@versao").execute();
+        
+        session.commit();
         session.close();
+        
+        return Update.check();
     }
-    
+
     public Configuracoes findConfig(String config)
     {
         Configuracoes configuracoes = new Configuracoes();
-        
+
         Session session = SessionProvider.openSession();
         session.createCriteria(configuracoes, RESULT_TYPE.UNIQUE)
                 .add(Restrictions.eq(FILTER_TYPE.WHERE, "config", config))
                 .execute();
         session.close();
-        
+
         return configuracoes;
     }
 }

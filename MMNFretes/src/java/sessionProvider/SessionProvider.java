@@ -10,6 +10,7 @@ import br.com.persistor.generalClasses.DBConfig;
 import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.SessionFactory;
+import controllers.Update;
 import logging.PersistenceLoggerImpl;
 
 /**
@@ -39,6 +40,7 @@ public class SessionProvider
             config.setMaxStatements(1000);
             config.setPersistenceLogger(PersistenceLoggerImpl.class);
             
+            
             /*
             config.setDb_type(DB_TYPE.PostgreSQL);
             config.setHost("localhost");
@@ -51,6 +53,7 @@ public class SessionProvider
             /*
             xK$dn,=1QtON
              */
+            
             return factory.getSession(config);
         }
         catch (Exception ex)

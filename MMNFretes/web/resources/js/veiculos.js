@@ -1,3 +1,5 @@
+/* global callback */
+
 var id = 0;
 
 $(document).ready(function ()
@@ -104,6 +106,7 @@ function carregarVeiculo(id_veiculo)
         accepts: 'json',
         success: function (veiculo)
         {
+           $('html, body').animate({scrollTop: '0px'}, 300);
             id = veiculo.id;
             $('#formulario-info-veiculo').attr('action', '/gcfretes/alteraveiculo');
             $('#txID').val(id);

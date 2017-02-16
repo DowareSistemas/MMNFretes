@@ -21,7 +21,8 @@
 
         <div class="container">
             <div class="col-md-6">
-                <h2> Configurador </h2>    
+                <h2> Configurador </h2>  
+                <label>${mensagem}</label>
             </div>
 
             <div class="col-md-12" id="div-form">

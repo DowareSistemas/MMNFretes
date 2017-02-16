@@ -1,8 +1,7 @@
 /* 28/09/2016 20:45:22 */
-/* AUTO-GENERATED CLASS */
-/* DOES NOT ADD ACCESSOR METHODS */
-/* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
-
+ /* AUTO-GENERATED CLASS */
+ /* DOES NOT ADD ACCESSOR METHODS */
+ /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
 package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
@@ -22,162 +21,175 @@ import java.io.InputStream;
  */
 public class Historico extends Entity
 {
-   private int id; 
-   private String cep_origem; 
-   private String cep_destino; 
-   private double distancia; 
-   private Date data; 
-   private double valor; 
-   private int transportadoras_id; 
-   private Transportadoras transportadoras; 
-   private int veiculos_id; 
-   private Veiculos veiculos; 
-   private int usuarios_id; 
-   private Usuarios usuarios; 
-   private int avaliacoes_id; 
-   private Avaliacoes avaliacoes; 
 
-   public void setId(int id)
-   {
-       this.id = id;
-   }
+    private int id;
+    private String cep_origem;
+    private String cep_destino;
+    private double distancia;
+    private Date data;
+    private double valor;
+    private int transportadoras_id;
+    private Transportadoras transportadoras;
+    private int veiculos_id;
+    private Veiculos veiculos;
+    private int usuarios_id;
+    private Usuarios usuarios;
+    private int avaliacoes_id;
+    private Avaliacoes avaliacoes;
+    private String token_consulta;
 
-   @PrimaryKey(increment = INCREMENT.MANUAL)
-   public int getId()
-   {
-       return id;
-   }
+    public String getToken_consulta()
+    {
+        return token_consulta;
+    }
 
-   public void setCep_origem(String cep_origem)
-   {
-       this.cep_origem = cep_origem;
-   }
+    public void setToken_consulta(String token_consulta)
+    {
+        this.token_consulta = token_consulta;
+    }
 
-   public String getCep_origem()
-   {
-       return cep_origem;
-   }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
-   public void setCep_destino(String cep_destino)
-   {
-       this.cep_destino = cep_destino;
-   }
+    @PrimaryKey(increment = INCREMENT.MANUAL)
+    public int getId()
+    {
+        return id;
+    }
 
-   public String getCep_destino()
-   {
-       return cep_destino;
-   }
+    public void setCep_origem(String cep_origem)
+    {
+        this.cep_origem = cep_origem;
+    }
 
-   public void setDistancia(double distancia)
-   {
-       this.distancia = distancia;
-   }
+    public String getCep_origem()
+    {
+        return cep_origem;
+    }
 
-   public double getDistancia()
-   {
-       return distancia;
-   }
+    public void setCep_destino(String cep_destino)
+    {
+        this.cep_destino = cep_destino;
+    }
 
-   public void setData(Date data)
-   {
-       this.data = data;
-   }
+    public String getCep_destino()
+    {
+        return cep_destino;
+    }
 
-   public Date getData()
-   {
-       return data;
-   }
+    public void setDistancia(double distancia)
+    {
+        this.distancia = distancia;
+    }
 
-   public void setValor(double valor)
-   {
-       this.valor = valor;
-   }
+    public double getDistancia()
+    {
+        return distancia;
+    }
 
-   public double getValor()
-   {
-       return valor;
-   }
+    public void setData(Date data)
+    {
+        this.data = data;
+    }
 
+    public Date getData()
+    {
+        return data;
+    }
 
-   public void setTransportadoras(Transportadoras transportadoras)
-   {
-       this.transportadoras = transportadoras;
-   }
-   public void setTransportadoras_id(int transportadoras_id)
-   {
-       this.transportadoras_id = transportadoras_id;
-   }
+    public void setValor(double valor)
+    {
+        this.valor = valor;
+    }
 
-   public int getTransportadoras_id()
-   {
-       return transportadoras_id;
-   }
+    public double getValor()
+    {
+        return valor;
+    }
 
-   @OneToOne(source = "transportadoras_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Transportadoras getTransportadoras()
-   {
-       return transportadoras;
-   }
+    public void setTransportadoras(Transportadoras transportadoras)
+    {
+        this.transportadoras = transportadoras;
+    }
 
+    public void setTransportadoras_id(int transportadoras_id)
+    {
+        this.transportadoras_id = transportadoras_id;
+    }
 
-   public void setVeiculos(Veiculos veiculos)
-   {
-       this.veiculos = veiculos;
-   }
-   public void setVeiculos_id(int veiculos_id)
-   {
-       this.veiculos_id = veiculos_id;
-   }
+    public int getTransportadoras_id()
+    {
+        return transportadoras_id;
+    }
 
-   public int getVeiculos_id()
-   {
-       return veiculos_id;
-   }
+    @OneToOne(source = "transportadoras_id", target = "id", load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+    public Transportadoras getTransportadoras()
+    {
+        return transportadoras;
+    }
 
-   @OneToOne(source = "veiculos_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Veiculos getVeiculos()
-   {
-       return veiculos;
-   }
+    public void setVeiculos(Veiculos veiculos)
+    {
+        this.veiculos = veiculos;
+    }
 
+    public void setVeiculos_id(int veiculos_id)
+    {
+        this.veiculos_id = veiculos_id;
+    }
 
-   public void setUsuarios(Usuarios usuarios)
-   {
-       this.usuarios = usuarios;
-   }
-   public void setUsuarios_id(int usuarios_id)
-   {
-       this.usuarios_id = usuarios_id;
-   }
+    public int getVeiculos_id()
+    {
+        return veiculos_id;
+    }
 
-   public int getUsuarios_id()
-   {
-       return usuarios_id;
-   }
+    @OneToOne(source = "veiculos_id", target = "id", load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+    public Veiculos getVeiculos()
+    {
+        return veiculos;
+    }
 
-   @OneToOne(source = "usuarios_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Usuarios getUsuarios()
-   {
-       return usuarios;
-   }
+    public void setUsuarios(Usuarios usuarios)
+    {
+        this.usuarios = usuarios;
+    }
 
-   public void setAvaliacoes(Avaliacoes avaliacoes)
-   {
-       this.avaliacoes = avaliacoes;
-   }
-   public void setAvaliacoes_id(int avaliacoes_id)
-   {
-       this.avaliacoes_id = avaliacoes_id;
-   }
+    public void setUsuarios_id(int usuarios_id)
+    {
+        this.usuarios_id = usuarios_id;
+    }
 
-   public int getAvaliacoes_id()
-   {
-       return avaliacoes_id;
-   }
+    public int getUsuarios_id()
+    {
+        return usuarios_id;
+    }
 
-   @OneToOne(source = "avaliacoes_id", target = "id" , load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
-   public Avaliacoes getAvaliacoes()
-   {
-       return avaliacoes;
-   }
+    @OneToOne(source = "usuarios_id", target = "id", load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+    public Usuarios getUsuarios()
+    {
+        return usuarios;
+    }
+
+    public void setAvaliacoes(Avaliacoes avaliacoes)
+    {
+        this.avaliacoes = avaliacoes;
+    }
+
+    public void setAvaliacoes_id(int avaliacoes_id)
+    {
+        this.avaliacoes_id = avaliacoes_id;
+    }
+
+    public int getAvaliacoes_id()
+    {
+        return avaliacoes_id;
+    }
+
+    @OneToOne(source = "avaliacoes_id", target = "id", load = LOAD.AUTO, join_type = JOIN_TYPE.INNER)
+    public Avaliacoes getAvaliacoes()
+    {
+        return avaliacoes;
+    }
 }
