@@ -51,58 +51,60 @@ public class Update
      */
     private static String up12() throws Exception
     {
-        try
-        {
-            executeSql("CREATE TABLE IF NOT EXISTS oportunidades\n" +
-"(\n" +
-"    id             serial       not null,\n" +
-"    cep_origem     varchar(15)  not null,\n" +
-"    cep_destino    varchar(15)  not null,\n" +
-"    comprimento    varchar(50)  not null  default '',\n" +
-"    altura         varchar(50)  not null  default '',\n" +
-"    largura        varchar(50)  not null  default '',\n" +
-"    peso           varchar(50)  not null  default '',\n" +
-"    volumes        varchar(100) not null  default '',\n" +
-"    observacoes    varchar(300) not null  default '',\n" +
-"    categorias     varchar(50)  not null  default '',\n" +
-"    carrocerias    varchar(50)  not null  default '',\n" +
-"    rastreador     boolean      not null  default true,\n" +
-"    pagseguro      boolean      not null  default true,\n" +
-"    negoc_direta   boolean      not null  default true\n" +
-")");
-            executeSql("alter table cotacoces drop column token_envio");
-            executeSql("alter table cotacoes drop column token_resposta");
-            executeSql("alter table historico add token_consulta varchar(50)");
-
-            executeSql("update configuracoes set valor = '1.2' where config = 'versao'");
-            return "Banco atualizado para a versão 1.2";
-
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Erro ao atualizar para a versão 1.2");
-        }
-    }
-
-    private static void executeSql(String sql) throws Exception
-    {
         Session session = null;
         try
         {
             session = SessionProvider.openSession();
 
-            PreparedStatement ps = session.getActiveConnection().prepareStatement(sql);
-            ps.execute();
-            ps.close();
+            executeSql(session, "CREATE TABLE IF NOT EXISTS oportunidades\n"
+                    + "(\n"
+                    + "    id             int          not null,\n"
+                    + "    cep_origem     varchar(15)  not null,\n"
+                    + "    cep_destino    varchar(15)  not null,\n"
+                    + "    comprimento    varchar(50)  not null  default '',\n"
+                    + "    altura         varchar(50)  not null  default '',\n"
+                    + "    largura        varchar(50)  not null  default '',\n"
+                    + "    peso           varchar(50)  not null  default '',\n"
+                    + "    volumes        varchar(100) not null  default '',\n"
+                    + "    observacoes    varchar(300) not null  default '',\n"
+                    + "    categorias     varchar(50)  not null  default '',\n"
+                    + "    carrocerias    varchar(50)  not null  default '',\n"
+                    + "    rastreador     boolean      not null  default true,\n"
+                    + "    pagseguro      boolean      not null  default true,\n"
+                    + "    negoc_direta   boolean      not null  default true,\n"
+                    + "    \n"
+                    + "    primary key(id)"
+                    + ")");
+            executeSql(session, "alter table cotacoes drop column token_envio");
+            executeSql(session, "alter table cotacoes drop column token_resposta");
+            executeSql(session, "alter table historico add token_consulta varchar(50)");
 
+            executeSql(session, "update configuracoes set valor = '1.2' where config = 'versao'");
+           
             session.commit();
             session.close();
+            return "Banco atualizado para a versão 1.2";
+
         }
         catch (Exception ex)
         {
-            if (session != null)
-                session.close();
+            if(session != null)
+                session.rollback();
+            
+            throw new Exception("Erro ao atualizar para a versão 1.2");
+        }
+    }
 
+    private static void executeSql(Session session, String sql) throws Exception
+    {
+        try
+        {
+            PreparedStatement ps = session.getActiveConnection().prepareStatement(sql);
+            ps.execute();
+            ps.close();
+        }
+        catch (Exception ex)
+        {
             session.getPersistenceLogger()
                     .newNofication(new PersistenceLog(
                             "Update",
