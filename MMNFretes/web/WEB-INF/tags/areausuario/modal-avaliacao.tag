@@ -2,14 +2,19 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Deixe uma avaliação...</h4>
+                <h4 class="modal-title">Confirmar recebimento da carga</h4>
             </div>
             <div class="modal-body">
+                <label>Token de consulta:</label>
+                <h4 class="text-success" id="token_consulta">45845-8</h4>
+                <hr/>
+                <h3>Deixe uma avaliação...</h3>
+                
                 <p class="text-left">
-                    Conte-nos de forma breve sua avaliação sobre e serviço prestado.
+                    Conte-nos de uma forma breve, sua avaliação sobre o serviço prestado.
                     Sua opinião é importante para que nós possamos aprimorar cada vez
                     mais nossos serviços, visando tornar sua experiência com a GC Fretes cada vez
-                    melhor
+                    melhor.
                 </p>
 
                 <label>Classificação:</label>
@@ -20,11 +25,12 @@
                     <span id="str-4" class="glyphicon glyphicon-star-empty"></span>
                     <span id="str-5" class="glyphicon glyphicon-star-empty"></span>
                 </p>
-                
+
                 <label>Comentário:</label>
                 <textarea class="form-control" rows="5" id="txComentario"></textarea>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnFechaModalAvaliacao">Cancelar</button>
                 <button type="button" id="btnEncerraCotacao" class="btn btn-primary" data-dismiss="modal"> OK </button>
             </div>
         </div>

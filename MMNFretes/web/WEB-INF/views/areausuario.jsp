@@ -28,7 +28,7 @@
                                 <button class="btn btn-primary btn-block" type="button" id="tela-enderecos">Endereços</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Lançamentos</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="tela-lancamentos">Lançamentos</button><br>
                             </div>
                         </div>
                     </div>
@@ -43,6 +43,7 @@
                     <areausuario:pendentes-areausuario/>
                     <my-tags:confirmar-recebimento/>
                     <areausuario:modal-avaliacao/>
+                    <areausuario:lancamentos/>
                     <!-- Dinâmica da página -->
                     <backend:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
@@ -79,14 +80,15 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/jquery-mask.js"></script>
+        <script src="resources/js/mascaras.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/avaliacoes.js"></script>
         <script src="resources/js/areausuario.js"></script>
         <script src="resources/js/enderecos.js"></script>
         <script src="resources/js/historico.js"></script>
         <script src="resources/js/modal-centralizado.js"></script>
-        <script src="resources/js/jquery-mask.js"></script>
-        <script src="resources/js/mascaras.js"></script>
+        <script src="resources/js/lancamentos.js"></script>
         <script src="resources/js/mensagens.js"></script>
     </body>
 </html>

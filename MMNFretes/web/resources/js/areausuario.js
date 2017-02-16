@@ -25,6 +25,7 @@ $(document).ready(function ()
     $('#li-deslogado').hide();
     $('#li-logado').hide();
     $('#btnVisualizaCotacoes').hide();
+    $('#lancamentos').hide();
 
     carregaInfoUsuario();
     hab_desab_formInfo(true);
@@ -37,61 +38,24 @@ $(document).ready(function ()
 function showConfirmaRecebmento(id_cotacao)
 {
     cotacao_atual = id_cotacao;
-    
-    $('#lbMensagemValidacaoToken').text('');
-    $('#lbToken_autorizacao').text('');
-    $('#txToken_envio').val('');
-    $('#btnEnviaToken').text('Enviar');
-    $('#modal-confirma-recebimento').modal('toggle');
-    $('#modal-confirma-recebimento').modal('show');
+
+    $.post("/gcfretes/gera-token-historico", function (token)
+    {
+        $('#token_consulta').text(token);
+    });
+
+    $('#txComentario').val('');
+
+    $('#modal-avaliacao').modal('toggle');
+    $('#modal-avaliacao').modal('show');
 }
-
-$('#btnEnviaToken').click(function ()
-{
-    if ($('#btnEnviaToken').text() === 'Enviar')
-    {
-        var params =
-                {
-                    cotacao_id: cotacao_atual,
-                    token: $('#txToken_envio').val()
-                };
-        var url = "/gcfretes/verificaToken";
-        $.post(url, params, function (response)
-        {
-            if (response === '0')
-            {
-                $('#lbMensagemValidacaoToken').css('color', 'red');
-                $('#lbMensagemValidacaoToken').text('Token não identificado');
-                $('#lbMensagemValidacaoToken').show();
-                $('#btnEnviaToken').text('Enviar');
-                $('#lbToken_autorizacao').hide();
-                return;
-            } else
-            {
-                $('#lbToken_autorizacao').text(response);
-                $('#lbToken_autorizacao').show();
-                $('#lbMensagemValidacaoToken').css('color', 'black');
-                $('#lbMensagemValidacaoToken').text('Token de autorização:');
-                $('#lbMensagemValidacaoToken').show();
-                $('#btnEnviaToken').text('Confirmar');
-                return;
-            }
-        });
-
-    } else
-    {
-        $('#modal-confirma-recebimento').modal('hide');
-        $('#modal-avaliacao').modal('toggle');
-        $('#modal-avaliacao').modal('show');
-    }
-});
 
 $('#btnEncerraCotacao').click(function ()
 {
     var params =
             {
                 cotacao_id: cotacao_atual,
-                token: $('#txToken_envio').val(),
+                token: $('#token_consulta').text(),
                 estrelas: estrelas,
                 comentario: $('#txComentario').val()
             };
@@ -99,8 +63,17 @@ $('#btnEncerraCotacao').click(function ()
     var url = "/gcfretes/encerraCotacao";
     $.post(url, params, function (response)
     {
-        alert(response);
+        $('#cbGrupos').empty();
+        $('#tabela-cotacoes-usuario').html('');
+        listaHistorico("");
+        listaGruposCotacoes();
     });
+
+});
+
+$('#btnFechaModalAvaliacao').click(function ()
+{
+    $('#modal-avaliacao').modal('hide');
 });
 
 function carregaInfoUsuario()
@@ -337,28 +310,41 @@ $('#tela-enderecos').click(function ()
     $('#historico').hide();
     $('#perfil').hide();
     $('#pendentes').hide();
+    $('#lancamentos').hide();
 });
 
 $('#tela-historico').click(function ()
 {
+    $('#historico').fadeIn(200);
     $('#enderecos').hide();
     $('#perfil').hide();
     $('#pendentes').hide();
-    $('#historico').fadeIn(200);
+    $('#lancamentos').hide();
 });
 
 $('#tela-perfil').click(function ()
 {
+    $('#perfil').fadeIn(200);
     $('#enderecos').hide();
     $('#pendentes').hide();
     $('#historico').hide();
-    $('#perfil').fadeIn(200);
+    $('#lancamentos').hide();
 });
 
 $('#tela-pendentes').click(function ()
 {
+    $('#pendentes').fadeIn(200);
+    $('#enderecos').hide();
+    $('#historico').hide();
+    $('#perfil').hide();
+    $('#lancamentos').hide();
+});
+
+$('#tela-lancamentos').click(function ()
+{
+    $('#pendentes').hide();
     $('#enderecos').hide();
     $('#perfil').hide();
     $('#historico').hide();
-    $('#pendentes').fadeIn(200);
+    $('#lancamentos').fadeIn(200);
 });

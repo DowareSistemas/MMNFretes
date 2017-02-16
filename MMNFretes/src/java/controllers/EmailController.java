@@ -178,8 +178,6 @@ public class EmailController
         try
         {
             conteudo = conteudo.replace("{nome_cliente}", cotacao.getUsuarios().getNome());
-            conteudo = conteudo.replace("{token_envio}", cotacao.getToken_envio());
-            conteudo = conteudo.replace("{token_resposta}", cotacao.getToken_resposta());
 
             conteudo = getContentFile(nomeArquivo);
             if (conteudo.isEmpty())

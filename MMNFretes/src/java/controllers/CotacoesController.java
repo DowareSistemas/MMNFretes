@@ -26,8 +26,10 @@ import entidades.Veiculos;
 import enums.STATUS_COTACAO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
+import util.Util;
 
 /**
  *
@@ -57,7 +60,9 @@ public class CotacoesController
     {
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
-        cotacao.setUsuarios_id(usuarioLogado.getId());
+        if (Util.isUsuario(usuarioLogado))
+            cotacao.setUsuarios_id(usuarioLogado.getId());
+
         cotacao.setGrupo_cotacoes_id(getGrupo_cotacao_em_aberto(usuarioLogado.getId()));
         cotacao.setData(new Date());
 
@@ -129,8 +134,6 @@ public class CotacoesController
         c.add(Restrictions.like(FILTER_TYPE.WHERE, "usuarios.nome", searchTerm, MATCH_MODE.ANYWHERE));
         c.add(Restrictions.like(FILTER_TYPE.OR, "transportadoras.nome", searchTerm, MATCH_MODE.ANYWHERE));
         c.add(Restrictions.like(FILTER_TYPE.OR, "veiculos.descricao", searchTerm, MATCH_MODE.ANYWHERE));
-        c.add(Restrictions.eq(FILTER_TYPE.OR, "cotacoes.token_envio", searchTerm));
-        c.add(Restrictions.eq(FILTER_TYPE.OR, "cotacoes.token_resposta", searchTerm));
 
         try
         {
@@ -408,19 +411,16 @@ public class CotacoesController
         return "1";
     }
 
-    @RequestMapping(value = "/verificaToken", method = RequestMethod.POST)
+    @RequestMapping(value = "/gera-token-historico", method = RequestMethod.POST)
     public @ResponseBody
-    String verificaToken(
-            @RequestParam(value = "cotacao_id") int id,
-            @RequestParam(value = "token") String token)
+    String verificaToken()
     {
+        String token = "";
         Session session = SessionProvider.openSession();
-        Cotacoes c = session.onID(Cotacoes.class, id);
+        token = getToken(session);
         session.close();
 
-        return (c.getToken_envio().equals(token)
-                ? c.getToken_resposta()
-                : "0");
+        return token;
     }
 
     @RequestMapping(value = "/encerraCotacao", method = RequestMethod.POST)
@@ -432,35 +432,68 @@ public class CotacoesController
             @RequestParam(value = "comentario") String comentario)
     {
         Session session = SessionProvider.openSession();
-        Cotacoes c = session.onID(Cotacoes.class, id);
-
-        if (!(c.getToken_envio().equals(token)))
-        {
-            session.close();
-            return "0";
-        }
+        Cotacoes cotacao = session.onID(Cotacoes.class, id);
 
         Avaliacoes avaliacao = new Avaliacoes();
         avaliacao.setEstrelas(estrelas);
         avaliacao.setComentario(comentario);
 
-        Historico h = new Historico();
-        h.setCep_origem(c.getCep_origem());
-        h.setCep_destino(c.getCep_destino());
-        h.setDistancia(c.getDistancia());
-        h.setTransportadoras_id(c.getTransportadoras_id());
-        h.setVeiculos_id(c.getVeiculos_id());
-        h.setUsuarios_id(c.getUsuarios_id());
-        h.setValor(c.getValor());
-        h.setData(c.getData());
-        h.setAvaliacoes(avaliacao);
+        Historico historico = new Historico();
+        historico.setCep_origem(cotacao.getCep_origem());
+        historico.setCep_destino(cotacao.getCep_destino());
+        historico.setDistancia(cotacao.getDistancia());
+        historico.setTransportadoras_id(cotacao.getTransportadoras_id());
+        historico.setVeiculos_id(cotacao.getVeiculos_id());
+        historico.setUsuarios_id(cotacao.getUsuarios_id());
+        historico.setValor(cotacao.getValor());
+        historico.setData(Calendar.getInstance().getTime());
+        historico.setAvaliacoes(avaliacao);
+        historico.setToken_consulta(token);
 
-        session.save(h);
-        session.delete(c);
-        
+        session.save(historico);
+        session.delete(cotacao);
         session.commit();
-
+        session.close();
+        
         return "1";
+    }
+
+    private String getToken(Session session)
+    {
+        String token = geraToken();
+        int count = session.count(Historico.class, "token_consulta = '" + token + "'");
+        return (count == 0
+                ? token
+                : getToken(session));
+    }
+
+    private String geraToken()
+    {
+        try
+        {
+            int primeiroDigito = 0;
+            int digitoVerificador = 0;
+
+            String result = "";
+            Random radom = new Random();
+            int numeroTmp = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                numeroTmp = radom.nextInt(10);
+                result += numeroTmp + "";
+
+                if (i == 0)
+                    primeiroDigito = numeroTmp;
+            }
+
+            digitoVerificador = (numeroTmp * primeiroDigito);
+            return (result + "-" + digitoVerificador);
+        }
+        catch (Exception ex)
+        {
+            return geraToken();
+        }
     }
 
     public boolean existeCotacaoComVeiculo(int id_veiculo, HttpSession httpSession)

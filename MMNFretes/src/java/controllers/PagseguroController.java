@@ -185,17 +185,9 @@ public class PagseguroController
         Session session = SessionProvider.openSession();
         cotacao = session.onID(Cotacoes.class, id_cotacao);
 
-        if (!cotacao.getToken_envio().isEmpty())
-        {
-            session.close();
-            return;
-        }
-
         if (transaction.getStatus() == TransactionStatus.PAID)
         {
             cotacao.setStatus(STATUS_COTACAO.AGUARDANDO_ENTREGA);
-            cotacao.setToken_envio(verificaToken(session));
-            cotacao.setToken_resposta(verificaToken(session));
             session.update(cotacao);
 
             EmailController emailC = EmailController.getInstance();
@@ -214,43 +206,5 @@ public class PagseguroController
 
         session.commit();
         session.close();
-    }
-
-    private String verificaToken(Session session)
-    {
-        String token = geraToken();
-        int count = session.count(Cotacoes.class, "token_envio = '" + token + "' OR token_resposta = '" + token + "'");
-        return ((count == 0 && (!cotacao.getToken_envio().equals(token) || !cotacao.getToken_resposta().equals(token)))
-                ? token
-                : verificaToken(session));
-    }
-
-    private String geraToken()
-    {
-        try
-        {
-            int primeiroDigito = 0;
-            int digitoVerificador = 0;
-
-            String result = "";
-            Random radom = new Random();
-            int numeroTmp = 0;
-
-            for (int i = 0; i < 8; i++)
-            {
-                numeroTmp = radom.nextInt(10);
-                result += numeroTmp + "";
-
-                if (i == 0)
-                    primeiroDigito = numeroTmp;
-            }
-
-            digitoVerificador = (numeroTmp * primeiroDigito);
-            return (result + "-" + digitoVerificador);
-        }
-        catch (Exception ex)
-        {
-            return geraToken();
-        }
     }
 }

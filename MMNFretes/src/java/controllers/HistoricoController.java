@@ -94,4 +94,5 @@ public class HistoricoController
         mav.addObject("list_historico", list_historico);
         return mav;
     }
+    
 }

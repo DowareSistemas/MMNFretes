@@ -26,6 +26,7 @@
             <header>
                 <my-tags:navbar redireciona_perfil="false"/>
             </header>
+
             <main>
                 <div class="row">
                     <%--Resultados dos Lançamentos--%>
@@ -36,6 +37,12 @@
             <footer>
 
             </footer>
+
+            <backend:mensagem-input id="modal-valor-transportador"
+                                    id_btnConfirmar="btnConfirmaValor"
+                                    id_input="txValor-transportador"
+                                    titulo="Valor do frete"
+                                    type_input="number"/>
         </div>
 
         <!-- Scripts da página 
@@ -53,6 +60,7 @@
         <script src="resources/js/pesquisarfretes.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/maps.js"></script>
+        <script src="resources/js/lancamentos.js"></script>
 
     </body>
 </html>
