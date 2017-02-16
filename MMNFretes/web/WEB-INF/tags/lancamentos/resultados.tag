@@ -54,37 +54,34 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-        </div>
-        <div class="panel-footer">
-            <div id="mais-informacoes" class="collapse">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                        <p>Comprimento:<strong class="pull-right">00,00 metro(s)</strong></p>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <p>Largura:<strong class="pull-right">00,00 metro(s)</strong></p>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <p>Altura:<strong class="pull-right">00,00 metro(s)</strong></p>
-                    </div>
-                    <div class="col-xs-12">
-                        <h4>Descrição:</h4>
-                    </div>
-                    <div class="col-xs-12">
-                        <p class="text-justify"><!--Desrição do lançamento-->
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Curabitur rhoncus justo erat, non accumsan quam facilisis vel. 
-                            Sed vel lacus a nulla semper bibendum. Integer rutrum iaculis efficitur. 
-                            Duis laoreet urna sem, a pharetra libero aliquam et. 
-                            Ut et felis eu lectus vulputate hendrerit quis vitae risus. 
-                        </p>
+            <div class="panel-footer">
+                <div id="mais-informacoes" class="collapse">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <p>Comprimento:<strong class="pull-right">00,00 metro(s)</strong></p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <p>Largura:<strong class="pull-right">00,00 metro(s)</strong></p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <p>Altura:<strong class="pull-right">00,00 metro(s)</strong></p>
+                        </div>
+                        <div class="col-xs-12">
+                            <h4>Descrição:</h4>
+                        </div>
+                        <div class="col-xs-12">
+                            <p class="text-justify"><!--Desrição do lançamento-->
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Curabitur rhoncus justo erat, non accumsan quam facilisis vel. 
+                                Sed vel lacus a nulla semper bibendum. Integer rutrum iaculis efficitur. 
+                                Duis laoreet urna sem, a pharetra libero aliquam et. 
+                                Ut et felis eu lectus vulputate hendrerit quis vitae risus. 
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </article>
