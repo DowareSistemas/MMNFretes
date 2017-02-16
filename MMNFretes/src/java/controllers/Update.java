@@ -53,6 +53,23 @@ public class Update
     {
         try
         {
+            executeSql("CREATE TABLE IF NOT EXISTS oportunidades\n" +
+"(\n" +
+"    id             serial       not null,\n" +
+"    cep_origem     varchar(15)  not null,\n" +
+"    cep_destino    varchar(15)  not null,\n" +
+"    comprimento    varchar(50)  not null  default '',\n" +
+"    altura         varchar(50)  not null  default '',\n" +
+"    largura        varchar(50)  not null  default '',\n" +
+"    peso           varchar(50)  not null  default '',\n" +
+"    volumes        varchar(100) not null  default '',\n" +
+"    observacoes    varchar(300) not null  default '',\n" +
+"    categorias     varchar(50)  not null  default '',\n" +
+"    carrocerias    varchar(50)  not null  default '',\n" +
+"    rastreador     boolean      not null  default true,\n" +
+"    pagseguro      boolean      not null  default true,\n" +
+"    negoc_direta   boolean      not null  default true\n" +
+")");
             executeSql("alter table cotacoces drop column token_envio");
             executeSql("alter table cotacoes drop column token_resposta");
             executeSql("alter table historico add token_consulta varchar(50)");
