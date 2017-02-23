@@ -135,9 +135,8 @@ public class VeiculosController
 
     private Veiculos get(int veiculo_id)
     {
-        Veiculos veiculo = new Veiculos();
         Session session = SessionProvider.openSession();
-        session.onID(veiculo, veiculo_id);
+        Veiculos veiculo =  session.onID(Veiculos.class, veiculo_id);
         session.close();
         return veiculo;
     }
