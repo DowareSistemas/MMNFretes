@@ -25,9 +25,9 @@
         <!-- Collapse da navbar -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Link</a></li>
-                <li><a href="">Link</a></li>
+                <li id="li-lancamentos"><a href="/gcfretes/lancamentos">Oportunidades</a></li>
             </ul>
+            
             <ul class="nav navbar-nav navbar-right">
                 <li id="btnVisualizaCotacoes" class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-lista-cotacoes">

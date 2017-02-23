@@ -73,7 +73,7 @@ function efetualLogin(redireciona)
                 senha: $('#txSenha').val()
             };
     var url = "/gcfretes/efetualogin";
-
+    
     /*
      * O controller 'efetualogin', retorna o nome da pagina
      * do usuário, caso o login tenha sucesso.
@@ -89,6 +89,7 @@ function efetualLogin(redireciona)
             $('#senhaIncorreta').modal('show');
         } else
         {
+            usuarioLogado = true;
             if (redireciona)
                 $(location).attr('href', '/gcfretes/' + result);
             else
@@ -98,6 +99,7 @@ function efetualLogin(redireciona)
                 $('#li-deslogado').fadeOut(500);
                 $('#li-sair').fadeIn(500);
                 countCotacoes();
+                verificaTipoUsuario();
             }
         }
     });

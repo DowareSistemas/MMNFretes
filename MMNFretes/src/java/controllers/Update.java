@@ -56,29 +56,38 @@ public class Update
         {
             session = SessionProvider.openSession();
 
-            executeSql(session, "CREATE TABLE IF NOT EXISTS oportunidades\n"
-                    + "(\n"
-                    + "    id             int          not null,\n"
-                    + "    cep_origem     varchar(15)  not null,\n"
-                    + "    cep_destino    varchar(15)  not null,\n"
-                    + "    comprimento    varchar(50)  not null  default '',\n"
-                    + "    altura         varchar(50)  not null  default '',\n"
-                    + "    largura        varchar(50)  not null  default '',\n"
-                    + "    peso           varchar(50)  not null  default '',\n"
-                    + "    volumes        varchar(100) not null  default '',\n"
-                    + "    observacoes    varchar(300) not null  default '',\n"
-                    + "    categorias     varchar(50)  not null  default '',\n"
-                    + "    carrocerias    varchar(50)  not null  default '',\n"
-                    + "    rastreador     boolean      not null  default true,\n"
-                    + "    pagseguro      boolean      not null  default true,\n"
-                    + "    negoc_direta   boolean      not null  default true,\n"
-                    + "    \n"
-                    + "    primary key(id)"
-                    + ")");
-            executeSql(session, "alter table cotacoes drop column token_envio");
-            executeSql(session, "alter table cotacoes drop column token_resposta");
+            executeSql(session, "CREATE TABLE oportunidades\n" +
+                    "(\n" +
+                    "  id integer NOT NULL,\n" +
+                    "  cep_origem character varying(15) NOT NULL,\n" +
+                    "  cep_destino character varying(15) NOT NULL,\n" +
+                    "  comprimento character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  altura character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  largura character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  peso character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  volumes character varying(100) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  observacoes character varying(300) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  categorias character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  carrocerias character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  tipo_carga character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
+                    "  rastreador boolean NOT NULL DEFAULT true,\n" +
+                    "  pagseguro boolean NOT NULL DEFAULT true,\n" +
+                    "  negoc_direta boolean NOT NULL DEFAULT true,\n" +
+                    "  usuario_id integer,\n" +
+                    "  distancia double precision,\n" +
+                    "  CONSTRAINT oportunidades_pkey PRIMARY KEY (id),\n" +
+                    "  CONSTRAINT oportunidades_usuario_id_fkey FOREIGN KEY (usuario_id)\n" +
+                    "      REFERENCES usuarios (id) MATCH SIMPLE\n" +
+                    "      ON UPDATE NO ACTION ON DELETE NO ACTION\n" +
+                    ")\n" +
+                    "WITH (\n" +
+                    "  OIDS=FALSE\n" +
+                    ");");
+            
+            executeSql(session, "alter table cotacoes drop column if exists token_envio");
+            executeSql(session, "alter table cotacoes drop column if exists token_resposta");
             executeSql(session, "alter table historico add token_consulta varchar(50)");
-
+            executeSql(session, "alter table cotacoes add oportunidade_id int not null default 0");
             executeSql(session, "update configuracoes set valor = '1.2' where config = 'versao'");
            
             session.commit();

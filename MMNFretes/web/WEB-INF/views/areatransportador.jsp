@@ -87,5 +87,6 @@
     <script src="resources/js/jquery-mask.js"></script>
     <script src="resources/js/mascaras.js"></script>
     <script src="resources/js/mensagens.js"></script>
+    <script src="resources/js/navbar.js"></script>
 </body>
 </html>

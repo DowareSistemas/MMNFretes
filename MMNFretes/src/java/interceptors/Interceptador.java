@@ -37,6 +37,9 @@ public class Interceptador extends HandlerInterceptorAdapter
 
     private boolean enderecoPermitido(String url)
     {
+        if(url.contains("tipo_usuario"))
+            return true; 
+        
         if (url.contains("notificacao"))
             return true;
 

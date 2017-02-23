@@ -22,6 +22,13 @@ public class Main
 
     public static void main(String[] args)
     {
+        String c = "1;2;3;4;";
+        
+        if(c.endsWith(";"))
+            c = c.substring(0, (c.length() - 1));
+        
+        System.out.println(c);
+        
        /* 
         Session session  =SessionProvider.openSession();
         Usuarios u = session.onID(Usuarios.class, 4);
