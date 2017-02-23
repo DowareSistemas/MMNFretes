@@ -37,6 +37,7 @@
                                 <button class="btn btn-primary btn-block" type="button" id="btnPagamentos">Pagamentos</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnFinanceiro">Financeiro</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnGerencia-usuarios">Usuários</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnconfiguracao">Configuração</button><br>
                             </div>
                         </div>
                     </div>
@@ -48,6 +49,7 @@
                     <admin:pagamentos/>
                     <admin:Financeiro/>
                     <admin:gerencia-usuarios/>
+                    <admin:configuracao/>
                 </div>
             </main>
             <footer>
