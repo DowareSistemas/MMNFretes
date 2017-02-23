@@ -99,6 +99,7 @@ public class PesquisaFretesController
         String finalCondition = " where categorias_veiculos.id in (" + filtro_cat + ") ";
         finalCondition += "and carrocerias.id in (" + filtro_carroc + ") ";
         finalCondition += "and veiculos.rastreador = " + (rastreador == true ? "true" : "false");
+        finalCondition += " and veiculos.inativo = false";
         return finalCondition;
     }
 

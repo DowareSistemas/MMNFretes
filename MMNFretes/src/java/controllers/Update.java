@@ -75,10 +75,11 @@ public class Update
                     + "    \n"
                     + "    primary key(id)"
                     + ")");
-            executeSql(session, "alter table cotacoes drop column token_envio");
-            executeSql(session, "alter table cotacoes drop column token_resposta");
+            
+            executeSql(session, "alter table cotacoes drop column if exists token_envio");
+            executeSql(session, "alter table cotacoes drop column if exists token_resposta");
             executeSql(session, "alter table historico add token_consulta varchar(50)");
-
+            executeSql(session, "alter table cotacoes add oportunidade_id int not null default 0");
             executeSql(session, "update configuracoes set valor = '1.2' where config = 'versao'");
            
             session.commit();

@@ -12,16 +12,17 @@ import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.ICriteria;
 import br.com.persistor.interfaces.Session;
+import br.com.persistor.sessionManager.Query;
 import com.google.gson.Gson;
+import entidades.Cotacoes;
 import entidades.Oportunidades;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
+import entidadesTemporarias.ResultadoLancamento;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import org.apache.catalina.ha.session.BackupManager;
-import org.apache.catalina.session.StandardSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,10 +53,10 @@ public class OportunidadesController
         Session session = SessionProvider.openSession();
         Oportunidades op = session.onID(Oportunidades.class, id);
         session.close();
-        
+
         return new Gson().toJson(op);
     }
-    
+
     @RequestMapping(value = "/salva-oportunidade")
     public @ResponseBody
     String add(Oportunidades oportunidade)
@@ -121,14 +122,14 @@ public class OportunidadesController
     }
 
     @RequestMapping(value = "/salvalancamento",
-            produces = "application/json; charset=utf-8", 
+            produces = "application/json; charset=utf-8",
             method = RequestMethod.POST)
     public @ResponseBody
     String salvaLancamento(Oportunidades oportunidade, HttpSession httpSession)
     {
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
         oportunidade.setUsuario_id(usuarioLogado.getId());
-        
+
         Session session = SessionProvider.openSession();
         session.save(oportunidade);
         session.commit();
@@ -158,32 +159,41 @@ public class OportunidadesController
         }
 
         Oportunidades op = new Oportunidades();
-        Usuarios usuarios = new Usuarios();
+        Usuarios usuarios = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        Transportadoras transp = new TransportadorasController().getByUsuario(usuarios.getId());
 
         Session session = SessionProvider.openSession();
         ICriteria c = session.createCriteria(op, RESULT_TYPE.MULTIPLE);
         c.add(JOIN_TYPE.INNER, usuarios, "oportunidades.usuario_id = usuarios.id");
 
+        c.beginPrecedence();
+
         for (int i = 0; i < categorias.size(); i++)
         {
             if (i == 0)
             {
-                c.add(Restrictions.like(FILTER_TYPE.WHERE, "categorias", i + "", MATCH_MODE.ANYWHERE));
+                if (categorias.get(i) > 0)
+                    c.add(Restrictions.like(FILTER_TYPE.WHERE, "categorias", categorias.get(i) + "", MATCH_MODE.ANYWHERE));
                 continue;
             }
 
-            c.add(Restrictions.like(FILTER_TYPE.OR, "categorias", i + "", MATCH_MODE.ANYWHERE));
+            if (categorias.get(i) > 0)
+                c.add(Restrictions.like(FILTER_TYPE.OR, "categorias", categorias.get(i) + "", MATCH_MODE.ANYWHERE));
         }
 
         for (int i = 0; i < carrocerias.size(); i++)
-        {
-            c.add(Restrictions.like(FILTER_TYPE.OR, "carrocerias", i + "", MATCH_MODE.ANYWHERE));
-        }
+            if (carrocerias.get(i) > 0)
+                c.add(Restrictions.like(FILTER_TYPE.OR, "carrocerias", carrocerias.get(i) + "", MATCH_MODE.ANYWHERE));
 
         for (int i = 0; i < tipos_carga.size(); i++)
-        {
-            c.add(Restrictions.like(FILTER_TYPE.OR, "tipo_carga", i + "", MATCH_MODE.ANYWHERE));
-        }
+            if (tipos_carga.get(i) > 0)
+                c.add(Restrictions.like(FILTER_TYPE.OR, "tipo_carga", tipos_carga.get(i) + "", MATCH_MODE.ANYWHERE));
+
+        c.endPrecedence();
+
+        String[] oportunidadesEmNegociacao = oportunidadesEmNegociacao(session, transp.getId());
+        if (oportunidadesEmNegociacao.length > 0)
+            c.add(Restrictions.notIn(FILTER_TYPE.AND, "oportunidades.id", oportunidadesEmNegociacao));
 
         c.execute();
         c.loadList(op);
@@ -193,14 +203,47 @@ public class OportunidadesController
         List<Oportunidades> l_op = session.getList(op);
         List<Usuarios> l_usr = session.getList(usuarios);
 
+        List<ResultadoLancamento> resultados = new ArrayList<ResultadoLancamento>();
+
         for (int i = 0; i < l_op.size(); i++)
         {
             l_op.get(i).setUsuarios(l_usr.get(i));
+
+            List<Veiculos> v_result = new VeiculosController().listByPerfil(
+                    l_op.get(i).getCategorias(),
+                    l_op.get(i).getCarrocerias(),
+                    l_op.get(i).getTipo_carga(),
+                    transp.getId());
+
+            if (v_result.size() > 0)
+                resultados.add(new ResultadoLancamento(l_op.get(i), v_result));
         }
 
         ModelAndView mav = new ModelAndView(resultView);
-        mav.addObject("oportunidades", l_op);
+        mav.addObject("resultados", resultados);
         return mav;
+    }
+
+    private String[] oportunidadesEmNegociacao(Session session, int transportadora_id)
+    {
+        Cotacoes c = new Cotacoes();
+        Query q = session.createQuery(c,
+                "select * from cotacoes where transportadoras_id = "
+                + transportadora_id + " and oportunidade_id > 0");
+
+        q.setResult_type(RESULT_TYPE.MULTIPLE);
+        q.execute();
+
+        List<Cotacoes> cotacoes = session.getList(c);
+        String[] retorno = new String[cotacoes.size()];
+
+        if (cotacoes.size() > 0)
+        {
+            for (int i = 0; i < cotacoes.size(); i++)
+                retorno[i] = (cotacoes.get(i).getOportunidade_id() + "");
+        }
+
+        return retorno;
     }
 
     public void removeOportunidade(int id)

@@ -16,6 +16,7 @@ import br.com.persistor.interfaces.IPersistenceLogger;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Criteria;
 import br.com.persistor.sessionManager.Join;
+import br.com.persistor.sessionManager.Query;
 import com.google.gson.Gson;
 import entidades.Carrocerias;
 import entidades.Categorias_veiculos;
@@ -229,6 +230,20 @@ public class VeiculosController
         }
     }
 
+    @RequestMapping(value = "precoveiculo", method = RequestMethod.POST)
+    public @ResponseBody
+    String getPrecoVeiculo(
+            @RequestParam(value = "veiculo_id") int id,
+            @RequestParam(value = "distancia") double distancia)
+    {
+        Session session = SessionProvider.openSession();
+        Veiculos veiculo = session.onID(Veiculos.class, id);
+        session.close();
+
+        double valor = (veiculo.getPreco_frete() * distancia);
+        return String.format("%.2f", valor);
+    }
+
     private void closeIS(InputStream inputStream)
     {
         try
@@ -297,14 +312,18 @@ public class VeiculosController
     public @ResponseBody
     String excluiVeiculo(int id, HttpSession httpSession)
     {
-        Veiculos veiculo = new Veiculos();
-        veiculo.setId(id);
+        Session session = SessionProvider.openSession();
+        Veiculos veiculo = session.onID(Veiculos.class, id);
 
         if (!podeExcluir(id))
-            return "0";
+        {
+            veiculo.setInativo(true);
+            session.update(veiculo);
 
-        Session session = SessionProvider.openSession();
-        session.delete(veiculo);
+        }
+        else
+            session.delete(veiculo);
+
         session.commit();
         session.close();
 
@@ -328,6 +347,7 @@ public class VeiculosController
         criteria.add(JOIN_TYPE.INNER, categorias, "categorias_veiculos.id = veiculos.categorias_veiculos_id");
         criteria.add(JOIN_TYPE.INNER, tipos_carga, "tipos_carga.id = veiculos.tipos_carga_id");
         criteria.add(Restrictions.eq(FILTER_TYPE.WHERE, "veiculos.transportadoras_id ", transportadora.getId()));
+        criteria.add(Restrictions.eq(FILTER_TYPE.AND, "veiculos.inativo", false));
         criteria.execute();
         session.close();
 
@@ -361,8 +381,9 @@ public class VeiculosController
 
         String termoBusca = "where veiculos.transportadoras_id = " + transportadora.getId();
         termoBusca += " AND (veiculos.descricao LIKE '%" + nome + "%'";
-        termoBusca += " or categorias_veiculos.descricao like '%" + nome + "%'";
-        termoBusca += " or carrocerias.descricao like '%" + nome + "%')";
+        termoBusca += " OR categorias_veiculos.descricao like '%" + nome + "%'";
+        termoBusca += " OR carrocerias.descricao like '%" + nome + "%')";
+        termoBusca += " AND veiculos.inativo = false";
 
         Session session = SessionProvider.openSession();
 
@@ -394,6 +415,59 @@ public class VeiculosController
 
     }
 
+    public List<Veiculos> listByPerfil(
+            String categorias,
+            String carrocerias,
+            String tipos_carga,
+            int transportadora_id)
+    {
+
+        if (categorias.endsWith(";"))
+            categorias = categorias.substring(0, (categorias.length() - 1));
+
+        if (carrocerias.endsWith(";"))
+            carrocerias = carrocerias.substring(0, (carrocerias.length() - 1));
+
+        if (tipos_carga.endsWith(";"))
+            tipos_carga = tipos_carga.substring(0, (tipos_carga.length() - 1));
+
+        categorias = categorias.replace(';', ',');
+        carrocerias = carrocerias.replace(';', ',');
+        tipos_carga = tipos_carga.replace(';', ',');
+
+        String sql = "select id, descricao from veiculos \n";
+
+        if (!categorias.isEmpty())
+            if (!sql.contains("where"))
+                sql += "where (categorias_veiculos_id in (" + categorias + ") \n";
+            else
+                sql += " and categorias_veiculos_id in (" + categorias + ") \n";
+
+        if (!tipos_carga.isEmpty())
+            if (!sql.contains("where"))
+                sql += " (where tipos_carga_id in (" + tipos_carga + ") \n";
+            else
+                sql += " and tipos_carga_id in (" + tipos_carga + ") \n";
+
+        if (!carrocerias.isEmpty())
+            if (!sql.contains("where"))
+                sql += " where carrocerias_id in (" + carrocerias + ")";
+            else
+                sql += " and carrocerias_id in (" + carrocerias + ")";
+
+        sql += ") and veiculos.inativo = false and transportadoras_id = " + transportadora_id;
+
+        Veiculos v = new Veiculos();
+        Session session = SessionProvider.openSession();
+        Query q = session.createQuery(v, sql);
+        q.setResult_type(RESULT_TYPE.MULTIPLE);
+        q.execute();
+        session.close();
+
+        List<Veiculos> veiculos = session.getList(v);
+        return veiculos;
+    }
+
     private Transportadoras getTransportadora(int usuario_id)
     {
         return new TransportadorasController().getByUsuario(usuario_id);
@@ -404,13 +478,14 @@ public class VeiculosController
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
         Transportadoras t = getTransportadora(usuarioLogado.getId());
         Veiculos v = new Veiculos();
-        
+
         Session session = SessionProvider.openSession();
         session.createCriteria(v, RESULT_TYPE.MULTIPLE)
                 .add(Restrictions.eq(FILTER_TYPE.WHERE, "transportadoras_id", t.getId()))
+                .add(Restrictions.eq(FILTER_TYPE.AND, "inativo", false))
                 .execute();
         session.close();
-        
+
         return session.getList(v);
     }
 }

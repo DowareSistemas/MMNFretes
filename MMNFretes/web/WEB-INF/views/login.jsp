@@ -67,6 +67,7 @@
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/login.js"></script>
+        <script src="resources/js/navbar.js"></script>
         <!-- Scripts de mascara para inputs -->
 
         <c:if test="${usuarioExiste eq true}">

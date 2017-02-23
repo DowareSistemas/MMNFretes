@@ -1,9 +1,14 @@
 $(document).ready(function ()
 {
     listaOportunidades();
-    carregaEnderecoByCEP($('#endereco-origem').text(), $('#endereco-origem'));
-    carregaEnderecoByCEP($('#endereco-destino').text(), $('#endereco-destino'));
 });
+
+function listaVeiculosSelect(categorias, carrocerias, tipos_carga)
+{
+
+}
+
+
 
 function listaOportunidades()
 {
@@ -31,6 +36,34 @@ function carregaEnderecoByCEP(Cep, element)
     });
 }
 
+/*
+ * 
+ * @param {type} usuario_id Código do cliente a ser negociado a cotação
+ * @param {type} cep_origem Cep de origem
+ * @param {type} cep_destino Cep de destino
+ * @param {type} veiculo_id Código do veículo
+ * @param {type} valorFrete Valor do frete
+ */
+function aceitarOportunidade(cotacao, id_resultado)
+{
+
+    var url = "/gcfretes/aceita-oportunidade";
+
+    $.post(url, cotacao, function (response)
+    {
+        if (response == '1')
+        {
+            $(id_resultado).fadeOut(500);
+            setTimeout(
+                    function ()
+                    {
+                        location.reload();
+                    }, 3000);
+        }
+
+    });
+}
+
 function adicionaCotacao(id_lancamento)
 {
     $('#modal-valor-transportador').modal('toggle');
@@ -44,20 +77,20 @@ function adicionaCotacao(id_lancamento)
             url = "/gcfretes/infoTransportador";
             $.get(url, function (transportador)
             {
-            var valor = parseFloat($('#txValor-transportador').val()).toFixed(2);
-            var cotacao =
-                    {
-                        valor: valor,
-                        status: 2,
-                        cep_origem: oportunidade.cep_origem,
-                        cep_destino: oportunidade.cep_destino,
-                        distancia: oportunidade.distancia,
-                        desconto_pendente: false,
-                        desconto_bloqueado: false,
-                        usuarios_id: oportunidade.usuario_id,
-                        transportadoras_id: transportador.id
-                    };
-                
+                var valor = parseFloat($('#txValor-transportador').val()).toFixed(2);
+                var cotacao =
+                        {
+                            valor: valor,
+                            status: 2,
+                            cep_origem: oportunidade.cep_origem,
+                            cep_destino: oportunidade.cep_destino,
+                            distancia: oportunidade.distancia,
+                            desconto_pendente: false,
+                            desconto_bloqueado: false,
+                            usuarios_id: oportunidade.usuario_id,
+                            transportadoras_id: transportador.id
+                        };
+
             });
         });
     });

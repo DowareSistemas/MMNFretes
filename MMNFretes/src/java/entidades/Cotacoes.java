@@ -49,6 +49,7 @@ public class Cotacoes extends Entity
     private int transportadoras_id;
     private int veiculos_id;
     private int grupo_cotacoes_id;
+    private int oportunidade_id;
 
     private Usuarios usuarios;
     private Transportadoras transportadoras;
@@ -62,6 +63,16 @@ public class Cotacoes extends Entity
     public void setData(Date data)
     {
         this.data = data;
+    }
+
+    public int getOportunidade_id()
+    {
+        return oportunidade_id;
+    }
+
+    public void setOportunidade_id(int oportunidade_id)
+    {
+        this.oportunidade_id = oportunidade_id;
     }
 
     @OneToOne(source = "usuarios_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)

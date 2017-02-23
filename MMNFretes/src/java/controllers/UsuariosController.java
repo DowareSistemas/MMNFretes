@@ -110,6 +110,20 @@ public class UsuariosController
         return "infoUsuario";
     }
 
+    @RequestMapping(value = "tipo_usuario")
+    public @ResponseBody
+    String getTipoUsuario(HttpSession httpSession)
+    {
+        Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        
+        if(usuario == null)
+            return "-1";
+        
+        return (Util.isUsuario(usuario)
+                ? "0"
+                : "1");
+    }
+    
     @RequestMapping(value = "/infoUsuario", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public @ResponseBody
     String infoUsuario(HttpSession httpSession, HttpServletResponse response)

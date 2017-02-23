@@ -16,9 +16,10 @@ import br.com.persistor.interfaces.IPersistenceLogger;
 import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
 import entidades.Configuracoes;
+import entidades.Cotacoes;
 import entidades.Transportadoras;
 import entidades.Usuarios;
-import entidades.Veiculos;
+import enums.STATUS_COTACAO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +37,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sessionProvider.SessionProvider;
 import org.springframework.web.servlet.ModelAndView;
@@ -94,9 +97,9 @@ public class TransportadorasController
     {
         Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogado");
 
-        if(usuario.isAdmin())
+        if (usuario.isAdmin())
             return new ModelAndView("redirect:admin");
-        
+
         if (!Util.isUsuario(usuario))
         {
             List<Tipo_carga> tipos_carga = new ArrayList<Tipo_carga>();
@@ -194,12 +197,12 @@ public class TransportadorasController
 
         Session session = SessionProvider.openSession();
 
-        if(transportadora.getFoto_logo() == null)
+        if (transportadora.getFoto_logo() == null)
         {
             Transportadoras t = session.onID(Transportadoras.class, idTransportadora);
             transportadora.setFoto_logo(t.getFoto_logo());
         }
-        
+
         session.update(transportadora);
         session.commit();
         session.close();
@@ -247,6 +250,45 @@ public class TransportadorasController
         session.commit();
         session.close();
         return "OK";
+    }
+
+    /*
+                    valor: parseFloat(valorFrete).toFixed(2),
+                status: 0,
+                cep_origem: cep_origem,
+                cep_destino: cep_destino,
+                distancia: distancia,
+                usuarios_id: usuario_id,
+                veiculos_id: veiculo_id
+     */
+    @RequestMapping(value = "aceita-oportunidade", method = RequestMethod.POST)
+    public @ResponseBody
+    String aceitaOportunidade(
+            @RequestParam(value = "valor") double valor,
+            @RequestParam(value = "cep_origem") String cep_origem,
+            @RequestParam(value = "cep_destino") String cep_destino,
+            @RequestParam(value = "distancia") double distancia,
+            @RequestParam(value = "usuarios_id") int usuario_id,
+            @RequestParam(value = "veiculos_id") int veiculos_id,
+            @RequestParam(value = "oportunidade_id") int oportunidade_id,
+            HttpSession httpSession)
+    {
+        Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
+        int transportadora_id = getIdTransportadora(usuarioLogado.getId());
+
+        Cotacoes cotacao = new Cotacoes();
+        cotacao.setValor(valor);
+        cotacao.setStatus(STATUS_COTACAO.APROVADO);
+        cotacao.setCep_origem(cep_origem);
+        cotacao.setCep_destino(cep_destino);
+        cotacao.setDistancia(distancia);
+        cotacao.setUsuarios_id(usuario_id);
+        cotacao.setVeiculos_id(veiculos_id);
+        cotacao.setTransportadoras_id(transportadora_id);
+        cotacao.setOportunidade_id(oportunidade_id);
+        
+        CotacoesController cc = new CotacoesController();
+        return cc.adicionar(cotacao, httpSession);
     }
 
     private Transportadoras getTransportadora(int idUsuario)
