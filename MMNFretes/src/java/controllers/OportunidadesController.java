@@ -112,7 +112,7 @@ public class OportunidadesController
 
         Session session = SessionProvider.openSession();
         session.createCriteria(op, RESULT_TYPE.MULTIPLE)
-                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuario_id", usuario_id))
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuarios_id", usuario_id))
                 .execute();
         session.close();
 
