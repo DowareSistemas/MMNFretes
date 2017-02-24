@@ -34,7 +34,7 @@ public class Oportunidades extends Entity
     private boolean rastreador;
     private boolean pagseguro;
     private boolean negoc_direta;
-    private int usuario_id;
+    private int usuarios_id;
     private double distancia;
 
     public Oportunidades()
@@ -53,6 +53,7 @@ public class Oportunidades extends Entity
         this.tipo_carga = "";
         this.categorias = "";
         this.distancia = 0;
+        this.usuarios_id = 0;
     }
 
     public double getDistancia()
@@ -65,19 +66,19 @@ public class Oportunidades extends Entity
         this.distancia = distancia;
     }
 
-    public int getUsuario_id()
+    public int getUsuarios_id()
     {
-        return usuario_id;
+        return usuarios_id;
     }
 
-    public void setUsuario_id(int usuario_id)
+    public void setUsuarios_id(int usuarios_id)
     {
-        this.usuario_id = usuario_id;
+        this.usuarios_id = usuarios_id;
     }
 
     private Usuarios usuarios;
 
-    @OneToOne(source = "usuario_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
+    @OneToOne(source = "usuarios_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
     public Usuarios getUsuarios()
     {
         return usuarios;

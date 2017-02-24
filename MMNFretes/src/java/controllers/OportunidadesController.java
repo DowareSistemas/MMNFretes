@@ -128,7 +128,7 @@ public class OportunidadesController
     String salvaLancamento(Oportunidades oportunidade, HttpSession httpSession)
     {
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        oportunidade.setUsuario_id(usuarioLogado.getId());
+        oportunidade.setUsuarios_id(usuarioLogado.getId());
 
         Session session = SessionProvider.openSession();
         session.save(oportunidade);
@@ -164,7 +164,7 @@ public class OportunidadesController
 
         Session session = SessionProvider.openSession();
         ICriteria c = session.createCriteria(op, RESULT_TYPE.MULTIPLE);
-        c.add(JOIN_TYPE.INNER, usuarios, "oportunidades.usuario_id = usuarios.id");
+        c.add(JOIN_TYPE.INNER, usuarios, "oportunidades.usuarios_id = usuarios.id");
 
         c.beginPrecedence();
 
