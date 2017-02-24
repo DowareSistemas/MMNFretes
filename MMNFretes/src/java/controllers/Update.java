@@ -38,6 +38,8 @@ public class Update
 
             if (versao_atual < 1.2)
                 retorno = up12();
+            if (versao_atual < 1.3)
+                retorno = up13();
         }
         catch (Exception ex)
         {
@@ -56,40 +58,40 @@ public class Update
         {
             session = SessionProvider.openSession();
 
-            executeSql(session, "CREATE TABLE oportunidades\n" +
-                    "(\n" +
-                    "  id integer NOT NULL,\n" +
-                    "  cep_origem character varying(15) NOT NULL,\n" +
-                    "  cep_destino character varying(15) NOT NULL,\n" +
-                    "  comprimento character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  altura character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  largura character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  peso character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  volumes character varying(100) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  observacoes character varying(300) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  categorias character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  carrocerias character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  tipo_carga character varying(50) NOT NULL DEFAULT ''::character varying,\n" +
-                    "  rastreador boolean NOT NULL DEFAULT true,\n" +
-                    "  pagseguro boolean NOT NULL DEFAULT true,\n" +
-                    "  negoc_direta boolean NOT NULL DEFAULT true,\n" +
-                    "  usuario_id integer,\n" +
-                    "  distancia double precision,\n" +
-                    "  CONSTRAINT oportunidades_pkey PRIMARY KEY (id),\n" +
-                    "  CONSTRAINT oportunidades_usuario_id_fkey FOREIGN KEY (usuario_id)\n" +
-                    "      REFERENCES usuarios (id) MATCH SIMPLE\n" +
-                    "      ON UPDATE NO ACTION ON DELETE NO ACTION\n" +
-                    ")\n" +
-                    "WITH (\n" +
-                    "  OIDS=FALSE\n" +
-                    ");");
-            
+            executeSql(session, "CREATE TABLE oportunidades\n"
+                    + "(\n"
+                    + "  id integer NOT NULL,\n"
+                    + "  cep_origem character varying(15) NOT NULL,\n"
+                    + "  cep_destino character varying(15) NOT NULL,\n"
+                    + "  comprimento character varying(50) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  altura character varying(50) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  largura character varying(50) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  peso character varying(50) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  volumes character varying(100) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  observacoes character varying(300) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  categorias character varying(50) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  carrocerias character varying(50) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  tipo_carga character varying(50) NOT NULL DEFAULT ''::character varying,\n"
+                    + "  rastreador boolean NOT NULL DEFAULT true,\n"
+                    + "  pagseguro boolean NOT NULL DEFAULT true,\n"
+                    + "  negoc_direta boolean NOT NULL DEFAULT true,\n"
+                    + "  usuario_id integer,\n"
+                    + "  distancia double precision,\n"
+                    + "  CONSTRAINT oportunidades_pkey PRIMARY KEY (id),\n"
+                    + "  CONSTRAINT oportunidades_usuario_id_fkey FOREIGN KEY (usuario_id)\n"
+                    + "      REFERENCES usuarios (id) MATCH SIMPLE\n"
+                    + "      ON UPDATE NO ACTION ON DELETE NO ACTION\n"
+                    + ")\n"
+                    + "WITH (\n"
+                    + "  OIDS=FALSE\n"
+                    + ");");
+
             executeSql(session, "alter table cotacoes drop column if exists token_envio");
             executeSql(session, "alter table cotacoes drop column if exists token_resposta");
             executeSql(session, "alter table historico add token_consulta varchar(50)");
             executeSql(session, "alter table cotacoes add oportunidade_id int not null default 0");
             executeSql(session, "update configuracoes set valor = '1.2' where config = 'versao'");
-           
+
             session.commit();
             session.close();
             return "Banco atualizado para a versão 1.2";
@@ -97,10 +99,35 @@ public class Update
         }
         catch (Exception ex)
         {
-            if(session != null)
+            if (session != null)
                 session.rollback();
-            
+
             throw new Exception("Erro ao atualizar para a versão 1.2");
+        }
+    }
+
+    //Versão 1.3
+    private static String up13() throws Exception
+    {
+        Session session = null;
+        try
+        {
+            session = SessionProvider.openSession();
+
+            executeSql(session, "alter table oportunidades rename column usuario_id to usuarios_id");
+            executeSql(session, "update configuracoes set valor = '1.3' where config = 'versao'");
+            
+            session.commit();
+            session.close();
+
+            return "Banco atualizado para a versão 1.3";
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+                session.rollback();
+
+            throw new Exception("Erro ao atualizar para a versão 1.3");
         }
     }
 
