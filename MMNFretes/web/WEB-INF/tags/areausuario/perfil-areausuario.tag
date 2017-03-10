@@ -39,7 +39,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <button type="button" id="btnExcluir-conta" class="btn btn-link pull-left" title="Excluir Conta">Excluir Conta</button>
+                                </div>
+                                <div class="col-md-6">
                                     <button type="button" id="btnAlterar-info" class="btn btn-primary col-md-3 pull-right">Editar</button>
                                     <button type="button" id="btnSalvar-info" class="btn btn-primary col-md-3 pull-right" data-toggle="modal" data-target="#mensagem-input">Salvar</button>
                                 </div>

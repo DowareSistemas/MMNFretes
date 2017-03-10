@@ -10,10 +10,8 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <img src="resources/img/img-text.jpg" id="img-perfil" class="img-thumbnail img-areatransportador" alt="Imagem do transportador" width="300" height="306">
+                                    <img src="resources/img/img-text.jpg" id="img-perfil" class="img-thumbnail img-areatransportador" alt="Imagem do transportador">
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="form-group col-md-12">
                                     <div class="input-group">
                                         <input type="text" id="fake-file-input-name-perfil" disabled="disabled" placeholder="Nenhuma imagem selecionada" class="form-control">
@@ -70,9 +68,11 @@
                                         <input type="tel" id="txANTT" name="ANTT" class="form-control mask-antt" title="ANTT">
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="form-group col-md-12 pull-right">
+                                    <div class="col-md-6">
+                                        <button type="button" id="btnExcluir-conta" class="btn btn-link pull-left" title="Excluir Conta">Excluir Conta</button>
+                                    </div>
+                                    <div class="col-md-6">
                                         <button type="button" id="btnEditarInfo" class="btn btn-primary col-md-3 pull-right" title="Editar">Editar</button>
                                         <button type="button" id="btnSalvar-info" class="btn btn-primary col-md-3 pull-right" data-toggle="modal" data-target="#mensagem-input" Editar="Salvar">Salvar</button>
                                     </div>
@@ -91,7 +91,7 @@
                                     PagSeguro
                                     <div class="material-switch pull-right">
                                         <input id="Pagseguro" name="pag_seguro" type="checkbox" title="Boleto"/>
-                                        <label for="Boleto" class="label-primary"></label>
+                                        <label for="Pagseguro" class="label-primary"></label>
                                     </div>
                                 </li>
                                 <!-- Pag Seguro CK -->
@@ -100,7 +100,7 @@
                                 <li class="list-group-item">
                                     Negociação direta
                                     <div class="material-switch pull-right">
-                                        <input id="NegociacaoDireta" name="cheque" type="checkbox" title="Negociação direta"/>
+                                        <input id="NegociacaoDireta" name="NegociacaoDireta" type="checkbox" title="Negociação direta"/>
                                         <label for="NegociacaoDireta" class="label-primary"></label>
                                     </div>
                                 </li>
