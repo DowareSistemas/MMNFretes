@@ -27,7 +27,7 @@
     <body>
         <div class="container-fluid">
             <header>
-                <my-tags:navbar redireciona_perfil="true"/>
+                <my-tags:navbar/>
             </header>
             <aside>
                 <div class="aside-fixed">

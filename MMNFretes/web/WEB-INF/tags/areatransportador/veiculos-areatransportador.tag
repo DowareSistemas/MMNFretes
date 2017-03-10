@@ -12,16 +12,14 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <img id="img-preview" src="resources/img/checked_truck-512.png" class="img-thumbnail img-areatransportador" alt="Imagem do veículo" width="300" height="306">
+                                    <img id="img-preview" src="resources/img/checked_truck-512.png" class="img-thumbnail img-areatransportador" alt="Imagem do veículo">
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="form-group col-md-12">
                                     <div class="input-group">
                                         <input type="text" id="fake-file-input-name-veiculos" disabled="disabled" placeholder="Nenhuma imagem selecionada" class="form-control">
                                         <!--  Formulário Foto -->
                                         <form id="form-img" runat="server" method="post" enctype="multipart/form-data" action="">
-                                            <input id="upload" class="col-md-12" accept="image/png, image/jpeg, image/gif" style="display: none" type="file" name="file">
+                                            <input id="upload" accept="image/png, image/jpeg, image/gif" style="display: none" type="file" name="file">
                                         </form>
                                         <!-- Formulário Foto: FIM -->
                                         <div class="input-group-btn">
@@ -106,14 +104,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="text-primary">Lista Veículos</h3>
-                                <div class="input-group">
-                                    <input type="text" id="txBusca-veiculo"  class="form-control" placeholder="Buscar veículo" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" id="btBuscar-veiculo" type="button">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
+                            <div class="input-group">
+                                <input type="text" id="txBusca-veiculo"  class="form-control" placeholder="Buscar veículo" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" id="btBuscar-veiculo" type="button">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                     </div><br>
                     <div class="row">
