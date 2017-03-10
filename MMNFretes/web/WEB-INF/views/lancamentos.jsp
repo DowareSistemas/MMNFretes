@@ -42,7 +42,7 @@
 
         <div class="container-fluid">
             <header>
-                <my-tags:navbar redireciona_perfil="false"/>
+                <my-tags:navbar/>
             </header>
 
             <main>

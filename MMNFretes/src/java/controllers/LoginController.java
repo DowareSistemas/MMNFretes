@@ -44,6 +44,7 @@ public class LoginController
         Criteria c = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
         c.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));
         c.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
+        c.add(Restrictions.eq(FILTER_TYPE.AND, "inativo", false));
         c.execute();
 
         if (usuario.getId() != 0)

@@ -28,6 +28,7 @@ public class Update
             double versao_atual = 1;
 
             Configuracoes c = cc.findConfig("versao");
+            
             if (c.getValor() == null)
                 versao_atual = 0;
             if (c.getValor().isEmpty())
