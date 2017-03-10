@@ -87,8 +87,8 @@
                                     <pesquisarfretes:filtro-rastreador/>
                                 </div>
                             </div>
+                            <input type="button" class="btn btn-primary" id="btnSalvar-lancamento" value="Salvar"/>
                         </div>
-                        <input type="button" class="btn btn-primary" id="btnSalvar-lancamento" value="Salvar"/>
                     </div>
 
 
