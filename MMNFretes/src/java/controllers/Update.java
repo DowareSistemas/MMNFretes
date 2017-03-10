@@ -38,11 +38,11 @@ public class Update
 
             if (versao_atual < 1.2)
                 retorno = up12();
-            
+
             if (versao_atual < 1.3)
                 retorno = up13();
-            
-            if(versao_atual < 1.4)
+
+            if (versao_atual < 1.4)
                 retorno = up14();
         }
         catch (Exception ex)
@@ -148,6 +148,7 @@ public class Update
             executeSql(session, "alter table transportadoras add modelo_pagamento int not null default 0");
             executeSql(session, "insert into configuracoes values (5, 'percentual_participativo', 'Porcentagem do plano participativo', '5')");
             executeSql(session, "insert into configuracoes values (6, 'valor_mensal', 'Valor (R$) do plano mensal', '99')");
+            executeSql(session, "update configuracoes set valor = '1.4' where config = 'versao'");
 
             session.commit();
             session.close();
