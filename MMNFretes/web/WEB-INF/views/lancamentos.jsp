@@ -78,10 +78,10 @@
                                             </script>
 
                                             <div class="col-xs-12">
-                                                <p>Dimensões: <strong class="pull-right">${resultado.oportunidades.altura} x ${resultado.oportunidades.largura} x ${resultado.oportunidades.comprimento} metros</strong></p>
+                                                <p>Dimensões: <strong class="pull-right">${resultado.oportunidades.altura} x ${resultado.oportunidades.largura} x ${resultado.oportunidades.comprimento} Metros</strong></p>
                                             </div>
                                             <div class="col-xs-6">
-                                                <p>Peso: <strong class="pull-right">${resultado.oportunidades.peso}</strong></p>
+                                                <p>Peso: <strong class="pull-right">${resultado.oportunidades.peso}Kg</strong></p>
                                             </div>
                                             <div class="col-xs-6">
                                                 <p>Volume(s): <strong class="pull-right">${resultado.oportunidades.volumes}</strong></p>

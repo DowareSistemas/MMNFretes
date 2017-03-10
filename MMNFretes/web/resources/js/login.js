@@ -1,3 +1,15 @@
+
+/*
+ * A variavel 'redirecionaPerfil', serve para determinar
+ * se após efetuado o login, o usuário deve ser redirecionado para a 
+ * sua pagina de perfil.
+ * 
+ * Foi criado pelo fato de mais de uma pagina utilizar essa mesma função,
+ * porém, existem lugares em que o usuário deve ir para sua pagina, e outros
+ * não.
+ */
+var redirecionaPerfil = false;
+
 $(document).ready(function ()
 {
     $.post("/gcfretes/usuarioatual", function (data)
@@ -30,6 +42,11 @@ $(document).ready(function ()
         $('#btnVisualizaCotacoes').hide();
 });
 
+function setRedirecionaPerfil(redireciona)
+{
+    redirecionaPerfil = redireciona;
+}
+
 function countCotacoes()
 {
     var url = "/gcfretes/countcotacoes";
@@ -56,16 +73,18 @@ $('#usuario').click(function ()
 
 $('#mensagem').toggleClass('in');
 
-/*
- * O parametro 'redireciona', serve para determinar
- * se após efetuado o login, o usuário deve ser redirecionado para a 
- * sua pagina de perfil.
- * 
- * Foi criado pelo fato de mais de uma pagina utilizar essa mesma função,
- * porém, existem lugares em que o usuário deve ir para sua pagina, e outros
- * não.
- */
-function efetualLogin(redireciona)
+$('#txSenha').keypress(function (e)
+{
+    if (e.which === 13)
+        efetualLogin();
+});
+
+$('#btnLogin').click(function ()
+{
+    efetualLogin();
+});
+
+function efetualLogin()
 {
     var usuario =
             {
@@ -73,7 +92,7 @@ function efetualLogin(redireciona)
                 senha: $('#txSenha').val()
             };
     var url = "/gcfretes/efetualogin";
-    
+
     /*
      * O controller 'efetualogin', retorna o nome da pagina
      * do usuário, caso o login tenha sucesso.
@@ -90,7 +109,7 @@ function efetualLogin(redireciona)
         } else
         {
             usuarioLogado = true;
-            if (redireciona)
+            if (redirecionaPerfil)
                 $(location).attr('href', '/gcfretes/' + result);
             else
             {

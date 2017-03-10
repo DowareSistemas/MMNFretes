@@ -5,6 +5,7 @@
 package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
+import br.com.persistor.annotations.NamedQuery;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
 import br.com.persistor.annotations.OneToOne;
@@ -16,6 +17,7 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
+
 public class Transportadoras extends Entity
 {
 
@@ -29,6 +31,17 @@ public class Transportadoras extends Entity
     private Usuarios usuarios;
     private boolean pag_seguro;
     private boolean negociacao_direta;
+    private int modelo_pagamento;
+
+    public int getModelo_pagamento()
+    {
+        return modelo_pagamento;
+    }
+
+    public void setModelo_pagamento(int modelo_pagamento)
+    {
+        this.modelo_pagamento = modelo_pagamento;
+    }
 
     public boolean isPag_seguro()
     {

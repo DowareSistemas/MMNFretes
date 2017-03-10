@@ -77,7 +77,7 @@
                                         </div>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="txValorDesconto" class="form-control" value=""/>
+                                            <input type="number" id="txValorDesconto" class="form-control" value="0"/>
                                         </div>
                                     </div>
 

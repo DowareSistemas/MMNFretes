@@ -23,7 +23,7 @@
     <body>
         <div class="container-fluid">
             <header>
-                <my-tags:navbar redireciona_perfil="true"/>
+                <my-tags:navbar/>
             </header>
             <aside>
                 <div class="aside-fixed">
@@ -88,5 +88,10 @@
     <script src="resources/js/mascaras.js"></script>
     <script src="resources/js/mensagens.js"></script>
     <script src="resources/js/navbar.js"></script>
+    <script src="resources/js/login.js"></script>
+
+    <script>
+        setRedirecionaPerfil(true);
+    </script>
 </body>
 </html>

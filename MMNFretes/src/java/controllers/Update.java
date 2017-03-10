@@ -38,8 +38,12 @@ public class Update
 
             if (versao_atual < 1.2)
                 retorno = up12();
+            
             if (versao_atual < 1.3)
                 retorno = up13();
+            
+            if(versao_atual < 1.4)
+                retorno = up14();
         }
         catch (Exception ex)
         {
@@ -116,7 +120,7 @@ public class Update
 
             executeSql(session, "alter table oportunidades rename column usuario_id to usuarios_id");
             executeSql(session, "update configuracoes set valor = '1.3' where config = 'versao'");
-            
+
             session.commit();
             session.close();
 
@@ -125,9 +129,40 @@ public class Update
         catch (Exception ex)
         {
             if (session != null)
+            {
                 session.rollback();
-
+                session.close();
+            }
             throw new Exception("Erro ao atualizar para a versão 1.3");
+        }
+    }
+
+    //Versao 1.4
+    private static String up14() throws Exception
+    {
+        Session session = null;
+        try
+        {
+            session = SessionProvider.openSession();
+
+            executeSql(session, "alter table transportadoras add modelo_pagamento int not null default 0");
+            executeSql(session, "insert into configuracoes values (5, 'percentual_participativo', 'Porcentagem do plano participativo', '5')");
+            executeSql(session, "insert into configuracoes values (6, 'valor_mensal', 'Valor (R$) do plano mensal', '99')");
+
+            session.commit();
+            session.close();
+
+            return "Banco atualizado para a versão 1.4";
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.rollback();
+                session.close();
+            }
+
+            throw new Exception("Erro ao atualizar para a versão 1.4");
         }
     }
 

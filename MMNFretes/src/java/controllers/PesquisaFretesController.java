@@ -211,8 +211,8 @@ public class PesquisaFretesController
         }
         catch (Exception ex)
         {
-            PersistenceLoggerImpl log = new PersistenceLoggerImpl();
-            log.newNofication(new PersistenceLog(getClass().getName(), "String getFotoPath(Veiculos veiculo, HttpServletRequest request)", null, ex, ""));
+           // PersistenceLoggerImpl log = new PersistenceLoggerImpl();
+           // log.newNofication(new PersistenceLog(getClass().getName(), "String getFotoPath(Veiculos veiculo, HttpServletRequest request)", null, ex, ""));
         }
 
         return "not_localized";

@@ -1,4 +1,3 @@
-<%@attribute name="redireciona_perfil" required="true" %>
 
 <!--Navbar fixa no topo-->
 <nav class="navbar navbar-default  navbar-fixed-top">
@@ -67,7 +66,7 @@
                                             <label for="pwd">Senha:</label>
                                             <input type="password" class="form-control" id="txSenha" name="senha">
                                         </div>
-                                        <button type="button" id="btnLogin" onclick="efetualLogin(${redireciona_perfil})" class="btn btn-primary btn-block">Entrar</button><hr>
+                                        <button type="button" id="btnLogin" class="btn btn-primary btn-block">Entrar</button><hr>
                                         <div class="text-center">
                                             <button type="button" class="btn btn-link btn-sm">Esqueceu sua senha?</button>
                                         </div>

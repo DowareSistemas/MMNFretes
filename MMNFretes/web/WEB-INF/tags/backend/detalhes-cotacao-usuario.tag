@@ -46,7 +46,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" id="btnSolicitarDesconto" value="0"> Solicitar desconto </button>
-                <button class="btn btn-success" id="btnGerarBoleto" > Gerar boleto </button>
+                <button class="btn btn-success" id="btnGerarBoleto" > Gerar pagamento </button>
                 <button class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>

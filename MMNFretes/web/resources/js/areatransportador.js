@@ -209,7 +209,7 @@ function calculaDesconto()
 {
     var tx = ($('#lbValorAtual').text().replace('R$ ', '')).trim();
     var valorAtual = parseFloat(tx);
-    var valorDigitado = parseInt($('#txValorDesconto').val());
+    var valorDigitado = parseFloat($('#txValorDesconto').val());
     var valorFinal = 0;
 
     if (tipo_desconto === 0) /* percentual */
@@ -357,6 +357,7 @@ function hab_desab_formInfo(estado)
     $('#txCPF_CNPJ').prop('disabled', estado);
     $('#txANTT').prop('disabled', estado);
     $('#txWebsite').prop('disabled', estado);
+    $('#fake-file-button-browse-perfil').prop('disabled', estado);
 }
 
 $('#btnConfirmarSenha').click(function ()

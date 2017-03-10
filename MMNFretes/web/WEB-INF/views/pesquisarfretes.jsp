@@ -25,7 +25,7 @@
     <body>      
         <div class="container-fluid">
             <header>
-                <my-tags:navbar redireciona_perfil="false"/>
+                <my-tags:navbar/>
                 <pesquisarfretes:criarconta-entrar/>
                 <pesquisarfretes:pesquisar-mapa/>
             </header>
@@ -121,6 +121,8 @@
             </footer>
         </div>
 
+        <backend:mensagem-ok id="msgSUCAT" id_btnOK="btnSUCAT" mensagem="Seleciona ao menos uma categoria de veículo!"/>
+        <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Seleciona ao menos uma carroceria de veículo!"/>
         <!-- Scripts da página 
         ========================================================================================= -->
         <script src="resources/js/jquery.js"></script>
@@ -137,6 +139,10 @@
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/maps.js"></script>
         <script src="resources/js/navbar.js"></script>
-
+        <script src="resources/js/mensagens.js"></script>
+        
+        <script>
+            setRedirecionaPerfil(false);
+        </script>
     </body>
 </html>

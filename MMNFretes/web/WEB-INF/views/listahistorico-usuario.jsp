@@ -4,6 +4,8 @@
 <c:forEach var="historico" items="${list_historico}">
     <tr>
         <td>${historico.id}</td>
+        <td>${historico.token_consulta}</td>
+        
         <td>
             <fmt:formatDate type="date" value="${historico.data}"/>
         </td>

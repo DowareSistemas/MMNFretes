@@ -24,7 +24,7 @@
 
         <div class="container-fluid">
             <header>
-                <my-tags:navbar redireciona_perfil="true"/>
+                <my-tags:navbar/>
                 <backend:mensagem-ok id="msgUsuarioExiste" id_btnOK="btnUsrExstOK" mensagem="Já existe um usuário com o email informado. Informe outro email"/>
             </header>
             <main>
@@ -81,5 +81,9 @@
                 });
             </script>
         </c:if>
+
+        <script>
+            setRedirecionaPerfil(true);
+        </script>
     </body>
 </html>

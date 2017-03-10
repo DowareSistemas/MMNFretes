@@ -7,6 +7,7 @@ package main;
 
 import br.com.persistor.interfaces.Session;
 import controllers.OportunidadesController;
+import controllers.TransportadorasController;
 import entidades.Usuarios;
 import javax.servlet.http.HttpSession;
 import org.apache.catalina.ha.session.BackupManager;
@@ -22,44 +23,9 @@ public class Main
 
     public static void main(String[] args)
     {
-        String c = "1;2;3;4;";
-        
-        if(c.endsWith(";"))
-            c = c.substring(0, (c.length() - 1));
-        
-        System.out.println(c);
-        
-       /* 
-        Session session  =SessionProvider.openSession();
-        Usuarios u = session.onID(Usuarios.class, 4);
-
-        HttpSession h = new StandardSession(new BackupManager());
-        h.setAttribute("usuarioLogado", u);
-        
-        OportunidadesController oc = new OportunidadesController();
-        oc.list(h, "teste");
-        
-        */
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       /* try
-        {
-            PagseguroController pc = new PagseguroController();
-            pc.consultaNotificacao("142B29-B6AB57AB57D0-9BB4509F88B8-0EC661");
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }*/
+        Session session = SessionProvider.openSession();
+        TransportadorasController tc = new TransportadorasController();
+       
+        System.out.println(tc.getValorParticipativo(1, session));
     }
 }

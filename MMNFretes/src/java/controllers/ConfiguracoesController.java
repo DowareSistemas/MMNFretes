@@ -10,6 +10,8 @@ import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import entidades.Configuracoes;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -106,16 +108,24 @@ public class ConfiguracoesController
         return Update.check();
     }
 
-    public Configuracoes findConfig(String config)
+    private List<Configuracoes> configuracoes = new ArrayList<Configuracoes>();
+    
+    public Configuracoes findConfig(String configNome)
     {
-        Configuracoes configuracoes = new Configuracoes();
+        for(Configuracoes c : configuracoes)
+            if(c.getConfig().equals(configNome))
+                return c;
+        
+        Configuracoes config = new Configuracoes();
 
         Session session = SessionProvider.openSession();
-        session.createCriteria(configuracoes, RESULT_TYPE.UNIQUE)
-                .add(Restrictions.eq(FILTER_TYPE.WHERE, "config", config))
+        session.createCriteria(config, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "config", configNome))
                 .execute();
         session.close();
-
-        return configuracoes;
+        
+        configuracoes.add(config);
+        
+        return config;
     }
 }

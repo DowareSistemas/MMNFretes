@@ -14,9 +14,11 @@ import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.ICriteria;
 import br.com.persistor.interfaces.IPersistenceLogger;
 import br.com.persistor.interfaces.Session;
+import br.com.persistor.sessionManager.Query;
 import com.google.gson.Gson;
 import entidades.Configuracoes;
 import entidades.Cotacoes;
+import entidades.Historico;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import enums.STATUS_COTACAO;
@@ -25,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -286,7 +289,7 @@ public class TransportadorasController
         cotacao.setVeiculos_id(veiculos_id);
         cotacao.setTransportadoras_id(transportadora_id);
         cotacao.setOportunidade_id(oportunidade_id);
-        
+
         CotacoesController cc = new CotacoesController();
         return cc.adicionar(cotacao, httpSession);
     }
@@ -343,5 +346,69 @@ public class TransportadorasController
         session.close();
 
         return transportadora.getId();
+    }
+
+    @RequestMapping(value = "lista-transportadoras-debito")
+    public ModelAndView listaTransportadorasDebito()
+    {
+        Session session = SessionProvider.openSession();
+        List<Transportadoras> transportadoras = getList(session);
+
+        for (Transportadoras transportadora : transportadoras)
+        {
+
+        }
+
+        session.close();
+
+        ModelAndView mav = new ModelAndView("");
+
+        return mav;
+    }
+
+    public double getValorParticipativo(int transportadora_id, Session session)
+    {
+        Calendar c = Calendar.getInstance();
+        String ultimoDia = c.getActualMaximum(Calendar.DAY_OF_MONTH) + "";
+        String ano = c.get(Calendar.YEAR) + "";
+        String mes = (c.get(Calendar.MONTH) + 1) + "";
+
+        if (Integer.parseInt(mes) < 10)
+            mes = "0" + mes;
+
+        if (Integer.parseInt(ultimoDia) < 10)
+            ultimoDia = "0" + ultimoDia;
+
+        String data_inicio = (ano + "-" + mes + "-01");
+        String data_fim = (ano + "-" + mes + "-" + ultimoDia);
+
+        Historico historico = new Historico();
+        Query q = session.createQuery(historico, "@transportadorasEmDebito");
+        q.setResult_type(RESULT_TYPE.MULTIPLE);
+        q.setParameter(1, data_inicio);
+        q.setParameter(2, data_fim);
+        q.setParameter(3, transportadora_id);
+        q.execute();
+
+        double total = 100;
+        List<Historico> list = historico.toList();
+
+        for (Historico hist : list)
+            total += hist.getValor();
+
+        ConfiguracoesController cc = new ConfiguracoesController();
+        Configuracoes config = cc.findConfig("percentual_participativo");
+
+        double percentual = Double.parseDouble(config.getValor());
+        double valor_pagar = (total - (total / 100 * percentual));
+
+        return (total - valor_pagar);
+    }
+
+    private List<Transportadoras> getList(Session session)
+    {
+        Transportadoras transp = new Transportadoras();
+        session.createCriteria(transp, RESULT_TYPE.MULTIPLE).execute();
+        return transp.toList();
     }
 }

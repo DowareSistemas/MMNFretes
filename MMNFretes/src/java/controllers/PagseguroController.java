@@ -200,10 +200,11 @@ public class PagseguroController
             q.setParameter(2, cotacao.getId());
             q.execute();
         }
+        /*
 
         if (transaction.getStatus() == TransactionStatus.CANCELLED)
             session.delete(cotacao);
-
+       */
         session.commit();
         session.close();
     }

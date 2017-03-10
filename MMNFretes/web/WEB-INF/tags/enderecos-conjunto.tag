@@ -17,7 +17,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>CEP:</label>
-                                            <input type="tel" id="txCep" name="CEP" class="form-control" placeholder="CEP" required>
+                                            <input type="tel" id="txCep" name="CEP" class="form-control mask-cep" placeholder="CEP" required>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>UF:</label>
@@ -45,7 +45,7 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Número:</label>
-                                            <input type="tel" id="txNumero" name="numero" class="form-control" placeholder="Número" required>
+                                            <input type="number" id="txNumero" name="numero" class="form-control" placeholder="Número" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Complemento:</label>

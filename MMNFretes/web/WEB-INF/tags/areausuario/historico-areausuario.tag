@@ -27,6 +27,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Token</th>
                                         <th>Data</th>
                                         <th>Transportador</th>
                                         <th>Veículo</th>

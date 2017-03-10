@@ -17,7 +17,11 @@ $('#btnAdicionar-endereco').click(function ()
                 {
                     $('#enderecos-items').html("");
                     $('#enderecos-items').append(data);
-                    $('#formulario-endereco')[0].reset();
+                    $('#txCep').val('');
+                    $('#txBairro').val('');
+                    $('#txLogradouro').val('');
+                    $('#txNumero').val('0');
+                    $('#txComplemento').val('');
                     $('#btnExcluir-endereco').fadeOut(100);
                     $('#btnAdicionar-endereco').text('Adicionar');
                     $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
@@ -102,7 +106,22 @@ function carregaEnderecoEdicao(endereco_id)
             $('#btnExcluir-endereco').fadeOut(100);
             $('#txCep').val(endereco.CEP);
             $('#cbUf').val(endereco.UF);
-            $('#cbMunicipio').val(endereco.municipio);
+
+
+            var estado_id = parseInt($('#cbUf').val());
+            var url = "/gcfretes/listacidades?estado_id=" + estado_id;
+
+            $('#cbMunicipio').empty();
+            $('#cbMunicipio').append(new Option('Selecionar', '0', true, true));
+
+            $.get(url, function (cidades)
+            {
+                for (var cidade in cidades)
+                    $('#cbMunicipio').append(new Option(cidades[cidade].nome, cidades[cidade].id));
+
+                $('#cbMunicipio').val(endereco.municipio);
+            });
+
             $('#txComplemento').val(endereco.complemento);
             $('#txBairro').val(endereco.bairro);
             $('#txNumero').val(endereco.numero);

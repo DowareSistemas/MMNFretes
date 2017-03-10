@@ -123,8 +123,8 @@
                                     <tr>
                                         <th class="tab-veiculos-col-veiculo">Veículo</th>
                                         <th>Capacidade</th>
-                                        <th>Categoria</th>
                                         <th>Carroceria</th>
+                                        <th>Categoria</th>
                                         <th>Rastreador</th>
                                         <th></th>
                                     </tr>

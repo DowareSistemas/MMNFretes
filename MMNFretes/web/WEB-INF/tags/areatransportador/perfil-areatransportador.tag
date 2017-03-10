@@ -63,19 +63,14 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label>Número CPF / CNPJ:</label>
-                                        <input type="tel" id="txCPF_CNPJ" name="CPF_CNPJ" class="form-control" title="CPF / CNPJ">
+                                        <input type="tel" id="txCPF_CNPJ" name="CPF_CNPJ" class="form-control mask-cpf-cnpj" title="CPF / CNPJ">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Número ANTT:</label>
-                                        <input type="tel" id="txANTT" name="ANTT" class="form-control" title="ANTT">
+                                        <input type="tel" id="txANTT" name="ANTT" class="form-control mask-antt" title="ANTT">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label>Endereço Web Site:</label>
-                                        <input type="text" id="txWebsite" name="website" class="form-control" title="Endereço Web Site">
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="form-group col-md-12 pull-right">
                                         <button type="button" id="btnEditarInfo" class="btn btn-primary col-md-3 pull-right" title="Editar">Editar</button>
@@ -86,10 +81,7 @@
                             <!-- Formulario Info: FIM -->
                         </div>
                     </div>
-                    
-                    
-                    
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="text-primary">Meios de Pagamento</h3>
@@ -103,7 +95,7 @@
                                     </div>
                                 </li>
                                 <!-- Pag Seguro CK -->
-                                
+
                                 <!-- Negociacao Direta CK -->
                                 <li class="list-group-item">
                                     Negociação direta
@@ -113,7 +105,6 @@
                                     </div>
                                 </li>
                                 <!-- Negociacao Direta CK -->
-                                
                             </ul>
                         </div>
                     </div>

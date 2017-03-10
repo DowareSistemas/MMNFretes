@@ -115,15 +115,15 @@ public class UsuariosController
     String getTipoUsuario(HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        
-        if(usuario == null)
+
+        if (usuario == null)
             return "-1";
-        
+
         return (Util.isUsuario(usuario)
                 ? "0"
                 : "1");
     }
-    
+
     @RequestMapping(value = "/infoUsuario", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public @ResponseBody
     String infoUsuario(HttpSession httpSession, HttpServletResponse response)
@@ -131,7 +131,7 @@ public class UsuariosController
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
         Session session = SessionProvider.openSession();
-        session.onID(usuario, usuario.getId());
+        usuario = session.onID(Usuarios.class, usuario.getId());
         session.close();
 
         Gson gson = new Gson();
@@ -153,10 +153,10 @@ public class UsuariosController
     public String paginaPerfil(HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
-        
-        if(usuario.isAdmin())
+
+        if (usuario.isAdmin())
             return "redirect:admin";
-        
+
         if (Util.isUsuario(usuario))
             return "redirect:areausuario";
         else

@@ -50,12 +50,23 @@ function buscarFretes()
         {
             distancia =(response.routes[0].legs[0].distance.value / 1000);
             var url = "/gcfretes/pesquisafrete";
-
-          //  distancia = distancia.replace(" km", "");
-          //  distancia = distancia.replace(",", ".");
             
             filtroPesquisa.carrocerias = getFiltroCarrocerias();
+            
+            if(filtroPesquisa.carrocerias === '')
+            {
+                showMsgOK('#msgSUCARR');
+                return;
+            }
+            
             filtroPesquisa.categorias = getFiltroCategorias();
+         
+            if(filtroPesquisa.categorias === '')
+            {
+                showMsgOK('#msgSUCAT');
+                return;
+            }
+            
             filtroPesquisa.rastreador = $('#rdoSIM').is(':checked');
             filtroPesquisa.distancia = parseFloat(distancia).toFixed(2);
 

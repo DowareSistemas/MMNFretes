@@ -9,17 +9,17 @@ import br.com.persistor.enums.FILTER_TYPE;
 import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
-import br.com.persistor.sessionManager.Criteria;
 import com.google.gson.Gson;
+import entidades.Cidades;
 import entidades.Enderecos;
 import entidades.Usuarios;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
@@ -51,10 +51,8 @@ public class EnderecosController
     public @ResponseBody
     String carregaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
-        Enderecos endereco = new Enderecos();
-
         Session session = SessionProvider.openSession();
-        session.onID(endereco, endereco_id);
+        Enderecos endereco = session.onID(Enderecos.class, endereco_id);
         session.close();
 
         Gson gson = new Gson();
@@ -96,6 +94,17 @@ public class EnderecosController
         return "redirect:listaEnderecos";
     }
 
+    @RequestMapping(value = "get-municipio", method = RequestMethod.POST)
+    public @ResponseBody
+    String getMunicipioByCodigo(@RequestParam(value = "codigo_municipio") int cod_mun)
+    {
+        Session session = SessionProvider.openSession();
+        Cidades cidade = session.onID(Cidades.class, cod_mun);
+        session.close();
+        
+        return cidade.getNome();
+    }
+    
     @RequestMapping(value = "/inativaEndereco", method = RequestMethod.POST)
     public @ResponseBody
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
