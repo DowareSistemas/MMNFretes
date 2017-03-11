@@ -19,6 +19,7 @@ import com.sun.mail.smtp.*;
 import entidades.Usuarios;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -87,6 +88,8 @@ public class EmailController
             if (conteudo.isEmpty())
                 return;
 
+            conteudo = conteudo.replace("{id_cotacao}", cotacao.getId() + "");
+            conteudo = conteudo.replace("{data}", new SimpleDateFormat("dd/MM/yyyy").format(cotacao.getData()));
             conteudo = conteudo.replace("{transportadora}", cotacao.getTransportadoras().getNome());
             conteudo = conteudo.replace("{valor_desconto}", valor_desconto);
             conteudo = conteudo.replace("{valor_final}", "R$" + String.format("%.2f", cotacao.getValor()));
@@ -233,7 +236,8 @@ public class EmailController
         email.setSSL(true);
         email.setTLS(true);
         email.setAuthenticator(new DefaultAuthenticator("automatico@gcfretes.com.br", "Lb6]oFD2dTH1"));
-
+        email.setCharset("utf-8");
+        
         return email;
     }
 

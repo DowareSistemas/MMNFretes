@@ -9,9 +9,12 @@ import br.com.persistor.interfaces.Session;
 import controllers.OportunidadesController;
 import controllers.TransportadorasController;
 import entidades.Usuarios;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.catalina.ha.session.BackupManager;
 import org.apache.catalina.session.StandardSession;
+import org.postgresql.jdbc2.optional.SimpleDataSource;
 import sessionProvider.SessionProvider;
 
 /**
@@ -23,9 +26,6 @@ public class Main
 
     public static void main(String[] args)
     {
-        Session session = SessionProvider.openSession();
-        TransportadorasController tc = new TransportadorasController();
-       
-        System.out.println(tc.getValorParticipativo(1, session));
+        System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
     }
 }
