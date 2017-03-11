@@ -60,6 +60,7 @@ public class EmailController
             Transportadoras transp = new TransportadorasController().find(cotacao.getTransportadoras_id());
             HtmlEmail email = prepareHtmlEmail();
 
+            email.setSubject("Solicitação de desconto pendente");
             email.addTo(
                     transp.getUsuarios().getEmail(),
                     transp.getNome());
@@ -95,7 +96,8 @@ public class EmailController
             conteudo = conteudo.replace("{valor_final}", "R$" + String.format("%.2f", cotacao.getValor()));
 
             HtmlEmail email = prepareHtmlEmail();
-
+            
+            email.setSubject("Solicitação de desconto aprovada");
             email.addTo(cotacao.getUsuarios().getEmail(), cotacao.getUsuarios().getNome());
             email.setHtmlMsg(conteudo);
             email.send();
@@ -124,7 +126,8 @@ public class EmailController
 
             conteudo = conteudo.replace("{transportadora}", cotacao.getTransportadoras().getNome());
             HtmlEmail email = prepareHtmlEmail();
-
+            
+            email.setSubject("Solicitação de desconto recusada");
             email.addTo(cotacao.getUsuarios().getEmail(), cotacao.getUsuarios().getNome());
             email.setHtmlMsg(conteudo);
             email.send();
@@ -157,6 +160,8 @@ public class EmailController
                 return;
 
             HtmlEmail email = prepareHtmlEmail();
+            
+            email.setSubject("Pagamento de transporte efetuado");
             email.addTo("atendimento@gcfretes.com.br", "Equipe GC Fretes");
             email.setHtmlMsg(conteudo);
             email.send();
@@ -187,7 +192,10 @@ public class EmailController
                 return;
 
             Transportadoras transp = new TransportadorasController().find(cotacao.getTransportadoras_id());
+            
             HtmlEmail email = prepareHtmlEmail();
+            
+            email.setSubject("Instruções");
             email.addTo(transp.getUsuarios().getEmail(),
                     transp.getNome());
             email.setHtmlMsg(conteudo);

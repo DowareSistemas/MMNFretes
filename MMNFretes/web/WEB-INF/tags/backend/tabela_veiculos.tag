@@ -21,6 +21,6 @@
     </c:if>
 
     <td>
-        <button type="button" class="btn btn-info btn-xs center-block" onclick="carregarVeiculo(${id})">Editar</button>
+        <button type="button" class="btn btn-info btn-xs center-block" onclick="carregarVeiculo(${id}, this)">Editar</button>
     </td>
 </tr>

@@ -6,15 +6,8 @@
 package main;
 
 import br.com.persistor.interfaces.Session;
-import controllers.OportunidadesController;
-import controllers.TransportadorasController;
-import entidades.Usuarios;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import javax.servlet.http.HttpSession;
-import org.apache.catalina.ha.session.BackupManager;
-import org.apache.catalina.session.StandardSession;
-import org.postgresql.jdbc2.optional.SimpleDataSource;
+import entidades.Veiculos;
+import entidadesTemporarias.VeiculosImgCache;
 import sessionProvider.SessionProvider;
 
 /**
@@ -26,6 +19,6 @@ public class Main
 
     public static void main(String[] args)
     {
-        System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
+
     }
 }

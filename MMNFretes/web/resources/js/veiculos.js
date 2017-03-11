@@ -98,8 +98,10 @@ $('#txBusca-veiculo').keypress(function (e)
 
 var imgVeiculo;
 
-function carregarVeiculo(id_veiculo)
+function carregarVeiculo(id_veiculo, btn)
 {
+    $(btn).text('Solicitando dados');
+    
     $.ajax({
         url: "/gcfretes/infoveiculo?id=" + id_veiculo,
         dataType: 'json',
@@ -120,8 +122,9 @@ function carregarVeiculo(id_veiculo)
             $('#ckRastreador').prop('checked', veiculo.rastreador);
             $('#btnAdicionar-veiculo').text('Salvar');
             getImgVeiculo(id_veiculo);
-            getImgVeiculo(id_veiculo);
             checkStatusRastreador();
+            
+            $(btn).text('Editar ');
         }
     });
 }

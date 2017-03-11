@@ -27,6 +27,7 @@ import entidades.Tipos_carga;
 import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
+import entidadesTemporarias.VeiculosImgCache;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +42,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,6 +56,7 @@ import sessionProvider.SessionProvider;
  * @author marcosvinicius
  */
 @Controller
+@Scope(value = "request")
 public class VeiculosController
 {
 
@@ -129,15 +132,26 @@ public class VeiculosController
 
     private String getFileName(Veiculos veiculo)
     {
-        String name = (veiculo.getId() + "" + veiculo.getCarrocerias_id() + "" + veiculo.getCategorias_veiculos_id() + "" + veiculo.getTransportadoras().getId());
+        String name = (veiculo.getId() + "" + veiculo.getCarrocerias_id() + "" + veiculo.getCategorias_veiculos_id() + "" + veiculo.getTransportadoras_id());
         return name + ".jpg";
     }
 
     private Veiculos get(int veiculo_id)
     {
+        Veiculos veiculoCache = VeiculosImgCache.getInstance().find(veiculo_id);
+        if(veiculoCache != null)
+            return veiculoCache;
+                       
+        PersistenceLoggerImpl pl = new PersistenceLoggerImpl();
+        pl.newNofication(new PersistenceLog("VeiculosController", "VCon", null, "Carregou do banco", "Carregou do banco"));
+        
+        
         Session session = SessionProvider.openSession();
         Veiculos veiculo =  session.onID(Veiculos.class, veiculo_id);
         session.close();
+        
+        VeiculosImgCache.getInstance().add(veiculo);
+        
         return veiculo;
     }
 
@@ -145,9 +159,7 @@ public class VeiculosController
     public @ResponseBody
     String getInfoVeiculo(int id, HttpSession httpSession)
     {
-        Session session = SessionProvider.openSession();
-        Veiculos veiculo = session.onID(Veiculos.class, id);
-        session.close();
+        Veiculos veiculo = get(id);
 
         Gson gson = new Gson();
         return gson.toJson(veiculo);
@@ -164,7 +176,8 @@ public class VeiculosController
         session.save(veiculo);
         session.commit();
         session.close();
-
+        
+        VeiculosImgCache.getInstance().add(veiculo);
         return "OK";
     }
 
@@ -180,13 +193,19 @@ public class VeiculosController
         if (veiculo.getFoto() == null)
         {
             Veiculos v = session.onID(Veiculos.class, veiculo.getId());
+            
+            veiculo.setCarrocerias(v.getCarrocerias());
+            veiculo.setCategorias_veiculos(v.getCategorias_veiculos());
+            veiculo.setTipos_carga(v.getTipos_carga());
+            veiculo.setTransportadoras(v.getTransportadoras());
             veiculo.setFoto(v.getFoto());
         }
 
         session.update(veiculo);
-        session.commit();
+        session.commit();    
         session.close();
-
+        
+        VeiculosImgCache.getInstance().update(veiculo);
         return "OK";
     }
 
@@ -260,7 +279,7 @@ public class VeiculosController
         //se o veiculo_id for 0 (zero), pegar a ultima id do veiculo da transportadora
         //se não, atualiza o veiculo da transportadora com o id informado
 
-        Veiculos veiculo;
+        Veiculos veiculo = null;
 
         String retorno = "0";
         Session session = SessionProvider.openSession();
@@ -282,6 +301,7 @@ public class VeiculosController
             retorno = "1";
         }
 
+        VeiculosImgCache.getInstance().update(veiculo);
         session.commit();
         session.close();
         return retorno;
@@ -325,7 +345,7 @@ public class VeiculosController
 
         session.commit();
         session.close();
-
+        VeiculosImgCache.getInstance().remove(id);
         return "1";
     }
 
