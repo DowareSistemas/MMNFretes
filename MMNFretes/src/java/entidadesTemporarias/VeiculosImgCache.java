@@ -5,13 +5,9 @@
  */
 package entidadesTemporarias;
 
-import br.com.persistor.generalClasses.PersistenceLog;
-import br.com.persistor.interfaces.Session;
 import entidades.Veiculos;
 import java.util.ArrayList;
 import java.util.List;
-import logging.PersistenceLoggerImpl;
-import sessionProvider.SessionProvider;
 
 /**
  *
@@ -19,7 +15,6 @@ import sessionProvider.SessionProvider;
  */
 public class VeiculosImgCache
 {
-
     private static VeiculosImgCache instance;
 
     public static VeiculosImgCache getInstance()
@@ -39,9 +34,6 @@ public class VeiculosImgCache
 
     public Veiculos find(int id)
     {
-        PersistenceLoggerImpl pl = new PersistenceLoggerImpl();
-        pl.newNofication(new PersistenceLog("VeiculosImg", "VCon", null, "Carregou do cache", "Carregou do cache"));
-
         for (Veiculos veiculo : veiculos)
             if (veiculo.getId() == id)
                 return veiculo;

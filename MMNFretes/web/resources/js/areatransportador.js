@@ -172,7 +172,7 @@ $('#btnConfirmaDesconto').click(function ()
 
     var tx = ($('#lbValorAtual').text().replace('R$ ', '')).trim();
     var valorAtual = parseFloat(tx);
-    var valorDigitado = parseInt($('#txValorDesconto').val());
+    var valorDigitado = parseFloat($('#txValorDesconto').val());
     var valorFinal = 0;
     var desconto = '';
 

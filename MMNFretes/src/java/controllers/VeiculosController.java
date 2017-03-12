@@ -141,11 +141,7 @@ public class VeiculosController
         Veiculos veiculoCache = VeiculosImgCache.getInstance().find(veiculo_id);
         if(veiculoCache != null)
             return veiculoCache;
-                       
-        PersistenceLoggerImpl pl = new PersistenceLoggerImpl();
-        pl.newNofication(new PersistenceLog("VeiculosController", "VCon", null, "Carregou do banco", "Carregou do banco"));
-        
-        
+      
         Session session = SessionProvider.openSession();
         Veiculos veiculo =  session.onID(Veiculos.class, veiculo_id);
         session.close();
