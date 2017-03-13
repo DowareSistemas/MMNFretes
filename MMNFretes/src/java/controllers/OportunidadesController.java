@@ -253,6 +253,10 @@ public class OportunidadesController
         Session session = SessionProvider.openSession();
         Oportunidades o = session.onID(Oportunidades.class, id);
         session.delete(o);
+
+        session.createQuery(new Cotacoes(), "update cotacoes set oportunidade_id = 0 where oportunidade_id = " + id)
+                .execute();
+
         session.commit();
         session.close();
     }

@@ -31,7 +31,6 @@ public class SessionProvider
 
             DBConfig config = new DBConfig();
 
-            /*
             config.setDb_type(DB_TYPE.PostgreSQL);
             config.setHost("localhost");
             config.setDatabase("mmn_teste");
@@ -40,8 +39,8 @@ public class SessionProvider
             config.setPassword("81547686");
             config.setMaxStatements(1000);
             config.setPersistenceLogger(PersistenceLoggerImpl.class);
-            */
-            
+
+/*            
             config.setDb_type(DB_TYPE.PostgreSQL);
             config.setHost("localhost");
             config.setDatabase("doware_gcfretes");

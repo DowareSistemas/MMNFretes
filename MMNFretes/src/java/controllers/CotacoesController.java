@@ -466,6 +466,21 @@ public class CotacoesController
         return "1";
     }
     
+    @RequestMapping(value = "/renomear-grupo", method = RequestMethod.POST)
+    public @ResponseBody
+    String renomearGrupo(
+            @RequestParam(value = "id_grupo") int id_grupo,
+            @RequestParam(value = "novo_nome") String novo_nome)
+    {
+        Session session = SessionProvider.openSession();
+        Grupos_cotacoes grupo = session.onID(Grupos_cotacoes.class, id_grupo);
+        grupo.setDescricao(novo_nome);
+        session.update(grupo);
+        session.commit();
+        
+        return "1";
+    }
+    
     private String getToken(Session session)
     {
         String token = geraToken();

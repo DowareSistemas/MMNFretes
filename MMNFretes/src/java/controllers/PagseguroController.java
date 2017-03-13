@@ -22,15 +22,13 @@ import br.com.uol.pagseguro.enums.ShippingType;
 import br.com.uol.pagseguro.enums.TransactionStatus;
 import br.com.uol.pagseguro.exception.PagSeguroServiceException;
 import br.com.uol.pagseguro.service.NotificationService;
-import br.com.uol.pagseguro.service.TransactionSearchService;
 import entidades.*;
 import enums.STATUS_COTACAO;
 import java.math.BigDecimal;
-import java.util.Random;
-import java.util.StringTokenizer;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.management.Notification;
 import logging.PersistenceLoggerImpl;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -95,7 +93,7 @@ public class PagseguroController
         {
             shipping.setAddress(getAddress());
             shipping.setType(ShippingType.NOT_SPECIFIED);
-            shipping.setCost(new BigDecimal(String.format("%.2f", cotacao.getValor())));
+            shipping.setCost(new BigDecimal(cotacao.getValor() + ""));
             return shipping;
         }
         catch (Exception ex)
@@ -132,7 +130,7 @@ public class PagseguroController
             pr.setCurrency(Currency.BRL);
             pr.setSender(new Sender(cotacao.getUsuarios().getNome(), cotacao.getUsuarios().getEmail()));
             pr.setReference("FRT-" + cotacao.getId());
-            pr.setShipping(getShipping());
+          //  pr.setShipping(getShipping());
             pr.setNotificationURL("http://gcfretes.com.br/gcfretes/notificacao");
             url = pr.register(getCredentials());
 
@@ -162,7 +160,6 @@ public class PagseguroController
         try
         {
             consultaNotificacao(nCode);
-
         }
         catch (Exception ex)
         {

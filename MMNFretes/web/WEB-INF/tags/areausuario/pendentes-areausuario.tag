@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-md-3">
 
-                                <button type="button" class="btn btn-primary btn-block">
+                                <button type="button" id="btnRenomearGrupo" class="btn btn-primary btn-block">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                     Renomear grupo
                                 </button>

@@ -65,7 +65,7 @@
                                             <div class="col-xs-12">
                                                 <p>Distância: <strong class="pull-right">${resultado.oportunidades.distancia}Km</strong></p>
                                             </div>
-                                            <div class="col-xs-12" onafterprint="teste()">
+                                            <div class="col-xs-12">
                                                 <p>Origem: <strong id="op${resultado.oportunidades.id}_cep_origem" class="pull-right">${resultado.oportunidades.cep_origem}</strong></p>
                                             </div>
                                             <div class="col-xs-12">

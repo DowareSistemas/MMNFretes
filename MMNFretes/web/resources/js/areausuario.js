@@ -35,6 +35,16 @@ $(document).ready(function ()
     $('#lbToken_autorizacao').hide();
 });
 
+function removerLancamento(id_lancamento)
+{
+    var url = '/gcfretes/remove-oportunidade?id=' + id_lancamento;
+    $.get(url, function (response)
+    {
+        if (response === '1')
+            listaOportunidades();
+    });
+}
+
 function showConfirmaRecebmento(id_cotacao)
 {
     cotacao_atual = id_cotacao;
@@ -111,6 +121,7 @@ $('#btnSolicitarDesconto').click(function ()
     });
 });
 
+//Gerar pagamento
 $('#btnGerarBoleto').click(function ()
 {
     carregaEnderecoByCEP(cep_origem, null);
@@ -229,6 +240,7 @@ function listaCotacoes(grupo_id)
 
 function listaGruposCotacoes()
 {
+    $('#cbGrupos').empty();
     $.get("/gcfretes/listagrupos", function (grupos)
     {
         var isFirst = true;
@@ -248,12 +260,28 @@ $('#cbGrupos').change(function ()
     $('#btnEditar-grupo').fadeIn(200);
 });
 
-$('#btnEditar-grupo').click(function ()
+$('#btnRenomearGrupo').click(function ()
 {
     $('#editar-grupo').modal('toggle');
     $('#editar-grupo').modal('show');
 
-    $('#txNomeGrupo').val($('#cbGrupos').val());
+    $('#btnSalvaGrupo').click(function ()
+    {
+        if ($('#txNomeGrupo').val() === '')
+            return;
+
+        var params =
+                {
+                    id_grupo: $('#cbGrupos').val(),
+                    novo_nome: $('#txNomeGrupo').val()
+                };
+                
+        var url = '/gcfretes/renomear-grupo';
+        $.post(url, params, function (response)
+        {
+            listaGruposCotacoes(); 
+        });
+    });
 });
 
 function hab_desab_formInfo(estado)

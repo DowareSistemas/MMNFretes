@@ -8,10 +8,31 @@ function listaVeiculosSelect(categorias, carrocerias, tipos_carga)
 
 }
 
-
-
 function listaOportunidades()
 {
+    $('#txCep_origem').val('');
+    $('#txCep_destino').val('');
+    $('#txComprimento').val('');
+    $('#txAltura').val('');
+    $('#txLargura').val('');
+    $('#txPeso').val('');
+    $('#txVolumes').val('');
+    $('#txObs').val('');
+    $('#ckRodotrem').prop('checked', false);
+    $('#ckBitrem').prop('checked', false);
+    $('#ckCarrega_LS').prop('checked', false);
+    $('#ckCarrega').prop('checked', false);
+    $('#ckBitruck').prop('checked', false);
+    $('#ckTruck').prop('checked', false);
+    $('#ckToco').prop('checked', false);
+    $('#ck34').prop('checked', false);
+    $('#ckVLC').prop('checked', false);
+    $('#ckVUC').prop('checked', false);
+    $('#ckBau').prop('checked', false);
+    $('#ckSider').prop('checked', false);
+    $('#ckCacamba').prop('checked', false);
+    $('#ckGradeBaixa').prop('checked', false);
+
     var url = "/gcfretes/lista-oportunidades";
     $.get(url, function (response)
     {
@@ -98,6 +119,18 @@ function adicionaCotacao(id_lancamento)
 
 $('#btnSalvar-lancamento').click(function ()
 {
+    if ($('#txCep_origem').val() === '')
+    {
+        showMsgOK('#msgICO');
+        return;
+    }
+
+    if ($('#txCep_destino').val() === '')
+    {
+        showMsgOK('#msgICD');
+        return;
+    }
+
     var directionsService = new google.maps.DirectionsService();
     var request =
             {
@@ -109,7 +142,7 @@ $('#btnSalvar-lancamento').click(function ()
     var lancamento =
             {
                 cep_origem: $('#txCep_origem').val(),
-                cep_destino: $(' #txCep_destino').val(),
+                cep_destino: $('#txCep_destino').val(),
                 comprimento: $('#txComprimento').val(),
                 altura: $('#txAltura').val(),
                 largura: $('#txLargura').val(),
@@ -120,6 +153,42 @@ $('#btnSalvar-lancamento').click(function ()
                 carrocerias: getFiltroCarrocerias(),
                 categorias: getFiltroCategorias()
             };
+
+    if (lancamento.comprimento === '')
+    {
+        showMsgOK('#msgIC');
+        return;
+    }
+
+    if (lancamento.altura === '')
+    {
+        showMsgOK('#msgIA');
+        return;
+    }
+
+    if (lancamento.largura === '')
+    {
+        showMsgOK('#msgIL');
+        return;
+    }
+
+    if (lancamento.volumes === '' || lancamento.volumes == '0')
+    {
+        showMsgOK('#msgIV');
+        return;
+    }
+
+    if (lancamento.carrocerias === '')
+    {
+        showMsgOK('#msgSUCARR');
+        return;
+    }
+
+    if (lancamento.categorias === '')
+    {
+        showMsgOK('#msgSUCAT');
+        return;
+    }
 
     var distancia = 0;
     directionsService.route(request, function (response, status)
