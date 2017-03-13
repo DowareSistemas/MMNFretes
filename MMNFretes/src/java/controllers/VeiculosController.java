@@ -255,7 +255,7 @@ public class VeiculosController
         session.close();
 
         double valor = (veiculo.getPreco_frete() * distancia);
-        return String.format("%.2f", valor);
+        return valor + "";
     }
 
     private void closeIS(InputStream inputStream)

@@ -119,7 +119,7 @@
 
                                                         $.post(url, parametros, function (preco)
                                                         {
-                                                            $("#op${resultado.oportunidades.id}_preco").text("R$ " + preco);
+                                                            $("#op${resultado.oportunidades.id}_preco").text("R$ " + parseFloat(preco).toFixed(2));
                                                         });
                                                     });
                                                 </script>
@@ -139,10 +139,10 @@
 
                                                         var cotacao =
                                                                 {
-                                                                    valor: parseFloat($("#op${resultado.oportunidades.id}_preco").text().replace("R$ ", "")),
+                                                                    valor: parseFloat($("#op${resultado.oportunidades.id}_preco").text().replace("R$ ", "")).toFixed(2),
                                                                     cep_origem: "${resultado.oportunidades.cep_origem}",
                                                                     cep_destino: "${resultado.oportunidades.cep_destino}",
-                                                                    distancia: parseFloat("${resultado.oportunidades.distancia}"),
+                                                                    distancia: parseFloat("${resultado.oportunidades.distancia}").toFixed(2),
                                                                     usuarios_id: ${resultado.oportunidades.usuarios.id},
                                                                     veiculos_id: veiculo_id,
                                                                     oportunidade_id: ${resultado.oportunidades.id}
