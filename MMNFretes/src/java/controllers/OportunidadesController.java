@@ -23,6 +23,7 @@ import entidadesTemporarias.ResultadoLancamento;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +38,7 @@ import util.Util;
  * @author Marcos Vinícius
  */
 @Controller
+@Scope(value = "request")
 public class OportunidadesController
 {
 

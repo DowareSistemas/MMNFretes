@@ -54,7 +54,7 @@
                                 <h4 class="text-muted text-uppercase text-center">Filtros de pesquisa</h4>
                                 <!-- Filtro de pesquisa: Veículos -->
                                 <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#veiculos" aria-expanded="false" aria-controls="collapseExample">
-                                    Veículos 
+                                    Categorias 
                                 </button><br>
                                 <div class="collapse" id="veiculos">
                                     <div class="thumbnail">
@@ -120,9 +120,10 @@
 
             </footer>
         </div>
-
-        <backend:mensagem-ok id="msgSUCAT" id_btnOK="btnSUCAT" mensagem="Seleciona ao menos uma categoria de veículo!"/>
-        <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Seleciona ao menos uma carroceria de veículo!"/>
+                                    
+        <backend:mensagem-ok id_btnOK="btnOK" id="senhaIncorreta" mensagem="Usuário ou senha incorretos!" />
+        <backend:mensagem-ok id="msgSUCAT" id_btnOK="btnSUCAT" mensagem="Selecione ao menos uma categoria de veículo!"/>
+        <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Selecione ao menos uma carroceria de veículo!"/>
         <!-- Scripts da página 
         ========================================================================================= -->
         <script src="resources/js/jquery.js"></script>
@@ -140,7 +141,7 @@
         <script src="resources/js/maps.js"></script>
         <script src="resources/js/navbar.js"></script>
         <script src="resources/js/mensagens.js"></script>
-        
+
         <script>
             setRedirecionaPerfil(false);
         </script>

@@ -7,7 +7,6 @@ package controllers;
 
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.generalClasses.FileExtractor;
-import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Join;
 import entidades.Avaliacoes;
@@ -25,14 +24,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import logging.PersistenceLoggerImpl;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
 
@@ -41,6 +38,7 @@ import sessionProvider.SessionProvider;
  * @author Marcos Vinícius
  */
 @Controller
+@Scope(value = "request")
 public class PesquisaFretesController
 {
 

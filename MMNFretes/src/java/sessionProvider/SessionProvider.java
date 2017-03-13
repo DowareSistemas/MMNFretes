@@ -31,7 +31,6 @@ public class SessionProvider
 
             DBConfig config = new DBConfig();
 
-            
             config.setDb_type(DB_TYPE.PostgreSQL);
             config.setHost("localhost");
             config.setDatabase("mmn_teste");

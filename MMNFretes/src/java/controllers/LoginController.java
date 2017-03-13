@@ -12,6 +12,7 @@ import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.Criteria;
 import entidades.Usuarios;
 import javax.servlet.http.HttpSession;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,7 @@ import util.Util;
  * @author Marcos Vinícius
  */
 @Controller
+@Scope(value = "request")
 public class LoginController
 {
 
@@ -44,6 +46,7 @@ public class LoginController
         Criteria c = session.createCriteria(usuario, RESULT_TYPE.UNIQUE);
         c.add(Restrictions.eq(FILTER_TYPE.WHERE, "email", usuario.getEmail()));
         c.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
+        c.add(Restrictions.eq(FILTER_TYPE.AND, "inativo", false));
         c.execute();
 
         if (usuario.getId() != 0)

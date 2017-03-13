@@ -6,12 +6,8 @@
 package main;
 
 import br.com.persistor.interfaces.Session;
-import controllers.OportunidadesController;
-import controllers.TransportadorasController;
-import entidades.Usuarios;
-import javax.servlet.http.HttpSession;
-import org.apache.catalina.ha.session.BackupManager;
-import org.apache.catalina.session.StandardSession;
+import entidades.Veiculos;
+import entidadesTemporarias.VeiculosImgCache;
 import sessionProvider.SessionProvider;
 
 /**
@@ -23,9 +19,6 @@ public class Main
 
     public static void main(String[] args)
     {
-        Session session = SessionProvider.openSession();
-        TransportadorasController tc = new TransportadorasController();
-       
-        System.out.println(tc.getValorParticipativo(1, session));
+
     }
 }
