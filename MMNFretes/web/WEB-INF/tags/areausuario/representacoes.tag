@@ -37,6 +37,10 @@
                             <label>Valor:</label>
                             <input type="number" class="form-control">
                         </div>
+                        <div class="form-group col-md-12">
+                            <button type="button" id="btnExcluir-representacoes" class="btn btn-danger">Excluir</button>
+                            <button type="button" id="btnAdicionar-representacoes" class="btn btn-primary pull-right">Adicionar</button>
+                        </div>
                     </div>
                 </div>
             </div>
