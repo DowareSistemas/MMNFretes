@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <h1 class="navbar-logo navbar-logo-xs">
-                        <a href="/gcfretes/pesquisar">
+                        <a id="link-nav-pesquisar" href="">
                             <img src="resources/img/logo.png" width="42" height="42">
                         </a>
                     </h1>
@@ -24,7 +24,7 @@
         <!-- Collapse da navbar -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li id="li-lancamentos"><a href="/gcfretes/lancamentos">Oportunidades</a></li>
+                <li id="li-lancamentos"><a id="link-lancamentos-nav" href="">Oportunidades</a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">

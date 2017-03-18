@@ -1,4 +1,4 @@
-/* global callback */
+/* global callback, AMBIENTE_ATUAL */
 
 var id = 0;
 
@@ -44,13 +44,13 @@ $('#btnAdicionar-veiculo').click(function ()
 function listarVeiculos()
 {
     $.ajax({
-        url: "/gcfretes/listarveiculos",
+        url: "/" + AMBIENTE_ATUAL + "/listarveiculos",
         success: function (data)
         {
             $('#tabela-veiculos').html("");
             $('#tabela-veiculos').append(data);
             $('#btnAdicionar-veiculo').text('Adicionar');
-            $('#formulario-info-veiculo').attr('action', '/gcfretes/salvaveiculo');
+            $('#formulario-info-veiculo').attr('action', '/' + AMBIENTE_ATUAL + '/salvaveiculo');
             limparCampos();
         }
     });
@@ -65,7 +65,7 @@ $('#msg-sn-btnSIM').click(function ()
 {
     var veiculo_id = id;
     $.ajax({
-        url: "/gcfretes/excluirveiculo?id=" + veiculo_id,
+        url: "/" + AMBIENTE_ATUAL + "/excluirveiculo?id=" + veiculo_id,
         dataType: 'text',
         accepts: 'text',
         success: function (result)
@@ -101,16 +101,16 @@ var imgVeiculo;
 function carregarVeiculo(id_veiculo, btn)
 {
     $(btn).text('Solicitando dados');
-    
+
     $.ajax({
-        url: "/gcfretes/infoveiculo?id=" + id_veiculo,
+        url: "/" + AMBIENTE_ATUAL + "/infoveiculo?id=" + id_veiculo,
         dataType: 'json',
         accepts: 'json',
         success: function (veiculo)
         {
-           $('html, body').animate({scrollTop: '0px'}, 300);
+            $('html, body').animate({scrollTop: '0px'}, 300);
             id = veiculo.id;
-            $('#formulario-info-veiculo').attr('action', '/gcfretes/alteraveiculo');
+            $('#formulario-info-veiculo').attr('action', '/' + AMBIENTE_ATUAL + '/alteraveiculo');
             $('#txID').val(id);
             $('#txDescricao_veiculo').val(veiculo.descricao);
             $('#txCapacidade_veiculo').val(veiculo.capacidade);
@@ -123,7 +123,7 @@ function carregarVeiculo(id_veiculo, btn)
             $('#btnAdicionar-veiculo').text('Salvar');
             getImgVeiculo(id_veiculo);
             checkStatusRastreador();
-            
+
             $(btn).text('Editar ');
         }
     });
@@ -144,7 +144,7 @@ function checkStatusRastreador()
 
 function getImgVeiculo(id_veiculo)
 {
-    var url = "/gcfretes/veiculo_path";
+    var url = "/" + AMBIENTE_ATUAL + "/veiculo_path";
     var prm =
             {
                 veiculo_id: id_veiculo
@@ -160,7 +160,7 @@ function buscarVeiculo()
 {
     var nomeVeiculo = $('#txBusca-veiculo').val();
     $.ajax({
-        url: "/gcfretes/buscarveiculos?nome=" + nomeVeiculo,
+        url: "/" + AMBIENTE_ATUAL + "/buscarveiculos?nome=" + nomeVeiculo,
         success: function (data)
         {
             $('#tabela-veiculos').html("");
@@ -204,7 +204,7 @@ function alteraVeiculo()
     $('#formulario-info-veiculo').ajaxForm({
         success: function (data)
         {
-            $('#form-img').attr('action', '/gcfretes/uploadimg?veiculo_id=' + id);
+            $('#form-img').attr('action', '/' + AMBIENTE_ATUAL + '/uploadimg?veiculo_id=' + id);
             uploadImagem();
             listarVeiculos();
         }
@@ -247,7 +247,7 @@ function limparCampos()
     $('#cbTipo_carga').val(1);
     $('#cb_carroceria').val(1);
     $('#fake-file-input-name-veiculos').val('');
-    $('#formulario-info-veiculo').attr('action', '/gcfretes/salvaveiculo');
+    $('#formulario-info-veiculo').attr('action', '/' + AMBIENTE_ATUAL + '/salvaveiculo');
 }
 
 function adicionaVeiculo()
@@ -267,7 +267,7 @@ function adicionaVeiculo()
     $('#formulario-info-veiculo').ajaxForm({
         success: function (data)
         {
-            $('#form-img').attr('action', '/gcfretes/uploadimg?veiculo_id=' + id);
+            $('#form-img').attr('action', '/' + AMBIENTE_ATUAL + '/uploadimg?veiculo_id=' + id);
             uploadImagem();
             listarVeiculos();
         }

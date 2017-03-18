@@ -1,3 +1,5 @@
+/* global AMBIENTE_ATUAL */
+
 $(document).ready(function ()
 {
     listaOportunidades();
@@ -33,7 +35,7 @@ function listaOportunidades()
     $('#ckCacamba').prop('checked', false);
     $('#ckGradeBaixa').prop('checked', false);
 
-    var url = "/gcfretes/lista-oportunidades";
+    var url = "/" + AMBIENTE_ATUAL + "/lista-oportunidades";
     $.get(url, function (response)
     {
         $('#tabela-lancamentos').html(response);
@@ -68,7 +70,7 @@ function carregaEnderecoByCEP(Cep, element)
 function aceitarOportunidade(cotacao, id_resultado)
 {
 
-    var url = "/gcfretes/aceita-oportunidade";
+    var url = "/" + AMBIENTE_ATUAL + "/aceita-oportunidade";
 
     $.post(url, cotacao, function (response)
     {
@@ -92,10 +94,10 @@ function adicionaCotacao(id_lancamento)
 
     $('#btnConfirmaValor').click(function ()
     {
-        var url = "/gcfretes/detalhes-oportunidade?id=" + id_lancamento;
+        var url = "/" + AMBIENTE_ATUAL + "/detalhes-oportunidade?id=" + id_lancamento;
         $.get(url, function (oportunidade)
         {
-            url = "/gcfretes/infoTransportador";
+            url = "/" + AMBIENTE_ATUAL + "/infoTransportador";
             $.get(url, function (transportador)
             {
                 var valor = parseFloat($('#txValor-transportador').val()).toFixed(2);
@@ -198,7 +200,7 @@ $('#btnSalvar-lancamento').click(function ()
             distancia = (response.routes[0].legs[0].distance.value / 1000);
             lancamento.distancia = parseFloat(distancia).toFixed(2);
 
-            var url = "/gcfretes/salvalancamento";
+            var url = "/" + AMBIENTE_ATUAL + "/salvalancamento";
             $.post(url, lancamento, function (response)
             {
                 listaOportunidades();

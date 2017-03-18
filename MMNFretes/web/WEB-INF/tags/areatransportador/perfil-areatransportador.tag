@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-8">
                             <!--  Formulario Info  -->
-                            <form role="form" id="formulario-info-transportador" method="POST" action="/gcfretes/alteraInfoTransportadora">
+                            <form role="form" id="formulario-info-transportador" method="POST" action="/alteraInfoTransportadora">
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label>Usuário:</label>

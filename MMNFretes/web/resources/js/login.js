@@ -8,11 +8,13 @@
  * porém, existem lugares em que o usuário deve ir para sua pagina, e outros
  * não.
  */
+/* global AMBIENTE_ATUAL */
+
 var redirecionaPerfil = false;
 
 $(document).ready(function ()
 {
-    $.post("/gcfretes/usuarioatual", function (data)
+    $.post("/" + AMBIENTE_ATUAL + "/usuarioatual", function (data)
     {
         if (data !== '0')
         {
@@ -49,7 +51,7 @@ function setRedirecionaPerfil(redireciona)
 
 function countCotacoes()
 {
-    var url = "/gcfretes/countcotacoes";
+    var url = "/" + AMBIENTE_ATUAL + "/countcotacoes";
     $.get(url, function (response)
     {
         $('#countCotacoes').text(response);
@@ -91,7 +93,7 @@ function efetualLogin()
                 email: $('#txEmail').val(),
                 senha: $('#txSenha').val()
             };
-    var url = "/gcfretes/efetualogin";
+    var url = "/" + AMBIENTE_ATUAL + "/efetualogin";
 
     /*
      * O controller 'efetualogin', retorna o nome da pagina
@@ -110,7 +112,7 @@ function efetualLogin()
         {
             usuarioLogado = true;
             if (redirecionaPerfil)
-                $(location).attr('href', '/gcfretes/' + result);
+                $(location).attr('href', '/' + AMBIENTE_ATUAL + '/' + result);
             else
             {
                 $('#btnVisualizaCotacoes').fadeIn(500);

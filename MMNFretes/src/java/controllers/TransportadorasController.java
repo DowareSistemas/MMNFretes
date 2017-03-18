@@ -169,7 +169,7 @@ public class TransportadorasController
 
                     return (image == null
                             ? "not_localized"
-                            : "/gcfretes/upload/" + fileName);
+                            : PesquisaFretesController.getUrlAcessoImagens() + fileName);
                 }
         }
         catch (Exception ex)

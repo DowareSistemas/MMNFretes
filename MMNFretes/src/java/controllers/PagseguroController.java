@@ -23,10 +23,9 @@ import br.com.uol.pagseguro.enums.TransactionStatus;
 import br.com.uol.pagseguro.exception.PagSeguroServiceException;
 import br.com.uol.pagseguro.service.NotificationService;
 import entidades.*;
+import enums.Ambientes;
 import enums.STATUS_COTACAO;
 import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logging.PersistenceLoggerImpl;
@@ -37,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sessionProvider.SessionProvider;
+import util.AmbienteAtual;
 
 /**
  *
@@ -130,8 +130,13 @@ public class PagseguroController
             pr.setCurrency(Currency.BRL);
             pr.setSender(new Sender(cotacao.getUsuarios().getNome(), cotacao.getUsuarios().getEmail()));
             pr.setReference("FRT-" + cotacao.getId());
-          //  pr.setShipping(getShipping());
-            pr.setNotificationURL("http://gcfretes.com.br/gcfretes/notificacao");
+            //  pr.setShipping(getShipping());
+
+            if (AmbienteAtual.getAmbienteAtual() == Ambientes.PRODUCAO)
+                pr.setNotificationURL("http://gcfretes.com.br/gcfretes/notificacao");
+            else
+                pr.setNotificationURL("http://simula.gcfretes.com.br/simula_gcfretes/notificacao");
+
             url = pr.register(getCredentials());
 
             cotacao.setStatus(STATUS_COTACAO.AGUARDANDO_PAGAMENTO);
@@ -201,7 +206,7 @@ public class PagseguroController
 
         if (transaction.getStatus() == TransactionStatus.CANCELLED)
             session.delete(cotacao);
-       */
+         */
         session.commit();
         session.close();
     }

@@ -1,5 +1,6 @@
 $(document).ready(function ()
 {
+    $('#form-config').prop('action', '/' + AMBIENTE_ATUAL + '/autconfig'); 
     $('#configs').hide();
 });
 
@@ -32,8 +33,8 @@ $('#btnSalvar').click(function ()
                 valor: $('#txValor').val()
             };
 
-    var url = "/gcfretes/updateconfig";
-    
+    var url = "/" + AMBIENTE_ATUAL + "/updateconfig";
+
     $.post(url, configuracao, function (response)
     {
         if (response === "1")
@@ -49,7 +50,7 @@ $('#cbConfigs').change(function ()
             {
                 config_id: $('#cbConfigs').val()
             };
-    var url = "/gcfretes/descricaoconfig";
+    var url = "/" + AMBIENTE_ATUAL + "/descricaoconfig";
     $.post(url, configParam, function (response)
     {
         $('#lbDescricao').text(response);

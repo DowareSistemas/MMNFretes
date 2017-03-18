@@ -10,7 +10,7 @@
                         <div class="col-md-12">
                             <h3 class="text-primary">Gerenciar endereços</h3>
                             <div class="form-group">
-                                <form role="form" id="formulario-endereco" action="/gcfretes/adicionaEndereco" method="POST">
+                                <form role="form" id="formulario-endereco" action="" method="POST">
                                     <div class="row">
                                         <div hidden>
                                             <input type="number" id="txID-endereco" name="id">

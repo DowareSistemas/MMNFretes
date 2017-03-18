@@ -3,7 +3,7 @@
  *  0 - Percentual;
  *  1 - Valor;
  */
-/* global parseFloat */
+/* global parseFloat, AMBIENTE_ATUAL */
 
 var tipo_desconto = 0;
 
@@ -51,7 +51,7 @@ $(document).ready(function ()
     hab_desab_formInfo(true);
     pesquisaCotacao('');
 
-    $.get('/gcfretes/foto_transportador', function (url)
+    $.get('/' + AMBIENTE_ATUAL + '/foto_transportador', function (url)
     {
         $('#img-perfil').attr('src', url);
     });
@@ -102,7 +102,7 @@ function mostraDetalhesItem(id_item)
     $('#detalhes_cotacao_transportador').modal('toggle');
     $('#detalhes_cotacao_transportador').modal('show');
 
-    var url = "/gcfretes/getcotacao?id=" + id_item;
+    var url = "/" + AMBIENTE_ATUAL + "/getcotacao?id=" + id_item;
     $.post(url, function (cotacao)
     {
         $('#lbNomeCliente').text(cotacao.usuarios.nome);
@@ -138,7 +138,7 @@ $('#txValorDesconto').keyup(function ()
 
 $('#btnRecusaDesconto').click(function ()
 {
-    var url = "/gcfretes/reprovadesconto?cotacao_id=" + cotacao_atual;
+    var url = "/" + AMBIENTE_ATUAL + "/reprovadesconto?cotacao_id=" + cotacao_atual;
     $.post(url, function ()
     {
         $('#btnDesconto').fadeOut(1000);
@@ -149,7 +149,7 @@ $('#btnRecusaDesconto').click(function ()
 
 function aprovaItemCotacao(cotacao_id)
 {
-    var url = "/gcfretes/aprovaitemcotacao?cotacao_id=" + cotacao_id;
+    var url = "/" + AMBIENTE_ATUAL + "/aprovaitemcotacao?cotacao_id=" + cotacao_id;
     $.post(url, function (response)
     {
         pesquisaCotacao('');
@@ -158,7 +158,7 @@ function aprovaItemCotacao(cotacao_id)
 
 function reprovaItemCotacao(cotacao_id)
 {
-    var url = "/gcfretes/reprovaitemcotacao?cotacao_id=" + cotacao_id;
+    var url = "/" + AMBIENTE_ATUAL + "/reprovaitemcotacao?cotacao_id=" + cotacao_id;
     $.post(url, function (response)
     {
         pesquisaCotacao('');
@@ -194,7 +194,7 @@ $('#btnConfirmaDesconto').click(function ()
                 valor_desconto: desconto,
                 valor_final: valorFinal
             };
-    var url = "/gcfretes/aprovadesconto";
+    var url = "/" + AMBIENTE_ATUAL + "/aprovadesconto";
     $.post(url, parametros, function (response)
     {
         $('#btnDesconto').fadeOut(1000);
@@ -247,7 +247,7 @@ function pesquisaCotacao(termoBusca)
                 resultView: 'cotacoestransportador'
             };
 
-    var url = '/gcfretes/buscarcotacao';
+    var url = '/' + AMBIENTE_ATUAL + '/buscarcotacao';
     $.post(url, parametros, function (response)
     {
         $('#tabela-cotacoes').html(response);
@@ -302,7 +302,7 @@ $('#btnPendentes').click(function ()
 function carregaInfoTransportador()
 {
     $.ajax({
-        url: "/gcfretes/infoTransportador",
+        url: "/" + AMBIENTE_ATUAL + "/infoTransportador",
         dataType: 'json',
         accepts: "application/json",
         success: function (transportador_result)
@@ -320,7 +320,7 @@ function carregaInfoTransportador()
     });
 
     $.ajax({
-        url: "/gcfretes/infoUsuario",
+        url: "/" + AMBIENTE_ATUAL + "/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
         success: function (usuario_result)
@@ -367,10 +367,12 @@ $('#btnConfirmarSenha').click(function ()
 
     if (senha === senhaDigitada)
     {
+        $('#formulario-info-transportador').prop('action', '/' + AMBIENTE_ATUAL + '/alteraInfoTransportadora');
+        
         $('#formulario-info-transportador').ajaxForm({
             success: function (data)
             {
-                $('#form-img-perfil').attr('action', '/gcfretes/uploadimgperfil');
+                $('#form-img-perfil').attr('action', '/' + AMBIENTE_ATUAL + '/uploadimgperfil');
                 uploadImgPerfil();
 
                 carregaInfoTransportador();
@@ -415,7 +417,7 @@ $('#Pagseguro').change(function ()
 {
     $.ajax
             ({
-                url: "/gcfretes/alteraStatusPagSeguro?status=" + $('#Pagseguro').is(':checked'),
+                url: "/" + AMBIENTE_ATUAL + "/alteraStatusPagSeguro?status=" + $('#Pagseguro').is(':checked'),
                 success: function ()
                 {
                     carregaInfoTransportador();
@@ -427,7 +429,7 @@ $('#NegociacaoDireta').change(function ()
 {
     $.ajax
             ({
-                url: "/gcfretes/alteraStatusNegociacao?status=" + $('#NegociacaoDireta').is(':checked'),
+                url: "/" + AMBIENTE_ATUAL + "/alteraStatusNegociacao?status=" + $('#NegociacaoDireta').is(':checked'),
                 success: function ()
                 {
                     carregaInfoTransportador();

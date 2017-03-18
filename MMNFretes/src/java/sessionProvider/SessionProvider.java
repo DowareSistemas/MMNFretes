@@ -11,7 +11,9 @@ import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.SessionFactory;
 import controllers.Update;
+import enums.Ambientes;
 import logging.PersistenceLoggerImpl;
+import util.AmbienteAtual;
 
 /**
  *
@@ -31,6 +33,44 @@ public class SessionProvider
 
             DBConfig config = new DBConfig();
 
+            switch (AmbienteAtual.getAmbienteAtual())
+            {
+                case Ambientes.SIMULA_ONLINE:
+
+                    config.setDb_type(DB_TYPE.PostgreSQL);
+                    config.setHost("localhost");
+                    config.setDatabase("doware_simula_gcfretes");
+                    config.setPort(5432);
+                    config.setUser("doware");
+                    config.setPassword("FoZyrd@193Te2");
+                    config.setPersistenceLogger(PersistenceLoggerImpl.class);
+                    break;
+
+                case Ambientes.SIMULA_OFFLINE:
+
+                    config.setDb_type(DB_TYPE.PostgreSQL);
+                    config.setHost("localhost");
+                    config.setDatabase("mmn_teste");
+                    config.setPort(5432);
+                    config.setUser("postgres");
+                    config.setPassword("81547686");
+                    config.setMaxStatements(1000);
+                    config.setPersistenceLogger(PersistenceLoggerImpl.class);
+                    break;
+
+                case Ambientes.PRODUCAO:
+
+                    config.setDb_type(DB_TYPE.PostgreSQL);
+                    config.setHost("localhost");
+                    config.setDatabase("doware_gcfretes");
+                    config.setPort(5432);
+                    config.setUser("doware");
+                    config.setPassword("FoZyrd@193Te2");
+                    config.setPersistenceLogger(PersistenceLoggerImpl.class);
+                    break;
+            }
+
+            /*
             config.setDb_type(DB_TYPE.PostgreSQL);
             config.setHost("localhost");
             config.setDatabase("mmn_teste");
@@ -39,20 +79,11 @@ public class SessionProvider
             config.setPassword("81547686");
             config.setMaxStatements(1000);
             config.setPersistenceLogger(PersistenceLoggerImpl.class);
-            
-            /*
-            config.setDb_type(DB_TYPE.PostgreSQL);
-            config.setHost("localhost");
-            config.setDatabase("doware_gcfretes");
-            config.setPort(5432);
-            config.setUser("doware");
-            config.setPassword("FoZyrd@193Te2");
-            config.setPersistenceLogger(PersistenceLoggerImpl.class);
-
-            /*
+             */
+ /*
             xK$dn,=1QtON
              */
-            
+
             return factory.getSession(config);
         }
         catch (Exception ex)

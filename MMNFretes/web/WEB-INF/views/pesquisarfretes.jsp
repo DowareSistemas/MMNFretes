@@ -126,6 +126,7 @@
         <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Selecione ao menos uma carroceria de veículo!"/>
         <!-- Scripts da página 
         ========================================================================================= -->
+        <script src="resources/js/ambientes.js"></script>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>

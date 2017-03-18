@@ -75,6 +75,7 @@
         </div>
     </div>
     <!-- Scripts da página -->
+    <script src="resources/js/ambientes.js"></script>
     <script src="resources/js/jquery.js"></script>
     <script src="resources/js/jquery-form.js"></script>
     <script src="resources/js/jquery-mask.js"></script>
