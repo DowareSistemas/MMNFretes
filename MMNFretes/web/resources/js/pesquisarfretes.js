@@ -1,4 +1,4 @@
-/* global cep_atual, parseFloat */
+/* global cep_atual, parseFloat, AMBIENTE_ATUAL */
 
 var usuarioLogado = false;
 var distancia;
@@ -7,7 +7,7 @@ $(document).ready(function ()
 {
     $('#lbIncorretos').hide();
 
-    $.post("/gcfretes/usuarioatual", function (data)
+    $.post("/" + AMBIENTE_ATUAL + "/usuarioatual", function (data)
     {
         if (data !== '0')
         {
@@ -48,25 +48,25 @@ function buscarFretes()
     {
         if (status == google.maps.DirectionsStatus.OK)
         {
-            distancia =(response.routes[0].legs[0].distance.value / 1000);
-            var url = "/gcfretes/pesquisafrete";
-            
+            distancia = (response.routes[0].legs[0].distance.value / 1000);
+            var url = "/" + AMBIENTE_ATUAL + "/pesquisafrete";
+
             filtroPesquisa.carrocerias = getFiltroCarrocerias();
-            
-            if(filtroPesquisa.carrocerias === '')
+
+            if (filtroPesquisa.carrocerias === '')
             {
                 showMsgOK('#msgSUCARR');
                 return;
             }
-            
+
             filtroPesquisa.categorias = getFiltroCategorias();
-         
-            if(filtroPesquisa.categorias === '')
+
+            if (filtroPesquisa.categorias === '')
             {
                 showMsgOK('#msgSUCAT');
                 return;
             }
-            
+
             filtroPesquisa.rastreador = $('#rdoSIM').is(':checked');
             filtroPesquisa.distancia = parseFloat(distancia).toFixed(2);
 
@@ -246,7 +246,7 @@ function adicionarVeiculoCotacao(transportadora_id, veiculo_id, valorFrete)
                 veiculos_id: veiculo_id
             };
 
-    var url = "/gcfretes/addveiculocotacao";
+    var url = "/" + AMBIENTE_ATUAL + "/addveiculocotacao";
 
     $.post(url, cotacao, function (response)
     {
@@ -258,7 +258,7 @@ function adicionarVeiculoCotacao(transportadora_id, veiculo_id, valorFrete)
 
 $('#btnVisualizaCotacoes').click(function ()
 {
-    var url = "/gcfretes/listarpendentes";
+    var url = "/" + AMBIENTE_ATUAL + "/listarpendentes";
     $.get(url, function (data)
     {
         $('#tabelaCotacoesAtivas').html(data);
@@ -297,7 +297,7 @@ function removeVeiculoCotacao(id_cotacao)
                 id: id_cotacao
             };
 
-    var url = "/gcfretes/removecotacao";
+    var url = "/" + AMBIENTE_ATUAL + "/removecotacao";
     var trId = "cotacao" + id_cotacao;
     $.post(url, cotacao, function (respose)
     {
@@ -312,7 +312,7 @@ function removeVeiculoCotacao(id_cotacao)
 
 function countCotacoes()
 {
-    var url = "/gcfretes/countcotacoes";
+    var url = "/" + AMBIENTE_ATUAL + "/countcotacoes";
     $.get(url, function (response)
     {
         $('#countCotacoes').text(response);
@@ -321,7 +321,7 @@ function countCotacoes()
 
 $('#btnFinalizarCotacao').click(function ()
 {
-    var url = "/gcfretes/upstatuscotacao?status=" + 1;
+    var url = "/" + AMBIENTE_ATUAL + "/upstatuscotacao?status=" + 1;
     $.get(url);
-    window.location.href = "/gcfretes/paginaperfil";
+    window.location.href = "/" + AMBIENTE_ATUAL + "/paginaperfil";
 });

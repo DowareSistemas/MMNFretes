@@ -18,6 +18,7 @@ import entidades.Transportadoras;
 import entidades.Usuarios;
 import entidades.Veiculos;
 import entidadesTemporarias.ResultadoPesquisa;
+import enums.Ambientes;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import sessionProvider.SessionProvider;
+import util.AmbienteAtual;
 
 /**
  *
@@ -166,7 +168,7 @@ public class PesquisaFretesController
 
             veiculo.setCarrocerias((Carrocerias) joinVeiculos.getEntity(Carrocerias.class));
             veiculo.setCategorias_veiculos((Categorias_veiculos) joinVeiculos.getEntity(Categorias_veiculos.class));
-           
+
             Transportadoras transp = (Transportadoras) joinVeiculos.getEntity(Transportadoras.class);
             transp.setUsuarios((Usuarios) joinVeiculos.getEntity(Usuarios.class));
             veiculo.setTransportadoras(transp);
@@ -204,13 +206,13 @@ public class PesquisaFretesController
 
                     return (image == null
                             ? "not_localized"
-                            : "/gcfretes/upload/" + fileName);
+                            : PesquisaFretesController.getUrlAcessoImagens() + fileName);
                 }
         }
         catch (Exception ex)
         {
-           // PersistenceLoggerImpl log = new PersistenceLoggerImpl();
-           // log.newNofication(new PersistenceLog(getClass().getName(), "String getFotoPath(Veiculos veiculo, HttpServletRequest request)", null, ex, ""));
+            // PersistenceLoggerImpl log = new PersistenceLoggerImpl();
+            // log.newNofication(new PersistenceLog(getClass().getName(), "String getFotoPath(Veiculos veiculo, HttpServletRequest request)", null, ex, ""));
         }
 
         return "not_localized";
@@ -221,5 +223,20 @@ public class PesquisaFretesController
         Calendar c = Calendar.getInstance();
         String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras().getId());
         return name + ".jpg";
+    }
+
+    public static String getUrlAcessoImagens()
+    {
+        switch (AmbienteAtual.getAmbienteAtual())
+        {
+            case Ambientes.PRODUCAO:
+                return "/gcfretes/upload/";
+            case Ambientes.SIMULA_OFFLINE:
+                return "/gcfretes/upload/";
+            case Ambientes.SIMULA_ONLINE:
+                return "/simula_gcfretes/upload/";
+        }
+        
+        return "";
     }
 }

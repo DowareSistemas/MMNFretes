@@ -6,8 +6,8 @@
 package main;
 
 import br.com.persistor.interfaces.Session;
-import entidades.Veiculos;
-import entidadesTemporarias.VeiculosImgCache;
+import controllers.EmailController;
+import entidades.Cotacoes;
 import sessionProvider.SessionProvider;
 
 /**
@@ -19,6 +19,8 @@ public class Main
 
     public static void main(String[] args)
     {
-
+        Session session = SessionProvider.openSession();
+        Cotacoes c = session.onID(Cotacoes.class, 1);
+        EmailController.getInstance().descontoAprovado(c, "R$ 10,00");
     }
 }

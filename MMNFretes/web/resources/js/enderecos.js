@@ -1,3 +1,5 @@
+/* global AMBIENTE_ATUAL */
+
 var endereco_atual = 0;
 
 $(document).ready(function ()
@@ -8,7 +10,7 @@ $(document).ready(function ()
 
 $('#btnAdicionar-endereco').click(function ()
 {
-    if ($('#formulario-endereco').attr('action') === '/gcfretes/adicionaEndereco')
+    if ($('#formulario-endereco').attr('action') === '/' + AMBIENTE_ATUAL + '/adicionaEndereco')
         $('#txID-endereco').val(0);
 
     $('#formulario-endereco').ajaxForm
@@ -24,14 +26,14 @@ $('#btnAdicionar-endereco').click(function ()
                     $('#txComplemento').val('');
                     $('#btnExcluir-endereco').fadeOut(100);
                     $('#btnAdicionar-endereco').text('Adicionar');
-                    $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
+                    $('#formulario-endereco').attr('action', '/' + AMBIENTE_ATUAL + '/adicionaEndereco');
                 }
             });
 });
 
 function carregaEstados()
 {
-    var url = "/gcfretes/listaestados";
+    var url = "/" + AMBIENTE_ATUAL + "/listaestados";
     $.get(url, function (estados)
     {
         for (var estado in estados)
@@ -42,7 +44,7 @@ function carregaEstados()
 $('#cbUf').change(function ()
 {
     var estado_id = parseInt($('#cbUf').val());
-    var url = "/gcfretes/listacidades?estado_id=" + estado_id;
+    var url = "/" + AMBIENTE_ATUAL + "/listacidades?estado_id=" + estado_id;
 
     $('#cbMunicipio').empty();
     $('#cbMunicipio').append(new Option('Selecionar', '0', true, true));
@@ -57,10 +59,10 @@ $('#cbUf').change(function ()
 function carregaEnderecos()
 {
     $.ajax({
-        url: "/gcfretes/listaEnderecos",
+        url: "/" + AMBIENTE_ATUAL + "/listaEnderecos",
         success: function (data)
         {
-            $('#formulario-endereco').attr('action', '/gcfretes/adicionaEndereco');
+            $('#formulario-endereco').attr('action', '/' + AMBIENTE_ATUAL + '/adicionaEndereco');
             $('#enderecos-items').html("");
             $('#enderecos-items').append(data);
             $('#formulario-endereco')[0].reset();
@@ -82,7 +84,7 @@ $('#msg-sn-btnSIM').click(function ()
                 endereco_id: endereco_atual
             };
 
-    var url = "/gcfretes/inativaEndereco";
+    var url = "/" + AMBIENTE_ATUAL + "/inativaEndereco";
     $.post(url, endereco, function ()
     {
         $('#btnExcluir-endereco').fadeOut(100);
@@ -95,21 +97,20 @@ $('#msg-sn-btnSIM').click(function ()
 function carregaEnderecoEdicao(endereco_id)
 {
     $.ajax({
-        url: "/gcfretes/carregaEndereco?endereco_id=" + endereco_id,
+        url: "/" + AMBIENTE_ATUAL + "/carregaEndereco?endereco_id=" + endereco_id,
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         dataType: 'json',
         success: function (endereco)
         {
             $('#txID-endereco').val(endereco.id);
             $('#btnAdicionar-endereco').text('Salvar alterações');
-            $('#formulario-endereco').attr('action', '/gcfretes/alteraEndereco');
+            $('#formulario-endereco').attr('action', '/' + AMBIENTE_ATUAL + '/alteraEndereco');
             $('#btnExcluir-endereco').fadeOut(100);
             $('#txCep').val(endereco.CEP);
             $('#cbUf').val(endereco.UF);
 
-
             var estado_id = parseInt($('#cbUf').val());
-            var url = "/gcfretes/listacidades?estado_id=" + estado_id;
+            var url = "/" + AMBIENTE_ATUAL + "/listacidades?estado_id=" + estado_id;
 
             $('#cbMunicipio').empty();
             $('#cbMunicipio').append(new Option('Selecionar', '0', true, true));

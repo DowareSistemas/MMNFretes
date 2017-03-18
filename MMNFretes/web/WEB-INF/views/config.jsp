@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-md-12" id="div-form">
-                <form action="/gcfretes/autconfig" id="form-config" method="POST">
+                <form id="form-config" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <label class="h5"> Usuário </label>
@@ -88,6 +88,7 @@
 
 
         <!-- Scripts da página -->
+        <script src="resources/js/ambientes.js"></script>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>

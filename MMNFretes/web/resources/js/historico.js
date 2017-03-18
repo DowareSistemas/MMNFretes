@@ -9,8 +9,8 @@ function listaHistorico(termoPesquisa)
             {
                 searchTerm: termoPesquisa
             };
-    var url = "/gcfretes/listaHistorico";
-    
+    var url = "/" + AMBIENTE_ATUAL + "/listaHistorico";
+
     $.post(url, params, function (response)
     {
         $('#tabela-historico').html(response);

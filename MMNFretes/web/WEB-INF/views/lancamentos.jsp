@@ -27,6 +27,7 @@
 
         <!-- Scripts da página 
         ========================================================================================= -->
+        <script src="resources/js/ambientes.js"></script>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
@@ -65,7 +66,7 @@
                                             <div class="col-xs-12">
                                                 <p>Distância: <strong class="pull-right">${resultado.oportunidades.distancia}Km</strong></p>
                                             </div>
-                                            <div class="col-xs-12" onafterprint="teste()">
+                                            <div class="col-xs-12">
                                                 <p>Origem: <strong id="op${resultado.oportunidades.id}_cep_origem" class="pull-right">${resultado.oportunidades.cep_origem}</strong></p>
                                             </div>
                                             <div class="col-xs-12">
@@ -110,7 +111,7 @@
                                                             return;
                                                         }
 
-                                                        var url = "/gcfretes/precoveiculo";
+                                                        var url = "/" + AMBIENTE_ATUAL + "/precoveiculo";
                                                         var parametros =
                                                                 {
                                                                     veiculo_id: veiculo_id,
@@ -119,7 +120,7 @@
 
                                                         $.post(url, parametros, function (preco)
                                                         {
-                                                            $("#op${resultado.oportunidades.id}_preco").text("R$ " + preco);
+                                                            $("#op${resultado.oportunidades.id}_preco").text("R$ " + parseFloat(preco).toFixed(2));
                                                         });
                                                     });
                                                 </script>
@@ -139,10 +140,10 @@
 
                                                         var cotacao =
                                                                 {
-                                                                    valor: parseFloat($("#op${resultado.oportunidades.id}_preco").text().replace("R$ ", "")),
+                                                                    valor: parseFloat($("#op${resultado.oportunidades.id}_preco").text().replace("R$ ", "")).toFixed(2),
                                                                     cep_origem: "${resultado.oportunidades.cep_origem}",
                                                                     cep_destino: "${resultado.oportunidades.cep_destino}",
-                                                                    distancia: parseFloat("${resultado.oportunidades.distancia}"),
+                                                                    distancia: parseFloat("${resultado.oportunidades.distancia}").toFixed(2),
                                                                     usuarios_id: ${resultado.oportunidades.usuarios.id},
                                                                     veiculos_id: veiculo_id,
                                                                     oportunidade_id: ${resultado.oportunidades.id}

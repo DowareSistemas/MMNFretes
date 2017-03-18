@@ -7,7 +7,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <form role="form" id="formulario-info-usuario" method="POST" action="/gcfretes/alteraInfoUsuario">
+                        <form role="form" id="formulario-info-usuario" method="POST" action="">
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label>Usuário:</label>
@@ -40,7 +40,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
+                                    <!--
                                     <button type="button" id="btnExcluir-conta" class="btn btn-link pull-left" title="Excluir Conta">Excluir Conta</button>
+                                    -->
                                 </div>
                                 <div class="col-md-6">
                                     <button type="button" id="btnAlterar-info" class="btn btn-primary col-md-3 pull-right">Editar</button>

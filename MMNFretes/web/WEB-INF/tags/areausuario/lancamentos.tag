@@ -13,14 +13,14 @@
                             <label>CEP Origem:</label>
                             <div class="form-group input-group">
                                 <span class="btn input-group-addon" id="btnPesquisaCepOrigem" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                <input type="text" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
+                                <input type="text" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <label>CEP Destino:</label>
                             <div class="form-group input-group">
                                 <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                <input type="text" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
+                                <input type="text" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="">
                             </div>
                         </div>
                     </div>
@@ -105,6 +105,7 @@
                                 <th>Altura</th>
                                 <th>Largura</th>
                                 <th>Volumes</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody id="tabela-lancamentos">

@@ -1,3 +1,5 @@
+/* global AMBIENTE_ATUAL */
+
 var modoEdicaoInfo = false;
 var cotacao_atual = 0;
 var cep_origem = '';
@@ -36,11 +38,21 @@ $(document).ready(function ()
     $('#lbToken_autorizacao').hide();
 });
 
+function removerLancamento(id_lancamento)
+{
+    var url = '/' + AMBIENTE_ATUAL + '/remove-oportunidade?id=' + id_lancamento;
+    $.get(url, function (response)
+    {
+        if (response === '1')
+            listaOportunidades();
+    });
+}
+
 function showConfirmaRecebmento(id_cotacao)
 {
     cotacao_atual = id_cotacao;
 
-    $.post("/gcfretes/gera-token-historico", function (token)
+    $.post("/" + AMBIENTE_ATUAL + "/gera-token-historico", function (token)
     {
         $('#token_consulta').text(token);
     });
@@ -61,7 +73,7 @@ $('#btnEncerraCotacao').click(function ()
                 comentario: $('#txComentario').val()
             };
 
-    var url = "/gcfretes/encerraCotacao";
+    var url = "/" + AMBIENTE_ATUAL + "/encerraCotacao";
     $.post(url, params, function (response)
     {
         $('#cbGrupos').empty();
@@ -80,7 +92,7 @@ $('#btnFechaModalAvaliacao').click(function ()
 function carregaInfoUsuario()
 {
     $.ajax({
-        url: "/gcfretes/infoUsuario",
+        url: "/" + AMBIENTE_ATUAL + "/infoUsuario",
         dataType: 'json',
         accepts: "application/json",
         success: function (usuario)
@@ -106,12 +118,13 @@ $('#btnSolicitarDesconto').click(function ()
     $('#btnSolicitarDesconto').fadeOut(600);
 
     var self = $(this);
-    var url = "/gcfretes/solicitadesconto?cotacao_id=" + self.val();
+    var url = "/" + AMBIENTE_ATUAL + "/solicitadesconto?cotacao_id=" + self.val();
     $.post(url, function (response)
     {
     });
 });
 
+//Gerar pagamento
 $('#btnGerarBoleto').click(function ()
 {
     carregaEnderecoByCEP(cep_origem, null);
@@ -125,7 +138,7 @@ $('#btnGerarBoleto').click(function ()
                 municipio: enderecoObj.municipio,
                 UF: enderecoObj.UF
             };
-    var url = "/gcfretes/processarpagamento";
+    var url = "/" + AMBIENTE_ATUAL + "/processarpagamento";
 
     $.post(url, params, function (data)
     {
@@ -141,7 +154,7 @@ function mostraDetalhesItem(id_item)
     $('#detalhes_cotacao').modal('toggle');
     $('#detalhes_cotacao').modal('show');
 
-    var url = "/gcfretes/getcotacao?id=" + id_item;
+    var url = "/" + AMBIENTE_ATUAL + "/getcotacao?id=" + id_item;
     $.post(url, function (cotacao)
     {
         $('#lbNomeTransportador').text(cotacao.transportadoras.nome);
@@ -203,7 +216,7 @@ function cancelaItemCotacao(id_item)
                 {
                     id: id_item
                 };
-        var url = "/gcfretes/removecotacao";
+        var url = "/" + AMBIENTE_ATUAL + "/removecotacao";
         $.post(url, cotacao, function (respose)
         {
             if (respose === '1')
@@ -221,7 +234,7 @@ function listaCotacoes(grupo_id)
                 resultView: "cotacoesusuario"
             };
 
-    var url = "/gcfretes/buscarcotacao";
+    var url = "/" + AMBIENTE_ATUAL + "/buscarcotacao";
     $.post(url, parametros, function (result)
     {
         $('#tabela-cotacoes-usuario').html(result);
@@ -230,7 +243,8 @@ function listaCotacoes(grupo_id)
 
 function listaGruposCotacoes()
 {
-    $.get("/gcfretes/listagrupos", function (grupos)
+    $('#cbGrupos').empty();
+    $.get("/" + AMBIENTE_ATUAL + "/listagrupos", function (grupos)
     {
         var isFirst = true;
         for (var grupo in grupos)
@@ -249,12 +263,28 @@ $('#cbGrupos').change(function ()
     $('#btnEditar-grupo').fadeIn(200);
 });
 
-$('#btnEditar-grupo').click(function ()
+$('#btnRenomearGrupo').click(function ()
 {
     $('#editar-grupo').modal('toggle');
     $('#editar-grupo').modal('show');
 
-    $('#txNomeGrupo').val($('#cbGrupos').val());
+    $('#btnSalvaGrupo').click(function ()
+    {
+        if ($('#txNomeGrupo').val() === '')
+            return;
+
+        var params =
+                {
+                    id_grupo: $('#cbGrupos').val(),
+                    novo_nome: $('#txNomeGrupo').val()
+                };
+
+        var url = '/' + AMBIENTE_ATUAL + '/renomear-grupo';
+        $.post(url, params, function (response)
+        {
+            listaGruposCotacoes();
+        });
+    });
 });
 
 function hab_desab_formInfo(estado)
@@ -281,6 +311,7 @@ $('#btnConfirmarSenha').click(function ()
 
     if (senha === senhaConfirmada)
     {
+        $('#formulario-info-usuario').prop('action', '/' + AMBIENTE_ATUAL + '/alteraInfoUsuario');
         $('#formulario-info-usuario').ajaxForm({
             success: function ()
             {

@@ -22,15 +22,12 @@ import br.com.uol.pagseguro.enums.ShippingType;
 import br.com.uol.pagseguro.enums.TransactionStatus;
 import br.com.uol.pagseguro.exception.PagSeguroServiceException;
 import br.com.uol.pagseguro.service.NotificationService;
-import br.com.uol.pagseguro.service.TransactionSearchService;
 import entidades.*;
+import enums.Ambientes;
 import enums.STATUS_COTACAO;
 import java.math.BigDecimal;
-import java.util.Random;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.management.Notification;
 import logging.PersistenceLoggerImpl;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -39,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sessionProvider.SessionProvider;
+import util.AmbienteAtual;
 
 /**
  *
@@ -95,7 +93,7 @@ public class PagseguroController
         {
             shipping.setAddress(getAddress());
             shipping.setType(ShippingType.NOT_SPECIFIED);
-            shipping.setCost(new BigDecimal(String.format("%.2f", cotacao.getValor())));
+            shipping.setCost(new BigDecimal(cotacao.getValor() + ""));
             return shipping;
         }
         catch (Exception ex)
@@ -132,8 +130,13 @@ public class PagseguroController
             pr.setCurrency(Currency.BRL);
             pr.setSender(new Sender(cotacao.getUsuarios().getNome(), cotacao.getUsuarios().getEmail()));
             pr.setReference("FRT-" + cotacao.getId());
-            pr.setShipping(getShipping());
-            pr.setNotificationURL("http://gcfretes.com.br/gcfretes/notificacao");
+            //  pr.setShipping(getShipping());
+
+            if (AmbienteAtual.getAmbienteAtual() == Ambientes.PRODUCAO)
+                pr.setNotificationURL("http://gcfretes.com.br/gcfretes/notificacao");
+            else
+                pr.setNotificationURL("http://simula.gcfretes.com.br/simula_gcfretes/notificacao");
+
             url = pr.register(getCredentials());
 
             cotacao.setStatus(STATUS_COTACAO.AGUARDANDO_PAGAMENTO);
@@ -162,7 +165,6 @@ public class PagseguroController
         try
         {
             consultaNotificacao(nCode);
-
         }
         catch (Exception ex)
         {
@@ -204,7 +206,7 @@ public class PagseguroController
 
         if (transaction.getStatus() == TransactionStatus.CANCELLED)
             session.delete(cotacao);
-       */
+         */
         session.commit();
         session.close();
     }

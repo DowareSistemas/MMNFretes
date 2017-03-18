@@ -23,7 +23,7 @@
                     <div class="col-md-6 border-left">
                         <h4> Entrar </h4>
 
-                        <form action="/gcfretes/efetualogin" method="POST" id="form-criarconta-login">
+                        <form action="" method="POST" id="form-criarconta-login">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Email:</label>
