@@ -24,6 +24,7 @@ $(document).ready(function ()
     $('#btnEditar-grupo').hide();
     $('#li-deslogado').hide();
     $('#li-logado').hide();
+    $('#representacoes').hide();
     $('#btnVisualizaCotacoes').hide();
     $('#lancamentos').hide();
 
@@ -311,33 +312,37 @@ $('#tela-enderecos').click(function ()
     $('#perfil').hide();
     $('#pendentes').hide();
     $('#lancamentos').hide();
+    $('#representacoes').hide();
 });
 
 $('#tela-historico').click(function ()
 {
-    $('#historico').fadeIn(200);
     $('#enderecos').hide();
     $('#perfil').hide();
     $('#pendentes').hide();
     $('#lancamentos').hide();
+    $('#representacoes').hide();
+    $('#historico').fadeIn(200);
 });
 
 $('#tela-perfil').click(function ()
 {
-    $('#perfil').fadeIn(200);
     $('#enderecos').hide();
     $('#pendentes').hide();
     $('#historico').hide();
     $('#lancamentos').hide();
+    $('#representacoes').hide();
+    $('#perfil').fadeIn(200);
 });
 
 $('#tela-pendentes').click(function ()
 {
-    $('#pendentes').fadeIn(200);
     $('#enderecos').hide();
     $('#historico').hide();
     $('#perfil').hide();
+    $('#representacoes').hide();
     $('#lancamentos').hide();
+    $('#pendentes').fadeIn(200);
 });
 
 $('#tela-lancamentos').click(function ()
@@ -346,5 +351,16 @@ $('#tela-lancamentos').click(function ()
     $('#enderecos').hide();
     $('#perfil').hide();
     $('#historico').hide();
+    $('#representacoes').hide();
     $('#lancamentos').fadeIn(200);
+});
+
+$('#tela-representacoes').click(function ()
+{
+    $('#pendentes').hide();
+    $('#enderecos').hide();
+    $('#perfil').hide();
+    $('#historico').hide();
+    $('#lancamentos').hide();
+    $('#representacoes').fadeIn(200);
 });

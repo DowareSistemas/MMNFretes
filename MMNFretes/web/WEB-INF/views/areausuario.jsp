@@ -29,6 +29,7 @@
                                 <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-lancamentos">Lançamentos</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="tela-representacoes">Representações</button><br>
                             </div>
                         </div>
                     </div>
@@ -44,6 +45,7 @@
                     <my-tags:confirmar-recebimento/>
                     <areausuario:modal-avaliacao/>
                     <areausuario:lancamentos/>
+                    <areausuario:representacoes/>
                     <!-- Dinâmica da página -->
                     <backend:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
