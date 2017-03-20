@@ -61,6 +61,7 @@
             </footer>
         </div>
 
+        <script src="resources/js/ambientes.js"></script>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/mascaras.js"></script>
@@ -77,7 +78,7 @@
 
                 $('#btnUsrExstOK').click(function ()
                 {
-                    window.location.href = '/gcfretes/paginalogin';
+                    window.location.href = '/' + AMBIENTE_ATUAL + '/paginalogin';
                 });
             </script>
         </c:if>

@@ -1,3 +1,5 @@
+/* global AMBIENTE_ATUAL */
+
 $(document).ready(function ()
 {
     pesquisaCotacao("");
@@ -47,7 +49,7 @@ function pesquisaCotacao(termoBusca)
                 resultView: 'listapagamentos'
             };
 
-    var url = '/gcfretes/buscarcotacao';
+    var url = '/' + AMBIENTE_ATUAL + '/buscarcotacao';
     $.post(url, parametros, function (response)
     {
         $('#tabela-pagamentos').html(response);

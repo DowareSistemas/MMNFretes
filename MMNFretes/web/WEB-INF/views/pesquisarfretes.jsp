@@ -38,11 +38,11 @@
                                 <h4 class="text-muted text-uppercase text-center">Calcular trajeto</h4>
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" id="btnPesquisaCepOrigem" title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="text" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="27281-440">
+                                    <input type="text" class="form-control mask-cep" id="txCep_origem" placeholder="CEP Origem" value="">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP"><i class="glyphicon glyphicon-search"></i></span>
-                                    <input type="text" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="27275-350">
+                                    <input type="text" class="form-control mask-cep" id="txCep_destino" placeholder="CEP Destino" value="">
                                 </div>
                                 <button type="button" class="btn btn-primary btn-block" id="btnBuscarFretes">Buscar</button>
                             </form>
@@ -126,6 +126,7 @@
         <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Selecione ao menos uma carroceria de veículo!"/>
         <!-- Scripts da página 
         ========================================================================================= -->
+        <script src="resources/js/ambientes.js"></script>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>

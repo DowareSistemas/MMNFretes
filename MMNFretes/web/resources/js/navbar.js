@@ -1,5 +1,9 @@
+/* global AMBIENTE_ATUAL */
+
 $(document).ready(function ()
 {
+    $('#link-nav-pesquisar').prop('href', '/' + AMBIENTE_ATUAL + '/pesquisar');
+    $('#link-lancamentos-nav').prop('href', '/' + AMBIENTE_ATUAL + '/lancamentos');
     verificaTipoUsuario();
 });
 
@@ -11,7 +15,7 @@ $(document).ready(function ()
  */
 function verificaTipoUsuario()
 {
-    var url = '/gcfretes/tipo_usuario';
+    var url = '/' + AMBIENTE_ATUAL + '/tipo_usuario';
     $.get(url, function (tipo_usuario)
     {
         if (tipo_usuario === '-1')

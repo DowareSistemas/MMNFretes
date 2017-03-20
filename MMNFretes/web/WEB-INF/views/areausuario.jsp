@@ -2,6 +2,7 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my-tags"%>
 <%@taglib tagdir="/WEB-INF/tags/areausuario/" prefix="areausuario"%>
 <%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
+<%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -29,6 +30,7 @@
                                 <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Pendentes</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="tela-lancamentos">Lançamentos</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="tela-representacoes">Representações</button><br>
                             </div>
                         </div>
                     </div>
@@ -44,6 +46,7 @@
                     <my-tags:confirmar-recebimento/>
                     <areausuario:modal-avaliacao/>
                     <areausuario:lancamentos/>
+                    <areausuario:representacoes/>
                     <!-- Dinâmica da página -->
                     <backend:mensagem-input id="mensagem-input"
                                             id_btnConfirmar="btnConfirmarSenha"
@@ -60,7 +63,7 @@
                     <backend:mensagem-input id="editar-grupo"
                                             id_btnConfirmar="btnSalvaGrupo"
                                             id_input="txNomeGrupo"
-                                            titulo="Renomear grupo"
+                                            titulo="Renomear grupo de cotações"
                                             type_input="text" />
                     <!-- Dinâmica da página -->
                     <backend:mensagem-sim-nao />
@@ -70,6 +73,15 @@
                                          mensagem="As senhas não coincidem!" />
                     <!-- Modal de mais informações -->
                     <backend:detalhes-cotacao-usuario/>
+                    <backend:mensagem-ok id="msgSUCAT" id_btnOK="btnSUCAT" mensagem="Selecione ao menos uma categoria de veículo!"/>
+                    <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Selecione ao menos uma carroceria de veículo!"/>
+                    
+                    <backend:mensagem-ok id="msgICO" id_btnOK="btnICO" mensagem="Informe o CEP de origem!"/>
+                    <backend:mensagem-ok id="msgICD" id_btnOK="btnICD" mensagem="Informe o CEP de destino!"/>
+                    <backend:mensagem-ok id="msgIC" id_btnOK="btnIC" mensagem="Informe o comprimento!"/>
+                    <backend:mensagem-ok id="msgIA" id_btnOK="btnIA" mensagem="Informe a altura!"/>
+                    <backend:mensagem-ok id="msgIL" id_btnOK="btnIL" mensagem="Informe a largura!"/>
+                    <backend:mensagem-ok id="msgIV" id_btnOK="btnIV" mensagem="Informe os volumes!"/>
                 </div>
             </main>
             <footer>
@@ -77,6 +89,7 @@
             </footer>
         </div>
         <!-- Scripts da página -->
+        <script src="resources/js/ambientes.js"></script>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
@@ -92,6 +105,8 @@
         <script src="resources/js/mensagens.js"></script>
         <script src="resources/js/navbar.js"></script>
         <script src="resources/js/login.js"></script>
+        <script src="resources/js/maps.js"></script>
+        <script src="resources/js/pesquisarfretes.js"></script>
 
         <script>
             setRedirecionaPerfil(true);

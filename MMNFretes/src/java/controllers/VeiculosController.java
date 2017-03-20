@@ -117,7 +117,7 @@ public class VeiculosController
 
                     return (image == null
                             ? "not_localized"
-                            : "/gcfretes/upload/" + fileName);
+                            : PesquisaFretesController.getUrlAcessoImagens() + fileName);
                 }
         }
         catch (Exception ex)
@@ -255,7 +255,7 @@ public class VeiculosController
         session.close();
 
         double valor = (veiculo.getPreco_frete() * distancia);
-        return String.format("%.2f", valor);
+        return valor + "";
     }
 
     private void closeIS(InputStream inputStream)

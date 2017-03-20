@@ -1,3 +1,5 @@
+/* global AMBIENTE_ATUAL */
+
 $(document).ready(function ()
 {
     listaOportunidades();
@@ -8,11 +10,32 @@ function listaVeiculosSelect(categorias, carrocerias, tipos_carga)
 
 }
 
-
-
 function listaOportunidades()
 {
-    var url = "/gcfretes/lista-oportunidades";
+    $('#txCep_origem').val('');
+    $('#txCep_destino').val('');
+    $('#txComprimento').val('');
+    $('#txAltura').val('');
+    $('#txLargura').val('');
+    $('#txPeso').val('');
+    $('#txVolumes').val('');
+    $('#txObs').val('');
+    $('#ckRodotrem').prop('checked', false);
+    $('#ckBitrem').prop('checked', false);
+    $('#ckCarrega_LS').prop('checked', false);
+    $('#ckCarrega').prop('checked', false);
+    $('#ckBitruck').prop('checked', false);
+    $('#ckTruck').prop('checked', false);
+    $('#ckToco').prop('checked', false);
+    $('#ck34').prop('checked', false);
+    $('#ckVLC').prop('checked', false);
+    $('#ckVUC').prop('checked', false);
+    $('#ckBau').prop('checked', false);
+    $('#ckSider').prop('checked', false);
+    $('#ckCacamba').prop('checked', false);
+    $('#ckGradeBaixa').prop('checked', false);
+
+    var url = "/" + AMBIENTE_ATUAL + "/lista-oportunidades";
     $.get(url, function (response)
     {
         $('#tabela-lancamentos').html(response);
@@ -47,7 +70,7 @@ function carregaEnderecoByCEP(Cep, element)
 function aceitarOportunidade(cotacao, id_resultado)
 {
 
-    var url = "/gcfretes/aceita-oportunidade";
+    var url = "/" + AMBIENTE_ATUAL + "/aceita-oportunidade";
 
     $.post(url, cotacao, function (response)
     {
@@ -71,10 +94,10 @@ function adicionaCotacao(id_lancamento)
 
     $('#btnConfirmaValor').click(function ()
     {
-        var url = "/gcfretes/detalhes-oportunidade?id=" + id_lancamento;
+        var url = "/" + AMBIENTE_ATUAL + "/detalhes-oportunidade?id=" + id_lancamento;
         $.get(url, function (oportunidade)
         {
-            url = "/gcfretes/infoTransportador";
+            url = "/" + AMBIENTE_ATUAL + "/infoTransportador";
             $.get(url, function (transportador)
             {
                 var valor = parseFloat($('#txValor-transportador').val()).toFixed(2);
@@ -98,6 +121,18 @@ function adicionaCotacao(id_lancamento)
 
 $('#btnSalvar-lancamento').click(function ()
 {
+    if ($('#txCep_origem').val() === '')
+    {
+        showMsgOK('#msgICO');
+        return;
+    }
+
+    if ($('#txCep_destino').val() === '')
+    {
+        showMsgOK('#msgICD');
+        return;
+    }
+
     var directionsService = new google.maps.DirectionsService();
     var request =
             {
@@ -109,7 +144,7 @@ $('#btnSalvar-lancamento').click(function ()
     var lancamento =
             {
                 cep_origem: $('#txCep_origem').val(),
-                cep_destino: $(' #txCep_destino').val(),
+                cep_destino: $('#txCep_destino').val(),
                 comprimento: $('#txComprimento').val(),
                 altura: $('#txAltura').val(),
                 largura: $('#txLargura').val(),
@@ -121,6 +156,42 @@ $('#btnSalvar-lancamento').click(function ()
                 categorias: getFiltroCategorias()
             };
 
+    if (lancamento.comprimento === '')
+    {
+        showMsgOK('#msgIC');
+        return;
+    }
+
+    if (lancamento.altura === '')
+    {
+        showMsgOK('#msgIA');
+        return;
+    }
+
+    if (lancamento.largura === '')
+    {
+        showMsgOK('#msgIL');
+        return;
+    }
+
+    if (lancamento.volumes === '' || lancamento.volumes == '0')
+    {
+        showMsgOK('#msgIV');
+        return;
+    }
+
+    if (lancamento.carrocerias === '')
+    {
+        showMsgOK('#msgSUCARR');
+        return;
+    }
+
+    if (lancamento.categorias === '')
+    {
+        showMsgOK('#msgSUCAT');
+        return;
+    }
+
     var distancia = 0;
     directionsService.route(request, function (response, status)
     {
@@ -129,7 +200,7 @@ $('#btnSalvar-lancamento').click(function ()
             distancia = (response.routes[0].legs[0].distance.value / 1000);
             lancamento.distancia = parseFloat(distancia).toFixed(2);
 
-            var url = "/gcfretes/salvalancamento";
+            var url = "/" + AMBIENTE_ATUAL + "/salvalancamento";
             $.post(url, lancamento, function (response)
             {
                 listaOportunidades();

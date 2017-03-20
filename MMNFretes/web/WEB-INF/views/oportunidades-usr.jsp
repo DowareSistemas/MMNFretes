@@ -9,5 +9,6 @@
         <td>${oportunidade.altura}</td>
         <td>${oportunidade.largura}</td>
         <td>${oportunidade.volumes}</td>
+        <td><input type="button" onclick="removerLancamento(${oportunidade.id})" class="btn btn-danger btn-sm btn-xs" value="Remover"/></td>
     </tr>
 </c:forEach>
