@@ -6,6 +6,24 @@ var marker;
 var latlng;
 var cep_atual = "";
 
+$(document).ready(function ()
+{
+    initialize();
+    $('#lbDescricao-endereco').hide();
+
+    $("#btnEndereco").click(function ()
+    {
+        if ($(this).val() !== "")
+            carregarNoMapa($("#txtEndereco").val());
+    });
+
+    $("#txtEndereco").blur(function ()
+    {
+        if ($(this).val() !== "")
+            carregarNoMapa($(this).val());
+    });
+});
+
 function initialize()
 {
     latlng = new google.maps.LatLng(-18.8800397, -47.05878999999999);
@@ -52,24 +70,6 @@ $('#pesquisa-mapa').on("shown.bs.modal", function ()
     google.maps.event.trigger(map, "resize");
     map.setCenter(latlng);
     carregarNoMapa($('#txtEndereco').val());
-});
-
-$(document).ready(function ()
-{
-    initialize();
-    $('#lbDescricao-endereco').hide();
-
-    $("#btnEndereco").click(function ()
-    {
-        if ($(this).val() !== "")
-            carregarNoMapa($("#txtEndereco").val());
-    });
-
-    $("#txtEndereco").blur(function ()
-    {
-        if ($(this).val() !== "")
-            carregarNoMapa($(this).val());
-    });
 });
 
 function carregarNoMapa(endereco)
