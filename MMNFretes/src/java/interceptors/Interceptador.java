@@ -15,31 +15,24 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 public class Interceptador extends HandlerInterceptorAdapter
 {
-
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
     {
         String url = request.getRequestURI();
         if (enderecoPermitido(url))
-        {
             return true;
-        }
 
         if (request.getSession().getAttribute("usuarioLogado") != null)
-        {
             return true;
-        }
         else
-        {
             response.sendRedirect("paginalogin");
-            return false;
-        }
+        return false;
     }
 
     private boolean enderecoPermitido(String url)
     {
-        if(url.contains("tipo_usuario"))
-            return true; 
-        
+        if (url.contains("tipo_usuario"))
+            return true;
+
         if (url.contains("notificacao"))
             return true;
 
