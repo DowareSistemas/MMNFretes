@@ -10,7 +10,7 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <img id="img-representacoes" src="resources/img/img-text.jpg" class="img-thumbnail img-areatransportador" alt="Imagem do produto">
+                                    <img id="img-preview" src="resources/img/img-text.jpg" class="img-thumbnail img-areatransportador" alt="Imagem do produto">
                                 </div>
                             </div>
 
@@ -35,29 +35,30 @@
 
                         <div class="col-md-8">
                             <div class="row">
+                                <label id="lbId-produto" hidden="true">0</label>
                                 <div class="form-group col-md-10">
                                     <label>Nome Produto:</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" id="txNome-produto" class="form-control">
                                 </div>
 
                                 <div class="form-group col-md-2">
                                     <label>Valor:</label>
-                                    <input type="number" class="form-control">
+                                    <input type="number" id="txPreco-produto" class="form-control">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label>Descrição:</label>
-                                    <textarea rows="3" class="form-control"></textarea> 
+                                    <textarea rows="3" id="txDescricao-produto" class="form-control"></textarea> 
                                 </div>
 
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <button type="button" id="btnExcluir-representacoes" class="btn btn-danger">Excluir</button>
-                                    <button type="button" id="btnAdicionar-representacoes" class="btn btn-primary pull-right">Adicionar</button>
+                                    <button type="button" id="btnExcluir-produto" class="btn btn-danger">Excluir</button>
+                                    <button type="button" id="btnAdicionar-produto" class="btn btn-primary pull-right">Adicionar</button>
                                 </div>
                             </div>
                         </div>

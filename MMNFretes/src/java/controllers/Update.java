@@ -28,7 +28,7 @@ public class Update
             double versao_atual = 1;
 
             Configuracoes c = cc.findConfig("versao");
-            
+
             if (c.getValor() == null)
                 versao_atual = 0;
             if (c.getValor().isEmpty())
@@ -45,6 +45,9 @@ public class Update
 
             if (versao_atual < 1.4)
                 retorno = up14();
+
+            if (versao_atual < 1.5)
+                retorno = up15();
         }
         catch (Exception ex)
         {
@@ -165,6 +168,46 @@ public class Update
             }
 
             throw new Exception("Erro ao atualizar para a versão 1.4");
+        }
+    }
+
+    //Versao 1.5
+    private static String up15() throws Exception
+    {
+        Session session = null;
+        try
+        {
+            session = SessionProvider.openSession();
+
+            executeSql(session, "create table produtos\n"
+                    + "( \n"
+                    + "    id         int                    not null,\n"
+                    + "    nome       varchar(100)           not null,\n"
+                    + "    descricao  varchar(5000)          not null,\n"
+                    + "    tipo       int                    not null default 0,\n"
+                    + "    preco      numeric(10,2)	     not null default 0.00,\n"
+                    + "    usuario_id int                    not null,\n"
+                    +"     foto       BYTEA                  null, \n"
+                    + "\n"
+                    + "    primary key(id),\n"
+                    + "    foreign key (usuario_id) references Usuarios(id)\n"
+                    + ")");
+
+            executeSql(session, "update configuracoes set valor = '1.5' where config = 'versao'");
+            session.commit();
+            session.close();
+            
+            return "Banco atualizado para a versão 1.5";
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.rollback();
+                session.close();
+            }
+
+            throw new Exception("Erro ao atualizar para a versão 1.5");
         }
     }
 

@@ -175,7 +175,7 @@ public class PesquisaFretesController
 
             double preco_frete = (veiculo.getPreco_frete() * distancia);
             int estrelas = getEstrelas(veiculo.getTransportadoras_id());
-            String foto_path = getFotoPath(veiculo, request);
+            String foto_path = getFotoPath(veiculo);
 
             ResultadoPesquisa resultado = new ResultadoPesquisa(veiculo, estrelas, preco_frete, foto_path);
             resultados.add(resultado);
@@ -183,7 +183,7 @@ public class PesquisaFretesController
         return resultados;
     }
 
-    private String getFotoPath(Veiculos veiculo, HttpServletRequest request)
+    private String getFotoPath(Veiculos veiculo)
     {
         try
         {
@@ -221,7 +221,7 @@ public class PesquisaFretesController
     private String getFileName(Veiculos veiculo)
     {
         Calendar c = Calendar.getInstance();
-        String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras().getId());
+        String name = (veiculo.getId() + veiculo.getDescricao() + veiculo.getTransportadoras_id());
         return name + ".jpg";
     }
 

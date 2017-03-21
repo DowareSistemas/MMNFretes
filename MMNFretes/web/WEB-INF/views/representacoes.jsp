@@ -28,35 +28,38 @@
             </header>
             <main>
                 <article>
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <img class="img-thumbnail" src="resources/img/logo.png" alt="Imagem Repreentação" width="277" height="107">
-                        </div>
-                        <div class="col-sm-8">
-                            <h3>Nome do produto</h3>
-                            <h3>
-                                <small>
-                                    Lorem ipsum dolor sit amet, mutat fastidii percipit
-                                    eos et, id graeci reformidans efficiantur usu.
-                                    At zril nobis mei, option inermis vix ad. Eu 
-                                    vix soleat labores copiosae. Eam te eius saperet
-                                    facilis, vis nusquam abhorreant at. Per aeterno
-                                    facilisi repudiandae ei, pri ne sumo lorem.
-                                </small>
-                            </h3>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h3>R$ 000,00</h3>
-                                </div>
-                                <div class="col-sm-12">
-                                    <button type="button" class="btn btn-success">Comprar</button>
-                                </div>
+                    <c:forEach var="resultado" items="${resultados}">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <c:if test="${resultado.foto_path eq 'not_localized'}">
+                                    <img class="img-thumbnail" src="resources/img/logo.png" alt="Imagem Repreentação" width="277" height="107">
+                                </c:if>
 
+                                <c:if test="${resultado.foto_path ne 'not_localized'}">
+                                    <img class="img-thumbnail" src="${resultado.foto_path}" alt="Imagem Repreentação" width="277" height="107">
+                                </c:if>
                             </div>
-                        </div>                        
-                    </div>
+                            <div class="col-sm-8">
+                                <h3>${resultado.produto.nome}</h3>
+                                <h3>
+                                    <small>
+                                        ${resultado.produto.descricao}
+                                    </small>
+                                </h3>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        R$ <fmt:formatNumber maxFractionDigits="2" value="${resultado.produto.preco}" minFractionDigits="2"/>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-success">Comprar</button>
+                                    </div>
+
+                                </div>
+                            </div>                        
+                        </div>
+                    </c:forEach>
                 </article>
             </main>
             <footer>
@@ -66,6 +69,7 @@
 
         <!-- Scripts da página 
     ========================================================================================= -->
+        <script src="resources/js/ambientes.js"></script>
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
@@ -76,7 +80,6 @@
         <!-- Scripts de login 
         ========================================================================================= -->
         <script src="resources/js/login.js"></script>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAqRtKSC8hW8IRtlo9WdCaO-yvdaCVI5Ws&amp;"></script>
         <script src="resources/js/navbar.js"></script>
     </body>
 </html>

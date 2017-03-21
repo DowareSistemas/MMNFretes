@@ -19,6 +19,7 @@
         <div class="container-fluid">
             <header>
                 <my-tags:navbar />
+                <pesquisarfretes:pesquisar-mapa />
             </header>
             <aside>
                 <div class="aside-fixed">
@@ -107,6 +108,7 @@
         <script src="resources/js/login.js"></script>
         <script src="resources/js/maps.js"></script>
         <script src="resources/js/pesquisarfretes.js"></script>
+        <script src="resources/js/representacoes.js"></script>
 
         <script>
             setRedirecionaPerfil(true);

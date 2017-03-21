@@ -13,24 +13,6 @@
   PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS oportunidades
-(
-    id             serial       not null,
-    cep_origem     varchar(15)  not null,
-    cep_destino    varchar(15)  not null,
-    comprimento    varchar(50)  not null  default '',
-    altura         varchar(50)  not null  default '',
-    largura        varchar(50)  not null  default '',
-    peso           varchar(50)  not null  default '',
-    volumes        varchar(100) not null  default '',
-    observacoes    varchar(300) not null  default '',
-    categorias     varchar(50)  not null  default '',
-    carrocerias    varchar(50)  not null  default '',
-    rastreador     boolean      not null  default true,
-    pagseguro      boolean      not null  default true,
-    negoc_direta   boolean      not null  default true
-);
-
 CREATE TABLE IF NOT EXISTS transportadoras
 (
   id 		    INT          NOT NULL,
@@ -163,7 +145,6 @@ CREATE TABLE IF NOT EXISTS historico
   veiculos_id 	      INT           NOT NULL,
   usuarios_id 	      INT           NOT NULL,
   avaliacoes_id       INT           NOT NULL,
-  token_consulta      VARCHAR(50)   NOT NULL,
   
   PRIMARY KEY (id),
   FOREIGN KEY (transportadoras_id) REFERENCES transportadoras (id),
