@@ -36,7 +36,7 @@
                         <div class="col-md-8">
                             <div class="row">
                                 <label id="lbId-produto" hidden="true">0</label>
-                                <div class="form-group col-md-10">
+                                <div class="form-group col-md-8">
                                     <label>Nome Produto:</label>
                                     <input type="text" id="txNome-produto" class="form-control">
                                 </div>
@@ -45,21 +45,44 @@
                                     <label>Valor:</label>
                                     <input type="number" id="txPreco-produto" class="form-control">
                                 </div>
-                            </div>
-
-                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    <label>Unidade:</label>
+                                    <select class="form-control">
+                                        <option>Selecionar</option>
+                                        <option>m</option>
+                                        <option>l</option>
+                                        <option>kg</option>
+                                        <option>m<sub>2</sub></option>
+                                        <option>m<sub>3</sub></option>
+                                    </select>
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label>Descrição:</label>
                                     <textarea rows="3" id="txDescricao-produto" class="form-control"></textarea> 
                                 </div>
-
-                            </div>
-
-                            <div class="row">
                                 <div class="form-group col-md-12">
                                     <button type="button" id="btnExcluir-produto" class="btn btn-danger">Excluir</button>
                                     <button type="button" id="btnAdicionar-produto" class="btn btn-primary pull-right">Adicionar</button>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <h3>Lista Lançamentos</h3>
+                            <div class="table-overflow">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Nome Produto</th>
+                                            <th>Valor</th>
+                                            <th>Unidade</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-representacoes">
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
