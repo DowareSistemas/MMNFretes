@@ -27,6 +27,22 @@
                 <my-tags:navbar/>
             </header>
             <main>
+                <header>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="custom-search-input">
+                                <div class="input-group">
+                                    <input type="text" id="txPesquisa-representacao" class="form-control" placeholder="Buscar" />
+                                    <span class="input-group-btn">
+                                        <button type="button" id="btnBuscar-representacao" class="btn btn-info">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
                 <article>
                     <c:forEach var="resultado" items="${resultados}">
                         <div class="row">

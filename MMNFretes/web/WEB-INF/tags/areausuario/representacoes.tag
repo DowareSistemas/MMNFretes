@@ -49,9 +49,10 @@
                                     <label>Unidade:</label>
                                     <select class="form-control">
                                         <option>Selecionar</option>
-                                        <option>m</option>
-                                        <option>l</option>
-                                        <option>kg</option>
+                                        <option>Unidade</option>
+                                        <option>Metro</option>
+                                        <option>Litro</option>
+                                        <option>kilo</option>
                                         <option>m<sub>2</sub></option>
                                         <option>m<sub>3</sub></option>
                                     </select>
