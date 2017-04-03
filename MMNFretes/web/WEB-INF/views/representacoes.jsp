@@ -29,7 +29,7 @@
             <main>
                 <header>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 form-group">
                             <div id="custom-search-input">
                                 <div class="input-group">
                                     <input type="text" id="txPesquisa-representacao" class="form-control" placeholder="Buscar" />
@@ -43,6 +43,46 @@
                         </div>
                     </div>
                 </header>
+                <article>
+                    <div class="row">
+                        <!-- RESULTADOS -->
+                        <div class="col-md-12" id="resultado-representacoes">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <img src="resources/img/img-text.jpg" alt="Imagem Representante" class="img-thumbnail" height="250">
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <h2>Representante</h2>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <button class="btn btn-info pull-left" data-toggle="collapse" data-target="#alguns-produtos">Alguns Produtos</button>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <button class="btn btn-primary pull-right">Conhecer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div id="alguns-produtos" class="collapse">
+                                        <div class="row">
+                                            <div class="col-xs-5">
+                                                <img src="resources/img/img-text.jpg" alt="Imagem Produto" class="img-rounded" height="102">
+                                            </div>
+                                            <div class="col-xs-7">
+                                                <h4>Nome Produto</h4>
+                                                <h4><small class="text-muted">R$ 000,00</small></h4>
+                                            <div class="col-xs-12">
+                                                <button class="btn btn-success center-block">Comprar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- RESULTADOS - FIM -->
+                    </div>
+                </article>
                 <article>
                     <c:forEach var="resultado" items="${resultados}">
                         <div class="row">

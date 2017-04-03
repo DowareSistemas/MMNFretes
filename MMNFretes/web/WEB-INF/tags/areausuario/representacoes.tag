@@ -46,10 +46,14 @@
                                     <input type="number" id="txPreco-produto" class="form-control">
                                 </div>
                                 <div class="form-group col-md-2">
+                                    <label>Quantidade:</label>
+                                    <input type="number" id="txQuantidade-produto" class="form-control">
+                                </div>
+                                <div class="form-group col-md-2">
                                     <label>Unidade:</label>
                                     <select class="form-control">
                                         <option>Selecionar</option>
-                                        <option>Unidade</option>
+                                        <option>Und</option>
                                         <option>Metro</option>
                                         <option>Litro</option>
                                         <option>kilo</option>
