@@ -23,7 +23,7 @@
                 <input type="password" class="form-control" title="Senha novamente" required>
             </div>
             <div class="form-group col-md-12">
-                <label>Número ANTT:</label>
+                <label>Número ANTT (RNTC):</label>
                 <input type="tel"  name="ANTT" class="form-control mask-antt" title="Número ANTT" required>
             </div>
             <div class="form-group col-md-12">

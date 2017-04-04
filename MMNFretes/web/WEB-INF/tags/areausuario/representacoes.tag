@@ -6,6 +6,10 @@
                     <h2 class="text-center">Representações</h2>
                 </div>
                 <div class="panel-body">
+                    <!-- Alert -->
+                    <div class="alert alert-info fade in">
+                        <p class="text-center">Para cada venda concluída na plataforma será cobrado <strong>10% de ágio</strong>, sob o total vendido.</p>
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="row">
