@@ -27,7 +27,11 @@
                 <my-tags:navbar/>
             </header>
             <main>
-
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <img src="resources/img/img-text.jpg" class="img-thumbnail img-responsive" alt="Imagem Representante">
+                    </div>
+                </div>
             </main>
         </div>
         <!-- Scripts da página 
