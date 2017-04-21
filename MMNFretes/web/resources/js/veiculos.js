@@ -145,10 +145,7 @@ function checkStatusRastreador()
 function getImgVeiculo(id_veiculo)
 {
     var url = "/" + AMBIENTE_ATUAL + "/veiculo_path";
-    var prm =
-            {
-                veiculo_id: id_veiculo
-            };
+    var prm = {veiculo_id: id_veiculo};
 
     $.post(url, prm, function (data)
     {

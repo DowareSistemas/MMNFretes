@@ -27,12 +27,23 @@ public class Produtos extends Entity
     private double preco;
     private int usuario_id;
     private InputStream foto;
-    
+    private String unidade;
+
     private Usuarios usuarios;
 
     public InputStream getFoto()
     {
         return foto;
+    }
+
+    public String getUnidade()
+    {
+        return unidade;
+    }
+
+    public void setUnidade(String unidade)
+    {
+        this.unidade = unidade;
     }
 
     public void setFoto(InputStream foto)
