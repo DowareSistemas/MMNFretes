@@ -50,7 +50,6 @@ public class PesquisaFretesController
             @RequestParam(value = "carrocerias", required = false) String filtro_carroc,
             @RequestParam(value = "rastreador", required = false) boolean rastreador,
             @RequestParam(value = "distancia", required = false) double distancia,
-            HttpServletRequest request,
             HttpSession httpSession)
     {
         if (filtro_cat.endsWith(","))
@@ -59,7 +58,7 @@ public class PesquisaFretesController
         if (filtro_carroc.endsWith(","))
             filtro_carroc = filtro_carroc.substring(0, (filtro_carroc.length() - 1));
 
-        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia, request, httpSession);
+        List<ResultadoPesquisa> lista = pesquisar(filtro_cat, filtro_carroc, rastreador, distancia, httpSession);
 
         ModelAndView mav = new ModelAndView("resultadosfretes");
         mav.addObject("resultados", lista);
@@ -152,7 +151,6 @@ public class PesquisaFretesController
             String filtro_carroc,
             boolean rastreador,
             double distancia,
-            HttpServletRequest request,
             HttpSession httpSession)
     {
         Veiculos veiculos = new Veiculos();
@@ -202,9 +200,7 @@ public class PesquisaFretesController
                     extractor.setFileToExtract(imageFile);
                     extractor.extract();
 
-                    BufferedImage image = ImageIO.read(new File(imageFile));
-
-                    return (image == null
+                    return (veiculo.getFoto().available() == 0
                             ? "not_localized"
                             : PesquisaFretesController.getUrlAcessoImagens() + fileName);
                 }
@@ -236,7 +232,7 @@ public class PesquisaFretesController
             case Ambientes.SIMULA_ONLINE:
                 return "/simula_gcfretes/upload/";
         }
-        
+
         return "";
     }
 }

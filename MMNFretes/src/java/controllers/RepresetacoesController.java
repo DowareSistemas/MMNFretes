@@ -52,6 +52,12 @@ import sessionProvider.SessionProvider;
 public class RepresetacoesController
 {
 
+    @RequestMapping(value = "representante")
+    public String representantes()
+    {
+        return "representante";
+    }
+    
     @RequestMapping(value = "/representacoes")
     public ModelAndView redirect()
     {
