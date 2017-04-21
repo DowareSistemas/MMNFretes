@@ -5,10 +5,7 @@
  */
 package main;
 
-import br.com.persistor.interfaces.Session;
-import controllers.EmailController;
-import entidades.Cotacoes;
-import sessionProvider.SessionProvider;
+import controllers.RepresetacoesController;
 
 /**
  *
@@ -19,8 +16,27 @@ public class Main
 
     public static void main(String[] args)
     {
-        Session session = SessionProvider.openSession();
-        Cotacoes c = session.onID(Cotacoes.class, 1);
-        EmailController.getInstance().descontoAprovado(c, "R$ 10,00");
+       RepresetacoesController rc = new RepresetacoesController();
+       rc.get(1, false);
+       rc.get(1, true);
+       
+        
+        /*
+        for(int i = 0; i < 1; i++)
+        {
+            Produtos produto = new Produtos();
+            produto.setId(i);
+            produto.setDescricao("Produto "+ i);
+            
+            ProdutosImgCache.getInstance().add(produto);
+        }
+        
+        Produtos produto = ProdutosImgCache.getInstance().find(0);
+        produto.setDescricao("Alterado");
+        ProdutosImgCache.getInstance().update(produto);
+        produto = ProdutosImgCache.getInstance().find(0);
+        
+        System.err.println(produto.getDescricao());
+         */
     }
 }

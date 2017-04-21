@@ -112,7 +112,7 @@ public class PagseguroController
                 + ", DISTÂNCIA: " + cotacao.getDistancia() + " Km");
     }
 
-    private AccountCredentials getCredentials() throws PagSeguroServiceException
+    public AccountCredentials getCredentials() throws PagSeguroServiceException
     {
         return new AccountCredentials(this.EMAIL, this.TOKEN);
     }
@@ -130,7 +130,6 @@ public class PagseguroController
             pr.setCurrency(Currency.BRL);
             pr.setSender(new Sender(cotacao.getUsuarios().getNome(), cotacao.getUsuarios().getEmail()));
             pr.setReference("FRT-" + cotacao.getId());
-            //  pr.setShipping(getShipping());
 
             if (AmbienteAtual.getAmbienteAtual() == Ambientes.PRODUCAO)
                 pr.setNotificationURL("http://gcfretes.com.br/gcfretes/notificacao");
@@ -202,11 +201,7 @@ public class PagseguroController
             q.setParameter(2, cotacao.getId());
             q.execute();
         }
-        /*
-
-        if (transaction.getStatus() == TransactionStatus.CANCELLED)
-            session.delete(cotacao);
-         */
+        
         session.commit();
         session.close();
     }

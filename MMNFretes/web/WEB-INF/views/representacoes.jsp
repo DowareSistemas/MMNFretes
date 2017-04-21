@@ -25,6 +25,7 @@
         <div class="container-fluid">
             <header>
                 <my-tags:navbar/>
+                <backend:confirmar-compra-produto/>
             </header>
             <main>
                 <article>
@@ -53,7 +54,7 @@
                                         R$ <fmt:formatNumber maxFractionDigits="2" value="${resultado.produto.preco}" minFractionDigits="2"/>
                                     </div>
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-success">Comprar</button>
+                                        <button type="button" onclick="criaPedidoVenda(${resultado.produto.id})" class="btn btn-success">Comprar</button>
                                     </div>
 
                                 </div>
@@ -81,5 +82,6 @@
         ========================================================================================= -->
         <script src="resources/js/login.js"></script>
         <script src="resources/js/navbar.js"></script>
+        <script src="resources/js/representacoes.js"></script>
     </body>
 </html>

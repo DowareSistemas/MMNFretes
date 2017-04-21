@@ -47,13 +47,11 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label>Unidade:</label>
-                                    <select class="form-control">
-                                        <option>Selecionar</option>
-                                        <option>m</option>
-                                        <option>l</option>
-                                        <option>kg</option>
-                                        <option>m<sub>2</sub></option>
-                                        <option>m<sub>3</sub></option>
+                                    <select id="cbUnidade-produto" class="form-control">
+                                        <option value="UN">UN</option>
+                                        <option value="L">L</option>
+                                        <option value="KG">KG</option>
+                                        <option value="M">M</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -72,15 +70,15 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>ID</th>
                                             <th>Nome Produto</th>
                                             <th>Valor</th>
                                             <th>Unidade</th>
-                                            <th></th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tabela-representacoes">
-
+                                        
                                     </tbody>
                                 </table>
                             </div>

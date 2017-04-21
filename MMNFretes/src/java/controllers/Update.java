@@ -48,6 +48,9 @@ public class Update
 
             if (versao_atual < 1.5)
                 retorno = up15();
+
+            if (versao_atual < 1.6)
+                retorno = up16();
         }
         catch (Exception ex)
         {
@@ -187,7 +190,7 @@ public class Update
                     + "    tipo       int                    not null default 0,\n"
                     + "    preco      numeric(10,2)	     not null default 0.00,\n"
                     + "    usuario_id int                    not null,\n"
-                    +"     foto       BYTEA                  null, \n"
+                    + "     foto       BYTEA                  null, \n"
                     + "\n"
                     + "    primary key(id),\n"
                     + "    foreign key (usuario_id) references Usuarios(id)\n"
@@ -196,7 +199,7 @@ public class Update
             executeSql(session, "update configuracoes set valor = '1.5' where config = 'versao'");
             session.commit();
             session.close();
-            
+
             return "Banco atualizado para a versão 1.5";
         }
         catch (Exception ex)
@@ -208,6 +211,51 @@ public class Update
             }
 
             throw new Exception("Erro ao atualizar para a versão 1.5");
+        }
+    }
+
+    //versao 1.6
+    private static String up16() throws Exception
+    {
+        Session session = null;
+        try
+        {
+            session = SessionProvider.openSession();
+
+            executeSql(session, "alter table produtos add unidade varchar(5) not null default 'UN'");
+            executeSql(session, "create table pedidos_vendas\n" +
+"(\n" +
+"    id                   int            not null,\n" +
+"    produto_id           int            not null,\n" +
+"    valor_unit           numeric(10,2)  not null,\n" +
+"    quant                numeric(10,2)  not null default 1,\n" +
+"    valor_final          numeric(10,2)  not null,\n" +
+"    usuario_comprador    int  		 not null,\n" +
+"    usuario_vendedor     int  	 	 not null,\n" +
+"    data                 date           not null,\n" +
+"    atendido             boolean        not null default false,\n" +
+"    pago                 boolean        not null default false,\n" +
+"    \n" +
+"    primary key(id),\n" +
+"    foreign key(produto_id)        references produtos (id),\n" +
+"    foreign key(usuario_comprador) references usuarios (id),\n" +
+"    foreign key(usuario_vendedor)  references usuarios (id)\n" +
+")");
+            executeSql(session, "update configuracoes set valor = '1.6' where config = 'versao'");
+            session.commit();
+            session.close();
+
+            return "Banco atualizado para a versão 1.6";
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.rollback();
+                session.close();
+            }
+
+            throw new Exception("Erro ao atualizar para a versão 1.6");
         }
     }
 

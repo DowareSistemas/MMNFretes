@@ -113,11 +113,8 @@ public class VeiculosController
                     extractor.setFileToExtract(imageFile);
                     extractor.extract();
 
-                    BufferedImage image = ImageIO.read(new File(imageFile));
-
-                    return (image == null
-                            ? "not_localized"
-                            : PesquisaFretesController.getUrlAcessoImagens() + fileName);
+                    // BufferedImage image = ImageIO.read(new File(imageFile));
+                    return (PesquisaFretesController.getUrlAcessoImagens() + fileName);
                 }
         }
         catch (Exception ex)
@@ -139,15 +136,15 @@ public class VeiculosController
     private Veiculos get(int veiculo_id)
     {
         Veiculos veiculoCache = VeiculosImgCache.getInstance().find(veiculo_id);
-        if(veiculoCache != null)
+        if (veiculoCache != null)
             return veiculoCache;
-      
+
         Session session = SessionProvider.openSession();
-        Veiculos veiculo =  session.onID(Veiculos.class, veiculo_id);
+        Veiculos veiculo = session.onID(Veiculos.class, veiculo_id);
         session.close();
-        
+
         VeiculosImgCache.getInstance().add(veiculo);
-        
+
         return veiculo;
     }
 
@@ -172,7 +169,7 @@ public class VeiculosController
         session.save(veiculo);
         session.commit();
         session.close();
-        
+
         VeiculosImgCache.getInstance().add(veiculo);
         return "OK";
     }
@@ -189,7 +186,7 @@ public class VeiculosController
         if (veiculo.getFoto() == null)
         {
             Veiculos v = session.onID(Veiculos.class, veiculo.getId());
-            
+
             veiculo.setCarrocerias(v.getCarrocerias());
             veiculo.setCategorias_veiculos(v.getCategorias_veiculos());
             veiculo.setTipos_carga(v.getTipos_carga());
@@ -198,9 +195,9 @@ public class VeiculosController
         }
 
         session.update(veiculo);
-        session.commit();    
+        session.commit();
         session.close();
-        
+
         VeiculosImgCache.getInstance().update(veiculo);
         return "OK";
     }
