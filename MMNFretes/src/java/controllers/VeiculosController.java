@@ -447,6 +447,15 @@ public class VeiculosController
         carrocerias = carrocerias.replace(';', ',');
         tipos_carga = tipos_carga.replace(';', ',');
 
+        if(categorias.endsWith(","))
+            categorias = categorias.substring(0, categorias.length() - 1);
+        
+        if(carrocerias.endsWith(","))
+            carrocerias = carrocerias.substring(0, carrocerias.length() - 1);
+        
+        if(tipos_carga.endsWith(","))
+            tipos_carga = tipos_carga.substring(0, tipos_carga.length() - 1);
+        
         String sql = "select id, descricao from veiculos \n";
 
         if (!categorias.isEmpty())

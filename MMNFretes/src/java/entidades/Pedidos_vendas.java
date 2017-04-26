@@ -19,6 +19,7 @@ import java.util.Date;
  */
 public class Pedidos_vendas extends Entity
 {
+
     private int id;
     private int produto_id;
     private double valor_unit;
@@ -26,13 +27,24 @@ public class Pedidos_vendas extends Entity
     private double valor_final;
     private double usuario_comprador;
     private double usuario_vendedor;
+    private String cep_destino;
     private Date data;
     private boolean atendido;
     private boolean pago;
-    
+
     private Produtos produtos;
 
-    @PrimaryKey(increment = INCREMENT.AUTO)
+    public String getCep_destino()
+    {
+        return cep_destino;
+    }
+
+    public void setCep_destino(String cep_destino)
+    {
+        this.cep_destino = cep_destino;
+    }
+
+    @PrimaryKey(increment = INCREMENT.MANUAL)
     public int getId()
     {
         return id;
@@ -143,5 +155,5 @@ public class Pedidos_vendas extends Entity
     {
         this.produtos = produtos;
     }
-    
+
 }

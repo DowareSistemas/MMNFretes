@@ -50,17 +50,11 @@
                     <div class="col-xs-12 col-sm-8">
                         <div class="row">
                             <div class="col-xs-12 form-group">
-                                <h1>Cebola Roxa</h1>
+                                <h1>${produto.nome}</h1>
                             </div>
                             <div class="col-xs-12 form-group">
                                 <h4 class="text-justify">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit. Etiam ex risus, bibendum at dui et, suscipit
-                                    volutpat eros. Vestibulum mattis faucibus elementum.
-                                    Etiam ullamcorper purus nisl, id porta sem commodo
-                                    ac. Pellentesque cursus id elit eget posuere. 
-                                    Nulla vitae accumsan arcu. Aliquam et accumsan
-                                    justo, a aliquet elit.
+                                    ${produto.descricao}
                                     <hr>
                                     <small>
                                         <span title="Logradouro / Nome">Rua Aimoré</span> -
@@ -81,7 +75,7 @@
                                             <span class="btn input-group-addon" id="btnPesquisaCepDestino"  title="Pesquisar CEP">
                                                 <i class="glyphicon glyphicon-map-marker"></i>
                                             </span>
-                                            <input type="text" class="form-control mask-cep" placeholder="CEP" value="">
+                                            <input type="text" id="txCepEntregaCompraProduto" class="form-control mask-cep" placeholder="CEP" value="">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 form-group">
@@ -89,7 +83,7 @@
                                     </div>
                                     <div class="col-xs-12 form-group checkbox">
                                         <label>
-                                            <input type="checkbox"> <strong>Fazer frete compartilhado!</strong>
+                                            <input type="checkbox" id="ckFreteCompartilhadoCompraProduto"> <strong>Fazer frete compartilhado!</strong>
                                         </label>
                                     </div>
                                 </div>
@@ -97,22 +91,22 @@
                             <div class="col-xs-12 col-sm-5 col-lg-3">
                                 <div class="form-group">
                                     <h2 class="text-center">R$ 
-                                        <span title="Valor">00,00</span> 
+                                        <span title="Valor">${produto.preco}</span> 
 
-                                        <small title="Unidade">Kg</small>
+                                        <small title="Unidade">${produto.unidade}</small>
                                     </h2>
                                 </div>
                                 <div class="form-group">
                                     <label>Quantidade</label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control text-center" placeholder="Quantidade">
+                                        <input type="number" id="txQuantidadeCompraProduto" class="form-control text-center" placeholder="Quantidade">
                                         <span class="input-group-addon"  title="Quantidade">
                                             000
                                         </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-success btn-lg btn-block">Comprar</button>
+                                    <button type="button" id="btnComprarProduto${produto.id}" class="btn btn-success btn-lg btn-block">Comprar</button>
                                 </div>
                             </div>
                         </div>
@@ -166,5 +160,13 @@
         ========================================================================================= -->
         <script src="resources/js/login.js"></script>
         <script src="resources/js/navbar.js"></script>
+        <script src="resources/js/produto.js"></script>
+        
+        <script>
+            $('#btnComprarProduto${produto.id}').click(function ()
+            {
+                comprarProduto(${produto.id}, ${produto.usuario_id});
+            });
+        </script>
     </body>
 </html>
