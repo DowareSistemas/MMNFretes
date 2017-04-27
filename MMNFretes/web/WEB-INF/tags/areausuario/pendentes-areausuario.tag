@@ -64,7 +64,7 @@
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tabela-produtos-usuario">
+                                <tbody id="tabela-pedidos-usuario">
 
                                 </tbody>
                             </table>

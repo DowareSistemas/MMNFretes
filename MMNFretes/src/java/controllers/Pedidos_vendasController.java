@@ -47,12 +47,19 @@ import util.AmbienteAtual;
 public class Pedidos_vendasController
 {
 
+    @RequestMapping(value = "/vincularpedido")
+    public String vincularPedido()
+    {
+        return "vincularpedido";
+    }
+
     @RequestMapping(value = "/criar-pedido-venda", method = RequestMethod.POST)
     public @ResponseBody
     String criarPedidoVenda(
             @RequestParam(value = "produto_id") int produto_id,
             @RequestParam(value = "quant") double quant,
             @RequestParam(value = "usuario_vendedor") int usuario_vendedor,
+            @RequestParam(value = "cep_destino") String cep_destino,
             HttpSession httpSession)
     {
         Usuarios usuarioLogado = (Usuarios) httpSession.getAttribute("usuarioLogado");
@@ -64,19 +71,24 @@ public class Pedidos_vendasController
         pedido_venda.setProduto_id(produto_id);
         pedido_venda.setValor_unit(produto.getPreco());
         pedido_venda.setQuant(quant);
-        pedido_venda.setValor_unit(quant * produto.getPreco());
+        pedido_venda.setValor_final(quant * produto.getPreco());
         pedido_venda.setPago(false);
         pedido_venda.setAtendido(false);
         pedido_venda.setData(Calendar.getInstance().getTime());
         pedido_venda.setUsuario_comprador(usuario_comprador);
         pedido_venda.setUsuario_vendedor(usuario_vendedor);
+        pedido_venda.setCep_destino(cep_destino);
 
         Session session = SessionProvider.openSession();
         session.save(pedido_venda);
         session.commit();
         session.close();
 
-        return criarTransacaoPagSeguro(pedido_venda, usuarioLogado);
+        return (pedido_venda.saved
+                ? "1"
+                : "0");
+
+// criarTransacaoPagSeguro(pedido_venda, usuarioLogado);
     }
 
     private String criarTransacaoPagSeguro(Pedidos_vendas pedido, Usuarios usuarioComprador)
@@ -138,10 +150,10 @@ public class Pedidos_vendasController
     {
         Transaction transaction = NotificationService.checkTransaction(new PagseguroController().getCredentials(), notificationCode);
         int pedido_id = Integer.parseInt((transaction.getReference().split("-")[1]));
-        
+
         Session session = SessionProvider.openSession();
         Pedidos_vendas pedido = session.onID(Pedidos_vendas.class, pedido_id);
-        
+
         if (transaction.getStatus() == TransactionStatus.PAID)
         {
             pedido.setPago(true);
@@ -151,8 +163,7 @@ public class Pedidos_vendasController
             EmailController emailC = EmailController.getInstance();
             emailC.clientePagouFrete(cotacao);
             emailC.instrucoesTransportador(cotacao);
-            */
-         
+             */
         }
 
         session.commit();
