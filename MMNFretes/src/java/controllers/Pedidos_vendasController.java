@@ -47,6 +47,12 @@ import util.AmbienteAtual;
 public class Pedidos_vendasController
 {
 
+    @RequestMapping(value = "/vincularpedido")
+    public String vincularPedido()
+    {
+        return "vincularpedido";
+    }
+
     @RequestMapping(value = "/criar-pedido-venda", method = RequestMethod.POST)
     public @ResponseBody
     String criarPedidoVenda(

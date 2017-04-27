@@ -30,6 +30,9 @@ public class Interceptador extends HandlerInterceptorAdapter
 
     private boolean enderecoPermitido(String url)
     {
+        if(url.contains("vincularpedido"))
+            return true;
+        
         if(url.endsWith("representante"))
             return true;
         
