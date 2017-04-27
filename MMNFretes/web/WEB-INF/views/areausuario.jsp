@@ -16,77 +16,162 @@
         <title>Usuário - GC Fretes</title>
     </head>
     <body>
+
+        <my-tags:navbar />
+        <pesquisarfretes:pesquisar-mapa />
+
         <div class="container-fluid">
-            <header>
-                <my-tags:navbar />
-                <pesquisarfretes:pesquisar-mapa />
-            </header>
+
+            <!-- BOTOES DE NAVEGAÇÃO -->
             <aside>
-                <div class="aside-fixed">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel-aside">
-                                <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Perfil</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-enderecos">Endereços</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Fretes</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-pedidos">Produtos</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-lancamentos">Lançamentos</button><br>
-                                <button class="btn btn-primary btn-block" type="button" id="tela-representacoes">Representações</button><br>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <ul class="nav nav-pills nav-justified">
+                        <li class="active"><a data-toggle="pill" href="#perfil">Perfil</a></li>
+                        <li><a data-toggle="pill" href="#produto">Produtos</a></li>
+                        <li><a data-toggle="pill" href="#frete">Frete</a></li>
+                        <li><a data-toggle="pill" href="#historico">Histórico</a></li>
+                    </ul>
                 </div>
             </aside>
+
+            <!-- CONTEUDO DA AREA DO USUARIO -->
             <main>
-                <div class="aside-fixed-main">
-                    <!-- Conteúdo da página -->
-                    <areausuario:perfil-areausuario/>
-                    <my-tags:enderecos-conjunto/>
-                    <areausuario:historico-areausuario/>
-                    <areausuario:pendentes-areausuario/>
-                    <areausuario:produtos/>
-                    <my-tags:confirmar-recebimento/>
-                    <areausuario:modal-avaliacao/>
-                    <areausuario:lancamentos/>
-                    <areausuario:representacoes/>
-                    <!-- Dinâmica da página -->
-                    <backend:mensagem-input id="mensagem-input"
-                                            id_btnConfirmar="btnConfirmarSenha"
-                                            id_input="txSenhaConfirmada" 
-                                            type_input="password" 
-                                            titulo="Confirmar senha:" />
-                    <!-- Dinâmica da página -->
-                    <backend:mensagem-input id="mensagem-input"
-                                            id_btnConfirmar="btnConfirmarSenha"
-                                            id_input="txSenhaConfirmada" 
-                                            type_input="password" 
-                                            titulo="Confirmar senha:" />
-                    <!-- Dinâmica da página -->
-                    <backend:mensagem-input id="editar-grupo"
-                                            id_btnConfirmar="btnSalvaGrupo"
-                                            id_input="txNomeGrupo"
-                                            titulo="Renomear grupo de cotações"
-                                            type_input="text" />
-                    <!-- Dinâmica da página -->
-                    <backend:mensagem-sim-nao />
-                    <!-- Dinâmica da página -->
-                    <backend:mensagem-ok id_btnOK="btnSenhaIncorreta" 
-                                         id="senhaIncorreta"
-                                         mensagem="As senhas não coincidem!" />
-                    <!-- Modal de mais informações -->
-                    <backend:detalhes-cotacao-usuario/>
-                    <backend:mensagem-ok id="msgSUCAT" id_btnOK="btnSUCAT" mensagem="Selecione ao menos uma categoria de veículo!"/>
-                    <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Selecione ao menos uma carroceria de veículo!"/>
-                    
-                    <backend:mensagem-ok id="msgICO" id_btnOK="btnICO" mensagem="Informe o CEP de origem!"/>
-                    <backend:mensagem-ok id="msgICD" id_btnOK="btnICD" mensagem="Informe o CEP de destino!"/>
-                    <backend:mensagem-ok id="msgIC" id_btnOK="btnIC" mensagem="Informe o comprimento!"/>
-                    <backend:mensagem-ok id="msgIA" id_btnOK="btnIA" mensagem="Informe a altura!"/>
-                    <backend:mensagem-ok id="msgIL" id_btnOK="btnIL" mensagem="Informe a largura!"/>
-                    <backend:mensagem-ok id="msgIV" id_btnOK="btnIV" mensagem="Informe os volumes!"/>
+                <div class="tab-content">
+                    <!-- PERFIL USUARIO E GERENCIAMENTO DE ENDEREÇOS -->
+                    <div id="perfil" class="tab-pane fade in active">
+                        <areausuario:perfil-areausuario/>
+                        <my-tags:enderecos-conjunto/>
+                    </div><!-- PERFIL USUARIO E GERENCIAMENTO DE ENDEREÇOS -->
+
+                    <!-- GERENCIAMENTO DE PEDIDOS E REPRESENTAÇOES DE PRODUTOS -->
+                    <div id="produto" class="tab-pane fade">
+                        <areausuario:representacoes/>
+                        <areausuario:produtos/>
+
+                    </div><!-- GERENCIAMENTO DE PEDIDOS E REPRESENTAÇOES DE PRODUTOS -->
+
+                    <!-- GERENCIAMENTO COTAÇAO E LANÇAMENTO DE FRETE -->
+                    <div id="frete" class="tab-pane fade">
+                        <areausuario:lancamentos/>
+                        <areausuario:pendentes-areausuario/>
+                    </div><!-- GERENCIAMENTO COTAÇAO E LANÇAMENTO DE FRETE -->
+
+                    <!-- GERENCIAMENTO COTAÇAO E LANÇAMENTO DE FRETE -->
+                    <div id="historico" class="tab-pane fade">
+                        <areausuario:historico-areausuario/>
+                    </div><!-- GERENCIAMENTO COTAÇAO E LANÇAMENTO DE FRETE -->
                 </div>
+
+                <my-tags:confirmar-recebimento/>
+                <areausuario:modal-avaliacao/>
+
+
+                <!--                Dinâmica da página -->
+                <backend:mensagem-input id="mensagem-input"
+                                        id_btnConfirmar="btnConfirmarSenha"
+                                        id_input="txSenhaConfirmada" 
+                                        type_input="password" 
+                                        titulo="Confirmar senha:" />
+                <!--                Dinâmica da página -->
+                <backend:mensagem-input id="mensagem-input"
+                                        id_btnConfirmar="btnConfirmarSenha"
+                                        id_input="txSenhaConfirmada" 
+                                        type_input="password" 
+                                        titulo="Confirmar senha:" />
+                <!--                Dinâmica da página -->
+                <backend:mensagem-input id="editar-grupo"
+                                        id_btnConfirmar="btnSalvaGrupo"
+                                        id_input="txNomeGrupo"
+                                        titulo="Renomear grupo de cotações"
+                                        type_input="text" />
+                <!--                Dinâmica da página -->
+                <backend:mensagem-sim-nao />
+                <!--                Dinâmica da página -->
+                <backend:mensagem-ok id_btnOK="btnSenhaIncorreta" 
+                                     id="senhaIncorreta"
+                                     mensagem="As senhas não coincidem!" />
+                <!--                Modal de mais informações -->
+                <backend:detalhes-cotacao-usuario/>
+                <backend:mensagem-ok id="msgSUCAT" id_btnOK="btnSUCAT" mensagem="Selecione ao menos uma categoria de veículo!"/>
+                <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Selecione ao menos uma carroceria de veículo!"/>
+
+                <backend:mensagem-ok id="msgICO" id_btnOK="btnICO" mensagem="Informe o CEP de origem!"/>
+                <backend:mensagem-ok id="msgICD" id_btnOK="btnICD" mensagem="Informe o CEP de destino!"/>
+                <backend:mensagem-ok id="msgIC" id_btnOK="btnIC" mensagem="Informe o comprimento!"/>
+                <backend:mensagem-ok id="msgIA" id_btnOK="btnIA" mensagem="Informe a altura!"/>
+                <backend:mensagem-ok id="msgIL" id_btnOK="btnIL" mensagem="Informe a largura!"/>
+                <backend:mensagem-ok id="msgIV" id_btnOK="btnIV" mensagem="Informe os volumes!"/>
             </main>
+
+
+            <%--            <aside>
+                            <div class="aside-fixed">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel-aside">
+                                            <button class="btn btn-primary btn-block" type="button" id="tela-perfil">Perfil</button><br>
+                                            <button class="btn btn-primary btn-block" type="button" id="tela-enderecos">Endereços</button><br>
+                                            <button class="btn btn-primary btn-block" type="button" id="tela-historico">Histórico</button><br>
+                                            <button class="btn btn-primary btn-block" type="button" id="tela-pendentes">Fretes</button><br>
+                                            <button class="btn btn-primary btn-block" type="button" id="tela-pedidos">Produtos</button><br>
+                                            <button class="btn btn-primary btn-block" type="button" id="tela-lancamentos">Lançamentos</button><br>
+                                            <button class="btn btn-primary btn-block" type="button" id="tela-representacoes">Representações</button><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        <main>
+                            <div class="aside-fixed-main">
+            
+                                 Conteúdo da página 
+                                <areausuario:perfil-areausuario/>
+                                <my-tags:enderecos-conjunto/>
+                                <areausuario:historico-areausuario/>
+                                <areausuario:pendentes-areausuario/>
+                                <areausuario:produtos/>
+                                <my-tags:confirmar-recebimento/>
+                                <areausuario:modal-avaliacao/>
+                                <areausuario:lancamentos/>
+                                <areausuario:representacoes/>
+            
+                                 Dinâmica da página 
+                                <backend:mensagem-input id="mensagem-input"
+                                                        id_btnConfirmar="btnConfirmarSenha"
+                                                        id_input="txSenhaConfirmada" 
+                                                        type_input="password" 
+                                                        titulo="Confirmar senha:" />
+                                 Dinâmica da página 
+                                <backend:mensagem-input id="mensagem-input"
+                                                        id_btnConfirmar="btnConfirmarSenha"
+                                                        id_input="txSenhaConfirmada" 
+                                                        type_input="password" 
+                                                        titulo="Confirmar senha:" />
+                                 Dinâmica da página 
+                                <backend:mensagem-input id="editar-grupo"
+                                                        id_btnConfirmar="btnSalvaGrupo"
+                                                        id_input="txNomeGrupo"
+                                                        titulo="Renomear grupo de cotações"
+                                                        type_input="text" />
+                                 Dinâmica da página 
+                                <backend:mensagem-sim-nao />
+                                 Dinâmica da página 
+                                <backend:mensagem-ok id_btnOK="btnSenhaIncorreta" 
+                                                     id="senhaIncorreta"
+                                                     mensagem="As senhas não coincidem!" />
+                                 Modal de mais informações 
+                                <backend:detalhes-cotacao-usuario/>
+                                <backend:mensagem-ok id="msgSUCAT" id_btnOK="btnSUCAT" mensagem="Selecione ao menos uma categoria de veículo!"/>
+                                <backend:mensagem-ok id="msgSUCARR" id_btnOK="btnSUCARR" mensagem="Selecione ao menos uma carroceria de veículo!"/>
+                                
+                                <backend:mensagem-ok id="msgICO" id_btnOK="btnICO" mensagem="Informe o CEP de origem!"/>
+                                <backend:mensagem-ok id="msgICD" id_btnOK="btnICD" mensagem="Informe o CEP de destino!"/>
+                                <backend:mensagem-ok id="msgIC" id_btnOK="btnIC" mensagem="Informe o comprimento!"/>
+                                <backend:mensagem-ok id="msgIA" id_btnOK="btnIA" mensagem="Informe a altura!"/>
+                                <backend:mensagem-ok id="msgIL" id_btnOK="btnIL" mensagem="Informe a largura!"/>
+                                <backend:mensagem-ok id="msgIV" id_btnOK="btnIV" mensagem="Informe os volumes!"/>
+                            </div>
+                        </main>--%>
             <footer>
 
             </footer>

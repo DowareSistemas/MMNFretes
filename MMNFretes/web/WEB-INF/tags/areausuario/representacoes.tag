@@ -1,6 +1,6 @@
 <article>
     <div class="row">    
-        <div class="col-md-12" id="representacoes">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h2 class="text-center">Representações</h2>

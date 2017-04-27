@@ -56,7 +56,7 @@ and open the template in the editor.
 /* CSS geral do site */
 body {
     padding-top: 70px;
-    background: #eee;
+    background: #ffffff;
 }
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;

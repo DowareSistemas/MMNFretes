@@ -19,16 +19,16 @@ var enderecoObj =
 $(document).ready(function ()
 {
     $('#btnExcluir').hide();
-    $('#pendentes').hide();
-    $('#historico').hide();
+    //$('#pendentes').hide();
+    //$('#historico').hide();
     $('#enderecos').hide();
     $('#btnSalvar-info').hide();
     $('#btnEditar-grupo').hide();
     $('#li-deslogado').hide();
     $('#li-logado').hide();
-    $('#representacoes').hide();
+    //$('#representacoes').hide();
     $('#btnVisualizaCotacoes').hide();
-    $('#lancamentos').hide();
+    //$('#lancamentos').hide();
 
     carregaInfoUsuario();
     hab_desab_formInfo(true);
@@ -336,6 +336,8 @@ $('#btnSenhaIncorreta').click(function ()
     $('#mensagem-input').modal('show');
 });
 
+/* DINAMICA ANTIGA
+ 
 $('#tela-enderecos').click(function ()
 {
     $('#enderecos').fadeIn(200);
@@ -395,3 +397,5 @@ $('#tela-representacoes').click(function ()
     $('#lancamentos').hide();
     $('#representacoes').fadeIn(200);
 });
+
+ */

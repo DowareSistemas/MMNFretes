@@ -1,5 +1,5 @@
 <%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes"%>
-<article id="lancamentos">
+<article>
     <div>
         <div class="panel panel-primary">
             <div class="panel-heading">
