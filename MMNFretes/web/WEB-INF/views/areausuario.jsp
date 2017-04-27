@@ -45,6 +45,7 @@
                     <my-tags:enderecos-conjunto/>
                     <areausuario:historico-areausuario/>
                     <areausuario:pendentes-areausuario/>
+                    <areausuario:produtos/>
                     <my-tags:confirmar-recebimento/>
                     <areausuario:modal-avaliacao/>
                     <areausuario:lancamentos/>
