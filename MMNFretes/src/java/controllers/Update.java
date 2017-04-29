@@ -51,8 +51,8 @@ public class Update
 
             if (versao_atual < 1.6)
                 retorno = up16();
-            
-            if(versao_atual < 1.7)
+
+            if (versao_atual < 1.7)
                 retorno = up17();
         }
         catch (Exception ex)
@@ -270,12 +270,23 @@ public class Update
         {
             session = SessionProvider.openSession();
 
+            executeSql(session, "create table pedidos_cotacoes\n"
+                    + "(\n"
+                    + "    id          int not null,\n"
+                    + "    cotacao_id  int not null,\n"
+                    + "    pedido_id   int not null,\n"
+                    + "\n"
+                    + "    primary key(id),\n"
+                    + "    foreign key(cotacao_id) references cotacoes (id),\n"
+                    + "    foreign key(pedido_id)  references pedidos_vendas(id)  \n"
+                    + ")");
+            executeSql(session, "alter table pedidos_vendas add valor_frete numeric(10,2) not null default 0");
             executeSql(session, "alter table pedidos_vendas add cep_destino varchar(20) not null");
             executeSql(session, "update configuracoes set valor = '1.7' where config = 'versao'");
             session.commit();
             session.close();
 
-            return "Banco atualizado para a versão 1.6";
+            return "Banco atualizado para a versão 1.7";
         }
         catch (Exception ex)
         {

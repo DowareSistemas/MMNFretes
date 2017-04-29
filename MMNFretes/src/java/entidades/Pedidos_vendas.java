@@ -31,6 +31,7 @@ public class Pedidos_vendas extends Entity
     private Date data;
     private boolean atendido;
     private boolean pago;
+    private double valor_frete;
 
     private Produtos produtos;
 
@@ -53,6 +54,16 @@ public class Pedidos_vendas extends Entity
     public void setId(int id)
     {
         this.id = id;
+    }
+
+    public double getValor_frete()
+    {
+        return valor_frete;
+    }
+
+    public void setValor_frete(double valor_frete)
+    {
+        this.valor_frete = valor_frete;
     }
 
     public int getProduto_id()
