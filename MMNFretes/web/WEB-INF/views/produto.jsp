@@ -31,8 +31,10 @@
                     <div class="col-xs-12 col-sm-4">
                         <div class="row">
                             <div class="col-xs-12 form-group">
-                                <img src="resources/img/img-text.jpg" class="img-rounded img-responsive" alt="Imagem Produto">
+                                    <img id="img_produto" src="resources/img/img-text.jpg" class="img-rounded img-responsive" alt="Imagem Produto">
                             </div>
+
+                            <!--
                             <div class="col-xs-3 form-group">
                                 <img src="resources/img/img-text.jpg" class="img-rounded img-responsive" alt="Imagem Produto">
                             </div>
@@ -45,6 +47,7 @@
                             <div class="col-xs-3 form-group">
                                 <img src="resources/img/img-text.jpg" class="img-rounded img-responsive" alt="Imagem Produto">
                             </div>
+                            -->
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-8">
@@ -90,8 +93,13 @@
                             </div>
                             <div class="col-xs-12 col-sm-5 col-lg-3">
                                 <div class="form-group">
-                                    <h2 class="text-center">R$ 
-                                        <span title="Valor">${produto.preco}</span> 
+                                    <h2 class="text-center">
+                                        <span title="Valor">
+                                            <fmt:formatNumber value="${produto.preco}"
+                                                              minFractionDigits="2"
+                                                              maxFractionDigits="2"
+                                                              type="currency"/>
+                                        </span> 
 
                                         <small title="Unidade">${produto.unidade}</small>
                                     </h2>
@@ -99,7 +107,7 @@
                                 <div class="form-group">
                                     <label>Quantidade</label>
                                     <div class="input-group">
-                                        <input type="number" id="txQuantidadeCompraProduto" class="form-control text-center" placeholder="Quantidade">
+                                        <input type="number" value="1" id="txQuantidadeCompraProduto" class="form-control text-center" placeholder="Quantidade">
                                         <span class="input-group-addon"  title="Quantidade">
                                             000
                                         </span>
@@ -161,11 +169,18 @@
         <script src="resources/js/login.js"></script>
         <script src="resources/js/navbar.js"></script>
         <script src="resources/js/produto.js"></script>
-        
+
         <script>
             $('#btnComprarProduto${produto.id}').click(function ()
             {
                 comprarProduto(${produto.id}, ${produto.usuario_id});
+            });
+            
+            var url = '/' + AMBIENTE_ATUAL + '/produto_path?produto_id=${produto.id}';
+            $.get(url, function(response)
+            {
+                if(response !== 'not_localized')
+                    $('#img_produto').attr('src', response);
             });
         </script>
     </body>

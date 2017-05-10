@@ -32,6 +32,6 @@ public class EstadosController
                 .execute();
         session.close();
         
-        return new Gson().toJson(session.getList(estados));
+        return new Gson().toJson(estados.toList());
     }
 }

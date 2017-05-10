@@ -24,7 +24,8 @@ $('#btnAdicionar-produto').click(function ()
                 descricao: $('#txDescricao-produto').val(),
                 tipo: 1,
                 preco: parseFloat($('#txPreco-produto').val()).toFixed(2),
-                unidade: $('#cbUnidade-produto').val()
+                unidade: $('#cbUnidade-produto').val(),
+                quant: $('#txQuantidade-produto').val()
             };
 
     var url = "/" + AMBIENTE_ATUAL + "/salva-produto";
@@ -48,8 +49,7 @@ $('#btnAdicionar-produto').click(function ()
 
 function criaPedidoVenda(produto_id)
 {
-    $('#confirmar-compra-produto').modal('toggle');
-    $('#confirmar-compra-produto').modal('show');
+    window.location.href = '/' + AMBIENTE_ATUAL + '/produto?id=' + produto_id;
 }
 
 function carregaProduto(produto_id)
@@ -72,10 +72,9 @@ function carregaProduto(produto_id)
 
 function getImgProduto(produto_id)
 {
-    var url = "/" + AMBIENTE_ATUAL + "/produto_path";
-    var prm = {produto_id: produto_id};
+    var url = "/" + AMBIENTE_ATUAL + "/produto_path?produto_id=" + produto_id;
 
-    $.post(url, prm, function (urlImgPath)
+    $.get(url, function (urlImgPath)
     {
         $('#img-preview').attr('src', urlImgPath);
     });
@@ -130,4 +129,20 @@ function configurarInputFile()
     {
 
     }
+}
+
+var representante_id = 0;
+
+$('#alguns-produtos').on('show.bs.collapse', function (e)
+{
+    var url = '/' + AMBIENTE_ATUAL + '/produtosRepresentante?representante_id=' + representante_id;
+    $.get(url, function (content)
+    {
+        $('#produtos-representante').html(content);
+    });
+});
+
+function exibirProdutosRepresentante(id_representante)
+{
+    representante_id = id_representante;
 }

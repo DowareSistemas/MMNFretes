@@ -8,6 +8,7 @@ package controllers;
 import br.com.persistor.enums.FILTER_TYPE;
 import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.FileExtractor;
+import br.com.persistor.generalClasses.Limit;
 import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.generalClasses.Util;
@@ -57,17 +58,28 @@ public class RepresetacoesController
     {
         return "representante";
     }
-    
+
     @RequestMapping(value = "/representacoes")
     public ModelAndView redirect()
     {
         ModelAndView mav = new ModelAndView("representacoes");
-        mav.addObject("resultados", listar());
+        mav.addObject("representantes", listarRepresentantes());
 
         return mav;
     }
 
-    private List<ResultadoListaProduto> listar()
+    private List<Usuarios> listarRepresentantes()
+    {
+        Usuarios usuarios = new Usuarios();
+        Session session = SessionProvider.openSession();
+        session.createQuery(usuarios, "@listaRepresentantes")
+                .setResult_type(RESULT_TYPE.MULTIPLE)
+                .execute();
+        session.close();
+        return usuarios.toList();
+    }
+
+    private List<ResultadoListaProduto> listarProdutos()
     {
         Produtos produtos = new Produtos();
         List<ResultadoListaProduto> resultado = new ArrayList<ResultadoListaProduto>();
@@ -151,7 +163,6 @@ public class RepresetacoesController
 
         c.add(Restrictions.eq(FILTER_TYPE.WHERE, "id", id));
         c.execute();
-
         session.close();
 
         if (ProdutosImgCache.getInstance().find(id) == null)
@@ -162,7 +173,7 @@ public class RepresetacoesController
         return produto;
     }
 
-    @RequestMapping(value = "produto_path", produces = "text/html; charset=utf-8", method = RequestMethod.POST)
+    @RequestMapping(value = "produto_path", produces = "text/html; charset=utf-8")
     public @ResponseBody
     String getFotoPath(@RequestParam(value = "produto_id") int produto_id, HttpServletRequest request)
     {
@@ -327,5 +338,27 @@ public class RepresetacoesController
         {
 
         }
+    }
+
+    @RequestMapping(value = "produtosRepresentante")
+    public ModelAndView listaProdutosRepresentante(
+            @RequestParam(value = "representante_id") int id)
+    {
+        Produtos produtos = new Produtos();
+        Session session = SessionProvider.openSession();
+        session.createCriteria(produtos, RESULT_TYPE.MULTIPLE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuario_id", id))
+                .addLimit(Limit.simpleLimit(6))
+                .execute();
+        session.close();
+
+        List<ResultadoListaProduto> resultado = new ArrayList<ResultadoListaProduto>();
+        List<Produtos> listProds = produtos.toList();
+        for (Produtos produto : listProds)
+            resultado.add(new ResultadoListaProduto(produto, getFoto_path(produto)));
+
+        ModelAndView mav = new ModelAndView("exibicaoprodutos-representante");
+        mav.addObject("resultados", resultado);
+        return mav;
     }
 }

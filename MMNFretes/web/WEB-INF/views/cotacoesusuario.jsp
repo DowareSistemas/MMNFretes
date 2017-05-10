@@ -45,16 +45,16 @@
             <fmt:formatNumber type="currency" maxFractionDigits="3" value="${cotacao.valor}"/>
         </td>
 
-        <c:if test="${cotacao.status eq 5}"> <!-- AGUARDANDO PAGAMENTO -->
-            <td>
-                <a type="button" onclick="showConfirmaRecebmento(${cotacao.id})" class="btn btn-success btn-xs center-block">Confirmar recebimento</a>
-            </td>
-        </c:if>
+        <td>
+            <a type="button" onclick="redirectVincularPedidos(${cotacao.id})" class="btn btn-success btn-xs">Vincular pedido</a>
 
-        <c:if test="${cotacao.status ne 5}">
-            <td>
-                <a type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-xs center-block">Cancelar</a>
-            </td>
-        </c:if>
+            <c:if test="${cotacao.status eq 5}"> <!-- AGUARDANDO PAGAMENTO -->
+                <a type="button" onclick="showConfirmaRecebmento(${cotacao.id})" class="btn btn-success btn-xs">Confirmar recebimento</a>
+            </c:if>
+
+            <c:if test="${cotacao.status ne 5}">
+                <a type="button" onclick="cancelaItemCotacao(${cotacao.id})" class="btn btn-danger btn-xs">Cancelar</a>
+            </c:if>
+        </td>
     </tr>
 </c:forEach>

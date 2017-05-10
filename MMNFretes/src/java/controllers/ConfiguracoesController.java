@@ -70,7 +70,7 @@ public class ConfiguracoesController
                 .execute();
         session.close();
 
-        mav.addObject("configs", session.getList(configuracoes));
+        mav.addObject("configs", configuracoes.toList());
         mav.addObject("mensagem", checkConfig());
         return mav;
     }

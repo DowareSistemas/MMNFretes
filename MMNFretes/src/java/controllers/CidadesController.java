@@ -38,7 +38,6 @@ public class CidadesController
                 .execute();
         session.close();
         
-        List<Cidades> listCidades = session.getList(cidades);
-        return new Gson().toJson(listCidades);
+        return new Gson().toJson(cidades.toList());
     }
 }

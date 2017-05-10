@@ -67,7 +67,7 @@ public class VeiculosController
         session.createCriteria(tipos_carga, RESULT_TYPE.MULTIPLE)
                 .execute();
         session.close();
-        return session.getList(tipos_carga);
+        return tipos_carga.toList();
     }
 
     public List<Carrocerias> getCarrocerias()
@@ -77,7 +77,7 @@ public class VeiculosController
         session.createCriteria(carrocerias, RESULT_TYPE.MULTIPLE)
                 .execute();
         session.close();
-        return session.getList(carrocerias);
+        return carrocerias.toList();
     }
 
     public List<Categorias_veiculos> getCategorias()
@@ -87,7 +87,7 @@ public class VeiculosController
         session.createCriteria(categorias_veiculos, RESULT_TYPE.MULTIPLE)
                 .execute();
         session.close();
-        return session.getList(categorias_veiculos);
+        return categorias_veiculos.toList();
     }
 
     @RequestMapping(value = "veiculo_path", produces = "text/html; charset=utf-8", method = RequestMethod.POST)
@@ -362,8 +362,10 @@ public class VeiculosController
         criteria.add(Restrictions.eq(FILTER_TYPE.AND, "veiculos.inativo", false));
         criteria.execute();
         session.close();
+        
+        criteria.loadList(veiculos);
 
-        List<Veiculos> listVeiculos = criteria.loadList(veiculos);
+        List<Veiculos> listVeiculos = veiculos.toList();
         List<Veiculos> retorno = new ArrayList<Veiculos>();
 
         for (Veiculos vei : listVeiculos)
@@ -485,7 +487,7 @@ public class VeiculosController
         q.execute();
         session.close();
 
-        List<Veiculos> veiculos = session.getList(v);
+        List<Veiculos> veiculos = v.toList();
         return veiculos;
     }
 
@@ -507,6 +509,6 @@ public class VeiculosController
                 .execute();
         session.close();
 
-        return session.getList(v);
+        return v.toList();
     }
 }

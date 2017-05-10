@@ -10,7 +10,6 @@ import br.com.persistor.generalClasses.DBConfig;
 import br.com.persistor.generalClasses.PersistenceLog;
 import br.com.persistor.interfaces.Session;
 import br.com.persistor.sessionManager.SessionFactory;
-import controllers.Update;
 import enums.Ambientes;
 import logging.PersistenceLoggerImpl;
 import util.AmbienteAtual;
@@ -24,13 +23,14 @@ public class SessionProvider
 
     private static SessionFactory factory = null;
 
-    public static Session openSession()
+    public synchronized static Session openSession()
     {
         try
         {
-            if (factory == null)
-                factory = new SessionFactory();
+            if (factory != null)
+                return factory.getSession();
 
+            factory = new SessionFactory();
             DBConfig config = new DBConfig();
 
             switch (AmbienteAtual.getAmbienteAtual())
@@ -83,7 +83,10 @@ public class SessionProvider
  /*
             xK$dn,=1QtON
              */
-
+            //  config.setPersistenceContext(util.PersistenceContext.class);
+            config.setMaxIdleTime(10);
+            config.setMaxStatements(10);
+            config.setMaxIdleTimeExcessConnections(10);
             return factory.getSession(config);
         }
         catch (Exception ex)

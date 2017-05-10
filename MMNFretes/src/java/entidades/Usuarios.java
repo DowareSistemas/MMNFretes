@@ -1,125 +1,122 @@
 /* 28/09/2016 20:45:23 */
-/* AUTO-GENERATED CLASS */
-/* DOES NOT ADD ACCESSOR METHODS */
-/* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
-
+ /* AUTO-GENERATED CLASS */
+ /* DOES NOT ADD ACCESSOR METHODS */
+ /* DOES NOT CHANGE NAME OF ACCESSOR METHODS */
 package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
-import br.com.persistor.abstractClasses.Entity;
+import br.com.persistor.annotations.NamedQuery;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
-import br.com.persistor.annotations.OneToOne;
-import br.com.persistor.annotations.OneToMany;
-import br.com.persistor.enums.JOIN_TYPE;
-import br.com.persistor.enums.LOAD;
-import java.util.Date;
-import java.io.InputStream;
 
 /**
  *
  * @author Persistor4J
  */
+@NamedQuery(queryName = "listaRepresentantes",
+        queryValue = "select * from usuarios\n" +
+"where (select count(*) from produtos where usuario_id = usuarios.id) > 0")
 public class Usuarios extends Entity
 {
-   private int id; 
-   private String nome; 
-   private String senha; 
-   private String email; 
-   private int tipo_usuario; 
-   private String telefone1; 
-   private String telefone2; 
-   private boolean admin; 
-   private boolean inativo; 
 
-   public void setId(int id)
-   {
-       this.id = id;
-   }
+    private int id;
+    private String nome;
+    private String senha;
+    private String email;
+    private int tipo_usuario;
+    private String telefone1;
+    private String telefone2;
+    private boolean admin;
+    private boolean inativo;
 
-   @PrimaryKey(increment = INCREMENT.MANUAL)
-   public int getId()
-   {
-       return id;
-   }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
-   public void setNome(String nome)
-   {
-       this.nome = nome;
-   }
+    @PrimaryKey(increment = INCREMENT.MANUAL)
+    public int getId()
+    {
+        return id;
+    }
 
-   public String getNome()
-   {
-       return nome;
-   }
+    public void setNome(String nome)
+    {
+        this.nome = nome;
+    }
 
-   public void setSenha(String senha)
-   {
-       this.senha = senha;
-   }
+    public String getNome()
+    {
+        return nome;
+    }
 
-   public String getSenha()
-   {
-       return senha;
-   }
+    public void setSenha(String senha)
+    {
+        this.senha = senha;
+    }
 
-   public void setEmail(String email)
-   {
-       this.email = email;
-   }
+    public String getSenha()
+    {
+        return senha;
+    }
 
-   public String getEmail()
-   {
-       return email;
-   }
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
 
-   public void setTipo_usuario(int tipo_usuario)
-   {
-       this.tipo_usuario = tipo_usuario;
-   }
+    public String getEmail()
+    {
+        return email;
+    }
 
-   public int getTipo_usuario()
-   {
-       return tipo_usuario;
-   }
+    public void setTipo_usuario(int tipo_usuario)
+    {
+        this.tipo_usuario = tipo_usuario;
+    }
 
-   public void setTelefone1(String telefone1)
-   {
-       this.telefone1 = telefone1;
-   }
+    public int getTipo_usuario()
+    {
+        return tipo_usuario;
+    }
 
-   public String getTelefone1()
-   {
-       return telefone1;
-   }
+    public void setTelefone1(String telefone1)
+    {
+        this.telefone1 = telefone1;
+    }
 
-   public void setTelefone2(String telefone2)
-   {
-       this.telefone2 = telefone2;
-   }
+    public String getTelefone1()
+    {
+        return telefone1;
+    }
 
-   public String getTelefone2()
-   {
-       return telefone2;
-   }
+    public void setTelefone2(String telefone2)
+    {
+        this.telefone2 = telefone2;
+    }
 
-   public void setAdmin(boolean admin)
-   {
-       this.admin = admin;
-   }
+    public String getTelefone2()
+    {
+        return telefone2;
+    }
 
-   public boolean isAdmin()
-   {
-       return admin;
-   }
+    public void setAdmin(boolean admin)
+    {
+        this.admin = admin;
+    }
 
-   public void setInativo(boolean inativo)
-   {
-       this.inativo = inativo;
-   }
+    public boolean isAdmin()
+    {
+        return admin;
+    }
 
-   public boolean isInativo()
-   {
-       return inativo;
-   }
+    public void setInativo(boolean inativo)
+    {
+        this.inativo = inativo;
+    }
+
+    public boolean isInativo()
+    {
+        return inativo;
+    }
 }

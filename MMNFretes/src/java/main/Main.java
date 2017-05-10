@@ -5,7 +5,15 @@
  */
 package main;
 
+import br.com.persistor.interfaces.Session;
 import controllers.RepresetacoesController;
+import entidades.Transportadoras;
+import entidades.Usuarios;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import sessionProvider.SessionProvider;
 
 /**
  *
@@ -16,27 +24,12 @@ public class Main
 
     public static void main(String[] args)
     {
-       RepresetacoesController rc = new RepresetacoesController();
-       rc.get(1, false);
-       rc.get(1, true);
-       
+        Calendar calendar = Calendar.getInstance();
+        Date dataInicio = br.com.persistor.generalClasses.Util.getDate(1, calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+        Date dataFim = br.com.persistor.generalClasses.Util.getDate(calendar.getActualMaximum(Calendar.DATE), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
-        /*
-        for(int i = 0; i < 1; i++)
-        {
-            Produtos produto = new Produtos();
-            produto.setId(i);
-            produto.setDescricao("Produto "+ i);
-            
-            ProdutosImgCache.getInstance().add(produto);
-        }
-        
-        Produtos produto = ProdutosImgCache.getInstance().find(0);
-        produto.setDescricao("Alterado");
-        ProdutosImgCache.getInstance().update(produto);
-        produto = ProdutosImgCache.getInstance().find(0);
-        
-        System.err.println(produto.getDescricao());
-         */
+        System.err.println(dateFormat.format(dataInicio));
+        System.err.println(dateFormat.format(dataFim));
     }
 }

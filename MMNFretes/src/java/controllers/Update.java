@@ -54,6 +54,9 @@ public class Update
 
             if (versao_atual < 1.7)
                 retorno = up17();
+            
+            if(versao_atual < 1.8)
+                retorno = up18();
         }
         catch (Exception ex)
         {
@@ -282,6 +285,11 @@ public class Update
                     + ")");
             executeSql(session, "alter table pedidos_vendas add valor_frete numeric(10,2) not null default 0");
             executeSql(session, "alter table pedidos_vendas add cep_destino varchar(20) not null");
+            executeSql(session, "alter table pedidos_vendas drop atendido");
+            executeSql(session, "alter table pedidos_vendas drop pago");
+            executeSql(session, "alter table pedidos_vendas add status int not null default 0");
+            executeSql(session, "alter table historico add status_repasse int not null default 0");
+            executeSql(session, "alter table pedidos_vendas add status_repasse int not null default 0");
             executeSql(session, "update configuracoes set valor = '1.7' where config = 'versao'");
             session.commit();
             session.close();
@@ -297,6 +305,32 @@ public class Update
             }
 
             throw new Exception("Erro ao atualizar para a versão 1.7");
+        }
+    }
+
+    //versao 1.8
+    private static String up18() throws Exception
+    {
+        Session session = null;
+        try
+        {
+            session = SessionProvider.openSession();
+            executeSql(session, "alter table produtos add quant numeric(10,2) not null default 0");
+            executeSql(session, "update configuracoes set valor = '1.8' where config = 'versao'");
+            session.commit();
+            session.close();
+
+            return "Banco atualizado para a versão 1.8";
+        }
+        catch (Exception ex)
+        {
+            if (session != null)
+            {
+                session.rollback();
+                session.close();
+            }
+
+            throw new Exception("Erro ao atualizar para a versão 1.8");
         }
     }
 

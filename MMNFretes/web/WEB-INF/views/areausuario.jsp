@@ -196,6 +196,7 @@
         <script src="resources/js/maps.js"></script>
         <script src="resources/js/pesquisarfretes.js"></script>
         <script src="resources/js/representacoes.js"></script>
+        <script src="resources/js/pedidos.js"></script>
 
         <script>
             setRedirecionaPerfil(true);

@@ -20,8 +20,8 @@ import java.io.InputStream;
  *
  * @author Persistor4J
  */
-@NamedQuery(queryName = "transportadorasEmDebito", queryValue = 
-        "select * from historico where (data between cast(? as date) and cast(? as date)) and transportadoras_id = ?")
+@NamedQuery(queryName = "transportadorasEmDebito", queryValue
+        = "select * from historico where (data between cast(? as date) and cast(? as date)) and transportadoras_id = ?")
 public class Historico extends Entity
 {
 
@@ -38,8 +38,20 @@ public class Historico extends Entity
     private int usuarios_id;
     private Usuarios usuarios;
     private int avaliacoes_id;
+    private int status_repasse;
+
     private Avaliacoes avaliacoes;
     private String token_consulta;
+
+    public int getStatus_repasse()
+    {
+        return status_repasse;
+    }
+
+    public void setStatus_repasse(int status_repasse)
+    {
+        this.status_repasse = status_repasse;
+    }
 
     public String getToken_consulta()
     {

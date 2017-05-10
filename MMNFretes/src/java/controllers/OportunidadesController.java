@@ -119,7 +119,7 @@ public class OportunidadesController
         session.close();
 
         ModelAndView mav = new ModelAndView(resultView);
-        mav.addObject("oportunidades", session.getList(op));
+        mav.addObject("oportunidades", op.toList());
         return mav;
     }
 
@@ -202,8 +202,8 @@ public class OportunidadesController
         c.loadList(usuarios);
         session.close();
 
-        List<Oportunidades> l_op = session.getList(op);
-        List<Usuarios> l_usr = session.getList(usuarios);
+        List<Oportunidades> l_op = op.toList();
+        List<Usuarios> l_usr = usuarios.toList();
 
         List<ResultadoLancamento> resultados = new ArrayList<ResultadoLancamento>();
 
@@ -236,7 +236,7 @@ public class OportunidadesController
         q.setResult_type(RESULT_TYPE.MULTIPLE);
         q.execute();
 
-        List<Cotacoes> cotacoes = session.getList(c);
+        List<Cotacoes> cotacoes = c.toList();
         String[] retorno = new String[cotacoes.size()];
 
         if (cotacoes.size() > 0)

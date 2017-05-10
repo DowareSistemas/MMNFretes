@@ -35,6 +35,7 @@
                         <div class="col-md-12">
                             <div class="panel-aside">
                                 <button class="btn btn-primary btn-block" type="button" id="btnPagamentos">Pagamentos</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnRepresentantes">Representantes</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnFinanceiro">Financeiro</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnGerencia-usuarios">Usuários</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnconfiguracao">Configuração</button><br>
@@ -47,6 +48,7 @@
                 <div class="aside-fixed-main">
                     <!-- Conteúdo da página -->
                     <admin:pagamentos/>
+                    <admin:representantes/>
                     <admin:Financeiro/>
                     <admin:gerencia-usuarios/>
                     <admin:configuracao/>

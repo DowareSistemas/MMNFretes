@@ -44,168 +44,45 @@
                         </div>
                     </div>
                 </header>
+
                 <article>
+
                     <div class="row">
 
                         <!-- RESULTADOS -->
                         <div class="col-md-12" id="resultado-representacoes">
                             <div class="panel panel-default">
 
-                                <!-- REPRESENTANTES -->
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-4 col-md-2">
-                                            <img src="resources/img/img-text.jpg" alt="Imagem Representante" class="img-thumbnail img-responsive">
-                                        </div>
-                                        <div class="col-xs-12 col-sm-5 col-md-8">
-                                            <h2>Representante</h2>
-                                            <h2 class="visible-sm visible-md visible-lg"><small>Causae expetendis an ius. Mel no mazim sanctus. Oblique singulis te est. Odio elit wisi pro cu.</small></h2>
-                                        </div>
-                                        <div class="col-sm-3 col-md-2">
-                                            <div class="row">
-                                                <div class="col-xs-6 col-sm-12 form-group">
-                                                    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#alguns-produtos">Alguns Produtos</button>
+                                <c:forEach var="representante" items="${representantes}">
+                                    <!-- REPRESENTANTES -->
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                                <img src="resources/img/img-text.jpg" alt="Imagem Representante" class="img-thumbnail img-responsive">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-5 col-md-8">
+                                                <h2>${representante.nome}</h2>
+                                                <h2 class="visible-sm visible-md visible-lg"><small></small></h2>
+                                            </div>
+                                            <div class="col-sm-3 col-md-2">
+                                                <div class="row">
+                                                    <div class="col-xs-6 col-sm-12 form-group">
+                                                        <button class="btn btn-info btn-block" onclick="exibirProdutosRepresentante(${representante.id})" data-toggle="collapse" data-target="#alguns-produtos">Alguns Produtos</button>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-12 form-group">
+                                                        <button class="btn btn-primary btn-block">Conhecer</button>
+                                                    </div>   
                                                 </div>
-                                                <div class="col-xs-6 col-sm-12 form-group">
-                                                    <button class="btn btn-primary btn-block">Conhecer</button>
-                                                </div>   
                                             </div>
                                         </div>
-                                    </div>
-                                </div><!-- REPRESENTANTES - FIM -->
+                                    </div><!-- REPRESENTANTES - FIM -->
+                                </c:forEach>
 
                                 <!-- PRODUTOS -->
                                 <div class="panel-footer">
                                     <div id="alguns-produtos" class="collapse">
-                                        <div class="row">
-                                            <!-- ATENÇÃO: Conteudo visualisado dinamicamente Phones (<768px) 3 PRODUTOS, Tablets (≥768px) 4 PRODUTOS, Desktops (≥1200px)6 PRODUTOS -->
-
-                                            <!-- PRODUTO 1 -->
-                                            <div class="visible-xs visible-sm visible-md visible-lg" id="produto-1">
-                                                <div class="col-sm-3 col-lg-2 form-group">
-                                                    <div class="row">
-                                                        <div class="col-xs-5 col-sm-12">
-                                                            <img src="resources/img/img-text.jpg" alt="Imagem Produto" class="img-rounded img-responsive">
-                                                        </div>
-                                                        <div class="col-xs-7 col-sm-12">
-                                                            <h4>Nome Produto</h4>
-                                                            <h4 class="text-muted">R$ 000,00</h4>
-                                                            <p>Quantidade: 000 Und</p>
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <button class="btn btn-success btn-block">Comprar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- PRODUTO 2 -->
-                                            <div class="visible-xs visible-sm visible-md visible-lg" id="produto-2">
-                                                <div class="col-sm-3 col-lg-2 form-group">
-                                                    <div class="row">
-                                                        <div class="col-xs-5 col-sm-12">
-                                                            <img src="resources/img/img-text.jpg" alt="Imagem Produto" class="img-rounded img-responsive">
-                                                        </div>
-                                                        <div class="col-xs-7 col-sm-12">
-                                                            <h4>Nome Produto</h4>
-                                                            <h4 class="text-muted">R$ 000,00</h4>
-                                                            <p>Quantidade: 000 Und</p>
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <button class="btn btn-success btn-block">Comprar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- PRODUTO 3 -->
-                                            <div class="visible-xs visible-sm visible-md visible-lg" id="produto-3">
-                                                <div class="col-sm-3 col-lg-2 form-group">
-                                                    <div class="row">
-                                                        <div class="col-xs-5 col-sm-12">
-                                                            <img src="resources/img/img-text.jpg" alt="Imagem Produto" class="img-rounded img-responsive">
-                                                        </div>
-                                                        <div class="col-xs-7 col-sm-12">
-                                                            <h4>Nome Produto</h4>
-                                                            <h4 class="text-muted">R$ 000,00</h4>
-                                                            <p>Quantidade: 000 Und</p>
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <button class="btn btn-success btn-block">Comprar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- PRODUTO 4 -->
-                                            <div class="visible-sm visible-md visible-lg" id="produto-4">
-                                                <div class="col-sm-3 col-lg-2 form-group">
-                                                    <div class="row">
-                                                        <div class="col-xs-5 col-sm-12">
-                                                            <img src="resources/img/img-text.jpg" alt="Imagem Produto" class="img-rounded img-responsive">
-                                                        </div>
-                                                        <div class="col-xs-7 col-sm-12">
-                                                            <h4>Nome Produto</h4>
-                                                            <h4 class="text-muted">R$ 000,00</h4>
-                                                            <p>Quantidade: 000 Und</p>
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <button class="btn btn-success btn-block">Comprar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- PRODUTO 5 -->
-                                            <div class="visible-md visible-lg" id="produto-5">
-                                                <div class="col-sm-3 col-lg-2 form-group">
-                                                    <div class="row">
-                                                        <div class="col-xs-5 col-sm-12">
-                                                            <img src="resources/img/img-text.jpg" alt="Imagem Produto" class="img-rounded img-responsive">
-                                                        </div>
-                                                        <div class="col-xs-7 col-sm-12">
-                                                            <h4>Nome Produto</h4>
-                                                            <h4 class="text-muted">R$ 000,00</h4>
-                                                            <p>Quantidade: 000 Und</p>
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <button class="btn btn-success btn-block">Comprar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- PRODUTO 6 -->
-                                            <div class="visible-md visible-lg" id="produto-6">
-                                                <div class="col-sm-3 col-lg-2 form-group">
-                                                    <div class="row">
-                                                        <div class="col-xs-5 col-sm-12">
-                                                            <img src="resources/img/img-text.jpg" alt="Imagem Produto" class="img-rounded img-responsive">
-                                                        </div>
-                                                        <div class="col-xs-7 col-sm-12">
-                                                            <h4>Nome Produto</h4>
-                                                            <h4 class="text-muted">R$ 000,00</h4>
-                                                            <p>Quantidade: 000 Und</p>
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <button class="btn btn-success btn-block">Comprar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                        <div class="row" id="produtos-representante">
+                                              <!-- exibicaoprodutos-representante.jsp -->
                                         </div>
                                     </div>
                                 </div><!-- PRODUTOS - FIM -->
@@ -213,43 +90,6 @@
                         </div><!-- RESULTADOS - FIM -->
                     </div>
                 </article>
-
-                <!-- MODELO DE APRESENTAÇÃO ANTIGO -->
-                <article>
-                    <c:forEach var="resultado" items="${resultados}">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <c:if test="${resultado.foto_path eq 'not_localized'}">
-                                    <img class="img-thumbnail" src="resources/img/logo.png" alt="Imagem Repreentação" width="277" height="107">
-                                </c:if>
-
-                                <c:if test="${resultado.foto_path ne 'not_localized'}">
-                                    <img class="img-thumbnail" src="${resultado.foto_path}" alt="Imagem Repreentação" width="277" height="107">
-                                </c:if>
-                            </div>
-                            <div class="col-sm-8">
-                                <h3>${resultado.produto.nome}</h3>
-                                <h3>
-                                    <small>
-                                        ${resultado.produto.descricao}
-                                    </small>
-                                </h3>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        R$ <fmt:formatNumber maxFractionDigits="2" value="${resultado.produto.preco}" minFractionDigits="2"/>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <button type="button" onclick="criaPedidoVenda(${resultado.produto.id})" class="btn btn-success">Comprar</button>
-                                    </div>
-
-                                </div>
-                            </div>                        
-                        </div>
-                    </c:forEach>
-                </article><!-- MODELO DE APRESENTAÇÃO ANTIGO - FIM -->
-
             </main>
             <footer>
 

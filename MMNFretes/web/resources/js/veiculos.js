@@ -4,6 +4,9 @@ var id = 0;
 
 $(document).ready(function ()
 {
+    listarVeiculos();
+    $('#btnExcluir-veiculo').hide();
+
     document.getElementById('fake-file-button-browse-veiculos').addEventListener('click', function ()
     {
         document.getElementById('upload').click();
@@ -28,9 +31,6 @@ $(document).ready(function ()
             reader.readAsDataURL(input.files[0]);
         }
     });
-
-    listarVeiculos();
-    $('#btnExcluir-veiculo').hide();
 });
 
 $('#btnAdicionar-veiculo').click(function ()

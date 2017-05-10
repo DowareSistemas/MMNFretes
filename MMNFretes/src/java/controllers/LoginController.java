@@ -48,7 +48,8 @@ public class LoginController
         c.add(Restrictions.eq(FILTER_TYPE.AND, "senha", usuario.getSenha()));
         c.add(Restrictions.eq(FILTER_TYPE.AND, "inativo", false));
         c.execute();
-
+        session.close();
+        
         if (usuario.getId() != 0)
         {
             if (Util.isUsuario(usuario))
@@ -64,7 +65,7 @@ public class LoginController
                 return "areatransportador";
             }
         }
-        session.close();
+
         return "incorreto";
     }
 }

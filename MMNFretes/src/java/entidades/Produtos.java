@@ -6,6 +6,7 @@
 package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
+import br.com.persistor.annotations.NamedQuery;
 import br.com.persistor.annotations.OneToOne;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
@@ -17,6 +18,9 @@ import java.io.InputStream;
  *
  * @author Marcos Vinícius
  */
+@NamedQuery(queryName = "listaProdutosRepresentante",
+        queryValue = "select id, nome, descricao, tipo, preco, usuario_id, unidade, quant, foto "
+        + "from produtos where usuario_id = ? limit 6")
 public class Produtos extends Entity
 {
 
@@ -28,6 +32,17 @@ public class Produtos extends Entity
     private int usuario_id;
     private InputStream foto;
     private String unidade;
+    private double quant;
+
+    public double getQuant()
+    {
+        return quant;
+    }
+
+    public void setQuant(double quant)
+    {
+        this.quant = quant;
+    }
 
     private Usuarios usuarios;
 

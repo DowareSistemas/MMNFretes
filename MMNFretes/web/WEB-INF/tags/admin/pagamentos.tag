@@ -25,14 +25,14 @@
                                 <th>Cliente</th>
                                 <th>Transportador</th>
                                 <th>Data</th>
-                                <th>Status</th>
-                                <th>Token (E)</th>
-                                <th>Token (R)</th>
+                                <th>Token</th>
                                 <th>Valor (R$)</th>
+                                <th>Repassado (R$)</th>
+                                <th>Falta (R$)</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="tabela-pagamentos">
+                        <tbody id="tabela-pagamentos-admin">
 
                         </tbody>
                     </table>

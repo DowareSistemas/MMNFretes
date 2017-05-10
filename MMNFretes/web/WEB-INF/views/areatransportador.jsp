@@ -45,9 +45,11 @@
                     <!-- Conteúdo da página -->
                     <my-tags:enderecos-conjunto/>
                     <areatransportador:historico-areatransportador/>
+                    
                     <areatransportador:pendentes-areatransportador/>
                     <areatransportador:perfil-areatransportador/>
                     <areatransportador:veiculos-areatransportador/>
+                    
                     <!-- Dinâmica da página -->
                     <backend:mensagem-input id="alterarSenha"
                                             id_btnConfirmar="btnConfirmarSenha"

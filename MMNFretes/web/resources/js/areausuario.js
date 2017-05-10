@@ -19,20 +19,16 @@ var enderecoObj =
 $(document).ready(function ()
 {
     $('#btnExcluir').hide();
-    //$('#pendentes').hide();
-    //$('#historico').hide();
-    $('#enderecos').hide();
     $('#btnSalvar-info').hide();
     $('#btnEditar-grupo').hide();
     $('#li-deslogado').hide();
     $('#li-logado').hide();
-    //$('#representacoes').hide();
     $('#btnVisualizaCotacoes').hide();
-    //$('#lancamentos').hide();
-
+   
     carregaInfoUsuario();
     hab_desab_formInfo(true);
     listaGruposCotacoes();
+    
     $('#lbToken_autorizacao').css('color', 'green');
     $('#lbMensagemValidacaoToken').hide();
     $('#lbToken_autorizacao').hide();
@@ -46,6 +42,12 @@ function removerLancamento(id_lancamento)
         if (response === '1')
             listaOportunidades();
     });
+}
+
+function redirectVincularPedidos(id_cotacao)
+{
+    var url = '/' + AMBIENTE_ATUAL + '/vincularpedido?cotacao_id=' + id_cotacao;
+    window.location.href = url;
 }
 
 function showConfirmaRecebmento(id_cotacao)

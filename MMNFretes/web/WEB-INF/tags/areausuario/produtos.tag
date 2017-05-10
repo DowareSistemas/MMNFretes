@@ -8,17 +8,16 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>ID</th>
                         <th>Status</th>
-                        <th>Cliente</th>
+                        <th>Representante</th>
                         <th>Data</th>
                         <th>Produto</th>
                         <th>Valor</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody id="tabela-produtos-usuario">
+                <tbody id="tabela-pedidos-compra">
 
                 </tbody>
             </table>
@@ -33,7 +32,6 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>ID</th>
                         <th>Status</th>
                         <th>Cliente</th>
@@ -43,7 +41,7 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody id="tabela-produtos-usuario">
+                <tbody id="tabela-pedidos-venda">
 
                 </tbody>
             </table>

@@ -4,6 +4,7 @@
 <%@taglib tagdir="/WEB-INF/tags/backend/" prefix="backend"%>
 <%@taglib tagdir="/WEB-INF/tags/pesquisarfretes/" prefix="pesquisarfretes" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -35,21 +36,35 @@
                             </th>
                             <th class="text-center">Valor</th>
                             <th class="text-center">Valor Total</th>
+                            <th class="text-center">Valor Frete</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center"><input type="checkbox"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    <tbody id="tabela-pedidos-vincular">
+                        <c:forEach var="pedido" items="${pedidos}">
+                            <tr>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td>${pedido.id}</td>
+                                <td>${pedido.usuarios.nome}</td>
+                                <td>${pedido.produtos.nome}</td>
+                                <td>${pedido.quant}</td>
+                                <td>
+                                    <fmt:formatNumber value="${pedido.produtos.preco}"
+                                                      minFractionDigits="2"
+                                                      maxFractionDigits="2"
+                                                      type="currency"/>
+                                </td>
+                                <td>
+                                    <fmt:formatNumber value="${pedido.valor_final}"
+                                                      minFractionDigits="2"
+                                                      maxFractionDigits="2"
+                                                      type="currency"/>
+                                </td>
+                                <td> <input type="number" class="form-control" value="0"> </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-lg btn-success center-block">Vincular</button>
+                <button type="button" id="btnVincular" class="btn btn-lg btn-success center-block">Vincular</button>
 
             </main>
             <footer>
@@ -64,6 +79,10 @@
         <script src="resources/js/jquery-mask.js"></script>
         <script src="resources/js/mascaras.js"></script>
         <script src="resources/js/navbar.js"></script>
+        <script src="resources/js/pedidos.js"></script>
 
+        <script>
+            COTACAO_ID = ${cotacao_id};
+        </script>
     </body>
 </html>

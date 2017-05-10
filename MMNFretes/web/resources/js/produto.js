@@ -4,6 +4,12 @@
 
 function comprarProduto(produto_id, usuario_vendedor)
 {
+    if ($('#txCepEntregaCompraProduto').val() === '')
+    {
+        alert('Informe o CEP de entrega!');
+        return;
+    }
+
     var params = {
         produto_id: produto_id,
         quant: $('#txQuantidadeCompraProduto').val(),
@@ -15,7 +21,7 @@ function comprarProduto(produto_id, usuario_vendedor)
 
     $.post(url, params, function (retorno)
     {
-        if(retorno === '1')
+        if (retorno === '1')
             document.location.href = '/' + AMBIENTE_ATUAL + '/paginaperfil';
     });
 }

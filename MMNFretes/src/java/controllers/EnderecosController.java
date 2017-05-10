@@ -74,7 +74,7 @@ public class EnderecosController
                 .execute();
         session.close();
 
-        List<Enderecos> listaEnderecos = session.getList(endereco);
+        List<Enderecos> listaEnderecos = endereco.toList();
 
         ModelAndView modelAndView = new ModelAndView("listaenderecos");
         modelAndView.addObject("listaenderecos", listaEnderecos);

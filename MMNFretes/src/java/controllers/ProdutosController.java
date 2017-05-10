@@ -28,6 +28,7 @@ public class ProdutosController
     {
         Session session = SessionProvider.openSession();
         Produtos produto = session.onID(Produtos.class, id);
+        session.close();
         
         if(produto.getId() == 0)
             return new ModelAndView("redirect:/");

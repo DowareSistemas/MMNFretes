@@ -53,7 +53,8 @@ $(document).ready(function ()
 
     $.get('/' + AMBIENTE_ATUAL + '/foto_transportador', function (url)
     {
-        $('#img-perfil').attr('src', url);
+        if (url !== 'not_localized')
+            $('#img-perfil').attr('src', url);
     });
 });
 
@@ -368,7 +369,7 @@ $('#btnConfirmarSenha').click(function ()
     if (senha === senhaDigitada)
     {
         $('#formulario-info-transportador').prop('action', '/' + AMBIENTE_ATUAL + '/alteraInfoTransportadora');
-        
+
         $('#formulario-info-transportador').ajaxForm({
             success: function (data)
             {

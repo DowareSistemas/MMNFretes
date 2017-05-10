@@ -32,7 +32,7 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="tabela-gerencia-transportadoras">
+                        <tbody id="tabela-gerencia-usuarios">
 
                         </tbody>
                     </table>

@@ -10,8 +10,21 @@ import br.com.persistor.enums.RESULT_TYPE;
 import br.com.persistor.generalClasses.Restrictions;
 import br.com.persistor.interfaces.Session;
 import com.google.gson.Gson;
+import entidades.Categorias_veiculos;
+import entidades.Historico;
+import entidades.Pedidos_vendas;
+import entidades.Tipos_carga;
 import entidades.Transportadoras;
 import entidades.Usuarios;
+import entidades.Veiculos;
+import entidadesTemporarias.UsuarioPainelAdmin;
+import enums.CATEGORIA_VEICULO;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.context.annotation.Scope;
@@ -166,7 +179,7 @@ public class UsuariosController
     }
 
     @RequestMapping("/areausuario")
-    public String rediriocionaAreaUsuario(HttpSession httpSession)
+    public String redirecionaAreaUsuario(HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
 
@@ -181,6 +194,110 @@ public class UsuariosController
     {
         httpSession.setAttribute("usuarioLogado", null);
         return "redirect:pesquisar";
+    }
+    
+    @RequestMapping(value = "/listaUsuariosAdmin")
+    public ModelAndView listaUsuariosAdmin()
+    {
+        Usuarios usuarios = new Usuarios();
+        Session session = SessionProvider.openSession();
+        session.createQuery(usuarios, "select * from usuarios where admin = false")
+                .setResult_type(RESULT_TYPE.MULTIPLE)
+                .execute();
 
+        List<UsuarioPainelAdmin> result = new ArrayList<UsuarioPainelAdmin>();
+        List<Usuarios> list = usuarios.toList();
+
+        for (Usuarios usuario : list)
+            result.add(new UsuarioPainelAdmin(
+                    usuario, getTotalDebitoUsuario(usuario, session)));
+
+        session.close();
+        ModelAndView mav = new ModelAndView("listausuarios-admin");
+        mav.addObject("usuarios", result);
+        return mav;
+    }
+
+    private double getTotalDebitoUsuario(Usuarios usuario, Session session)
+    {
+        Transportadoras transportadora = (usuario.getTipo_usuario() == 1
+                ? new TransportadorasController().getByUsuario(usuario.getId())
+                : null);
+        
+        Calendar calendar = Calendar.getInstance();
+        Date dataInicio = br.com.persistor.generalClasses.Util.getDate(1, calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+        Date dataFim = br.com.persistor.generalClasses.Util.getDate(calendar.getActualMaximum(Calendar.DATE), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        double totalFaturamentoUsuario = (usuario.getTipo_usuario() == 1 //Transportador
+                ? session.sum(Historico.class, "valor",
+                        "transportadoras_id = " + transportadora.getId() + " and data between '" + dateFormat.format(dataInicio) + "' and '" + dateFormat.format(dataFim) + "'")
+                : session.sum(Pedidos_vendas.class, "valor_final",
+                        "usuario_vendedor = " + usuario.getId() + " and data between '" + dateFormat.format(dataInicio) + "' and '" + dateFormat.format(dataFim) + "' and status = 4"));
+
+        if (totalFaturamentoUsuario == 0)
+            return 0;
+        if (usuario.getTipo_usuario() == 1)
+            return getTotalDebitoTransportadora(transportadora,
+                    totalFaturamentoUsuario);
+        else
+            return (totalFaturamentoUsuario / 100 * 10);
+    }
+
+    private double getTotalDebitoTransportadora(Transportadoras transportadora,
+            double totalFaturado)
+    {
+        return (transportadora.getModelo_pagamento() == 0
+                ? getTotalPlanoParticipativo(transportadora, totalFaturado)
+                : getTotalPlanoMensal(transportadora));
+    }
+
+    private double getTotalPlanoParticipativo(Transportadoras transportadora, double totalFaturado)
+    {
+        return (totalFaturado / 100 * 5);
+    }
+
+    private double getTotalPlanoMensal(Transportadoras transportadora)
+    {
+        double total = 0;
+        List<Veiculos> veiculos = transportadora.getVeiculos().toList();
+        for (Veiculos veiculo : veiculos)
+            switch (veiculo.getCategorias_veiculos_id())
+            {
+                case CATEGORIA_VEICULO.TOCO:
+                    total += 1;
+                    break;
+                case CATEGORIA_VEICULO.TRES_QUATRO:
+                    total += 1;
+                    break;
+                case CATEGORIA_VEICULO.VLC:
+                    total += 0.50;
+                    break;
+                case CATEGORIA_VEICULO.VUC:
+                    total += 0.50;
+                    break;
+                case CATEGORIA_VEICULO.TRUCK:
+                    total += 2;
+                    break;
+                case CATEGORIA_VEICULO.BITRUCK:
+                    total += 2;
+                    break;
+                case CATEGORIA_VEICULO.RODOTREM:
+                    total += 5;
+                    break;
+                case CATEGORIA_VEICULO.BITREM:
+                    total += 5;
+                    break;
+                case CATEGORIA_VEICULO.CARRETA_LS:
+                    total += 4;
+                    break;
+                case CATEGORIA_VEICULO.CARRETA:
+                    total += 4;
+                    break;
+                default:
+                    break;
+            }
+
+        return total;
     }
 }

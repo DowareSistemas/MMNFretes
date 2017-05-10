@@ -6,18 +6,19 @@ package entidades;
 
 import br.com.persistor.abstractClasses.Entity;
 import br.com.persistor.annotations.NamedQuery;
+import br.com.persistor.annotations.OneToMany;
 import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
 import br.com.persistor.annotations.OneToOne;
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.enums.LOAD;
+import br.com.persistor.sessionManager.FieldHandled;
 import java.io.InputStream;
 
 /**
  *
  * @author Persistor4J
  */
-
 public class Transportadoras extends Entity
 {
 
@@ -32,6 +33,21 @@ public class Transportadoras extends Entity
     private boolean pag_seguro;
     private boolean negociacao_direta;
     private int modelo_pagamento;
+
+    private Veiculos veiculos;
+
+    @OneToMany(source = "id", target = "transportadoras_id", join_type = JOIN_TYPE.LEFT, load = LOAD.MANUAL)
+    public Veiculos getVeiculos()
+    {
+        if(veiculos == null)
+            veiculos = (Veiculos)FieldHandled.readObject(this, "veiculos");
+        return veiculos;
+    }
+
+    public void setVeiculos(Veiculos veiculos)
+    {
+        this.veiculos = veiculos;
+    }
 
     public int getModelo_pagamento()
     {
