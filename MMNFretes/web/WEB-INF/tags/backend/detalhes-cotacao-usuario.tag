@@ -6,6 +6,10 @@
                 <h4 class="modal-title" id="myModalLabel"> Item da cotação </h4>
             </div>
             <div class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Atenção!</strong> Caso tenha pedidos para vincular a esta proposta, por gentileza, vincule antes de efetivar o pagamento, pois o mesmo não será possivel após o pagamento.
+                </div>
                 <div class="container">
                     <div class="row">
                         <label class="h5"> Transportador </label>

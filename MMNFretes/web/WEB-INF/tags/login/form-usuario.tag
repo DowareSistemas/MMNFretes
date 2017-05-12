@@ -41,36 +41,106 @@
                 <h4 class="modal-title">Termos de uso!</h4>
             </div>
             <div class="modal-body">
+                <h3><small>Sobre o Serviço Sistema Gestão Compartilhada de fretes, Usuário e Representações.</small></h3>
                 <p class="text-justify">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vestibulum
-                    nec justo consectetur porttitor. Nam pharetra volutpat blandit. Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit. Nunc at vulputate
-                    mi. Nullam purus urna, tincidunt at ipsum eget, dapibus malesuada felis.
-                    Vestibulum at arcu at nisi vulputate tristique. Aliquam laoreet consectetur
-                    efficitur. Nullam vehicula lorem vitae luctus dictum.
+                    A Gestão Compartilhada Fretes oferece o serviço de sistema de
+                    agrupamento de fretes para os usuários cadastrados, que possibilita
+                    o usuário fechar contrato diretamente com os anunciantes ou no
+                    próprio sistema. 
                 </p>
-                <p class="text-justify">
-                    Suspendisse potenti. Mauris faucibus felis nulla. Integer quis lectus
-                    eget mi gravida eleifend at vitae turpis. Etiam sollicitudin nisi
-                    sem, condimentum malesuada nisl cursus vitae. Vivamus euismod quam
-                    id odio tincidunt, nec auctor arcu vestibulum. Maecenas dolor nisi,
-                    posuere volutpat venenatis posuere, facilisis nec arcu. Donec eleifend
-                    fringilla tempus. Morbi vestibulum, ante porttitor rutrum posuere,
-                    ex velit lacinia ante, sit amet iaculis massa ex nec quam. Orci 
-                    varius natoque penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus. Sed tincidunt, neque at imperdiet hendrerit, sem 
-                    justo gravida nisi, eu tempus ipsum mauris eget augue.
+                <h4>CLÁUSULA PRIMEIRA <small>OBJETO E SUA DEFINIÇÃO</small></h4>
+                <p><strong>1.1 - </strong>
+                    O objeto do presente contrato é a prestação do serviço de divulgação dos fretes cadastrados no sistema para seus usuários cadastrados, visualização de produtos disponíveis para venda através do cadastro via representações.
                 </p>
-                <p class="text-justify">
-                    Mauris eget ullamcorper mi. Etiam nec mi nec leo dignissim pretium.
-                    Vivamus purus odio, maximus sit amet neque in, vehicula semper ante.
-                    Nam auctor sem massa, sed tincidunt nisi scelerisque vel. Morbi 
-                    ornare mollis diam, ut tincidunt justo auctor non. Fusce ut dapibus
-                    odio. Praesent vitae erat enim. Vivamus pellentesque libero nec 
-                    leo malesuada, sed ornare arcu auctor. Nulla ultrices purus eget 
-                    mi tristique maximus condimentum nec leo. Praesent id mollis diam.
-                    Nullam at diam sed odio mattis sollicitudin a et enim. Mauris vel
-                    tellus quis nulla tincidunt dictum.
+                <p><strong>1.2 - </strong>
+                    No ato da contratação, o CONTRATANTE deverá escolher o perfil de seu veículo para o sistema filtrar sua categoria de fretes.
+                </p>
+                <p><strong>1.3 - </strong>
+                    Para contratar o serviço de visualização de fretes via Sistema, o CONTRATANTE deverá ser assinante no Sistema para receber o usuário e ter acesso todos os dados do sistema e visualização de fretes, armazenagem e disponibilização de dados online no servidor do Site, como também todo extrato financeiro de suas entregas e possibilidade de vender produtos através do link representações.
+                </p>
+                <p><strong>1.4 - </strong>
+                    O modelo de negócios do Sistema de fretes, representações e lançamento de fretes, será totalmente online e terá acesso via computador com acesso a internet e celulares com plataforma Android e IOS.
+                </p>
+                <p>Visualização do usuário;</p>
+                <ul>
+                    <li>Personalização de seu perfil com foto, telefone e email de contato;</li>
+                    <li>Gestão à vista de seus contratos no sistema;</li>
+                    <li>Controle dos fretes entregues;</li>
+                    <li>Controle das Vendas no campo Representações;</li>
+                    <li>Controle de fretes não entregues;</li>
+                    <li>Recebimento de frete via cartão;</li>
+                    <li>Realizar lançamentos de fretes no login de cliente;</li>
+                    <li>Vantagens de participar do programa Redução de Carbono do Sistema.</li>
+                </ul>
+                <p><strong>1.5 - </strong>
+                    A prestação do serviço se dará da seguinte forma:
+                </p>
+                <p><strong>1.5.a - </strong>
+                    O CONTRATANTE irá escolher entre as opções conforme seu perfil dentro do Sistema, o próprio usuário irá fazer a configuração de seu perfil conforme suas necessidades.
+                </p>
+                <p><strong>1.5.b - </strong>
+                    O CONTRATANTE terá acesso todos os fretes cadastrados no sistema conforme seu perfil cadastrado.
+                </p>
+                <p><strong>1.5.c - </strong>
+                    O CONTRATANTE pode fechar o frete através de uma plataforma totalmente segura para recebimento através do programa Pag Seguro, este serviço está sujeito a taxas.
+                </p>
+                <p><strong>1.5.d - </strong>
+                    O Sistema é pronto e está vinculado a outros serviços desta forma O CONTRATANTE, irá receber promoções contidas no programa de publicidade e promoções cadastrado no sistema.
+                </p>
+                <p><strong>1.5.e - </strong>
+                    <strong>Para representações os usuários irá cadastrar seus produtos de interesse de vendas, e para cada venda realizada na plataforma será cobrado 10% de ágio e custo de transação do Mercado Pago, conforme descrito no item 2.2.a deste termo.</strong>
+                </p>
+                <p><strong>1.5.f - </strong>
+                    Para Usuário Cliente não incide custos, este poderá realizar compras, vender produtos, lançar oportunidades de fretes, somente será cobrado o ágio conforme item 1.5.e, e taxa do Mercado Pago conforme item <strong>2.2.a</strong>.
+                </p>
+                <h4>CLÁUSULA SEGUNDA <small>PREÇO E CONDIÇÕES DE PAGAMENTO</small></h4>
+                <p><strong>2.1 - </strong>
+                    O serviço do Sistema segue uma remuneração tabelada, com valor específico e não negociável, conforme características dispostas no usuário da CONTRATANTE.
+                </p>
+                <p><strong>2.1.a - </strong>
+                    O pagamento pelo serviço de visualização de fretes mensal será conforme usuários descritos nas tabelas de cadastros de usuários. O Pagamento é por meio de Boleto Bancário ou Cartão de Crédito, sendo liberadas as visualizações do usuário após confirmação do pagamento. 
+                </p>
+                <p><strong>Tabela de preços conforme apresentado no cadastro de Usuários.</strong></p>
+                <p><strong>2.2 - </strong>
+                    <strong>Nas transações feitas via sistema via Pagseguro será cobrado uma taxa de 5% do valor processado, para gestão de pagamentos.</strong>
+                </p>
+                <p><strong>2.3 - </strong>
+                    Para pagamento anual desconto de 10% no valor total.
+                </p>
+                <p><strong>2.4 - </strong>
+                    O atraso no pagamento do usuário no Sistema acarretará no congelamento de recebimento dos fretes disponíveis e serviços agregados.
+                </p>
+                <h4>CLÁUSULA TERCEIRA <small>VIGÊNCIA DO CONTRATO</small></h4>
+                <p><strong>3.1 - </strong>
+                    O contrato de prestação do serviço do Sistema de fretes terá vigência de 12 (doze) meses consecutivos, contados a partir do pagamento do pacote escolhido pelo CONTRATANTE, sendo automaticamente prorrogado por igual e sucessivo período enquanto não houver manifestação das partes em sentido diverso.
+                </p>
+                <h4>CLÁUSULA QUARTA <small>CONDIÇÕES DA PRESTAÇÃO DO SERVIÇO</small></h4>
+                <p><strong>4.1 - </strong>
+                    As responsabilidades referentes a CONTRATADA são divulgar todos fretes disponíveis conforme cadastro do usuário escolhido, divulgar os produtos cadastrados nas representações e realizar lançamento de frete conforme cada usuário cadastrou, e realizar sua gestão dentro de cada login.
+                </p>
+                <p><strong>4.1.a - </strong>
+                    O usuário começará a receber visualizações de frete num prazo de 32 horas após comprovar seu pagamento no Sistema.
+                </p>
+                <p><strong>4.2 - </strong>
+                    As responsabilidades do CONTRATANTE são, preencher corretamente os dados solicitados, escolher uma das opções de perfil disponíveis, participar da pesquisa de satisfação mensal, preencher os arquivos relacionados ao conteúdo do sistema (logomarca, imagens, textos e etc.) e verificar se as informações contidas no sistema estão corretas.
+                </p>
+                <p><strong>4.3 - </strong>
+                    Após a confirmação do pagamento, a CONTRATADA terá 32 horas para, somente no caso de transportador:
+                </p>
+                <ul>
+                    <li>Identificar o pagamento do usuário;</li>
+                    <li>Confirmar o usuário no sistema;</li>
+                    <li>Enviar disponibilidades de fretes conforme perfil do usuário.</li>
+                </ul>
+                <h4>CLÁUSULA QUINTA <small>CONDIÇÕES DE RESCISÃO CONTRATUAL</small></h4>
+                <p><strong>5.1 - </strong>
+                    Em caso de rescisão do contrato em período inferior a 12 meses, será cobrada uma taxa de cinqüenta reais (R$ 50,00) para desmobilização do usuário no Sistema.
+                </p>
+                <p><strong>5.1a - </strong>
+                    Fica estabelecido o prazo máximo de 7 (sete) dias, a contar da data de publicação do usuário no Sistema, para requisição de reembolso integral de valores pagos à CONTRATADA, respeitando o disposto no código de defesa do consumidor. 
+                </p>
+                <p><strong>5.2 - </strong>
+                    Após o período máximo de 7 (sete) dias os valores pagos pelo CONTRATANTE referentes ao pacote de serviços do Sistema não lhe serão ressarcidos a nenhum título, na venda de produtos os valores serão devolvidos com desconto das taxas dos itens <strong>1.5.e</strong> e <strong>2.2.a</strong>, da mesma forma será feito para pagamento realizados de fretes dentro da plataforma seram descontados as taxas dos itens citados.
                 </p>
             </div>
             <div class="modal-footer">

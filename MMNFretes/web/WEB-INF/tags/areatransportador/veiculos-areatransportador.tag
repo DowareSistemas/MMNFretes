@@ -38,9 +38,13 @@
                                     <div hidden>
                                         <input type="text" id="txID" name="id">
                                     </div>
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-8">
                                         <label>Veículo:</label>
                                         <input type="text" id="txDescricao_veiculo" name="descricao" maxlength="100" class="form-control" title="Nome do veículo" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Placa:</label>
+                                        <input type="text" id="txPlaca_veiculo" name="placa" maxlength="8" class="form-control" title="Placa do veículo" required>
                                     </div>
                                 </div>
                                 <div class="row">

@@ -5,22 +5,26 @@
         </div>
         <div class="panel-body">
             <h3>Pedidos Produtos:</h3>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Status</th>
-                        <th>Representante</th>
-                        <th>Data</th>
-                        <th>Produto</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-pedidos-compra">
+            <div class="table-responsive">
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Status</th>
+                            <th>Representante</th>
+                            <th>Data</th>
+                            <th>Produto</th>
+                            <th>Valor Produto</th>
+                            <th>Valor Frete</th>
+                            <th>Valor Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-pedidos-compra">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="panel panel-primary">
@@ -29,22 +33,26 @@
         </div>
         <div class="panel-body">
             <h3>Pedidos Produtos:</h3>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Status</th>
-                        <th>Cliente</th>
-                        <th>Data</th>
-                        <th>Produto</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-pedidos-venda">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Status</th>
+                            <th>Cliente</th>
+                            <th>Data</th>
+                            <th>Produto</th>
+                            <th>Valor Produto</th>
+                            <th>Valor Frete</th>
+                            <th>Valor Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-pedidos-venda">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </article>

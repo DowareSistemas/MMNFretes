@@ -25,12 +25,8 @@
         <div class="collapse navbar-collapse" id="bs-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li id="li-lancamentos"><a id="link-lancamentos-nav" href="">Oportunidades</a></li>
+                <li id="li-representacoes"><a id="link-lancamentos-nav" href="/gcfretes/representacoes">Representações</a></li>
             </ul>
-
-            <ul class="nav navbar-nav">
-                <li id="li-representacoes"><a id="link-lancamentos-nav" href="/gcfretes/representacoes">Representacoes</a></li>
-            </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li id="btnVisualizaCotacoes" class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="modal" data-target="#modal-lista-cotacoes">

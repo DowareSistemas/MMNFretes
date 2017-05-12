@@ -28,25 +28,40 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-4">
                             <label>Comprimento:</label>
+                            <div class="input-group">
                             <input type="text" name="comprimento" id="txComprimento" class="form-control">
+                            <span class="input-group-addon">Metros</span>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <label>Altura:</label>
+                            <div class="input-group">
                             <input type="text" name="altura" id="txAltura" class="form-control">
+                            <span class="input-group-addon">Metros</span>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <label>Largura:</label>
+                            <div class="input-group">
                             <input type="text" name="largura" id="txLargura" class="form-control">
+                            <span class="input-group-addon">Metros</span>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-6">
                             <label>Peso:</label>
+                            <div class="input-group">
                             <input type="text" name="peso" id="txPeso" class="form-control">
+                            <span class="input-group-addon">Kilos</span>
+                            </div>
                         </div>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-6">
                             <label>Volumes:</label>
+                            <div class="input-group">
                             <input type="text" name="volumes" id="txVolumes" class="form-control">
+                            <span class="input-group-addon">Quantidade</span>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

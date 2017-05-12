@@ -75,20 +75,22 @@
                         <div class="form-group col-md-12">
                             <h3>Lista Lançamentos</h3>
                             <div class="table-overflow">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nome Produto</th>
-                                            <th>Valor</th>
-                                            <th>Unidade</th>
-                                            <th>Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tabela-representacoes">
-                                        
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome Produto</th>
+                                                <th>Valor</th>
+                                                <th>Unidade</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tabela-representacoes">
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
