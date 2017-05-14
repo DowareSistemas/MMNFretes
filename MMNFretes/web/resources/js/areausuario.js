@@ -5,16 +5,15 @@ var cotacao_atual = 0;
 var cep_origem = '';
 var cep_destino = '';
 
-var enderecoObj =
-        {
-            CEP: '',
-            logradouro: '',
-            bairro: '',
-            municipio: '',
-            UF: '',
-            numero: '',
-            complemento: ''
-        };
+var enderecoObj = {
+    CEP: '',
+    logradouro: '',
+    bairro: '',
+    municipio: '',
+    UF: '',
+    numero: '',
+    complemento: ''
+};
 
 $(document).ready(function ()
 {
@@ -24,11 +23,11 @@ $(document).ready(function ()
     $('#li-deslogado').hide();
     $('#li-logado').hide();
     $('#btnVisualizaCotacoes').hide();
-   
+
     carregaInfoUsuario();
     hab_desab_formInfo(true);
     listaGruposCotacoes();
-    
+
     $('#lbToken_autorizacao').css('color', 'green');
     $('#lbMensagemValidacaoToken').hide();
     $('#lbToken_autorizacao').hide();
@@ -67,13 +66,12 @@ function showConfirmaRecebmento(id_cotacao)
 
 $('#btnEncerraCotacao').click(function ()
 {
-    var params =
-            {
-                cotacao_id: cotacao_atual,
-                token: $('#token_consulta').text(),
-                estrelas: estrelas,
-                comentario: $('#txComentario').val()
-            };
+    var params = {
+        cotacao_id: cotacao_atual,
+        token: $('#token_consulta').text(),
+        estrelas: estrelas,
+        comentario: $('#txComentario').val()
+    };
 
     var url = "/" + AMBIENTE_ATUAL + "/encerraCotacao";
     $.post(url, params, function (response)
@@ -83,7 +81,6 @@ $('#btnEncerraCotacao').click(function ()
         listaHistorico("");
         listaGruposCotacoes();
     });
-
 });
 
 $('#btnFechaModalAvaliacao').click(function ()
@@ -129,16 +126,16 @@ $('#btnSolicitarDesconto').click(function ()
 //Gerar pagamento
 $('#btnGerarBoleto').click(function ()
 {
-    carregaEnderecoByCEP(cep_origem, null);
+    carregaEnderecoByCEPAreaUsuario(cep_origem, null);
 
     var params =
             {
                 cotacao_id: cotacao_atual,
-                CEP: enderecoObj.CEP,
+                cep: enderecoObj.CEP,
                 logradouro: enderecoObj.logradouro,
                 bairro: enderecoObj.bairro,
                 municipio: enderecoObj.municipio,
-                UF: enderecoObj.UF
+                uf: enderecoObj.UF
             };
     var url = "/" + AMBIENTE_ATUAL + "/processarpagamento";
 
@@ -161,16 +158,15 @@ function mostraDetalhesItem(id_item)
     {
         $('#lbNomeTransportador').text(cotacao.transportadoras.nome);
         $('#lbNomeVeiculo').text(cotacao.veiculos.descricao);
-        carregaEnderecoByCEP(cotacao.cep_origem, '#lbEndereco-origem');
-        carregaEnderecoByCEP(cotacao.cep_destino, '#lbEndereco-destino');
+        carregaEnderecoByCEPAreaUsuario(cotacao.cep_origem, '#lbEndereco-origem');
+        carregaEnderecoByCEPAreaUsuario(cotacao.cep_destino, '#lbEndereco-destino');
         $('#lbDistancia').text(cotacao.distancia + " Km");
         $('#lbValorItemCotacao').text(parseFloat(cotacao.valor.toString()).toFixed(2));
         $('#btnSolicitarDesconto').val(id_item);
 
-        if (cotacao.status === 1)
-            if (!cotacao.desconto_pendente)
-                if (!cotacao.desconto_bloqueado)
-                    $('#btnSolicitarDesconto').show();
+        if (!cotacao.desconto_pendente)
+            if (!cotacao.desconto_bloqueado)
+                $('#btnSolicitarDesconto').show();
 
         if (cotacao.status === 2)
             $('#btnGerarBoleto').show();
@@ -181,25 +177,30 @@ function mostraDetalhesItem(id_item)
     });
 }
 
-function carregaEnderecoByCEP(Cep, element)
+function carregaEnderecoByCEPAreaUsuario(Cep, element)
 {
     var url = "http://viacep.com.br/ws/" + Cep + "/json/";
-    var endereco = $.get(url, function (enderecoResult)
-    {
-        var enderecoRetorno = "";
-        enderecoRetorno += enderecoResult.logradouro + ", ";
-        enderecoRetorno += enderecoResult.bairro + ", ";
-        enderecoRetorno += enderecoResult.localidade + " - ";
-        enderecoRetorno += enderecoResult.uf + ", ";
-        enderecoRetorno += enderecoResult.cep;
 
-        if (element !== null)
-            $(element).text(enderecoRetorno);
-        fillEnderecoObj(enderecoResult);
+    $.ajax({
+        url: url,
+        async: false,
+        success: function (enderecoResult)
+        {
+            var enderecoRetorno = "";
+            enderecoRetorno += enderecoResult.logradouro + ", ";
+            enderecoRetorno += enderecoResult.bairro + ", ";
+            enderecoRetorno += enderecoResult.localidade + " - ";
+            enderecoRetorno += enderecoResult.uf + ", ";
+            enderecoRetorno += enderecoResult.cep;
+
+            if (element !== null)
+                $(element).text(enderecoRetorno);
+            fillEnderecoObjAreaUsuario(enderecoResult);
+        }
     });
 }
 
-function fillEnderecoObj(enderecoResult)
+function fillEnderecoObjAreaUsuario(enderecoResult)
 {
     enderecoObj.CEP = enderecoResult.cep;
     enderecoObj.logradouro = enderecoResult.logradouro;
@@ -340,64 +341,64 @@ $('#btnSenhaIncorreta').click(function ()
 
 /* DINAMICA ANTIGA
  
-$('#tela-enderecos').click(function ()
-{
-    $('#enderecos').fadeIn(200);
-    $('#historico').hide();
-    $('#perfil').hide();
-    $('#pendentes').hide();
-    $('#lancamentos').hide();
-    $('#representacoes').hide();
-});
-
-$('#tela-historico').click(function ()
-{
-    $('#enderecos').hide();
-    $('#perfil').hide();
-    $('#pendentes').hide();
-    $('#lancamentos').hide();
-    $('#representacoes').hide();
-    $('#historico').fadeIn(200);
-});
-
-$('#tela-perfil').click(function ()
-{
-    $('#enderecos').hide();
-    $('#pendentes').hide();
-    $('#historico').hide();
-    $('#lancamentos').hide();
-    $('#representacoes').hide();
-    $('#perfil').fadeIn(200);
-});
-
-$('#tela-pendentes').click(function ()
-{
-    $('#enderecos').hide();
-    $('#historico').hide();
-    $('#perfil').hide();
-    $('#representacoes').hide();
-    $('#lancamentos').hide();
-    $('#pendentes').fadeIn(200);
-});
-
-$('#tela-lancamentos').click(function ()
-{
-    $('#pendentes').hide();
-    $('#enderecos').hide();
-    $('#perfil').hide();
-    $('#historico').hide();
-    $('#representacoes').hide();
-    $('#lancamentos').fadeIn(200);
-});
-
-$('#tela-representacoes').click(function ()
-{
-    $('#pendentes').hide();
-    $('#enderecos').hide();
-    $('#perfil').hide();
-    $('#historico').hide();
-    $('#lancamentos').hide();
-    $('#representacoes').fadeIn(200);
-});
-
+ $('#tela-enderecos').click(function ()
+ {
+ $('#enderecos').fadeIn(200);
+ $('#historico').hide();
+ $('#perfil').hide();
+ $('#pendentes').hide();
+ $('#lancamentos').hide();
+ $('#representacoes').hide();
+ });
+ 
+ $('#tela-historico').click(function ()
+ {
+ $('#enderecos').hide();
+ $('#perfil').hide();
+ $('#pendentes').hide();
+ $('#lancamentos').hide();
+ $('#representacoes').hide();
+ $('#historico').fadeIn(200);
+ });
+ 
+ $('#tela-perfil').click(function ()
+ {
+ $('#enderecos').hide();
+ $('#pendentes').hide();
+ $('#historico').hide();
+ $('#lancamentos').hide();
+ $('#representacoes').hide();
+ $('#perfil').fadeIn(200);
+ });
+ 
+ $('#tela-pendentes').click(function ()
+ {
+ $('#enderecos').hide();
+ $('#historico').hide();
+ $('#perfil').hide();
+ $('#representacoes').hide();
+ $('#lancamentos').hide();
+ $('#pendentes').fadeIn(200);
+ });
+ 
+ $('#tela-lancamentos').click(function ()
+ {
+ $('#pendentes').hide();
+ $('#enderecos').hide();
+ $('#perfil').hide();
+ $('#historico').hide();
+ $('#representacoes').hide();
+ $('#lancamentos').fadeIn(200);
+ });
+ 
+ $('#tela-representacoes').click(function ()
+ {
+ $('#pendentes').hide();
+ $('#enderecos').hide();
+ $('#perfil').hide();
+ $('#historico').hide();
+ $('#lancamentos').hide();
+ $('#representacoes').fadeIn(200);
+ });
+ 
  */

@@ -32,11 +32,11 @@ function vincularPedidosCotacao()
             var url = '/' + AMBIENTE_ATUAL + '/salvar-vinculo-pedido';
             $.post(url, params, function (response)
             {
-                if (response === '1')
-                    window.location.href = "/" + AMBIENTE_ATUAL + "/paginaperfil";
             });
         }
     });
+    
+    window.location.href = "/" + AMBIENTE_ATUAL + "/paginaperfil";
 }
 
 function listarPedidosVendas()

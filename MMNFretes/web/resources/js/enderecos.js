@@ -10,25 +10,67 @@ $(document).ready(function ()
 
 $('#btnAdicionar-endereco').click(function ()
 {
-    if ($('#formulario-endereco').attr('action') === '/' + AMBIENTE_ATUAL + '/adicionaEndereco')
-        $('#txID-endereco').val(0);
+    var url;
 
-    $('#formulario-endereco').ajaxForm
-            ({
-                success: function (data)
-                {
-                    $('#enderecos-items').html("");
-                    $('#enderecos-items').append(data);
-                    $('#txCep').val('');
-                    $('#txBairro').val('');
-                    $('#txLogradouro').val('');
-                    $('#txNumero').val('0');
-                    $('#txComplemento').val('');
-                    $('#btnExcluir-endereco').fadeOut(100);
-                    $('#btnAdicionar-endereco').text('Adicionar');
-                    $('#formulario-endereco').attr('action', '/' + AMBIENTE_ATUAL + '/adicionaEndereco');
-                }
-            });
+    if (endereco_atual === 0)
+        url = '/' + AMBIENTE_ATUAL + '/adicionaEndereco';
+    else
+        url = '/' + AMBIENTE_ATUAL + '/alteraEndereco';
+
+    var endereco = {
+        id: parseInt($('#txID-endereco').val()),
+        cep: $('#txCep').val(),
+        uf: parseInt($('#cbUf').val()),
+        municipio: parseInt($('#cbMunicipio').val()),
+        bairro: $('#txBairro').val(),
+        logradouro: $('#txLogradouro').val(),
+        numero: $('#txNumero').val(),
+        complemento: $('#txComplemento').val()
+    };
+
+    if (endereco.cep === '')
+    {
+        alert('Informe o CEP');
+        return;
+    }
+
+    if (endereco.uf === 0)
+    {
+        alert('Informe a UF');
+        return;
+    }
+
+    if (endereco.municipio === '')
+    {
+        alert('Informe o município');
+        return;
+    }
+
+    if (endereco.bairro === '')
+    {
+        alert('Informe o bairro');
+        return;
+    }
+
+    if (endereco.logradouro === '')
+    {
+        alert('Informe o logradouro');
+        return;
+    }
+
+    $.post(url, endereco, function (data)
+    {
+        carregaEnderecos();
+        endereco_atual = 0;
+        $('#txCep').val('');
+        $('#txBairro').val('');
+        $('#txLogradouro').val('');
+        $('#txNumero').val('0');
+        $('#txComplemento').val('');
+        $('#btnExcluir-endereco').fadeOut(100);
+        $('#btnAdicionar-endereco').text('Adicionar');
+        $('#formulario-endereco').attr('action', '/' + AMBIENTE_ATUAL + '/adicionaEndereco');
+    });
 });
 
 function carregaEstados()
@@ -65,7 +107,6 @@ function carregaEnderecos()
             $('#formulario-endereco').attr('action', '/' + AMBIENTE_ATUAL + '/adicionaEndereco');
             $('#enderecos-items').html("");
             $('#enderecos-items').append(data);
-            $('#formulario-endereco')[0].reset();
             $('#btnExcluir-endereco').fadeOut(100);
         }
     });
@@ -107,7 +148,7 @@ function carregaEnderecoEdicao(endereco_id)
             $('#formulario-endereco').attr('action', '/' + AMBIENTE_ATUAL + '/alteraEndereco');
             $('#btnExcluir-endereco').fadeOut(100);
             $('#txCep').val(endereco.CEP);
-            $('#cbUf').val(endereco.UF);
+            $('#cbUf').val(endereco.uf);
 
             var estado_id = parseInt($('#cbUf').val());
             var url = "/" + AMBIENTE_ATUAL + "/listacidades?estado_id=" + estado_id;

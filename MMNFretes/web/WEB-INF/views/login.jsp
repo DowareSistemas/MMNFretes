@@ -26,6 +26,7 @@
             <header>
                 <my-tags:navbar/>
                 <backend:mensagem-ok id="msgUsuarioExiste" id_btnOK="btnUsrExstOK" mensagem="Já existe um usuário com o email informado. Informe outro email"/>
+                <backend:mensagem-ok id="msgNomeImcompleto" id_btnOK="btnUsrNI" mensagem="Sobrenome não informado. Por favor, informe seu nome completo"/>
             </header>
             <main>
                 <div class="row">
@@ -78,6 +79,18 @@
                 $('#msgUsuarioExiste').modal('show');
 
                 $('#btnUsrExstOK').click(function ()
+                {
+                    window.location.href = '/' + AMBIENTE_ATUAL + '/paginalogin';
+                });
+            </script>
+        </c:if>
+
+        <c:if test="${nomeImcompleto eq true}">
+            <script>
+                $('#msgNomeImcompleto').modal('toggle');
+                $('#msgNomeImcompleto').modal('show');
+
+                $('#btnUsrNI').click(function ()
                 {
                     window.location.href = '/' + AMBIENTE_ATUAL + '/paginalogin';
                 });

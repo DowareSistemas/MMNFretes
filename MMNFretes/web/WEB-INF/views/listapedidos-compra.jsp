@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <c:forEach var="pedido" items="${pedidos}">
     <tr>
@@ -31,16 +32,33 @@
         <td>${pedido.usuarioVendedor.nome}</td>
         <td>${pedido.data}</td>
         <td>${pedido.produtos.nome}</td>
-        <td>${pedido.valor_final}</td>
-
+        <td>
+            <fmt:formatNumber value="${pedido.produtos.preco}"
+                              minFractionDigits="2"
+                              maxFractionDigits="2"
+                              type="currency"/>
+        </td>
+        <td>${pedido.quant}</td>
+        <td>
+            <fmt:formatNumber value="${pedido.valor_frete}"
+                              minFractionDigits="2"
+                              maxFractionDigits="2"
+                              type="currency"/>
+        </td>
+        <td>
+            <fmt:formatNumber value="${pedido.valor_final}"
+                              minFractionDigits="2"
+                              maxFractionDigits="2"
+                              type="currency"/>
+        </td>
         <td>
             <c:if test="${pedido.status eq 1}">
-                <button onclick="criarPagamentoPedido(${pedido.id})" class="btn btn-xs btn-success">Efetuar pagamento</button> 
-                <button onclick="setStatusPedido(${pedido.id}, 5)" class="btn btn-xs btn-warning">Cancelar</button> 
+                <button onclick="criarPagamentoPedido(${pedido.id})" class="btn btn-xs col-xs-12 btn-success">Efetuar pagamento</button> 
+                <button onclick="setStatusPedido(${pedido.id}, 5)" class="btn btn-xs col-xs-12 btn-warning">Cancelar</button> 
             </c:if>
 
             <c:if test="${pedido.status eq 3}">
-                <button onclick="setStatusPedido(${pedido.id}, 4)" class="btn btn-xs btn-success">Produto entregue</button> 
+                <button onclick="setStatusPedido(${pedido.id}, 4)" class="btn btn-xs col-xs-12 btn-success">Produto entregue</button> 
             </c:if>
         </td>
 

@@ -48,8 +48,13 @@ public class PagseguroController
 {
 
     private Cotacoes cotacao;
-    private Enderecos endereco;
     private IPersistenceLogger logger;
+
+    private String cep;
+    private String logradouro;
+    private String bairro;
+    private String municipio;
+    private String uf;
 
     private final String EMAIL = "atendimento.doware@gmail.com";
     private final String TOKEN = "DCAB793175CF44C5B1E8DE3A798AA33B";
@@ -63,12 +68,21 @@ public class PagseguroController
     public @ResponseBody
     String processaPagamento(
             @RequestParam(value = "cotacao_id") int cotacao_id,
-            Enderecos endereco)
+            @RequestParam(value = "cep") String cep,
+            @RequestParam(value = "logradouro") String logradouro,
+            @RequestParam(value = "bairro") String bairro,
+            @RequestParam(value = "municipio") String municipio,
+            @RequestParam(value = "uf") String uf)
     {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.municipio = municipio;
+        this.uf = uf;
+
         Session session = SessionProvider.openSession();
         this.logger = session.getPersistenceLogger();
         this.cotacao = session.onID(Cotacoes.class, cotacao_id);
-        this.endereco = endereco;
         session.close();
         return processar();
     }
@@ -76,12 +90,12 @@ public class PagseguroController
     private Address getAddress() throws Exception
     {
         Address address = new Address();
-        address.setCity(endereco.getMunicipio());
-        address.setState(endereco.getUF());
-        address.setStreet(endereco.getLogradouro());
-        address.setNumber(endereco.getNumero() + "");
-        address.setDistrict(endereco.getBairro());
-        address.setPostalCode(endereco.getCEP());
+        address.setCity(municipio);
+        address.setState(uf);
+        address.setStreet(logradouro);
+       // address.setNumber(endereco.getNumero() + "");
+        address.setDistrict(bairro);
+        address.setPostalCode(cep);
 
         return address;
     }
@@ -201,7 +215,7 @@ public class PagseguroController
             q.setParameter(2, cotacao.getId());
             q.execute();
         }
-        
+
         session.commit();
         session.close();
     }

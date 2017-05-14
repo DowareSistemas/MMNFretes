@@ -9,6 +9,12 @@
 <%@taglib tagdir="/WEB-INF/tags/backend/" prefix="tabela-endereco-item" %>
 
 <c:forEach var="endereco" items="${listaenderecos}">
-    <tabela-endereco-item:tabela-endereco id="${endereco.id}" bairro="${endereco.bairro}" cep="${endereco.CEP}" logradouro="${endereco.logradouro}" municipio="${endereco.municipio}" uf="${endereco.UF}" numero="${endereco.numero}"/>
+    <tabela-endereco-item:tabela-endereco id="${endereco.id}" 
+                                          bairro="${endereco.bairro}" 
+                                          cep="${endereco.cep}" 
+                                          logradouro="${endereco.logradouro}" 
+                                          municipio="${endereco.cidades.nome}" 
+                                          uf="${endereco.estados.sigla}" 
+                                          numero="${endereco.numero}"/>
 </c:forEach>
 

@@ -286,6 +286,7 @@ public class CotacoesController
         Query q = session.createQuery(gruposCotacoes, "@listaGrupos");
         q.setParameter(1, usuarioLogado.getId());
         q.execute();
+        session.close();
 
         return new Gson().toJson(gruposCotacoes.toList());
     }
@@ -483,6 +484,7 @@ public class CotacoesController
         grupo.setDescricao(novo_nome);
         session.update(grupo);
         session.commit();
+        session.close();
 
         return "1";
     }

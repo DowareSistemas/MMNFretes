@@ -7,7 +7,7 @@
     <form role="form" action="cadastratransportadora" method="POST">
         <div class="row">
             <div class="form-group col-md-12">
-                <label>Nome:</label>
+                <label>Nome Completo:</label>
                 <input type="text" name="nome" class="form-control" title="Nome" required>
             </div>
             <div class="form-group col-md-12">

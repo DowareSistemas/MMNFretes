@@ -39,6 +39,17 @@ public class Veiculos extends Entity
     private int carrocerias_id;
     private Carrocerias carrocerias;
     private InputStream foto;
+    private String placa;
+
+    public String getPlaca()
+    {
+        return placa;
+    }
+
+    public void setPlaca(String placa)
+    {
+        this.placa = placa;
+    }
 
     public void setId(int id)
     {

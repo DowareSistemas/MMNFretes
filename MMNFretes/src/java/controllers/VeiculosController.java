@@ -283,7 +283,6 @@ public class VeiculosController
             veiculo.setFoto(foto);
             session.update(veiculo);
             retorno = "1";
-
         }
 
         if (veiculos_id > 0)
@@ -331,7 +330,6 @@ public class VeiculosController
         {
             veiculo.setInativo(true);
             session.update(veiculo);
-
         }
         else
             session.delete(veiculo);

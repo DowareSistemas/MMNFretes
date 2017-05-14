@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <c:forEach var="pedido" items="${pedidos}">
     <tr>
@@ -31,7 +32,25 @@
         <td>${pedido.usuarios.nome}</td>
         <td>${pedido.data}</td>
         <td>${pedido.produtos.nome}</td>
-        <td>${pedido.valor_final}</td>
+        <td>
+            <fmt:formatNumber value="${pedido.produtos.preco}"
+                              minFractionDigits="2"
+                              maxFractionDigits="2"
+                              type="currency"/>
+        </td>
+        <td>${pedido.quant}</td>
+        <td>
+            <fmt:formatNumber value="${pedido.valor_frete}"
+                              minFractionDigits="2"
+                              maxFractionDigits="2"
+                              type="currency"/>
+        </td>
+        <td>
+            <fmt:formatNumber value="${pedido.valor_final}"
+                              minFractionDigits="2"
+                              maxFractionDigits="2"
+                              type="currency"/>
+        </td>
 
         <c:if test="${pedido.status eq 2}">
             <td>

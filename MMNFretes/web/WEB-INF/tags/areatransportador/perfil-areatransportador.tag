@@ -34,7 +34,7 @@
                             <form role="form" id="formulario-info-transportador" method="POST" action="/alteraInfoTransportadora">
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <label>Usuário:</label>
+                                        <label>Nome Completo:</label>
                                         <input type="text" id="txNome" name="usuarios.nome" class="form-control" title="Nome">
                                     </div>
                                 </div>

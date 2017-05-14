@@ -206,7 +206,7 @@ public class Pedidos_vendasController
             
             request.setCurrency(Currency.BRL);
             request.setSender(new Sender(pedido.getUsuarios().getNome(), pedido.getUsuarios().getEmail()));
-            
+
             sbLog.append("USUARIO: ").append(pedido.getUsuarios().getNome()).append("\n");
             sbLog.append("EMAIL: ").append(pedido.getUsuarios().getEmail()).append("\n");
             

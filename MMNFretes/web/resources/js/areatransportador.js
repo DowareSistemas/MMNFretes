@@ -42,12 +42,14 @@ $(document).ready(function ()
     $('#enderecos').hide();
     $('#historico-area-transportador').hide();
     $('#pendentes-area-transportador').hide();
+    $('#pedidos-areatransportador').hide();
     $('#li-deslogado').hide();
     $('#li-logado').hide();
     $('#btnVisualizaCotacoes').hide();
     $('#btnSalvar-info').hide();
 
     carregaInfoTransportador();
+    listarPedidosCompra();
     hab_desab_formInfo(true);
     pesquisaCotacao('');
 
@@ -57,6 +59,42 @@ $(document).ready(function ()
             $('#img-perfil').attr('src', url);
     });
 });
+
+function criarPagamentoPedido(pedido_id)
+{
+    var url = '/' + AMBIENTE_ATUAL + '/pagamento-pedido';
+    $.get(url, {pedido_id: pedido_id}, function (response)
+    {
+        if (response === '0')
+            return;
+
+        document.location.href = response;
+    });
+}
+
+function setStatusPedido(pedido_id, status)
+{
+    var params = {
+        pedido_id: pedido_id,
+        status: status
+    };
+
+    var url = '/' + AMBIENTE_ATUAL + '/pedidos-setstatus';
+    $.post(url, params, function (result)
+    {
+        listarPedidosCompra();
+        listarPedidosVendas();
+    });
+}
+
+function listarPedidosCompra()
+{
+    var url = '/' + AMBIENTE_ATUAL + '/listar-pedidos';
+    $.post(url, {tipo: 0}, function (content)
+    {
+        $('#tabela-pedidos-compra').html(content);
+    });
+}
 
 function cancelaItemCotacao(id_item)
 {
@@ -262,6 +300,7 @@ $('#btnPerfil').click(function ()
     $('#enderecos').hide();
     $('#historico-area-transportador').hide();
     $('#pendentes-area-transportador').hide();
+    $('#pedidos-areatransportador').hide();
 });
 
 $('#btnVeiculos').click(function ()
@@ -271,6 +310,7 @@ $('#btnVeiculos').click(function ()
     $('#historico-area-transportador').hide();
     $('#pendentes-area-transportador').hide();
     $('#perfil-area-transportador').hide();
+    $('#pedidos-areatransportador').hide();
 });
 
 $('#btnEnderecos').click(function ()
@@ -280,6 +320,7 @@ $('#btnEnderecos').click(function ()
     $('#historico-area-transportador').hide();
     $('#pendentes-area-transportador').hide();
     $('#perfil-area-transportador').hide();
+    $('#pedidos-areatransportador').hide();
 });
 
 $('#btnHistorico').click(function ()
@@ -289,11 +330,23 @@ $('#btnHistorico').click(function ()
     $('#veiculos-area-transportador').hide();
     $('#pendentes-area-transportador').hide();
     $('#perfil-area-transportador').hide();
+    $('#pedidos-areatransportador').hide();
 });
 
 $('#btnPendentes').click(function ()
 {
     $('#pendentes-area-transportador').fadeIn(200);
+    $('#historico-area-transportador').hide();
+    $('#enderecos').hide();
+    $('#veiculos-area-transportador').hide();
+    $('#perfil-area-transportador').hide();
+    $('#pedidos-areatransportador').hide();
+});
+
+$('#btnPedidos').click(function ()
+{
+    $('#pedidos-areatransportador').fadeIn(200);
+    $('#pendentes-area-transportador').hide();
     $('#historico-area-transportador').hide();
     $('#enderecos').hide();
     $('#veiculos-area-transportador').hide();

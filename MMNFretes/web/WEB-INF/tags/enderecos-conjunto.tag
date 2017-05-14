@@ -10,7 +10,6 @@
                         <div class="col-md-12">
                             <h3 class="text-primary">Gerenciar endereços</h3>
                             <div class="form-group">
-                                <form role="form" id="formulario-endereco" action="" method="POST">
                                     <div class="row">
                                         <div hidden>
                                             <input type="number" id="txID-endereco" name="id">
@@ -21,7 +20,7 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>UF:</label>
-                                            <select class="form-control" id="cbUf" name="UF" required>
+                                            <select class="form-control" id="cbUf" name="uf" required>
                                                 <option value="0" selected> Selecione </option>
                                                 <!-- Adicionado dinamicamente -->
                                             </select>
@@ -55,10 +54,9 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <button type="button" value="0" id="btnExcluir-endereco" class="btn btn-danger">Excluir</button>
-                                            <button type="submit" id="btnAdicionar-endereco" class="btn btn-primary pull-right">Adicionar</button>
+                                            <button type="button" id="btnAdicionar-endereco" class="btn btn-primary pull-right">Adicionar</button>
                                         </div>
                                     </div>      
-                                </form>
                             </div>
                         </div>
                     </div>

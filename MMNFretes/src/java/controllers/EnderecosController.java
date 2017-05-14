@@ -35,7 +35,8 @@ public class EnderecosController
 {
 
     @RequestMapping(value = "/adicionaEndereco", method = RequestMethod.POST)
-    public String adicionar(Enderecos endereco, HttpSession httpSession)
+    public @ResponseBody
+    String adicionar(Enderecos endereco, HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
         endereco.setUsuarios_id(usuario.getId());
@@ -46,7 +47,7 @@ public class EnderecosController
         session.commit();
         session.close();
 
-        return "redirect:listaEnderecos";
+        return "OK";
     }
 
     @RequestMapping(value = "/carregaEndereco", produces = "application/json; charset=utf-8")
@@ -83,7 +84,8 @@ public class EnderecosController
     }
 
     @RequestMapping(value = "/alteraEndereco", method = RequestMethod.POST)
-    public String alteraEndereco(Enderecos endereco, HttpSession httpSession)
+    public @ResponseBody
+    String alteraEndereco(Enderecos endereco, HttpSession httpSession)
     {
         Usuarios usuario = (Usuarios) httpSession.getAttribute("usuarioLogado");
         endereco.setUsuarios_id(usuario.getId());
@@ -93,7 +95,7 @@ public class EnderecosController
         session.commit();
         session.close();
 
-        return "redirect:listaEnderecos";
+        return "OK";
     }
 
     @RequestMapping(value = "get-municipio", method = RequestMethod.POST)
@@ -103,16 +105,16 @@ public class EnderecosController
         Session session = SessionProvider.openSession();
         Cidades cidade = session.onID(Cidades.class, cod_mun);
         session.close();
-        
+
         return cidade.getNome();
     }
-    
+
     @RequestMapping(value = "/inativaEndereco", method = RequestMethod.POST)
     public @ResponseBody
     String inativaEndereco(@PathParam(value = "endereco_id") int endereco_id)
     {
         Session session = SessionProvider.openSession();
-        
+
         Enderecos endereco = session.onID(Enderecos.class, endereco_id);
         endereco.setInativo(true);
 

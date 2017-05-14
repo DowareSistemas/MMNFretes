@@ -84,9 +84,10 @@ public class SessionProvider
             xK$dn,=1QtON
              */
             //  config.setPersistenceContext(util.PersistenceContext.class);
-            config.setMaxIdleTime(10);
-            config.setMaxStatements(10);
-            config.setMaxIdleTimeExcessConnections(10);
+            config.setMaxIdleTime(5);
+            config.setMaxStatements(5);
+            config.setMaxIdleTimeExcessConnections(5);
+            System.err.println("******** Novo Pool ********");
             return factory.getSession(config);
         }
         catch (Exception ex)

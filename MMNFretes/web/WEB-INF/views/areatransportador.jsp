@@ -35,6 +35,7 @@
                                 <button class="btn btn-primary btn-block" type="button" id="btnEnderecos">Endereços</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnHistorico">Histórico</button><br>
                                 <button class="btn btn-primary btn-block" type="button" id="btnPendentes">Pendentes</button><br>
+                                <button class="btn btn-primary btn-block" type="button" id="btnPedidos">Pedidos</button>
                             </div>
                         </div>
                     </div>
@@ -49,6 +50,7 @@
                     <areatransportador:pendentes-areatransportador/>
                     <areatransportador:perfil-areatransportador/>
                     <areatransportador:veiculos-areatransportador/>
+                    <areatransportador:produtos-areatransportador/>
                     
                     <!-- Dinâmica da página -->
                     <backend:mensagem-input id="alterarSenha"

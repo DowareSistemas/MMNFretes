@@ -15,6 +15,7 @@
                             <th>Data</th>
                             <th>Produto</th>
                             <th>Valor Produto</th>
+                            <th>Quantidade</th>
                             <th>Valor Frete</th>
                             <th>Valor Total</th>
                             <th>Ações</th>
@@ -43,6 +44,7 @@
                             <th>Data</th>
                             <th>Produto</th>
                             <th>Valor Produto</th>
+                            <th>Quantidade</th>
                             <th>Valor Frete</th>
                             <th>Valor Total</th>
                             <th>Ações</th>

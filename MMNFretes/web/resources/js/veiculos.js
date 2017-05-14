@@ -243,6 +243,7 @@ function limparCampos()
     $('#cbCategoria_veiculo').val(1);
     $('#cbTipo_carga').val(1);
     $('#cb_carroceria').val(1);
+    $('#txPlaca_veiculo').val('');
     $('#fake-file-input-name-veiculos').val('');
     $('#formulario-info-veiculo').attr('action', '/' + AMBIENTE_ATUAL + '/salvaveiculo');
 }

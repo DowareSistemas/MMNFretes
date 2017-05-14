@@ -55,6 +55,23 @@ public class UsuariosController
             return mav;
         }
 
+        try
+        {
+            String[] parts = usuario.getNome().split(" ");
+            if (parts.length == 1)
+            {
+                ModelAndView mav = new ModelAndView("login");
+                mav.addObject("nomeImcompleto", true);
+                return mav;
+            }
+        }
+        catch (Exception ex)
+        {
+            ModelAndView mav = new ModelAndView("login");
+            mav.addObject("nomeImcompleto", true);
+            return mav;
+        }
+
         usuario.setTipo_usuario(0);
 
         Session session = SessionProvider.openSession();
@@ -74,6 +91,23 @@ public class UsuariosController
         {
             ModelAndView mav = new ModelAndView("login");
             mav.addObject("usuarioExiste", true);
+            return mav;
+        }
+
+        try
+        {
+            String[] parts = transportadoras.getUsuarios().getNome().split(" ");
+            if (parts.length == 1)
+            {
+                ModelAndView mav = new ModelAndView("login");
+                mav.addObject("nomeImcompleto", true);
+                return mav;
+            }
+        }
+        catch (Exception ex)
+        {
+            ModelAndView mav = new ModelAndView("login");
+            mav.addObject("nomeImcompleto", true);
             return mav;
         }
 
@@ -195,7 +229,7 @@ public class UsuariosController
         httpSession.setAttribute("usuarioLogado", null);
         return "redirect:pesquisar";
     }
-    
+
     @RequestMapping(value = "/listaUsuariosAdmin")
     public ModelAndView listaUsuariosAdmin()
     {
@@ -223,7 +257,7 @@ public class UsuariosController
         Transportadoras transportadora = (usuario.getTipo_usuario() == 1
                 ? new TransportadorasController().getByUsuario(usuario.getId())
                 : null);
-        
+
         Calendar calendar = Calendar.getInstance();
         Date dataInicio = br.com.persistor.generalClasses.Util.getDate(1, calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
         Date dataFim = br.com.persistor.generalClasses.Util.getDate(calendar.getActualMaximum(Calendar.DATE), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
