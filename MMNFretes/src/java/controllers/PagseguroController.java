@@ -56,8 +56,8 @@ public class PagseguroController
     private String municipio;
     private String uf;
 
-    private final String EMAIL = "atendimento.doware@gmail.com";
-    private final String TOKEN = "DCAB793175CF44C5B1E8DE3A798AA33B";
+    private final String EMAIL = "eltontinocoalmeida@gmail.com";//"atendimento.doware@gmail.com";
+    private final String TOKEN = "C924E2BCE5824A73BEBACFB981551C0D"; //"DCAB793175CF44C5B1E8DE3A798AA33B";
 
     public PagseguroController()
     {

@@ -46,7 +46,7 @@
                               type="currency"/>
         </td>
         <td>
-            <fmt:formatNumber value="${pedido.valor_final}"
+            <fmt:formatNumber value="${pedido.valor_final + pedido.valor_frete}"
                               minFractionDigits="2"
                               maxFractionDigits="2"
                               type="currency"/>
