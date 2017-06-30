@@ -70,7 +70,7 @@
                                                         <button class="btn btn-info btn-block" onclick="exibirProdutosRepresentante(${representante.id})" data-toggle="collapse" data-target="#alguns-produtos">Alguns Produtos</button>
                                                     </div>
                                                     <div class="col-xs-6 col-sm-12 form-group">
-                                                        <button class="btn btn-primary btn-block">Conhecer</button>
+                                                        <button onclick="irParaPaginaRepresentante(${representante.id})" class="btn btn-primary btn-block">Conhecer</button>
                                                     </div>   
                                                 </div>
                                             </div>
@@ -82,7 +82,7 @@
                                 <div class="panel-footer">
                                     <div id="alguns-produtos" class="collapse">
                                         <div class="row" id="produtos-representante">
-                                              <!-- exibicaoprodutos-representante.jsp -->
+                                            <!-- exibicaoprodutos-representante.jsp -->
                                         </div>
                                     </div>
                                 </div><!-- PRODUTOS - FIM -->
@@ -111,5 +111,12 @@
         <script src="resources/js/login.js"></script>
         <script src="resources/js/navbar.js"></script>
         <script src="resources/js/representacoes.js"></script>
+
+        <script>
+            function irParaPaginaRepresentante(representanteId)
+            {
+                window.location.href = '/gcfretes/representante?representante_id=' + representanteId;
+            }
+        </script>
     </body>
 </html>

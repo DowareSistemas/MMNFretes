@@ -54,9 +54,26 @@ public class RepresetacoesController
 {
 
     @RequestMapping(value = "representante")
-    public String representantes()
+    public ModelAndView representantes(@RequestParam(value = "representante_id") int usuario_id)
     {
-        return "representante";
+        Produtos produtos = new Produtos();
+        Session session = SessionProvider.openSession();
+        session.createCriteria(produtos, RESULT_TYPE.MULTIPLE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "usuario_id", usuario_id))
+                .execute();
+
+        Usuarios usuarios = new Usuarios();
+        session.createCriteria(usuarios, RESULT_TYPE.UNIQUE)
+                .add(Restrictions.eq(FILTER_TYPE.WHERE, "id", usuario_id))
+                .setSpecificFields("nome")
+                .execute();
+        
+        session.close();
+
+        ModelAndView mav = new ModelAndView("representante");
+        mav.addObject("produtos", produtos.toList());
+        mav.addObject("nomeRepresentante", usuarios.getNome());
+        return mav;
     }
 
     @RequestMapping(value = "/representacoes")

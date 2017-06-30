@@ -12,6 +12,7 @@ import br.com.persistor.annotations.PrimaryKey;
 import br.com.persistor.enums.INCREMENT;
 import br.com.persistor.enums.JOIN_TYPE;
 import br.com.persistor.enums.LOAD;
+import br.com.persistor.sessionManager.FieldHandled;
 import java.io.InputStream;
 
 /**
@@ -34,6 +35,21 @@ public class Produtos extends Entity
     private String unidade;
     private double quant;
 
+    private Usuarios usuarios;
+
+    @OneToOne(source = "usuario_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
+    public Usuarios getUsuarios()
+    {
+        if(usuarios == null)
+            usuarios = (Usuarios) FieldHandled.readObject(this, "usuarios");
+        return usuarios;
+    }
+
+    public void setUsuarios(Usuarios usuarios)
+    {
+        this.usuarios = usuarios;
+    }
+
     public double getQuant()
     {
         return quant;
@@ -43,8 +59,6 @@ public class Produtos extends Entity
     {
         this.quant = quant;
     }
-
-    private Usuarios usuarios;
 
     public InputStream getFoto()
     {
@@ -125,16 +139,5 @@ public class Produtos extends Entity
     public void setUsuario_id(int usuario_id)
     {
         this.usuario_id = usuario_id;
-    }
-
-    @OneToOne(source = "usuario_id", target = "id", join_type = JOIN_TYPE.INNER, load = LOAD.AUTO)
-    public Usuarios getUsuarios()
-    {
-        return usuarios;
-    }
-
-    public void setUsuarios(Usuarios usuarios)
-    {
-        this.usuarios = usuarios;
     }
 }

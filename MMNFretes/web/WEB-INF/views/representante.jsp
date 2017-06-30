@@ -30,71 +30,88 @@ que o conteúdo de descrição seja o mesmo para totos os produtos na tela.
         <title>Representante - GC Fretes</title>
     </head>
     <body>
+        <!-- Jquery Necessário aqui -->
+        <script src="resources/js/jquery.js"></script>
+
         <div class="container-fluid">
             <header>
                 <my-tags:navbar/>
             </header>
             <main>
                 <div class="jumbotron">
-                    <h1 class="text-center text-uppercase">nome do representante</h1>
+                    <h1 class="text-center text-uppercase">${nomeRepresentante}</h1>
                     <p class="text-center text-muted">Seja bem vindo, conheça meus produtos logo abaixo!</p>
                 </div>
 
                 <div class="row">
-                    <!-- PRODUTO -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 form-group">
-                        <div class="panel panel-primary">
-                            <div class="panel-body row">
-                                <div class="col-xs-12 form-group">
-                                    <button class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#id_produto">
-                                        <i class="glyphicon glyphicon-info-sign"></i>
-                                    </button>
-                                    <img src="resources/img/logo.png" alt="Imagem Produto" class="img-rounded center-block" height="200">
-                                </div>
-                                <div class="col-xs-12">
-                                    <h2>Nome do Produto</h2>
-                                </div>
-                                <div class="col-xs-12">
-                                    <h2><small><span>R$ </span>000,00</small></h2>
-                                </div>
-                                <div class="col-xs-12">
-                                    <h3><small>Quantidade: 000 <span>UN</span></small></h3>
-                                </div>
-                                <div class="col-xs-12">
-                                    <button class="btn btn-success center-block">Comprar</button>
+                    <c:forEach var="produto" items="${produtos}">
+                        <!-- PRODUTO -->
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 form-group">
+                            <div class="panel panel-primary">
+                                <div class="panel-body row">
+                                    <div class="col-xs-12 form-group">
+                                        <button class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#${produto.id}">
+                                            <i class="glyphicon glyphicon-info-sign"></i>
+                                        </button>
+
+                                        <img id="imgProduto${produto.id}" src="resources/img/logo.png" alt="Imagem Produto" class="img-rounded center-block" height="200">
+
+                                        <c:if test="${produto.foto ne null}">
+                                            <script>
+                                                var url = '/gcfretes/produto_path?produto_id=${produto.id}';
+                                                $.get(url, function (response)
+                                                {
+                                                    $('#imgProduto${produto.id}').attr('src',
+                                                            response);
+                                                });
+                                            </script>
+                                        </c:if>
+
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h2>${produto.nome}</h2>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h2>
+                                            <small>
+                                                <fmt:formatNumber value="${produto.preco}"
+                                                                  minFractionDigits="2"
+                                                                  maxFractionDigits="2"
+                                                                  type="currency"/>
+                                            </small>
+                                        </h2>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h3><small>Quantidade: ${produto.quant} <span>${produto.unidade}</span></small></h3>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <button onclick="comprarProduto(${produto.id})" class="btn btn-success center-block">Comprar</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- MODAL DE DESCRIÇÃO -->
-                        <div class="modal fade" id="id_produto">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Descrição do produto</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Lorem ipsum dolor sit amet, consectetur 
-                                        adipiscing elit. Quisque iaculis massa eu
-                                        dui ullamcorper luctus. Nunc rhoncus nunc 
-                                        velit, eu egestas sapien lacinia sed. Nam
-                                        id purus dui. Interdum et malesuada fames
-                                        ac ante ipsum primis in faucibus. Sed gravida
-                                        neque ac vestibulum imperdiet. Nulla at nulla
-                                        eu erat dapibus pellentesque a in nisl.
+
+                            <!-- MODAL DE DESCRIÇÃO -->
+                            <div class="modal fade" id="${produto.id}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">${produto.nome}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            ${produto.descricao}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div><!-- PRODUTO -->
+                        </div><!-- PRODUTO -->
+                    </c:forEach>
                 </div>
             </main>
         </div>
         <!-- Scripts da página 
         ========================================================================================= -->
         <script src="resources/js/ambientes.js"></script>
-        <script src="resources/js/jquery.js"></script>
         <script src="resources/js/jquery-form.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <!-- Scripts de mascara para inputs 
@@ -105,5 +122,12 @@ que o conteúdo de descrição seja o mesmo para totos os produtos na tela.
         ========================================================================================= -->
         <script src="resources/js/login.js"></script>
         <script src="resources/js/navbar.js"></script>
+
+        <script>
+            function comprarProduto(produto_id)
+            {
+                window.location.href = '/gcfretes/produto?id=' + produto_id;
+            }
+        </script>
     </body>
 </html>
